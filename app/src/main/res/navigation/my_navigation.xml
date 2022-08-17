@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/menuFragment">
+
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.yuvish.Fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/transportFragment"
+        android:name="com.example.yuvish.Fragments.TransportFragment"
+        android:label="fragment_transport"
+        tools:layout="@layout/fragment_transport" />
+    <fragment
+        android:id="@+id/tayyorFragment"
+        android:name="com.example.yuvish.Fragments.TayyorFragment"
+        android:label="TayyorFragment" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.yuvish.Fragments.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.yuvish.Fragments.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.example.yuvish.Fragments.SettingFragment"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/skladFragment"
+        android:name="com.example.yuvish.Fragments.SkladFragment"
+        android:label="fragment_sklad"
+        tools:layout="@layout/fragment_sklad" />
+    <fragment
+        android:id="@+id/baseFragment"
+        android:name="com.example.yuvish.Fragments.BaseFragment"
+        android:label="fragment_base"
+        tools:layout="@layout/fragment_base" />
+    <fragment
+        android:id="@+id/listFragment"
+        android:name="com.example.yuvish.Fragments.ListFragment"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" />
+    <fragment
+        android:id="@+id/sumbitFragment"
+        android:name="com.example.yuvish.Fragments.SumbitFragment"
+        android:label="fragment_sumbit"
+        tools:layout="@layout/fragment_sumbit" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.yuvish.Fragments.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/debtorFragment"
+        android:name="com.example.yuvish.Fragments.DebtorFragment"
+        android:label="fragment_debtor"
+        tools:layout="@layout/fragment_debtor" />
+    <fragment
+        android:id="@+id/debtorsDepartmentFragment"
+        android:name="com.example.yuvish.Fragments.DebtorsDepartmentFragment"
+        android:label="fragment_debtors_department"
+        tools:layout="@layout/fragment_debtors_department" />
+
+</navigation>

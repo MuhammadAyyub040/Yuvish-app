@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/base"
+        android:icon="@drawable/ic_apps"
+        android:title="@string/asosiy_ko_rsatgichlar" />
+
+    <item
+        android:id="@+id/new_order"
+        android:icon="@drawable/ic_delivery_truck_with_circular_clock_svgrepo_com"
+        android:title="@string/yangi_buyurtmalar" />
+
+    <item
+        android:id="@+id/washing"
+        android:icon="@drawable/ic_shower_svgrepo_com"
+        android:title="@string/yuvish_bo_limi" />
+
+    <item
+        android:id="@+id/ready"
+        android:icon="@drawable/ic_check_mark_black_outline_svgrepo_com"
+        android:title="@string/tayyor_buyurtmalar" />
+
+    <item
+        android:id="@+id/warehouse"
+        android:icon="@drawable/ic_home_icon_silhouette_svgrepo_com"
+        android:title="@string/sklad_bo_limi" />
+    <item
+        android:id="@+id/debtors"
+        android:icon="@drawable/ic_debtors_person"
+        android:title="@string/qarzdorlar_bo_limi"/>
+
+
+    <item android:title="@string/profil">
+
+
+        <menu>
+
+            <item
+                android:id="@+id/employee_setting"
+                android:icon="@drawable/ic_settings_svgrepo_com"
+                android:title="@string/xodim_sozlamalari" />
+
+            <item
+                android:id="@+id/close"
+                android:icon="@drawable/ic_login"
+                android:title="@string/chiqish" />
+
+        </menu>
+
+
+    </item>
+
+
+</menu>

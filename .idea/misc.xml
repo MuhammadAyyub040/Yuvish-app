@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/background_txt.xml" value="0.382051282051282" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/custom_input.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/custom_input_2.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/custom_input_3.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/custom_input_4.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/custom_input_7.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/custom_input_dark.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/edit_text_background.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/ic_location.xml" value="0.382051282051282" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/kvitansiya_item_6.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout-v28/fragment_setting.xml" value="0.18085106382978725" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/activity_main.xml" value="0.17401215805471124" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/background_txt.xml" value="0.18085106382978725" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_base.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_debtor.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_debtors_department.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_list.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_menu.xml" value="0.18085106382978725" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_registration.xml" value="0.17685185185185184" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_setting.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_sklad.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_sumbit.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_tayyor.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_transport.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/ic_location.xml" value="0.18085106382978725" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_adyol.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_child.xml" value="0.18085106382978725" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_gilam.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_joyida_yuvish.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_parda.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_theme.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_warn.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_yangi_v.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_yumshoq_oyinchoq.xml" value="0.18085106382978725" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kpi_item.xml" value="0.5" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_2.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_3.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_4.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_5.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_6.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/nav_header.xml" value="0.18085106382978725" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/rewash_item.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/sorting_item.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/submitted_item.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/washed_item.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/menu/nav_menu.xml" value="0.3183673469387755" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

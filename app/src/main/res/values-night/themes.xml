@@ -1,0 +1,45 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Yuvish" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="DarkThemeBackground">
+        <item name="android:background">@color/black</item>
+    </style>
+
+    <style name="cardParentStyle">
+        <item name="cardBackgroundColor">#3F3D3D</item>
+    </style>
+
+    <style name="textStyle">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="editTextDark">
+        <item name="android:background">@color/gray</item>
+    </style>
+
+    <style name="textInput">
+        <item name="boxBackgroundColor">@color/gray</item>
+    </style>
+
+    <style name="editTheme">
+        <item name="android:background">#424242</item>
+    </style>
+
+    <style name="svgTheme">
+        <item name="tint">@color/white</item>
+    </style>
+
+</resources>
