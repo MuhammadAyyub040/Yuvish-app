@@ -23,7 +23,7 @@
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_list.xml" value="0.25" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_login.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_menu.xml" value="0.18085106382978725" />
-        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_registration.xml" value="0.17685185185185184" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_registration.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_setting.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_sklad.xml" value="0.25" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_sumbit.xml" value="0.33" />
@@ -43,9 +43,12 @@
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item.xml" value="0.25" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_2.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_3.xml" value="0.33" />
-        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_4.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_4.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_5.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_6.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_cleaning.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_unsorted.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/kvitansiya_item_warehouse.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/nav_header.xml" value="0.18085106382978725" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/rewash_item.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/sorting_item.xml" value="0.33" />

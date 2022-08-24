@@ -397,6 +397,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:background="#C8EAFF"
+                        android:textColorHint="@color/black"
+                        android:padding="10dp"
                         android:hint="@string/barkodni_kiriting" />
 
                     <androidx.cardview.widget.CardView
@@ -458,7 +460,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/kvitansiya_item"/>
+                        tools:listitem="@layout/kvitansiya_item_Cleaning"/>
 
                 </LinearLayout>
 
@@ -503,7 +505,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/kvitansiya_item" />
+                        tools:listitem="@layout/kvitansiya_item_Cleaning" />
 
                 </LinearLayout>
 

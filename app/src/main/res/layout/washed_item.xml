@@ -79,7 +79,7 @@
                     android:layout_height="wrap_content">
 
                     <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView_qator"
+                        android:id="@+id/autoComplete_washed_qator"
                         style="@style/textStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

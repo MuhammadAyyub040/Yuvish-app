@@ -54,6 +54,12 @@ class BaseFragment : Fragment() {
 
             val myDialog = Dialog(requireActivity())
             myDialog.setContentView(dialogBinding.root)
+            dialogBinding.autoCompleteWashedQator
+
+
+            val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("10", "20", "50", "70", "100") )
+
+            dialogBinding.autoCompleteWashedQator.setAdapter(adapter)
 
             myDialog.setCancelable(true)
             myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -65,7 +71,11 @@ class BaseFragment : Fragment() {
 
             val myDialog = Dialog(requireActivity())
             myDialog.setContentView(dialogBinding.root)
-            dialogBinding.autoCompleteTextViewQator
+            dialogBinding.autoCompleteSubmittedQator
+
+            val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("10", "20", "50", "70", "100") )
+
+            dialogBinding.autoCompleteSubmittedQator.setAdapter(adapter)
 
             myDialog.setCancelable(true)
             myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -78,6 +88,11 @@ class BaseFragment : Fragment() {
             val myDialog = Dialog(requireActivity())
             myDialog.setContentView(dialogBinding.root)
             dialogBinding.autoCompleteTextViewQator
+            dialogBinding.autoCompleteTextViewTuri
+
+            val adapterTuri = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("Hammasi", "Qadoqlashda", "Transportda", "Operatorda") )
+
+            dialogBinding.autoCompleteTextViewTuri.setAdapter(adapterTuri)
 
             val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("10", "20", "50", "70", "100") )
 

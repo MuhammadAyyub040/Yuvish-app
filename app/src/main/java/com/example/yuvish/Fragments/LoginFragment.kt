@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Models.UserToken
+import com.example.yuvish.Models.Authorization.UserToken
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentLoginBinding
 import com.example.yuvish.retrofit.ApiClient
@@ -45,7 +45,6 @@ class LoginFragment : Fragment() {
                             Log.d("testLogin", response.body().toString())
                             val userToken = response.body()
                             Hawk.put("token", userToken?.access_token)
-                            Hawk.get("token", "")
                             findNavController().navigate(R.id.homeFragment)
                         }else{
                             Log.d("testLogin", response.toString())

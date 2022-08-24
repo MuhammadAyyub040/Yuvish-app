@@ -293,6 +293,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginBottom="16dp"
+                        android:layout_marginTop="8dp"
                         android:minHeight="48dp"
                         app:cardCornerRadius="16dp"
                         android:layout_weight="1"
@@ -316,6 +317,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
                         android:layout_marginBottom="16dp"
                         app:cardCornerRadius="16dp"
                         android:minHeight="48dp"
@@ -387,7 +389,7 @@
                         android:layout_marginTop="20dp"
                         android:text="@string/qarzlar"
                         android:textSize="30sp"
-                        tools:listitem="@layout/kvitansiya_item_5"/>
+                        tools:listitem="@layout/kvitansiya_item_unfinished"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -401,7 +403,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/kvitansiya_item_6" />
+                        tools:listitem="@layout/kvitansiya_item_debts" />
 
                 </LinearLayout>
 

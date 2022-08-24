@@ -6,8 +6,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp"
-    android:background="@drawable/custom_input_3">
-
+    android:background="@drawable/custom_input_4">
 
     <LinearLayout
         android:id="@+id/linear"
@@ -29,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="@string/kvitansiya"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -37,8 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="18"
-                android:textColor="#F44336"
-                android:textSize="20sp"
+                android:textColor="#4CAF50"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -46,13 +45,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="|"
-                android:textColor="#F44336"
-                android:textSize="20sp"
+                android:textColor="#4CAF50"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:layout_margin="8dp"
                 android:src="@drawable/restart" />
 
@@ -60,8 +60,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textColor="#F44336"
-                android:textSize="20sp"
+                android:textColor="#4CAF50"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -75,8 +75,8 @@
             <ImageView
                 android:id="@+id/image_person"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_person_kvitamsiya" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="3"
                 android:text="@string/yuvish_test"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -101,8 +101,8 @@
             <ImageView
                 android:id="@+id/image_phone"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/phone" />
 
             <TextView
@@ -112,7 +112,7 @@
                 android:layout_margin="5dp"
                 android:text="@string/_998999999999"
                 android:textColor="#3F51B5"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -126,8 +126,8 @@
             <ImageView
                 android:id="@+id/image_location"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_location" />
 
             <TextView
@@ -136,7 +136,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/fergana"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -150,8 +150,8 @@
             <ImageView
                 android:id="@+id/image_time"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_time" />
 
             <TextView
@@ -160,7 +160,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_2022_08_08_12_45_59"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -171,11 +171,13 @@
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_submit2"
+                android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:backgroundTint="#F44336"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#4CAF50"
                 android:drawableLeft="@drawable/ic_check"
                 android:text="@string/topshirish"
                 android:textColor="@color/white"
@@ -183,7 +185,7 @@
                 app:cornerRadius="10dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_arranged2"
+                android:id="@+id/btn_arranged"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

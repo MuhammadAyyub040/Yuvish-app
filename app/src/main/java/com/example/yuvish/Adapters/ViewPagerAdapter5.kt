@@ -3,12 +3,12 @@ package com.example.yuvish.Adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.databinding.KvitansiyaItem5Binding
+import com.example.yuvish.databinding.KvitansiyaItemUnfinishedBinding
 
 class ViewPagerAdapter5 (var onItemClick: OnItemClick, var list: List<String>) :
     RecyclerView.Adapter<ViewPagerAdapter5.Vh>() {
 
-    inner class Vh(val binding: KvitansiyaItem5Binding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Vh(val binding: KvitansiyaItemUnfinishedBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int) {
             binding.cardFinish.setOnClickListener {
                 onItemClick.onItemClick(position)
@@ -17,7 +17,7 @@ class ViewPagerAdapter5 (var onItemClick: OnItemClick, var list: List<String>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Vh {
-        return Vh(KvitansiyaItem5Binding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return Vh(KvitansiyaItemUnfinishedBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: Vh, position: Int) {

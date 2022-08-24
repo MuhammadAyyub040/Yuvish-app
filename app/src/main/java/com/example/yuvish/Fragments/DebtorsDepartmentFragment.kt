@@ -14,14 +14,11 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Adapters.ViewPagerAdapter
 import com.example.yuvish.Adapters.ViewPagerAdapter5
 import com.example.yuvish.Adapters.ViewPagerAdapter6
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentDebtorsDepartmentBinding
-import com.example.yuvish.databinding.FragmentHomeBinding
 import com.example.yuvish.databinding.ItemWarnBinding
-import com.example.yuvish.databinding.SortingItemBinding
 
 class DebtorsDepartmentFragment : Fragment() {
 

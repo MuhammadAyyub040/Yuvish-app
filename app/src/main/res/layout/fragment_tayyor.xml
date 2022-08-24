@@ -411,7 +411,7 @@
                         app:layout_constraintStart_toStartOf="@+id/shot_card_transport"
                         app:layout_constraintBottom_toTopOf="@id/viewPager2"
                         app:layout_constraintTop_toBottomOf="@id/shot_card_transport"
-                        tools:listitem="@layout/kvitansiya_item_2"/>
+                        tools:listitem="@layout/kvitansiya_item_arranged"/>
 
                 </LinearLayout>
 
@@ -460,7 +460,7 @@
                         app:layout_constraintStart_toStartOf="@+id/shot_card_transport"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/kvitansiya_item_3"/>
+                        tools:listitem="@layout/kvitansiya_item_unsorted"/>
 
                 </LinearLayout>
 

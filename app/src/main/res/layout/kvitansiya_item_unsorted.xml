@@ -8,6 +8,7 @@
     android:layout_marginBottom="16dp"
     android:background="@drawable/custom_input_3">
 
+
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
@@ -27,50 +28,54 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txt_kvitansiya"
-                style="@style/textStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/kvitansiya"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txt_kvitansiya"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/kvitansiya"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="18"
-                android:textColor="#F44336"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txt_kvitansiya_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="18"
+                    android:textColor="#F44336"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="|"
-                android:textColor="#F44336"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="|"
+                    android:textColor="#F44336"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/restart" />
+                <ImageView
+                    android:id="@+id/img_rewash"
+                    android:layout_gravity="center"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="8dp"
+                    android:src="@drawable/restart" />
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-12 kun"
                 android:textColor="#F44336"
                 android:layout_marginEnd="10dp"
                 android:layout_gravity="center"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -84,8 +89,8 @@
             <ImageView
                 android:id="@+id/image_person"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_person_kvitamsiya" />
 
             <TextView
@@ -96,7 +101,7 @@
                 android:layout_margin="5dp"
                 android:layout_weight="3"
                 android:text="@string/yuvish_test"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -110,8 +115,8 @@
             <ImageView
                 android:id="@+id/image_phone"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/phone" />
 
             <TextView
@@ -121,7 +126,7 @@
                 android:layout_margin="5dp"
                 android:text="@string/_998999999999"
                 android:textColor="#3F51B5"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -135,8 +140,8 @@
             <ImageView
                 android:id="@+id/image_location"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_location" />
 
             <TextView
@@ -145,9 +150,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/fergana"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
-
 
         </LinearLayout>
 
@@ -160,8 +164,8 @@
             <ImageView
                 android:id="@+id/image_time"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:src="@drawable/ic_time" />
 
             <TextView
@@ -170,19 +174,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/_2022_08_08_12_45_59"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:backgroundTint="#F44336"
-            android:text="@string/yuvishni_ro_yxatga_olish"
-            android:textColor="@color/white" />
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_submit2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:backgroundTint="#F44336"
+                android:drawableLeft="@drawable/ic_check"
+                android:text="@string/topshirish"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:cornerRadius="10dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_arranged2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#2196F3"
+                android:drawableLeft="@drawable/ic_format"
+                android:text="@string/tartiblash"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:cornerRadius="10dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

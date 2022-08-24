@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.databinding.KvitansiyaItem6Binding
+import com.example.yuvish.databinding.KvitansiyaItemDebtsBinding
 
 class ViewPagerAdapter6 (var onItemClick: OnItemClick, var list: List<String>, val context: Context) :
     RecyclerView.Adapter<ViewPagerAdapter6.Vh>() {
 
-    inner class Vh(val binding: KvitansiyaItem6Binding) : RecyclerView.ViewHolder(binding.root) {
+    inner class Vh(val binding: KvitansiyaItemDebtsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int) {
             binding.cardGetMoney.setOnClickListener {
 
@@ -32,7 +32,7 @@ class ViewPagerAdapter6 (var onItemClick: OnItemClick, var list: List<String>, v
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Vh {
-        return Vh(KvitansiyaItem6Binding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return Vh(KvitansiyaItemDebtsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: Vh, position: Int) {

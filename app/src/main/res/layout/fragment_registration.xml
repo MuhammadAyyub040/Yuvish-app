@@ -5,18 +5,19 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F6FE"
+    style="@style/DarkThemeBackground"
     tools:context=".Fragments.RegistrationFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F4F6FE"
+        style="@style/DarkThemeBackground"
         tools:context=".MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            style="@style/DarkThemeBackground">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -47,7 +48,7 @@
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="Yuvish bo'limi"
-                        android:textColor="@color/black"
+                        style="@style/textStyle"
                         android:textSize="18dp"
                         android:textStyle="bold" />
 
@@ -229,6 +230,7 @@
                     android:padding="10dp"
                     android:text="@string/bu_bo_limda_mahsulotlar_yuviladi"
                     android:textSize="18sp"
+                    style="@style/textStyle"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -263,10 +265,10 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="15dp"
+                            style="@style/textStyle"
                             android:layout_weight="1"
                             android:drawableLeft="@drawable/ic_person_registration"
                             android:text="@string/test_mijoz"
-                            android:textColor="@color/black"
                             android:textSize="24sp" />
 
                     </LinearLayout>
@@ -280,6 +282,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="20dp"
+                            style="@style/svgTheme"
                             android:layout_marginTop="20dp"
                             android:src="@drawable/phone" />
 
@@ -298,7 +301,7 @@
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="20dp"
                             android:text="||"
-                            android:textColor="#090909"
+                            style="@style/textStyle"
                             android:textSize="15sp" />
 
                         <ImageView
@@ -306,6 +309,7 @@
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="20dp"
+                            style="@style/svgTheme"
                             android:src="@drawable/ic_location" />
 
                         <TextView
@@ -314,7 +318,7 @@
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="20dp"
                             android:text="manzili"
-                            android:textColor="#000000"
+                            style="@style/textStyle"
                             android:textSize="15sp" />
 
                     </LinearLayout>
@@ -329,6 +333,7 @@
                             android:layout_margin="20dp"
                             android:backgroundTint="#4CAF50"
                             android:text="Kvitansiya №: 43"
+                            style="@style/textStyle"
                             app:cornerRadius="10dp" />
 
                     </LinearLayout>
@@ -392,10 +397,6 @@
                                     android:textColor="#050505"
                                     android:textStyle="bold" />
                             </TableRow>
-
-                            <ExpandableListView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
 
                             <TableRow
                                 android:layout_width="match_parent"
@@ -490,6 +491,8 @@
                 android:id="@+id/rv_registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

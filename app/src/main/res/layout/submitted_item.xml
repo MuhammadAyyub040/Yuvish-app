@@ -79,7 +79,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
                     <AutoCompleteTextView
-                        android:id="@+id/autoCompleteTextView_qator"
+                        android:id="@+id/autoCompleteSubmitted_qator"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

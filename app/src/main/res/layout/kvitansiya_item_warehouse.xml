@@ -19,7 +19,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:gravity="center"
             android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/txt_kvitansiya"
@@ -28,33 +35,29 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="@string/kvitansiya"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txt_kvitansiya_number_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="18"
                 android:textColor="#F44336"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="|"
-                android:textColor="#F44336"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_date_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=""
+                android:text="65"
                 android:textColor="#F44336"
-                android:textSize="20sp"
+                android:layout_marginEnd="10dp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -74,20 +77,21 @@
             <ImageView
                 android:id="@+id/image_person"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_person_kvitamsiya" />
 
             <TextView
-                android:id="@+id/txt_washing_test"
+                android:id="@+id/txt_name_warehouse"
                 style="@style/textStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="3"
                 android:text="@string/yuvish_test"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -100,19 +104,20 @@
             <ImageView
                 android:id="@+id/image_phone"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/phone" />
 
             <TextView
-                android:id="@+id/txt_nomer"
+                android:id="@+id/txt_phone_number_warehouse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:text="@string/_998999999999"
                 android:textColor="#3F51B5"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -126,18 +131,18 @@
             <ImageView
                 android:id="@+id/image_location"
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_location" />
 
             <TextView
-                android:id="@+id/txt_location"
+                android:id="@+id/txt_location_warehouse"
                 style="@style/textStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/fergana"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -148,17 +153,18 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_operator2" />
 
             <TextView
+                android:id="@+id/txt_operator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sardor"
                 android:textColor="#2196F3"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -169,17 +175,17 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="8dp"
-                android:src="@drawable/ic_operator2" />
+                android:src="@drawable/ic_person" />
 
             <TextView
                 style="@style/textStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="No`malum"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -191,8 +197,8 @@
 
             <ImageView
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_message" />
 
@@ -201,16 +207,16 @@
                 android:layout_height="wrap_content"
                 android:text="Izoh:"
                 android:textColor="#F44336"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/admin"
+                android:id="@+id/txt_comment_operator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Sardor"
                 android:textColor="#F44336"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -222,8 +228,8 @@
 
             <ImageView
                 style="@style/svgTheme"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_message2" />
 
@@ -235,7 +241,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/transpor"
+                android:id="@+id/txt_comment_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

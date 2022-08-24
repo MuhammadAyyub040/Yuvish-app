@@ -10,16 +10,33 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Adapters.ViewPagerAdapter
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
+import com.example.yuvish.Adapters.RewashPaginationAdapter
+import com.example.yuvish.Models.Cleaning.PaginationPageCleaning
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentHomeBinding
+import com.example.yuvish.retrofit.ApiClient
+import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), RewashPaginationAdapter.OnItemClick {
 
     lateinit var binding: FragmentHomeBinding
+    lateinit var rewashPaginationAdapter: RewashPaginationAdapter
+    lateinit var rewashPaginationAdapter2: RewashPaginationAdapter
     lateinit var toggle: ActionBarDrawerToggle
     var searchPage = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        rewashPaginationAdapter = RewashPaginationAdapter(requireActivity(), this)
+        rewashPaginationAdapter2 = RewashPaginationAdapter(requireActivity(),this)
+        getPaginationCleaning()
+        getPaginationRecleaning()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,22 +78,9 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.tayyorFragment)
         }
 
-        binding.rewashVp.adapter = ViewPagerAdapter(
-            object : ViewPagerAdapter.OnItemClick {
-                override fun onItemClick(position: Int) {
-                    findNavController().navigate(R.id.registrationFragment)
-                }
-            }, arrayListOf("1", "2", "3")
-        )
+        binding.washed.adapter = rewashPaginationAdapter
 
-        binding.washed.adapter = ViewPagerAdapter(
-            object : ViewPagerAdapter.OnItemClick {
-                override fun onItemClick(position: Int) {
-                    findNavController().navigate(R.id.registrationFragment)
-                }
-            },
-            arrayListOf("1", "2", "3")
-        )
+        binding.rewashVp.adapter = rewashPaginationAdapter2
 
         toggle = ActionBarDrawerToggle(
             requireActivity(),
@@ -168,10 +172,44 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    fun getPaginationCleaning() {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { PaginationPageCleaning(ApiClient.retrofitService, "cleaning") }
+        ).liveData.observe(this) {
+            lifecycleScope.launch {
+                rewashPaginationAdapter.submitData(it)
+            }
+        }
+    }
+
+    fun getPaginationRecleaning() {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { PaginationPageCleaning(ApiClient.retrofitService, "recleaning") }
+        ).liveData.observe(this) {
+            lifecycleScope.launch {
+                rewashPaginationAdapter2.submitData(it)
+            }
+        }
+    }
+
     private fun closeKeyboard(view: View) {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+    }
+
+    override fun onItemClickCleaning(position: Int) {
+        findNavController().navigate(R.id.registrationFragment)
     }
 
 }
