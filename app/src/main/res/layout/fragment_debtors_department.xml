@@ -42,13 +42,13 @@
 
                     <TextView
                         style="@style/textStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Yuvish bo'limi"
-                        android:textSize="18dp"
+                        android:text="@string/qarzdorlar_bo_limi"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -94,7 +94,7 @@
                                     android:layout_height="50dp"
                                     android:layout_weight="1"
                                     android:padding="10dp"
-                                    android:text="Qidirish"
+                                    android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -228,7 +228,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Bu bo'limda qarzdorlarning ma'lumotlari bo'ladi."
+                    android:text="@string/bu_bo_limda_qarzdorlarning_ma_lumotlari_bo_ladi"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -259,7 +259,7 @@
                             android:background="@drawable/custom_input_dark"
                             android:padding="10dp"
                             android:minHeight="48dp"
-                            android:hint="Telefon raqam, Ism"
+                            android:hint="@string/telefon_raqam_ism"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -276,7 +276,7 @@
                             android:layout_marginEnd="16dp"
                             android:layout_weight="1"
                             android:inputType="none"
-                            android:text="Barchasi"
+                            android:text="@string/barchasi"
                             style="@style/textStyle"
                             android:textSize="18sp" />
 
@@ -344,7 +344,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
-                        android:text="Yakunlanmagan qarzlar"
+                        android:text="@string/yakunlanmagan_qarzlar"
                         android:textSize="30sp"/>
 
                     <View

@@ -46,7 +46,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Sklad bo'limi"
+                    android:text="@string/sklad_bo_limi"
                     style="@style/textStyle"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -94,7 +94,7 @@
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
                                 android:padding="10dp"
-                                android:text="Qidirish"
+                                android:text="@string/qidirish"
                                 android:textSize="22sp"
                                 android:textStyle="bold" />
 
@@ -302,8 +302,8 @@
                         android:layout_height="1dp"
                         android:layout_weight="1"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="10dp"
                         android:background="#BDB8B8"
                         android:padding="5dp" />
                     <View
@@ -320,8 +320,8 @@
                         android:layout_height="1dp"
                         android:layout_weight="1"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
                         android:background="#BDB8B8"
                         android:padding="5dp" />
 
@@ -338,7 +338,7 @@
                         android:layout_margin="20dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/_157ta"
+                        android:text="157ta"
                         android:textColor="#F44336"
                         android:textSize="15sp" />
 
@@ -348,7 +348,7 @@
                         android:layout_margin="20dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/_3ta"
+                        android:text="3ta"
                         android:textColor="#2196F3"
                         android:textSize="15sp" />
 
@@ -358,7 +358,7 @@
                         android:layout_margin="20dp"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="@string/_33ta"
+                        android:text="33ta"
                         android:textColor="#4CAF50"
                         android:textSize="15sp" />
 

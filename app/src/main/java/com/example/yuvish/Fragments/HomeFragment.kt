@@ -15,25 +15,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
-import com.example.yuvish.Adapters.RewashPaginationAdapter
+import com.example.yuvish.Adapters.CleaningPaginationAdapter
 import com.example.yuvish.Models.Cleaning.PaginationPageCleaning
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentHomeBinding
 import com.example.yuvish.retrofit.ApiClient
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment(), RewashPaginationAdapter.OnItemClick {
+class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
 
     lateinit var binding: FragmentHomeBinding
-    lateinit var rewashPaginationAdapter: RewashPaginationAdapter
-    lateinit var rewashPaginationAdapter2: RewashPaginationAdapter
+    lateinit var cleaningPaginationAdapter: CleaningPaginationAdapter
+    lateinit var cleaningPaginationAdapter2: CleaningPaginationAdapter
     lateinit var toggle: ActionBarDrawerToggle
     var searchPage = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        rewashPaginationAdapter = RewashPaginationAdapter(requireActivity(), this)
-        rewashPaginationAdapter2 = RewashPaginationAdapter(requireActivity(),this)
+        cleaningPaginationAdapter = CleaningPaginationAdapter(requireActivity(), this)
+        cleaningPaginationAdapter2 = CleaningPaginationAdapter(requireActivity(),this)
         getPaginationCleaning()
         getPaginationRecleaning()
     }
@@ -78,9 +78,9 @@ class HomeFragment : Fragment(), RewashPaginationAdapter.OnItemClick {
             findNavController().navigate(R.id.tayyorFragment)
         }
 
-        binding.washed.adapter = rewashPaginationAdapter
+        binding.washed.adapter = cleaningPaginationAdapter
 
-        binding.rewashVp.adapter = rewashPaginationAdapter2
+        binding.rewashVp.adapter = cleaningPaginationAdapter2
 
         toggle = ActionBarDrawerToggle(
             requireActivity(),
@@ -182,7 +182,7 @@ class HomeFragment : Fragment(), RewashPaginationAdapter.OnItemClick {
             pagingSourceFactory = { PaginationPageCleaning(ApiClient.retrofitService, "cleaning") }
         ).liveData.observe(this) {
             lifecycleScope.launch {
-                rewashPaginationAdapter.submitData(it)
+                cleaningPaginationAdapter.submitData(it)
             }
         }
     }
@@ -197,7 +197,7 @@ class HomeFragment : Fragment(), RewashPaginationAdapter.OnItemClick {
             pagingSourceFactory = { PaginationPageCleaning(ApiClient.retrofitService, "recleaning") }
         ).liveData.observe(this) {
             lifecycleScope.launch {
-                rewashPaginationAdapter2.submitData(it)
+                cleaningPaginationAdapter2.submitData(it)
             }
         }
     }

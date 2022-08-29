@@ -47,7 +47,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Qarzdorlar bo'limi"
+                        android:text="@string/qarzdorlar_bo_limi"
                         style="@style/textStyle"
                         android:textSize="18sp"
                         android:textStyle="bold" />
@@ -95,7 +95,7 @@
                                     android:layout_height="50dp"
                                     android:layout_weight="1"
                                     android:padding="10dp"
-                                    android:text="Qidirish"
+                                    android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -261,10 +261,10 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="15dp"
                             android:layout_weight="1"
-                            android:drawableLeft="@drawable/ic_person_registration"
                             android:text="@string/test_mijoz"
                             style="@style/textStyle"
-                            android:textSize="24sp" />
+                            android:textSize="24sp"
+                            app:drawableLeftCompat="@drawable/ic_person_registration" />
 
                     </LinearLayout>
 
@@ -290,15 +290,6 @@
                             android:textColor="#2196F3"
                             android:textSize="15sp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="20dp"
-                            android:text="||"
-                            style="@style/textStyle"
-                            android:textSize="15sp" />
-
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
@@ -312,7 +303,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="20dp"
-                            android:text="manzili"
+                            android:text="@string/manzil"
                             style="@style/textStyle"
                             android:textSize="15sp" />
 
@@ -367,7 +358,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
-                        android:text="Qarz summa"
+                        android:text="@string/qarz_summa"
                         style="@style/textStyle"
                         android:textStyle="bold" />
 
@@ -403,7 +394,7 @@
                             android:focusableInTouchMode="false"
                             android:gravity="center"
                             android:minHeight="48dp"
-                            android:text="@string/so_m" />
+                            android:text="so'm" />
 
                     </LinearLayout>
 
@@ -418,7 +409,7 @@
                     <EditText
                         android:id="@+id/date_picer_debtor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_margin="10dp"
                         android:layout_weight="2"
                         style="@style/editTextDark"

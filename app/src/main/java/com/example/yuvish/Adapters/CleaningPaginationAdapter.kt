@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yuvish.Models.Cleaning.RewashReceipt
 import com.example.yuvish.databinding.KvitansiyaItemCleaningBinding
 
-class RewashPaginationAdapter(context: Context, var onItemClick: OnItemClick) :
-    PagingDataAdapter<RewashReceipt, RewashPaginationAdapter.MyViewHolder>(ArticleDiffItemCallback) {
+class CleaningPaginationAdapter(context: Context, var onItemClick: OnItemClick) :
+    PagingDataAdapter<RewashReceipt, CleaningPaginationAdapter.MyViewHolder>(ArticleDiffItemCallback) {
 
     inner class MyViewHolder(val binding: KvitansiyaItemCleaningBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int,rewashReceipt: RewashReceipt) {

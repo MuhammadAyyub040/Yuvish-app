@@ -1,6 +1,7 @@
 package com.example.yuvish.Fragments
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -46,13 +47,17 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         werehousePaginationAdapter = WerehousePaginationAdapter(requireActivity(), this)
-     getPaginationWarehouse()
+        getPaginationWarehouse()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("2022", "2021"))
+        val arrayAdapter = ArrayAdapter(
+            requireActivity(),
+            android.R.layout.simple_list_item_1,
+            arrayListOf("2022", "2021")
+        )
         binding.autoCompleteTextViewSklad.setAdapter(arrayAdapter)
 
         binding.btnX.setOnClickListener {
@@ -76,7 +81,12 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
         }
 
         toggle =
-            ActionBarDrawerToggle(requireActivity(), binding.drawerLayout, R.string.open, R.string.close)
+            ActionBarDrawerToggle(
+                requireActivity(),
+                binding.drawerLayout,
+                R.string.open,
+                R.string.close
+            )
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -187,15 +197,27 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
         findNavController().navigate(R.id.sumbitFragment)
     }
 
-    private fun orderWarehouse(orderId: Int){
-        ApiClient.retrofitService.ordersWarehouse(orderId).enqueue(object : Callback<String?>{
+    private fun orderWarehouse(orderId: Int) {
+        ApiClient.retrofitService.ordersWarehouse(orderId).enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
-                if (response.code() == 200)
-                    Log.d("testWarehouse", response.body().toString())
+                Log.e(TAG, "onResponse: ${response.code()}")
+                var loge = response.body()
+                Toast.makeText(
+                    binding.root.context,
+                    "${loge}, id  = $orderId",
+                    Toast.LENGTH_SHORT
+                ).show()
+//                if (response.code() == 200)
+                Log.d("testWarehouse", response.toString())
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
-
+                t.printStackTrace()
+                Toast.makeText(
+                    requireContext(),
+                    "Server bilan bog'lanishda xatolik",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         })

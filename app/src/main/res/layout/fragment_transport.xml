@@ -93,7 +93,7 @@
                                     android:layout_height="50dp"
                                     android:layout_weight="1"
                                     android:padding="10dp"
-                                    android:text="Qidirish"
+                                    android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -320,6 +320,13 @@
 
                     </LinearLayout>
 
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_customer_searching"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_new"
                         android:layout_width="match_parent"
@@ -359,7 +366,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="center"
-                                    android:text="Yangi mijoz qo'shish"
+                                    android:text="@string/yangi_mijoz_qo_shish"
                                     android:textSize="24sp"
                                     android:textStyle="bold" />
 
@@ -391,7 +398,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="Mijoz ismi"
+                                    android:text="@string/mijoz_ismi"
                                     android:textSize="15sp" />
 
                             </LinearLayout>
@@ -425,7 +432,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="Manzil"
+                                    android:text="@string/manzil"
                                     android:textSize="15sp" />
 
                             </LinearLayout>
@@ -458,7 +465,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="10dp"
-                                    android:text="Mijoz so'zlashuv tili"
+                                    android:text="@string/mijoz_so_zlashuv_tili"
                                     android:textSize="15sp" />
                             </LinearLayout>
 
@@ -479,7 +486,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_weight="1"
                                         android:inputType="none"
-                                        android:text="O'zbek"
+                                        android:text="@string/o_zbek"
                                         android:textSize="18sp" />
 
 
@@ -516,7 +523,7 @@
                                     android:layout_weight="1"
                                     android:background="@drawable/custom_input_dark"
                                     android:gravity="center"
-                                    android:hint="+998"
+                                    android:hint="@string/_998"
                                     android:inputType="number"
                                     android:padding="10dp"
                                     android:textSize="18sp"

@@ -42,14 +42,14 @@
                         android:src="@drawable/ic_menu" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Yuvish bo'limi"
+                        android:text="@string/yuvish_bo_limi"
                         style="@style/textStyle"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -95,7 +95,7 @@
                                     android:layout_height="50dp"
                                     android:layout_weight="1"
                                     android:padding="10dp"
-                                    android:text="Qidirish"
+                                    android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -263,7 +263,7 @@
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="15dp"
                             style="@style/textStyle"
                             android:layout_weight="1"
@@ -281,7 +281,7 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="20dp"
                             style="@style/svgTheme"
                             android:layout_marginTop="20dp"
                             android:src="@drawable/phone" />
@@ -293,15 +293,6 @@
                             android:layout_marginTop="20dp"
                             android:text="@string/_998978878878"
                             android:textColor="#2196F3"
-                            android:textSize="15sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="20dp"
-                            android:text="||"
-                            style="@style/textStyle"
                             android:textSize="15sp" />
 
                         <ImageView
@@ -317,7 +308,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="20dp"
-                            android:text="manzili"
+                            android:text="@string/manzili"
                             style="@style/textStyle"
                             android:textSize="15sp" />
 
@@ -332,7 +323,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:backgroundTint="#4CAF50"
-                            android:text="Kvitansiya №: 43"
+                            android:text="@string/kvitansiya_no"
                             style="@style/textStyle"
                             app:cornerRadius="10dp" />
 
@@ -427,7 +418,7 @@
                                     android:layout_weight="5"
                                     android:background="@drawable/custom_input_5"
                                     android:padding="10dp"
-                                    android:text="@string/_6ta"
+                                    android:text="6ta"
                                     android:textColor="#F44336"
                                     android:textStyle="bold" />
                             </TableRow>
@@ -444,7 +435,7 @@
                                     android:layout_marginEnd="10dp"
                                     android:background="@drawable/txt_registr"
                                     android:gravity="center"
-                                    android:text="1+"
+                                    android:text="@string/_1"
                                     android:textColor="@color/white" />
 
                                 <com.google.android.material.textfield.TextInputLayout

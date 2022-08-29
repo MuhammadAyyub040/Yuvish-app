@@ -33,6 +33,9 @@ class ListFragment : Fragment(){
         val arrayAdapterlist = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("Naqd", "Plastik", "Click"))
         binding.autoCompleteTextViewList.setAdapter(arrayAdapterlist)
 
+        val arrayAdapter2 = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("Gilam", "Adyol", "Parda", "Joyida yuvish", "Yumshoq o'yinchoq", "Yangi v", "Gilam 15000"))
+        binding.autoCompleteXizmatTuri.setAdapter(arrayAdapter2)
+
         binding.btnSearchList.setOnClickListener {
             when (searchPage) {
                 false -> {

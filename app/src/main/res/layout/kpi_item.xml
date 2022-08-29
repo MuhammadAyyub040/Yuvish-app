@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="KPI hisobi."
+                    android:text="@string/kpi_hisobi"
                     style="@style/textStyle"
                     android:textSize="24sp" />
 
@@ -45,13 +45,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/_01_08_2022_sanada_yozilgan_kpi_lar"
+                    android:layout_marginEnd="8dp"
+                    android:text="01 08 2022"
+                    style="@style/textStyle"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Sanada yozilgan kpilar"
                     style="@style/textStyle"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -129,7 +140,7 @@
                         android:layout_weight="3"
                         android:background="@drawable/custom_input_8"
                         android:padding="10dp"
-                        android:text="@string/_0_so_m"
+                        android:text="0 so'm"
                         style="@style/textStyle"/>
                 </TableRow>
 

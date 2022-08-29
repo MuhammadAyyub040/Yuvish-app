@@ -14,18 +14,37 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Adapters.ViewPagerAdapter2
-import com.example.yuvish.Adapters.ViewPagerAdapter3
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
+import com.example.yuvish.Adapters.ArrangedPaginationAdapter
+import com.example.yuvish.Adapters.NotArrangedPaginationAdapter
+import com.example.yuvish.Models.ReadyOrders.PaginationPageArranged
+import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
+import com.example.yuvish.Models.Warehouse.PaginationPageWerehouse
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentTayyorBinding
 import com.example.yuvish.databinding.SortingItemBinding
+import com.example.yuvish.retrofit.ApiClient
+import kotlinx.coroutines.launch
 
-class TayyorFragment : Fragment() {
+class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArrangedPaginationAdapter.OnItemClick {
 
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var arrangedPaginationAdapter: ArrangedPaginationAdapter
+    lateinit var notArrangedPaginationAdapter: NotArrangedPaginationAdapter
     var searchPage = false
     lateinit var binding: FragmentTayyorBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arrangedPaginationAdapter = ArrangedPaginationAdapter(requireActivity(), this)
+        notArrangedPaginationAdapter = NotArrangedPaginationAdapter(requireActivity(), this)
+        getPaginationArranged()
+        getPaginationNotArranged()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -69,48 +88,9 @@ class TayyorFragment : Fragment() {
             binding.drawerLayout.open()
         }
 
-        binding.viewPager.adapter = ViewPagerAdapter2(
-            object : ViewPagerAdapter2.OnItemClick {
-                override fun onItemClick(position: Int) {
-                    findNavController().navigate(R.id.sumbitFragment)
-                }
+        binding.viewPager.adapter = arrangedPaginationAdapter
 
-                override fun onItemClick2(position: Int) {
-                    val dialogBinding = SortingItemBinding.inflate(layoutInflater)
-
-                    val myDialog = Dialog(requireActivity())
-                    myDialog.setContentView(dialogBinding.root)
-
-                    myDialog.setCancelable(true)
-                    myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    myDialog.show()
-                }
-            },
-            arrayListOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-        )
-        binding.viewPager2.adapter = ViewPagerAdapter3(
-            object : ViewPagerAdapter3.OnItemClick {
-                override fun onItemClick(position: Int) {
-                    findNavController().navigate(R.id.sumbitFragment)
-                }
-
-                override fun onItemClick2(position: Int) {
-                    val dialogBinding = SortingItemBinding.inflate(layoutInflater)
-
-                    val myDialog = AlertDialog.Builder(requireActivity()).create()
-                    myDialog.setView(dialogBinding.root)
-
-                    dialogBinding.cardClose.setOnClickListener {
-                        myDialog.dismiss()
-                    }
-
-                    myDialog.setCancelable(true)
-                    myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    myDialog.show()
-                }
-            },
-            arrayListOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-        )
+        binding.viewPager2.adapter = notArrangedPaginationAdapter
 
         toggle =
             ActionBarDrawerToggle(
@@ -198,9 +178,70 @@ class TayyorFragment : Fragment() {
         return binding.root
     }
 
+    fun getPaginationArranged() {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { PaginationPageArranged(ApiClient.retrofitService, 0, "arranged") }
+        ).liveData.observe(this) {
+            lifecycleScope.launch {
+                arrangedPaginationAdapter.submitData(it)
+            }
+        }
+    }
+
+    fun getPaginationNotArranged() {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { PaginationPageArranged(ApiClient.retrofitService, 0, "notarranged") }
+        ).liveData.observe(this) {
+            lifecycleScope.launch {
+                notArrangedPaginationAdapter.submitData(it)
+            }
+        }
+    }
+
     private fun closeKeyboard(view: View) {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+    }
+
+    override fun onItemClickSubmit(readyOrdersItem: ReadyOrdersItem) {
+        findNavController().navigate(R.id.sumbitFragment)
+    }
+
+    override fun onItemClickUnsorted(readyOrdersItem: ReadyOrdersItem) {
+            val dialogBinding = SortingItemBinding.inflate(layoutInflater)
+
+            val myDialog = Dialog(requireActivity())
+            myDialog.setContentView(dialogBinding.root)
+
+            myDialog.setCancelable(true)
+            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            myDialog.show()
+    }
+
+    override fun onItemClickSubmit2(readyOrdersItem: ReadyOrdersItem) {
+        findNavController().navigate(R.id.sumbitFragment)
+
+    }
+
+    override fun onItemClickUnsorted2(readyOrdersItem: ReadyOrdersItem) {
+        val dialogBinding = SortingItemBinding.inflate(layoutInflater)
+
+        val myDialog = Dialog(requireActivity())
+        myDialog.setContentView(dialogBinding.root)
+
+        myDialog.setCancelable(true)
+        myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        myDialog.show()
     }
 }

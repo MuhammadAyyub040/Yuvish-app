@@ -75,7 +75,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/custom_input_dark"
-                    android:hint="Yumshoq o'yinchoq og'irligi"
+                    android:hint="@string/yumshoq_o_yinchoq_og_irligi"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 
@@ -83,8 +83,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:focusable="false"
                     style="@style/editTheme"
-                    android:hint="kg"
+                    android:hint="@string/kg"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 
@@ -102,8 +103,9 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     style="@style/editTheme"
-                    android:clickable="false"
-                    android:hint="Gilamning narxi"
+                    android:focusable="false"
+                    android:padding="10sp"
+                    android:hint="@string/yumshoq_o_yinchoqning_narxi"
                     android:minHeight="48dp"
                     android:text="25000" />
 
@@ -111,8 +113,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     style="@style/editTheme"
-                    android:clickable="false"
-                    android:hint="@string/so_m"
+                    android:focusable="false"
+                    android:hint="so'm"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 

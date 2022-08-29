@@ -27,42 +27,41 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txt_kvitansiya"
-                style="@style/textStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/kvitansiya"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txt_kvitansiya"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="@string/kvitansiya"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txt_kvitansiya_number"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:text="18"
-                android:textColor="#F44336"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txt_kvitansiya_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="18"
+                    android:textColor="#F44336"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="|"
-                android:textColor="#F44336"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:text="|"
+                    android:textColor="#F44336"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/img_rewash"
-                android:layout_gravity="center"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_margin="8dp"
-                android:src="@drawable/restart" />
+                <ImageView
+                    android:id="@+id/img_rewash"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/restart" />
 
             </LinearLayout>
 
@@ -70,10 +69,19 @@
                 android:id="@+id/txt_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="-12 kun"
-                android:textColor="#F44336"
-                android:layout_marginEnd="10dp"
                 android:layout_gravity="center"
+                android:text="-12"
+                android:textColor="#F44336"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8dp"
+                android:text="@string/kun"
+                android:textColor="#F44336"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -86,10 +94,12 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:layout_gravity="center"
                 android:id="@+id/image_person"
                 style="@style/svgTheme"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="8dp"
                 android:src="@drawable/ic_person_kvitamsiya" />
 
             <TextView
@@ -112,10 +122,12 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:layout_gravity="center"
                 android:id="@+id/image_phone"
                 style="@style/svgTheme"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="8dp"
                 android:src="@drawable/phone" />
 
             <TextView
@@ -137,10 +149,12 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:layout_gravity="center"
                 android:id="@+id/image_location"
                 style="@style/svgTheme"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="8dp"
                 android:src="@drawable/ic_location" />
 
             <TextView
@@ -162,10 +176,12 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:layout_gravity="center"
                 android:id="@+id/image_time"
                 style="@style/svgTheme"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_marginStart="8dp"
                 android:src="@drawable/ic_time" />
 
             <TextView
@@ -185,10 +201,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:backgroundTint="#F44336"
-            android:textSize="16sp"
-            android:textAllCaps="false"
             android:text="@string/yuvishni_ro_yxatga_olish"
-            android:textColor="@color/white" />
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

@@ -49,10 +49,19 @@
 
                 <TextView
                     style="@style/textStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/_15_07_2022_sanada_yuvilganlar"
+                    android:text="2022 08 01"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/sanada_yuvilganlar"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -66,7 +75,7 @@
 
                 <TextView
                     style="@style/textStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:text="@string/qatorlar"
@@ -169,7 +178,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/gilam"
+                        android:text="Gilam"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -183,7 +192,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/adyol"
+                        android:text="Adyol"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -197,7 +206,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/parda"
+                        android:text="Parda"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -211,7 +220,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/joyida_yuvish"
+                        android:text="Joyida yuvish"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -225,7 +234,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/yumshoq_o_yinchoq"
+                        android:text="yumshoq o'yinchoq"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -239,7 +248,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/yangi_v"
+                        android:text="Yangi v"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -249,7 +258,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_weight="1"
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"

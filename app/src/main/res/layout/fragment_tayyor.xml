@@ -94,7 +94,7 @@
                                     android:layout_height="50dp"
                                     android:layout_weight="1"
                                     android:padding="10dp"
-                                    android:text="Qidirish"
+                                    android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -298,9 +298,9 @@
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="1dp"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:background="#BDB8B8"
                             android:padding="5dp" />
@@ -318,9 +318,9 @@
                         <View
                             android:layout_width="wrap_content"
                             android:layout_height="1dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_weight="1"
                             android:background="#BDB8B8"
                             android:padding="5dp" />
@@ -338,7 +338,7 @@
                             android:layout_margin="20dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/_1ta"
+                            android:text="1ta"
                             android:textColor="#F44336"
                             android:textSize="15sp" />
 
@@ -349,7 +349,7 @@
                             android:layout_margin="20dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/_0ta"
+                            android:text="0ta"
                             android:textColor="#2196F3"
                             android:textSize="15sp" />
 
@@ -359,7 +359,7 @@
                             android:layout_margin="20dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/_4ta"
+                            android:text="4ta"
                             android:textColor="#4CAF50"
                             android:textSize="15sp" />
 
@@ -398,8 +398,42 @@
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_margin="20dp"
+                        android:layout_margin="16dp"
                         android:background="#BDB8B8" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusTopStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextView_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="none"
+                            android:text="@string/barchasi"
+                            style="@style/textStyle"
+                            android:textSize="18sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/viewPager"
@@ -439,7 +473,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
-                        android:text="Tartiblanmagan buyurtmalar"
+                        android:text="@string/tartiblanmagan_buyurtmalar"
                         android:textColor="#F44336"
                         android:textSize="30sp"
                         android:textStyle="bold" />

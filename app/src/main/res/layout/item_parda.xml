@@ -34,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
-                    android:text="@string/parda"
+                    android:text="Parda"
                     android:textColor="#4B49AC  "
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -75,7 +75,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/custom_input_dark"
-                    android:hint="Parda og'irligi"
+                    android:hint="@string/parda_og_irligi"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 
@@ -83,8 +83,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:focusable="false"
                     style="@style/editTheme"
-                    android:hint="kg"
+                    android:hint="@string/kg"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 
@@ -102,8 +103,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
                     style="@style/editTheme"
-                    android:clickable="false"
-                    android:hint="Gilamning narxi"
+                    android:focusable="false"
+                    android:hint="@string/gilamning_narxi"
                     android:minHeight="48dp"
                     android:text="10000" />
 
@@ -111,8 +112,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     style="@style/editTheme"
-                    android:clickable="false"
-                    android:hint="@string/so_m"
+                    android:focusable="false"
+                    android:hint="so'm"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 

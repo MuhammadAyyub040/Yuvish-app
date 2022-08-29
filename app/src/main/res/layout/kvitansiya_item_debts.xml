@@ -30,6 +30,8 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_gravity="center"
                     android:src="@drawable/ic_delivery_truck_truck_svgrepo_com" />
 
                 <TextView
@@ -47,8 +49,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="-9"
+                android:layout_gravity="center"
+                android:textColor="#F44336"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
-                android:text="-9kun"
+                android:text="@string/kun"
                 android:layout_gravity="center"
                 android:textColor="#F44336"
                 android:textSize="16sp"
@@ -156,7 +167,7 @@
                 style="@style/editTheme"
                 android:clickable="false"
                 android:focusable="false"
-                android:hint="@string/so_m"
+                android:hint="so'm"
                 android:padding="10dp" />
 
         </LinearLayout>
@@ -164,7 +175,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="To'lov turi"
+            android:text="@string/to_lov_turi"
             android:gravity="center"
             android:textSize="24sp"
             style="@style/textStyle"/>
@@ -228,7 +239,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Pulni olish"
+                    android:text="@string/pulni_olish"
                     android:textColor="@color/white"
                     android:textSize="12sp"/>
 
@@ -254,7 +265,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kechib yuborish"
+                    android:text="@string/kechib_yuborish"
                     android:layout_gravity="center"
                     android:textColor="@color/white"
                     android:textSize="12sp"/>

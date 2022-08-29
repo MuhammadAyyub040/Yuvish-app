@@ -76,7 +76,7 @@
                     android:layout_marginStart="10dp"
                     android:background="@drawable/custom_input_dark"
                     android:clickable="false"
-                    android:hint="Adyolning narxi"
+                    android:hint="@string/adyolning_narxi"
                     style="@style/textStyle"
                     android:minHeight="48dp"
                     android:text="50000" />
@@ -85,9 +85,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_input_dark"
-                    android:clickable="false"
+                    android:focusable="false"
                     style="@style/textStyle"
-                    android:text="@string/so_m"
+                    android:text="so'm"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 

@@ -75,7 +75,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/custom_input_dark"
-                    android:hint="Yangi v og'irligi"
+                    android:hint="@string/yangi_v_og_irligi"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 
@@ -84,7 +84,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     style="@style/editTheme"
-                    android:hint="kg"
+                    android:focusable="false"
+                    android:hint="@string/kg"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 
@@ -98,21 +99,22 @@
 
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="10dp"
+                    android:padding="8dp"
                     style="@style/editTheme"
-                    android:clickable="false"
-                    android:hint="Gilamning narxi"
+                    android:focusable="false"
+                    android:hint="@string/yangi_vning_narxi"
                     android:minHeight="48dp"
                     android:text="200" />
 
                 <EditText
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     style="@style/editTheme"
-                    android:clickable="false"
-                    android:hint="@string/so_m"
+                    android:focusable="false"
+                    android:hint="so'm"
                     android:minHeight="48dp"
                     android:padding="10dp" />
 

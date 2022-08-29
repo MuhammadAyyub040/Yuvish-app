@@ -42,13 +42,13 @@
 
                     <TextView
                         style="@style/textStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
-                        android:text="Yuvish bo'limi"
-                        android:textSize="18dp"
+                        android:text="@string/yuvish_bo_limi"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -94,7 +94,7 @@
                                     android:layout_height="50dp"
                                     android:layout_weight="1"
                                     android:padding="10dp"
-                                    android:text="Qidirish"
+                                    android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -228,7 +228,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
-                    android:text="Bu bo'limda mijozlar tomonidan berilgan buyurtmalar yuvilishi xaqida ma'lumotlar kiritiladi."
+                    android:text="@string/bu_bo_limda_mijozlar_tomonidan_berilgan_buyurtmalar_yuvilishi_xaqida_ma_lumotlar_kiritiladi"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -300,9 +300,9 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_marginLeft="20dp"
+                            android:layout_marginStart="20dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:background="#BDB8B8"
                             android:padding="5dp" />
@@ -320,9 +320,9 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_marginLeft="10dp"
+                            android:layout_marginStart="10dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginRight="20dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_weight="1"
                             android:background="#BDB8B8"
                             android:padding="5dp" />
@@ -341,7 +341,7 @@
                             android:layout_margin="20dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/_1ta"
+                            android:text="1ta"
                             android:textColor="#F44336"
                             android:textSize="15sp" />
 
@@ -352,7 +352,7 @@
                             android:layout_margin="20dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/_1ta"
+                            android:text="1ta"
                             android:textColor="#2196F3"
                             android:textSize="15sp" />
 
@@ -363,7 +363,7 @@
                             android:layout_margin="20dp"
                             android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/_39ta"
+                            android:text="39ta"
                             android:textColor="#4CAF50"
                             android:textSize="15sp" />
 
@@ -399,7 +399,7 @@
                         android:background="#C8EAFF"
                         android:textColorHint="@color/black"
                         android:padding="10dp"
-                        android:hint="@string/barkodni_kiriting" />
+                        android:hint="@string/shtrix_kodni_kiriting" />
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="60dp"
@@ -460,7 +460,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/kvitansiya_item_Cleaning"/>
+                        tools:listitem="@layout/kvitansiya_item_cleaning"/>
 
                 </LinearLayout>
 
@@ -505,7 +505,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/kvitansiya_item_Cleaning" />
+                        tools:listitem="@layout/kvitansiya_item_cleaning" />
 
                 </LinearLayout>
 

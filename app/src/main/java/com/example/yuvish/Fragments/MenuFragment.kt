@@ -35,7 +35,7 @@ class MenuFragment : Fragment() {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                findNavController().navigate(R.id.debtorsDepartmentFragment)
+                findNavController().navigate(R.id.settingFragment)
             }
 
             override fun onAnimationRepeat(animation: Animation?) {

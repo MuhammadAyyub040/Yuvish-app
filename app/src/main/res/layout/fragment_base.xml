@@ -94,7 +94,7 @@
                                     android:layout_height="50dp"
                                     android:layout_weight="1"
                                     android:padding="10dp"
-                                    android:text="Qidirish"
+                                    android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -275,7 +275,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginEnd="5dp"
                             android:layout_weight="1"
-                            android:text="@string/t_r"
+                            android:text="T/r"
                             style="@style/textStyle"
                             android:textSize="12sp"
                             android:textStyle="bold" />
@@ -487,7 +487,7 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/custom_input"
                                 android:gravity="center"
-                                android:text="@string/_0_dona"
+                                android:text="0 dona"
                                 android:textColor="#F44336"
                                 android:textSize="12sp" />
 
@@ -525,7 +525,7 @@
                                 android:background="@drawable/custom_input"
                                 android:gravity="center"
                                 android:padding="10dp"
-                                android:text="@string/_0_dona"
+                                android:text="0 dona"
                                 android:textColor="#F44336"
                                 android:textSize="12sp" />
 
@@ -563,7 +563,7 @@
                                 android:background="@drawable/custom_input"
                                 android:gravity="center"
                                 android:padding="10dp"
-                                android:text="@string/_0_so_m"
+                                android:text="0 So'm"
                                 android:textColor="#4CAF50"
                                 android:textSize="12sp" />
 
@@ -590,7 +590,7 @@
                                 android:background="@drawable/custom_input"
                                 android:gravity="center"
                                 android:padding="10dp"
-                                android:text="@string/_0_so_m"
+                                android:text="0 So'm"
                                 android:textColor="#4CAF50"
                                 android:textSize="12sp" />
 
@@ -617,7 +617,7 @@
                                 android:background="@drawable/custom_input"
                                 android:gravity="center"
                                 android:padding="10dp"
-                                android:text="@string/_0_dona"
+                                android:text="0 dona"
                                 android:textColor="#F44336"
                                 android:textSize="12sp" />
 
@@ -706,7 +706,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:padding="10dp"
-                                android:text="Naqd"
+                                android:text="@string/naqd"
                                 style="@style/textStyle"
                                 android:textSize="12sp" />
 
@@ -727,7 +727,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:padding="10dp"
-                                android:text="Click"
+                                android:text="@string/click"
                                 style="@style/textStyle"
                                 android:textSize="12sp" />
 
@@ -748,7 +748,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:padding="10dp"
-                                android:text="Terminal bank"
+                                android:text="@string/terminal_bank"
                                 style="@style/textStyle"
                                 android:textSize="12sp" />
 
@@ -756,7 +756,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:padding="10dp"
-                                android:text="0 so'm"
+                                android:text="0 So'm"
                                 style="@style/textStyle"/>
                         </TableRow>
 

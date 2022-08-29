@@ -94,7 +94,7 @@
                                     android:layout_height="50dp"
                                     android:layout_weight="1"
                                     android:padding="10dp"
-                                    android:text="Qidirish"
+                                    android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
 
@@ -262,7 +262,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Yangi mijoz ismi"
+                            android:text="@string/yangi_mijoz_ismi"
                             style="@style/textStyle"
                             android:textSize="24sp"
                             android:textStyle="bold" />
@@ -286,16 +286,6 @@
                         android:layout_height="wrap_content"
                         android:text="@string/_998999998877"
                         android:textColor="#3F51B5"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="||"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginLeft="5dp"
-                        style="@style/textStyle"
                         android:textSize="16sp"
                         android:textStyle="bold"/>
 
@@ -325,110 +315,39 @@
                             android:background="#BDB8B8"
                             android:padding="5dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Gilam"
-                            style="@style/textStyle"
-                            android:textSize="15sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/xizmat_turi"
+                        style="@style/textStyle"
+                        android:textSize="15sp" />
 
-                        <EditText
-                            android:id="@+id/edt_gilam"
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoComplete_xizmat_turi"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:background="@drawable/custom_input_dark"
-                            android:hint="@string/gilamning_sonini_kiriting"
-                            android:padding="10dp"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="@string/adyol"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:inputType="none"
+                            android:hint="Gilam"
                             style="@style/textStyle"
-                            android:textSize="15sp" />
+                            android:textSize="18sp" />
 
-                        <EditText
-                            android:id="@+id/edt_adyol"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:background="@drawable/custom_input_dark"
-                            android:hint="@string/adyolning_sonini_kiriting"
-                            android:padding="10dp"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:text="Yumshoq o'yinchoq"
-                            style="@style/textStyle"
-                            android:textSize="15sp" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:background="@drawable/custom_input_dark"
-                            android:hint="Yumshoq o'yinchoqning sonini kiriting"
-                            android:padding="10dp"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Yangi v"
-                            style="@style/textStyle"
-                            android:textSize="15sp" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:background="@drawable/custom_input_dark"
-                            android:hint="@string/yangi_vning_sonini_kiritng"
-                            android:padding="10dp"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="@string/gilam_15000"
-                            style="@style/textStyle"
-                            android:textSize="15sp" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:background="@drawable/custom_input_dark"
-                            android:hint="@string/gilam_15000ning_sonini_kiriting"
-                            android:padding="10dp"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp"
-                            android:text="Topshirilgan sana"
+                            android:text="@string/topshirilgan_sana"
                             style="@style/textStyle"
                             android:textSize="15sp" />
 

@@ -34,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="@string/gilam"
+                android:text="Gilam"
                 android:textColor="#4B49AC  "
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -75,7 +75,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/custom_input_dark"
-                android:hint="Gilam eni"
+                android:hint="@string/gilam_eni"
                 style="@style/textStyle"
                 android:minHeight="48dp"
                 android:padding="10dp" />
@@ -86,7 +86,7 @@
                 android:layout_margin="10dp"
                 android:layout_weight="1"
                 android:background="@drawable/custom_input_dark"
-                android:hint="Gilam bo'yi"
+                android:hint="@string/gilam_bo_yi"
                 android:minHeight="48dp"
                 android:padding="10dp" />
 
@@ -104,7 +104,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
                 style="@style/editTheme"
-                android:clickable="false"
+                android:focusable="false"
                 android:minHeight="48dp"
                 android:padding="10dp" />
 
@@ -114,9 +114,9 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 style="@style/editTheme"
-                android:clickable="false"
+                android:focusable="false"
                 android:gravity="center"
-                android:hint="m²"
+                android:hint="@string/m"
                 android:minHeight="48dp" />
 
             <EditText
@@ -124,7 +124,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:hint="Gilamning narxi"
+                android:hint="@string/gilamning_narxi"
                 android:background="@drawable/custom_input_dark"
                 android:minHeight="48dp"
                 android:text="10000" />
@@ -135,8 +135,8 @@
                 android:layout_marginEnd="10dp"
                 android:layout_weight="1"
                 style="@style/editTheme"
-                android:clickable="false"
-                android:hint="@string/so_m"
+                android:focusable="false"
+                android:hint="so'm"
                 android:minHeight="48dp"
                 android:padding="10dp" />
 

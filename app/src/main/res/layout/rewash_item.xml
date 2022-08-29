@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Qayta yuvishga olingan buyurtmalar."
+                    android:text="@string/qayta_yuvishga_olingan_buyurtmalar"
                     android:textSize="24sp" />
 
             </LinearLayout>
@@ -44,14 +44,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     style="@style/textStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:text="2022_08_01"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="2022-08-01 || sanadaqayta yuvishga olinganlar."
+                    android:text="@string/sanadaqayta_yuvishga_olinganlar"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -62,7 +73,7 @@
                 android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
@@ -72,7 +83,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Turi:"
+                    android:text="@string/turi"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -88,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:inputType="none"
-                        android:text="Hammasi"
+                        android:text="@string/hammasi"
                         android:textSize="18sp" />
 
 
@@ -115,7 +126,7 @@
                         android:gravity="center"
                         android:inputType="none"
                         android:layout_marginEnd="10dp"
-                        android:text="10"
+                        android:text="@string/_10"
                         android:textSize="18sp" />
 
 
@@ -201,7 +212,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/gilam"
+                        android:text="Gilam"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -215,7 +226,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/adyol"
+                        android:text="Adyol"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -229,7 +240,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/parda"
+                        android:text="Parda"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -243,7 +254,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/joyida_yuvish"
+                        android:text="Joyida yuvish"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -257,7 +268,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/yumshoq_o_yinchoq"
+                        android:text="Yumshoq o'yinchoq"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -271,7 +282,7 @@
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:padding="8dp"
-                        android:text="@string/yangi_v"
+                        android:text="Yangi v"
                         android:textFontWeight="1"
                         android:textSize="12sp"
                         android:textStyle="bold" />
