@@ -1,6 +1,8 @@
 package com.example.yuvish.Fragments
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,8 +10,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
@@ -36,6 +41,10 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         cleaningPaginationAdapter2 = CleaningPaginationAdapter(requireActivity(),this)
         getPaginationCleaning()
         getPaginationRecleaning()
+
+        setFragmentResultListener("barcode") { requestKey, bundle ->
+            binding.edtBarcode.setText(bundle.getString("result"))
+        }
     }
 
     override fun onCreateView(
@@ -65,6 +74,10 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                     searchPage = false
                 }
             }
+        }
+
+        binding.barcodeScanner.setOnClickListener {
+            checkPermission()
         }
 
         binding.txtHomeId.setOnClickListener {
@@ -172,7 +185,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         return binding.root
     }
 
-    fun getPaginationCleaning() {
+    private fun getPaginationCleaning() {
         Pager(
             config = PagingConfig(
                 pageSize = 10,
@@ -210,6 +223,24 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
 
     override fun onItemClickCleaning(position: Int) {
         findNavController().navigate(R.id.registrationFragment)
+    }
+
+    private fun checkPermission(){
+        if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+            findNavController().navigate(R.id.barcodeScannerFragment)
+        }else{
+            requestCameraPermission()
+        }
+    }
+
+    private val cameraPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()){
+        if (it){
+            findNavController().navigate(R.id.barcodeScannerFragment)
+        }
+    }
+
+    private fun requestCameraPermission(){
+        cameraPermission.launch(Manifest.permission.CAMERA)
     }
 
 }

@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
+    style="@style/DarkThemeBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/DarkThemeBackground"
-    tools:context=".Fragments.SumbitFragment">
+    tools:context=".Fragments.SubmitFragment">
 
     <ScrollView
+        style="@style/DarkThemeBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/DarkThemeBackground"
         tools:context=".MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/DarkThemeBackground"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/DarkThemeBackground">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -37,17 +37,18 @@
                         android:id="@+id/btn_menu"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
+                        style="@style/svgTheme"
                         android:padding="5dp"
                         android:src="@drawable/ic_menu" />
 
                     <TextView
+                        style="@style/textStyle"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/transport_bo_limi"
-                        style="@style/textStyle"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -56,6 +57,7 @@
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:padding="5dp"
+                        style="@style/svgTheme"
                         android:src="@drawable/ic_search" />
 
 
@@ -102,6 +104,7 @@
                                     android:id="@+id/btn_x"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
+                                    style="@style/svgTheme"
                                     android:src="@drawable/ic_baseline_close_24"
                                     app:layout_constraintRight_toRightOf="parent" />
 
@@ -161,6 +164,7 @@
 
                                     <AutoCompleteTextView
                                         android:id="@+id/autoCompleteTextView"
+                                        style="@style/textStyle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="5dp"
@@ -168,7 +172,6 @@
                                         android:gravity="center"
                                         android:inputType="none"
                                         android:text="@string/_2022"
-                                        style="@style/textStyle"
                                         android:textSize="18sp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
@@ -236,11 +239,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/shot_card_kvitansiya"
+                style="@style/cardParentStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:cardCornerRadius="30dp"
-                style="@style/cardParentStyle"
                 app:cardElevation="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -256,84 +259,101 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
-                        android:orientation="horizontal">
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <ImageView
+                            style="@style/svgTheme"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:gravity="center"
+                            android:src="@drawable/ic_person_registration" />
 
                         <TextView
-                            android:layout_width="0dp"
+                            android:id="@+id/arranged_customer"
+                            style="@style/textStyle"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_weight="1"
+                            android:gravity="center"
                             android:text="@string/test_mijoz"
-                            style="@style/textStyle"
-                            android:textSize="24sp"
-                            app:drawableLeftCompat="@drawable/ic_person_registration" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
-                            style="@style/textStyle"
-                            android:src="@drawable/phone" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:text="@string/_998978878878"
-                            android:textColor="#2196F3"
-                            android:textSize="15sp" />
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="20dp"
-                            style="@style/textStyle"
-                            android:src="@drawable/ic_location" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="20dp"
-                            android:text="@string/manzili"
-                            style="@style/textStyle"
-                            android:textSize="15sp" />
+                            android:textSize="24sp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <ImageView
+                            style="@style/svgTheme"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/phone" />
 
                         <TextView
+                            android:id="@+id/arranged_submit_number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginStart="20dp"
-                            android:text="@string/operator"
-                            style="@style/textStyle"
-                            app:drawableLeftCompat="@drawable/ic_person" />
+                            android:text="@string/_998978878878"
+                            android:textColor="#2196F3"
+                            android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="8dp">
+
+                    <ImageView
+                        style="@style/svgTheme"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ic_location" />
+
+                    <TextView
+                        android:id="@+id/arranged_submit_location"
+                        style="@style/textStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="@string/manzili"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/svgTheme"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_person" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            style="@style/textStyle"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:text="@string/operator" />
+
+                        <TextView
+                            style="@style/textStyle"
+                            android:id="@+id/arranged_submit_operator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="Yusufjon"
-                            style="@style/textStyle" />
+                            android:gravity="center"
+                            android:text="Yusufjon" />
 
                     </LinearLayout>
 
@@ -356,275 +376,177 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
                         android:minHeight="48dp"
-                        app:cardCornerRadius="16dp"
-                        android:layout_margin="16dp">
+                        app:cardCornerRadius="16dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:minHeight="48dp"
+                            android:background="#56DA5A"
                             android:gravity="center"
-                            android:orientation="horizontal"
-                            android:background="#56DA5A">
+                            android:minHeight="48dp"
+                            android:orientation="horizontal">
 
                             <TextView
+                                style="@style/textStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                app:cornerRadius="8dp"
                                 android:gravity="center"
-                                android:textSize="16sp"
                                 android:text="@string/kvitansiya_no"
                                 android:textAllCaps="false"
-                                style="@style/textStyle"/>
+                                android:textSize="16sp"
+                                app:cornerRadius="8dp" />
 
                             <TextView
-                                android:id="@+id/txt_maosh"
+                                android:id="@+id/txt_submit_nomer"
+                                style="@style/textStyle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                app:cornerRadius="8dp"
-                                android:gravity="center"
                                 android:layout_marginStart="5dp"
-                                android:textSize="16sp"
+                                android:gravity="center"
                                 android:text="123"
                                 android:textAllCaps="false"
-                                style="@style/textStyle"/>
+                                android:textSize="16sp"
+                                app:cornerRadius="8dp" />
 
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>
 
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/orders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@id/rv_submit"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/shot_card_kvitansiya">
+
+                <TextView
+                    style="@style/textStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/buyurtmalar"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/txt_orders"
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="20sp" />
+
+                <TextView
+                    style="@style/textStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ta"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_mahsulotlar_nomi"
+                app:layout_constraintBottom_toTopOf="@+id/view"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/orders" />
+
+            <LinearLayout
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/card_chegirma"
+                app:layout_constraintTop_toBottomOf="@+id/rv_submit">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray"
+                    android:padding="5dp" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_chegirma"
+                style="@style/cardParentStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="15dp"
+                app:layout_constraintBottom_toTopOf="@+id/card_summa"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
                         android:orientation="horizontal">
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_margin="5dp"
-                            android:layout_marginTop="30dp"
-                            android:layout_marginEnd="50dp"
-                            android:layout_marginBottom="20dp"
-                            android:background="#BDB8B8"
-                            android:padding="5dp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TableLayout
-                            android:layout_width="match_parent"
+                        <TextView
+                            style="@style/textStyle"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="10dp">
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:text="@string/jami_chegirma"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                        <TextView
+                            android:id="@+id/jami_chegirma"
+                            style="@style/textStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="55"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/custom_input_5"
-                                    android:padding="10dp"
-                                    android:text="#"
-                                    android:textColor="@color/black" />
+                        <TextView
+                            style="@style/textStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/percentage"
+                            android:layout_marginStart="8dp"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_5"
-                                    android:padding="10dp"
-                                    android:text="@string/mahsulot_soni"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_5"
-                                    android:padding="10dp"
-                                    android:text="@string/soni_summa"
-                                    android:textColor="#050505"
-                                    android:textStyle="bold" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/custom_input_5"
-                                    android:padding="10dp"
-                                    android:text="#"
-                                    android:textColor="@color/black" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_5"
-                                    android:padding="10dp"
-                                    android:text="@string/jami"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_5"
-                                    android:padding="10dp"
-                                    android:text="6ta"
-                                    android:textColor="#F44336"
-                                    android:textStyle="bold" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/custom_input_10"
-                                    android:padding="10dp"
-                                    android:text="#"
-                                    android:textColor="@color/black" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_10"
-                                    android:padding="10dp"
-                                    android:text="@string/jami_summa"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_10"
-                                    android:padding="10dp"
-                                    android:text="10 000 so'm"
-                                    android:textColor="#3F51B5"
-                                    android:textStyle="bold" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="#"
-                                    android:textColor="@color/black" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="O'zi olib ketsa"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="25% chegirma"
-                                    android:textColor="#F44336"
-                                    android:textStyle="bold" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="#"
-                                    android:textColor="@color/black" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="@string/jami_to_lov"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="10 000 so'm"
-                                    android:textColor="#F44336"
-                                    android:textStyle="bold" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="#"
-                                    android:textColor="@color/black" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="@string/operator_izoh"
-                                    android:textColor="@color/black"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="5"
-                                    android:background="@drawable/custom_input_9"
-                                    android:padding="10dp"
-                                    android:text="1"
-                                    android:textColor="#969696"
-                                    android:textStyle="bold" />
-                            </TableRow>
-
-                        </TableLayout>
+                        <ImageView
+                            android:id="@+id/image_submit"
+                            style="@style/svgTheme"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="8dp"
+                            android:src="@drawable/ic_keyboard_arrow" />
 
                     </LinearLayout>
 
@@ -633,16 +555,110 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_summa"
+                style="@style/cardParentStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="15dp"
+                app:layout_constraintBottom_toTopOf="@+id/card_customer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_chegirma">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/textStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/jami_summa_"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/jami_summa"
+                            style="@style/textStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            style="@style/textStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/so_m"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yakuniy_to_lov"
+                            android:textColor="#F44336"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/yakuniy_tolov"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="#F44336"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/so_m"
+                            android:textColor="#F44336"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_customer"
+                style="@style/cardParentStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:cardCornerRadius="30dp"
                 app:cardElevation="15dp"
-                style="@style/cardParentStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/shot_card_kvitansiya">
+                app:layout_constraintTop_toBottomOf="@id/card_summa">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -650,11 +666,11 @@
                     android:orientation="vertical">
 
                     <TextView
+                        style="@style/textStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
                         android:text="@string/mijozdan_olingan_pul"
-                        style="@style/textStyle"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -674,43 +690,46 @@
 
                     </LinearLayout>
 
-                    <LinearLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        app:hintEnabled="false"
+                        app:suffixText="@string/so_m">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_payment"
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
-                            android:layout_weight="3"
-                            android:inputType="number"
                             android:background="@drawable/custom_input_dark"
                             android:hint="@string/mijozdan_olgan_pulni_kiriting"
+                            android:inputType="number"
                             android:padding="10dp"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
-                    </LinearLayout>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                            <Spinner
-                                android:id="@+id/autoCompleteTextView_list"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_weight="1"
-                                android:background="@drawable/custom_input_dark"
-                                android:inputType="none"
-                                android:minHeight="48dp"
-                                android:hint="@string/naqd"
-                                style="@style/textStyle"
-                                android:textSize="18sp" />
+                        <AutoCompleteTextView
+                            android:id="@+id/autoCompleteTextView_list"
+                            style="@style/textStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_input_dark"
+                            android:inputType="none"
+                            android:minHeight="48dp"
+                            android:padding="10dp"
+                            android:text="@string/naqd"
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -719,12 +738,12 @@
                         android:layout_height="wrap_content">
 
                         <androidx.cardview.widget.CardView
+                            style="@style/cardParentStyle"
                             android:layout_width="60dp"
                             android:layout_height="40dp"
                             android:layout_margin="10dp"
                             android:background="@drawable/custom_input_dark"
                             app:cardCornerRadius="30dp"
-                            style="@style/cardParentStyle"
                             app:cardElevation="15dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -732,6 +751,7 @@
 
                             <ImageView
                                 android:id="@+id/img_print"
+                                style="@style/svgTheme"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -741,6 +761,7 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_submitted"
+                            style="@style/textStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -748,7 +769,6 @@
                             android:backgroundTint="#0586ED"
                             android:drawableStart="@drawable/ic_check"
                             android:text="@string/topshirildi"
-                            style="@style/textStyle"
                             app:cornerRadius="16dp">
 
                         </com.google.android.material.button.MaterialButton>
@@ -757,12 +777,14 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_put"
+                        style="@style/textStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
                         android:backgroundTint="#F44336"
                         android:text="@string/skladga_topshirish"
-                        style="@style/textStyle"
                         app:cornerRadius="16dp">
 
                     </com.google.android.material.button.MaterialButton>

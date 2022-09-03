@@ -179,10 +179,26 @@
                 android:src="@drawable/ic_operator2" />
 
             <TextView
-                android:id="@+id/txt_operator_arranged"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sardor"
+                android:text="@string/operator"
+                android:textColor="#2196F3"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txt_operator_arranged"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="operator"
+                android:textColor="#2196F3"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:layout_marginEnd="16dp"
                 android:textColor="#2196F3"
                 android:textSize="16sp" />
 

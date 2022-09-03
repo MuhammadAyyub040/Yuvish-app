@@ -2,8 +2,12 @@ package com.example.yuvish.Fragments
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.provider.ContactsContract
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,15 +20,22 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Models.Authorization.UserToken
 import com.example.yuvish.Models.LanguageHelper
+import com.example.yuvish.Models.Setting.ResponseSetting
 import com.example.yuvish.Models.Setting.Setting
+import com.example.yuvish.Models.Setting.UpdateSetting
 import com.example.yuvish.R
+import com.example.yuvish.databinding.ConfirmationBinding
 import com.example.yuvish.databinding.FragmentSettingBinding
 import com.example.yuvish.databinding.ItemThemeBinding
+import com.example.yuvish.databinding.SubmittedItemBinding
 import com.example.yuvish.retrofit.ApiClient
 import com.orhanobut.hawk.Hawk
+import kotlinx.android.synthetic.main.confirmation.*
+import kotlinx.android.synthetic.main.fragment_setting.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.log
 
 class SettingFragment : Fragment() {
 
@@ -58,7 +69,7 @@ class SettingFragment : Fragment() {
             chooseThemeDialog()
         }
 
-        binding.autoCompleteTextViewSettingLanguage.setOnItemClickListener { parent, view, position, id ->
+        binding.autoCompleteTextViewSettingLanguage.setOnItemClickListener { parent, _, position, id ->
             when (position) {
                 0 -> {
 
@@ -102,10 +113,24 @@ class SettingFragment : Fragment() {
                 binding.edtLoginSetting.text.toString() == setting.username &&
                         binding.edtNameSetting.text.toString() == setting.fullname &&
                         binding.edtPhoneNumber.text.toString() == setting.phone.toString()->{
+                    Toast.makeText(requireActivity(), "Hech qanday o'zgarish yo'q", Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    val dialogBinding = ConfirmationBinding.inflate(layoutInflater)
 
-                        }
-                else ->{
+                    val myDialog = Dialog(requireActivity())
+                    myDialog.setContentView(dialogBinding.root)
 
+                    myDialog.setCancelable(true)
+                    myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                    myDialog.show()
+
+                    dialogBinding.btnRejection.setOnClickListener {
+                        myDialog.dismiss()
+                    }
+                    dialogBinding.btnConfirm.setOnClickListener {
+                        updateUser(setting.id, UpdateSetting("Yuvuvchi Hodimn",0,56000,"", 0,"yuvish1112", 985214141, 0,"yuvish","", "", "yuvish1112"))
+                    }
                 }
             }
         }
@@ -224,10 +249,18 @@ class SettingFragment : Fragment() {
     private fun profile(){
         ApiClient.retrofitService.profile().enqueue(object : Callback<Setting>{
             override fun onResponse(call: Call<Setting>, response: Response<Setting>) {
-                setting = response.body()!!
-                binding.edtNameSetting.setText(response.body()!!.fullname)
-                binding.edtPhoneNumber.setText(response.body()!!.phone.toString())
-                binding.edtLoginSetting.setText(response.body()!!.username)
+                if (response.code() == 200){
+                    setting = response.body()!!
+                    Log.e("testLogin", response.body().toString())
+                    var loge = response.body()
+                    /*Toast.makeText(binding.root.context,response.body()!!.id.toString(),Toast.LENGTH_SHORT).show()*/
+                    binding.edtNameSetting.setText(response.body()!!.fullname)
+                    binding.edtPhoneNumber.setText(response.body()!!.phone.toString())
+                    binding.edtLoginSetting.setText(response.body()!!.username)
+                    binding.txtMaosh.text = setting.oylik.toString()
+                }else {
+                    Log.e("TAG", "onResponse: ${response.code()}")
+                }
             }
 
             override fun onFailure(call: Call<Setting>, t: Throwable) {
@@ -237,6 +270,22 @@ class SettingFragment : Fragment() {
                     "Server bilan bog'lanishda xatolik",
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+
+        })
+    }
+
+    fun updateUser(id : Int, updateSetting: UpdateSetting){
+        ApiClient.retrofitService.updateUser(id, updateSetting).enqueue(object : Callback<ResponseSetting>{
+            override fun onResponse(call: Call<ResponseSetting>, response: Response<ResponseSetting>){
+                Log.d("TAG", "onResponse: userSetting ${response.code()}")
+                if (response.code() == 200)
+                    Toast.makeText(requireActivity(), "${response.body()}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<ResponseSetting>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Server bilan bog'lanolmadik", Toast.LENGTH_SHORT).show()
             }
 
         })

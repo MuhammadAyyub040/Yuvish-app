@@ -20,9 +20,9 @@ class PaginationPageArranged (
             val pageNumber = params.key ?: 1
             val pageSize = params.loadSize
             val response = retrofitService.arranged(pageNumber, driver, type)
-            Log.d("testresponse", response.toString())
+            Log.d("testresponse", response.code().toString())
 
-            if (response.isSuccessful) {
+            if (response.code() == 200) {
                 val readyOrdersItem = response.body()!!
                 val nextPageNumber = if (readyOrdersItem.size < pageSize) null else pageNumber + 1
                 val prevPageNumber = if (pageNumber > 1) pageNumber - 1 else null

@@ -13,6 +13,7 @@
         android:layout_margin="20dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="15dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -142,15 +143,42 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center"
+            app:cardBackgroundColor="#FFC107"
+            app:cardCornerRadius="15dp"
+            style="@style/cardParentStyle"
+            app:cardElevation="15dp">
+
+            <ImageView
+                android:id="@+id/img_print"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_printshop" />
+
+        </androidx.cardview.widget.CardView>
+
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_gravity="center"
             android:backgroundTint="#2196F3"
             android:drawableLeft="@drawable/ic_check"
             android:text="@string/yuvildi"
             android:textColor="@color/white"
-            app:cornerRadius="12dp" />
+            app:cornerRadius="15dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

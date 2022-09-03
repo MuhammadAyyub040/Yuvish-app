@@ -317,7 +317,7 @@
                                 android:gravity="center"
                                 android:layout_marginStart="5dp"
                                 android:textSize="16sp"
-                                android:text=""
+                                android:text="650000"
                                 android:textAllCaps="false"
                                 style="@style/textStyle"/>
 
@@ -473,6 +473,7 @@
                         android:layout_height="wrap_content">
 
                         <EditText
+                            android:id="@+id/edt_password_setting"
                             style="@style/editTextDark"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -492,6 +493,11 @@
                         android:layout_margin="8dp"
                         android:orientation="horizontal">
 
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1">
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_save_setting"
                             android:layout_width="wrap_content"
@@ -503,11 +509,12 @@
                             android:textColor="#3F51B5"
                             app:cornerRadius="10dp" />
 
+                        </LinearLayout>
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_theme"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="60dp"
                             android:backgroundTint="@color/black"
                             android:gravity="center"
                             android:text="@string/theme"

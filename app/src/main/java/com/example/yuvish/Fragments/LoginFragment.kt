@@ -39,7 +39,8 @@ class LoginFragment : Fragment() {
                 binding.edtPassword.error = "Enter password"
                 binding.edtPassword.requestFocus()
             } else {
-                ApiClient.retrofitService.createUser(binding.edtLogin.text.toString(), binding.edtPassword.text.toString()).enqueue(object : Callback<UserToken>{
+                ApiClient.retrofitService.createUser(binding.edtLogin.text.toString(),
+                    binding.edtPassword.text.toString()).enqueue(object : Callback<UserToken>{
                     override fun onResponse(call: Call<UserToken>, response: Response<UserToken>) {
                         if (response.code() == 200){
                             Log.d("testLogin", response.body().toString())

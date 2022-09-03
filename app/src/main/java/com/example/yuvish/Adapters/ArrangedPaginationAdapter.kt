@@ -1,42 +1,38 @@
 package com.example.yuvish.Adapters
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Fragments.TayyorFragment
 import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
 import com.example.yuvish.databinding.KvitansiyaItemArrangedBinding
 
-class ArrangedPaginationAdapter(context: Context, var onItemClick: OnItemClick) :
+class ArrangedPaginationAdapter(var onItemClick: OnItemClick) :
     PagingDataAdapter<ReadyOrdersItem, ArrangedPaginationAdapter.ArrangedViewHolder>(ArticleDiffItemCallback) {
 
-    inner class ArrangedViewHolder(val binding: KvitansiyaItemArrangedBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(position: Int, readyOrdersItem: ReadyOrdersItem) {
+    inner class ArrangedViewHolder(val binding: KvitansiyaItemArrangedBinding) : RecyclerView.ViewHolder(binding.root) {}
 
-            binding.btnSubmit.setOnClickListener {
+    override fun onBindViewHolder(holder: ArrangedViewHolder, position: Int) {
+        val readyOrdersItem = getItem(position)
+
+        if (readyOrdersItem != null) {
+            holder.binding.btnSubmit.setOnClickListener {
                 onItemClick.onItemClickSubmit(readyOrdersItem)
             }
-            binding.btnSorting.setOnClickListener {
+            holder.binding.btnSorting.setOnClickListener {
                 onItemClick.onItemClickUnsorted(readyOrdersItem)
             }
 
-            binding.txtKvitansiyaNumberArranged.text = readyOrdersItem.nomer.toString()
-            binding.txtDateArranged.text = readyOrdersItem.topshir_sana
-            binding.txtCustomerArranged.text = readyOrdersItem.costumer.costumer_name
-            binding.txtPhoneNumberArranged.text = readyOrdersItem.costumer.costumer_phone_1
-            binding.txtLocationArranged.text = readyOrdersItem.costumer.costumer_addres
-            binding.txtOperatorArranged.text = readyOrdersItem.operator.fullname
-            binding.txtCommentOperatorArranged.text = readyOrdersItem.izoh
-            binding.txtCommentCustomerArranged.text = readyOrdersItem.izoh2
-
+            holder.binding.txtKvitansiyaNumberArranged.text = readyOrdersItem.nomer.toString()
+            holder.binding.txtDateArranged.text = readyOrdersItem.topshir_sana
+            holder.binding.txtCustomerArranged.text = readyOrdersItem.costumer.costumer_name
+            holder.binding.txtPhoneNumberArranged.text = readyOrdersItem.costumer.costumer_phone_1
+            holder.binding.txtLocationArranged.text = readyOrdersItem.costumer.costumer_addres
+            holder.binding.txtOperatorArranged.text = readyOrdersItem.operator.fullname
+            holder.binding.txtCommentOperatorArranged.text = readyOrdersItem.izoh
+            holder.binding.txtCommentCustomerArranged.text = readyOrdersItem.izoh2
         }
-    }
-
-    override fun onBindViewHolder(holder: ArrangedViewHolder, position: Int) {
-        holder.onBind(position,getItem(position)!!)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArrangedViewHolder {

@@ -11,7 +11,7 @@
     <string name="yuvish_test">washing test</string>
     <string name="yuvishni_ro_yxatga_olish">Washing registration</string>
     <string name="fergana">Fergana</string>
-    <string name="text_view">text_view</string>
+    <string name="text_view">text view</string>
     <string name="asosiy_ko_rsatgichlar">Key indicators</string>
     <string name="yangi_buyurtmalar">New orders</string>
     <string name="yuvish_bo_limi">Washing unit</string>
@@ -57,18 +57,16 @@
     <string name="keldi">Came</string>
     <string name="ketdi">Gone</string>
     <string name="ko_rsatgichlar">Indicators</string>
-    <string name="dd_mm_yyyy">dd mm yyyy</string>
     <string name="dan_gacha_tanlash">" select from to"</string>
     <string name="topshirildi">submitted.</string>
     <string name="kpi">KPI.</string>
     <string name="yuvildii">washed.</string>
-    <string name="n">№</string>
     <string name="kv">Kv_№</string>
     <string name="tovar_dona">commodity piece</string>
     <string name="yuvilgan_buyurtmalar">Washed orders</string>
     <string name="topshirilgan_buyurtmalar">Submitted orders</string>
     <string name="hisoblangan_summa">Estimated amount</string>
-    <string name="kechildi">Forgiven</string>
+    <string name="kechildi">Debt off</string>
     <string name="olingan_maosh">Salary received</string>
     <string name="hodim">Customer</string>
     <string name="sana">Date</string>
@@ -88,7 +86,7 @@
     <string name="yangi_vning_sonini_kiritng">Enter the number of new v</string>
     <string name="summani_kiriting">Enter the amount</string>
     <string name="avans">Advance</string>
-    <string name="type_avans">Type Advance</string>
+    <string name="type_avans">Type advance</string>
     <string name="izoh">Commetn</string>
     <string name="mijoz_haqida_izoh_qoldiring">Comment on the customer</string>
     <string name="mijoz_olib_ketishi">Customer pickup</string>
@@ -99,7 +97,7 @@
     <string name="test_mijoz">Test customer</string>
     <string name="_998978878878">+998978878878</string>
     <string name="mijozdan_olgan_pulni_kiriting">Enter the money you received from the customer</string>
-    <string name="skladga_topshirish">put into storage</string>
+    <string name="skladga_topshirish">Submit to warehouse</string>
     <string name="buyurtma_izohi">Order description</string>
     <string name="tartib_raqam">Sort number</string>
     <string name="yuvish">Washing</string>
@@ -184,4 +182,11 @@
     <string name="click">Click</string>
     <string name="naqd">Cash</string>
     <string name="xizmat_turi">Type of service</string>
+    <string name="ha">Yes</string>
+    <string name="yo_q">No</string>
+    <string name="buyurtmalar">Orders</string>
+    <string name="ta">pcs</string>
+    <string name="jami_summa_">Total amount:</string>
+    <string name="so_m">soum</string>
+    <string name="yakuniy_to_lov">Final payment:</string>
 </resources>

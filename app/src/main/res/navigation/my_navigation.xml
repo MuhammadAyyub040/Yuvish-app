@@ -10,16 +10,52 @@
         android:id="@+id/homeFragment"
         android:name="com.example.yuvish.Fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_barcodeScannerFragment"
+            app:destination="@id/barcodeScannerFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_debtorsDepartmentFragment2"
+            app:destination="@id/debtorsDepartmentFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_baseFragment"
+            app:destination="@id/baseFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_skladFragment"
+            app:destination="@id/skladFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tayyorFragment"
+            app:destination="@id/tayyorFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_transportFragment"
+            app:destination="@id/transportFragment" />
+    </fragment>
     <fragment
         android:id="@+id/transportFragment"
         android:name="com.example.yuvish.Fragments.TransportFragment"
         android:label="fragment_transport"
-        tools:layout="@layout/fragment_transport" />
+        tools:layout="@layout/fragment_transport" >
+        <action
+            android:id="@+id/action_transportFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tayyorFragment"
         android:name="com.example.yuvish.Fragments.TayyorFragment"
-        android:label="TayyorFragment" />
+        android:label="TayyorFragment" >
+        <action
+            android:id="@+id/action_tayyorFragment_to_sumbitFragment"
+            app:destination="@id/sumbitFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_to_skladFragment"
+            app:destination="@id/skladFragment" />
+    </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.example.yuvish.Fragments.MenuFragment"
@@ -27,7 +63,14 @@
         tools:layout="@layout/fragment_menu">
         <action
             android:id="@+id/action_menuFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_menuFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/menuFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -35,7 +78,9 @@
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_homeFragment2"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -59,7 +104,7 @@
         tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/sumbitFragment"
-        android:name="com.example.yuvish.Fragments.SumbitFragment"
+        android:name="com.example.yuvish.Fragments.SubmitFragment"
         android:label="fragment_sumbit"
         tools:layout="@layout/fragment_sumbit" />
     <fragment
@@ -76,6 +121,19 @@
         android:id="@+id/debtorsDepartmentFragment"
         android:name="com.example.yuvish.Fragments.DebtorsDepartmentFragment"
         android:label="fragment_debtors_department"
-        tools:layout="@layout/fragment_debtors_department" />
+        tools:layout="@layout/fragment_debtors_department" >
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_debtorFragment"
+            app:destination="@id/debtorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/barcodeScannerFragment"
+        android:name="com.example.yuvish.Fragments.BarcodeScannerFragment"
+        android:label="fragment_barcode_scanner"
+        tools:layout="@layout/fragment_barcode_scanner" >
+        <action
+            android:id="@+id/action_barcodeScannerFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
+    </fragment>
 
 </navigation>

@@ -20,7 +20,11 @@
     </style>
 
     <style name="cardParentStyle">
-        <item name="cardBackgroundColor">#353434</item>
+        <item name="cardBackgroundColor">#2E2E2E</item>
+    </style>
+
+    <style name="cardStyle">
+        <item name="cardBackgroundColor">@color/gray</item>
     </style>
 
     <style name="textStyle">

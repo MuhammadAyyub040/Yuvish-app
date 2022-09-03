@@ -1,11 +1,11 @@
 package com.example.yuvish.Fragments
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
@@ -21,29 +22,36 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.ArrangedPaginationAdapter
 import com.example.yuvish.Adapters.NotArrangedPaginationAdapter
+import com.example.yuvish.Models.ReadyOrders.Autocomplete
 import com.example.yuvish.Models.ReadyOrders.PaginationPageArranged
 import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
-import com.example.yuvish.Models.Warehouse.PaginationPageWerehouse
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentTayyorBinding
 import com.example.yuvish.databinding.SortingItemBinding
 import com.example.yuvish.retrofit.ApiClient
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArrangedPaginationAdapter.OnItemClick {
 
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var arrangedPaginationAdapter: ArrangedPaginationAdapter
     lateinit var notArrangedPaginationAdapter: NotArrangedPaginationAdapter
+    lateinit var list: List<Autocomplete>
     var searchPage = false
     lateinit var binding: FragmentTayyorBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arrangedPaginationAdapter = ArrangedPaginationAdapter(requireActivity(), this)
+        arrangedPaginationAdapter = ArrangedPaginationAdapter(this)
         notArrangedPaginationAdapter = NotArrangedPaginationAdapter(requireActivity(), this)
         getPaginationArranged()
         getPaginationNotArranged()
+        autocompleteAll()
+        list = arrayListOf()
+
     }
 
     override fun onCreateView(
@@ -51,12 +59,9 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTayyorBinding.inflate(layoutInflater)
-        val arrayAdapter = ArrayAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            arrayListOf("2022", "2021")
-        )
-        binding.autoCompleteTextViewReady.setAdapter(arrayAdapter)
+
+        val arrayAdapter2 = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("2022", "2021"))
+        binding.autoCompleteTextViewReady.setAdapter(arrayAdapter2)
 
         binding.btnX.setOnClickListener {
             binding.searchCard.visibility = View.GONE
@@ -215,7 +220,10 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
     }
 
     override fun onItemClickSubmit(readyOrdersItem: ReadyOrdersItem) {
-        findNavController().navigate(R.id.sumbitFragment)
+        Log.d("TAG", "onItemClickSubmit ${readyOrdersItem.order_id} ")
+        findNavController().navigate(R.id.sumbitFragment, bundleOf(
+            "orderId" to readyOrdersItem.order_id
+        ))
     }
 
     override fun onItemClickUnsorted(readyOrdersItem: ReadyOrdersItem) {
@@ -227,10 +235,20 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
             myDialog.setCancelable(true)
             myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             myDialog.show()
+
+        dialogBinding.cardClose.setOnClickListener {
+            myDialog.dismiss()
+        }
+        dialogBinding.check.setOnClickListener {
+
+        }
     }
 
     override fun onItemClickSubmit2(readyOrdersItem: ReadyOrdersItem) {
-        findNavController().navigate(R.id.sumbitFragment)
+        Log.d("TAG", "onItemClickSubmit2")
+        findNavController().navigate(R.id.sumbitFragment, bundleOf(
+            "orderId" to readyOrdersItem.order_id
+        ))
 
     }
 
@@ -243,5 +261,36 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
         myDialog.setCancelable(true)
         myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         myDialog.show()
+
+        dialogBinding.cardClose.setOnClickListener {
+            myDialog.dismiss()
+        }
+    }
+    private fun autocompleteAll(){
+        ApiClient.retrofitService.autocomplete().enqueue(object : Callback<List<Autocomplete>>{
+
+            override fun onResponse(
+                call: Call<List<Autocomplete>>,
+                response: Response<List<Autocomplete>>
+            ) {
+
+                if (response.code() == 200){
+                    list = response.body()!!
+                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map { it.title })
+                    binding.autoCompleteTextViewList.setAdapter(arrayAdapter)
+                }
+                Log.d( "onResponse", response.body().toString())
+            }
+
+            override fun onFailure(call: Call<List<Autocomplete>>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(
+                    requireContext(),
+                    "OnFailure",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+        })
     }
 }

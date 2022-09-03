@@ -124,10 +124,12 @@
                     android:layout_height="match_parent"
                     android:layout_weight="4"
                     android:layout_margin="16dp"
+                    android:inputType="number"
                     android:background="@drawable/custom_input_dark"
                     android:padding="10dp" />
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/check"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_margin="16dp"

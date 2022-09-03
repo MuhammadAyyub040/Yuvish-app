@@ -11,11 +11,16 @@
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/custom_input_7.xml" value="0.3880208333333333" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/custom_input_dark.xml" value="0.3880208333333333" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/edit_text_background.xml" value="0.3880208333333333" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/ic_arrow_down.xml" value="0.232" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/ic_keyboard_arrow.xml" value="0.232" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/ic_location.xml" value="0.382051282051282" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/ic_scanner.xml" value="0.232" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/drawable/kvitansiya_item_6.xml" value="0.3880208333333333" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout-v28/fragment_setting.xml" value="0.18085106382978725" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/activity_main.xml" value="0.17401215805471124" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/background_txt.xml" value="0.18085106382978725" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/confirmation.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_barcode_scanner.xml" value="0.18085106382978725" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_base.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_debtor.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_debtors_department.xml" value="0.25" />
@@ -26,14 +31,18 @@
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_registration.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_setting.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_sklad.xml" value="0.25" />
-        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_sumbit.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_sumbit.xml" value="0.28516228748068007" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_tayyor.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/fragment_transport.xml" value="0.25" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/ic_location.xml" value="0.18085106382978725" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_adyol.xml" value="0.25" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_child.xml" value="0.18085106382978725" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_gilam.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_gilam_mahsulot.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_joyida_yuvish.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_mahsulotlar.xml" value="0.25" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_mahsulotlar_nomi.xml" value="0.33" />
+        <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_olcham.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_parda.xml" value="0.33" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_theme.xml" value="0.25" />
         <entry key="..\:/MUHAMMADAYUB/AndroidStudioProjects/Yuvish/app/src/main/res/layout/item_warn.xml" value="0.33" />

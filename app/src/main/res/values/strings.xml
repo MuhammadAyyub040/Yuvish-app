@@ -12,7 +12,7 @@
     <string name="_2022_08_08_12_45_59" translatable="false">2022–08-08 12:45:59</string>
     <string name="fergana">Fergana</string>
     <string name="yuvishni_ro_yxatga_olish">Yuvishni ro\'yxatga olish</string>
-    <string name="text_view">text_view</string>
+    <string name="text_view">text view</string>
     <string name="asosiy_ko_rsatgichlar">Asosiy ko\'rsatgichlar</string>
     <string name="yangi_buyurtmalar">Yangi buyurtmalar</string>
     <string name="yuvish_bo_limi">Yuvish bo\'limi</string>
@@ -66,11 +66,11 @@
     <string name="_2022" translatable="false">2022</string>
     <string name="ko_rsatgichlar">Ko\'rsatgichlar</string>
     <string name="dan_gacha_tanlash">Dan-gacha tanlash</string>
-    <string name="dd_mm_yyyy">dd mm yyyy</string>
+    <string name="dd_mm_yyyy" translatable="false">dd mm yyyy</string>
     <string name="topshirildi">topshirildi.</string>
     <string name="kpi">KPI.</string>
     <string name="yuvildii">yuvildi.</string>
-    <string name="n">№</string>
+    <string name="n" translatable="false">№</string>
     <string name="kv">Kv_№</string>
     <string name="tovar_dona">tovar dona</string>
     <string name="xodim">Xodim</string>
@@ -97,7 +97,7 @@
     <string name="yangi_vning_sonini_kiritng">Yangi vning sonini kiritng</string>
     <string name="summani_kiriting">Summani kiriting</string>
     <string name="avans">Avans</string>
-    <string name="type_avans">Type Avans</string>
+    <string name="type_avans">Turi avans</string>
     <string name="izoh">Izoh</string>
     <string name="mijoz_haqida_izoh_qoldiring">Mijoz haqida izoh qoldiring</string>
     <string name="mijoz_olib_ketishi">Mijoz olib ketishi</string>
@@ -112,7 +112,7 @@
     <string name="buyurtma_izohi">Buyurtma izohi</string>
     <string name="tartib_raqam">Tartib Raqam</string>
     <string name="yuvish">Yuvish</string>
-    <string name="shtrix_kodni_kiriting">Shtrix_kodni kiriting</string>
+    <string name="shtrix_kodni_kiriting">Shtrix kodni kiriting</string>
     <string name="qayta_yuvish">Qayta Yuvish</string>
     <string name="bu_bo_limda_mahsulotlar_yuviladi">Bu bo\'limda mahsulotlar yuviladi.</string>
     <string name="mahsulot_soni">Mahsulot soni</string>
@@ -128,14 +128,14 @@
     <string name="berish_sanasi">Berish sanasi</string>
     <string name="kechib_yuborish">Kechib Yuborish</string>
     <string name="tasdiqlash">Tasdiqlash</string>
-    <string name="theme">Theme</string>
-    <string name="light">Light</string>
-    <string name="dark">Dark</string>
+    <string name="theme">Mavzu</string>
+    <string name="light">Yorqin</string>
+    <string name="dark">Qorong\'i</string>
     <string name="kassaga_beriladigan_pullar">Kassaga beriladigan pullar</string>
     <string name="yetkazishga_o_tkazish">Yetkazishga o\'tkazish</string>
     <string name="bekor_qilish">Bekor qilish</string>
-    <string name="system_default">System default</string>
-    <string name="choose_theme">Choose theme</string>
+    <string name="system_default">Tizim standarti</string>
+    <string name="choose_theme">Mavzuni tanlang</string>
     <string name="qarzdorlar_bo_limi">Qarzdorlar bo\'limi</string>
     <string name="qarzlar">Qarzlar</string>
     <string name="tugatish">Tugatish</string>
@@ -149,7 +149,7 @@
     <string name="bu_bo_limda_qarzdorlarning_ma_lumotlari_bo_ladi">Bu bo\'limda qarzdorlarning ma\'lumotlari bo\'ladi.</string>
     <string name="telefon_raqam_ism">Telefon raqam, Ism</string>
     <string name="yangi_mijoz_ismi">Yangi mijoz ismi</string>
-    <string name="yumshoq_o_yinchoqning_sonini_kiriting">Yumshoq o\'yinchoqning sonini kiriting</string>
+    <string name="yumshoq_o_yinchoqning_sonini_kiriting">Yumshoq o\'yinchoq sonini kiriting</string>
     <string name="topshirilgan_sana">Topshirilgan sana</string>
     <string name="manzili">manzili</string>
     <string name="kvitansiya_no">Kvitansiya №:</string>
@@ -188,8 +188,23 @@
     <string name="izohni_kiriting">Izohni kiriting</string>
     <string name="sanada_topshirilganlar">Sanada topshirilganlar.</string>
     <string name="qarz">Qarz</string>
-    <string name="sanada_yuvilganlar">Sanada_yuvilganlar</string>
+    <string name="sanada_yuvilganlar">Sanada yuvilganlar</string>
     <string name="click">Click</string>
     <string name="naqd">Naqd</string>
     <string name="xizmat_turi">Xizmat turi</string>
+    <string name="ha">Ha</string>
+    <string name="yo_q">Yo\'q</string>
+    <string name="buyurtmalar">Buyurtmalar</string>
+    <string name="ta">ta</string>
+    <string name="jami_summa_">Jami summa:</string>
+    <string name="so_m">so\'m</string>
+    <string name="yakuniy_to_lov">Yakuniy to\'lov:</string>
+    <string name="mahsulotlar">Mahsulotlar</string>
+    <string name="gilam">Gilam</string>
+    <string name="o_lcham">O\'lcham</string>
+    <string name="narx">Narx</string>
+    <string name="tokcha">Tokcha</string>
+    <string name="__1">1.</string>
+    <string name="jami_chegirma">Jami chegirma:</string>
+    <string name="percentage">%</string>
 </resources>
