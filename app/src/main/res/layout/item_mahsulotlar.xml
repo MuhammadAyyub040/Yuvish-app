@@ -25,20 +25,19 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_gravity="center"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:layout_margin="16dp"
+                android:gravity="center">
 
                 <TextView
                     style="@style/textStyle"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:gravity="center"
-                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textColor="#2196F3"
                     android:text="@string/mahsulotlar"
                     android:textSize="24sp" />
 
@@ -46,7 +45,7 @@
                     android:id="@+id/card_warn_close"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_margin="16dp"
+                    android:layout_gravity="end"
                     app:cardBackgroundColor="#F10505"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="15dp">
@@ -59,7 +58,7 @@
 
                 </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
+            </FrameLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_mahsulot"

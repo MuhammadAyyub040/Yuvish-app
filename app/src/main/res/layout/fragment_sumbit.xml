@@ -35,9 +35,9 @@
 
                     <ImageView
                         android:id="@+id/btn_menu"
+                        style="@style/svgTheme"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
-                        style="@style/svgTheme"
                         android:padding="5dp"
                         android:src="@drawable/ic_menu" />
 
@@ -54,10 +54,10 @@
 
                     <ImageView
                         android:id="@+id/btn_search"
+                        style="@style/svgTheme"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:padding="5dp"
-                        style="@style/svgTheme"
                         android:src="@drawable/ic_search" />
 
 
@@ -102,9 +102,9 @@
 
                                 <ImageView
                                     android:id="@+id/btn_x"
+                                    style="@style/svgTheme"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    style="@style/svgTheme"
                                     android:src="@drawable/ic_baseline_close_24"
                                     app:layout_constraintRight_toRightOf="parent" />
 
@@ -282,6 +282,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/location_liner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -291,41 +292,19 @@
                             style="@style/svgTheme"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/phone" />
+                            android:layout_marginStart="5dp"
+                            android:src="@drawable/ic_location" />
 
                         <TextView
-                            android:id="@+id/arranged_submit_number"
+                            android:id="@+id/arranged_submit_location"
+                            style="@style/textStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/_998978878878"
-                            android:textColor="#2196F3"
+                            android:layout_marginStart="5dp"
+                            android:text="@string/manzili"
                             android:textSize="15sp" />
 
                     </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-                    <ImageView
-                        style="@style/svgTheme"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="5dp"
-                        android:src="@drawable/ic_location" />
-
-                    <TextView
-                        android:id="@+id/arranged_submit_location"
-                        style="@style/textStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="@string/manzili"
-                        android:textSize="15sp" />
-
-                </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -347,13 +326,35 @@
                             android:text="@string/operator" />
 
                         <TextView
-                            style="@style/textStyle"
                             android:id="@+id/arranged_submit_operator"
+                            style="@style/textStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:gravity="center"
                             android:text="Yusufjon" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="8dp">
+
+                        <ImageView
+                            style="@style/svgTheme"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/phone" />
+
+                        <TextView
+                            android:id="@+id/arranged_submit_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/_998978878878"
+                            android:textColor="#2196F3"
+                            android:textSize="15sp" />
 
                     </LinearLayout>
 
@@ -442,7 +443,7 @@
                     style="@style/textStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=""
+                    android:text="0"
                     android:textSize="20sp" />
 
                 <TextView
@@ -461,11 +462,12 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_mahsulotlar_nomi"
                 app:layout_constraintBottom_toTopOf="@+id/view"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/orders" />
+                app:layout_constraintTop_toBottomOf="@+id/orders"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_mahsulotlar_nomi" />
 
             <LinearLayout
                 android:id="@+id/view"
@@ -473,7 +475,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/card_chegirma"
+                app:layout_constraintBottom_toTopOf="@+id/card_comment"
                 app:layout_constraintTop_toBottomOf="@+id/rv_submit">
 
                 <View
@@ -483,6 +485,105 @@
                     android:padding="5dp" />
 
             </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_comment"
+                style="@style/cardParentStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="15dp"
+                app:layout_constraintBottom_toTopOf="@+id/card_chegirma"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                            style="@style/textStyle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@string/izohlar"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_comment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/svgTheme"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/ic_message" />
+
+                            <TextView
+                                android:id="@+id/comment_2"
+                                style="@style/textStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="test"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                style="@style/svgTheme"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/ic_message" />
+
+                            <TextView
+                                android:id="@+id/comment_3"
+                                style="@style/textStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="test"
+                                android:textSize="20sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_chegirma"
@@ -497,7 +598,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/card_summa"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view">
+                app:layout_constraintTop_toBottomOf="@+id/card_comment">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -514,8 +615,8 @@
                             style="@style/textStyle"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:layout_gravity="center"
+                            android:layout_weight="1"
                             android:text="@string/jami_chegirma"
                             android:textSize="16sp"
                             android:textStyle="bold" />
@@ -535,18 +636,164 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:text="@string/percentage"
                             android:layout_marginStart="8dp"
+                            android:text="@string/percentage"
                             android:textSize="16sp"
                             android:textStyle="bold" />
 
-                        <ImageView
-                            android:id="@+id/image_submit"
-                            style="@style/svgTheme"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginStart="8dp"
-                            android:src="@drawable/ic_keyboard_arrow" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linear_discount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="16dp"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/qayta_yuvish_uchun"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                            <TextView
+                                android:id="@+id/chegirma_rewash"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="55555"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="@string/so_m"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/o_zi_olib_ketishi_uchun"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                            <TextView
+                                android:id="@+id/chegirma_take_away"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="55555"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="@string/so_m"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/tushib_berildi"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                            <TextView
+                                android:id="@+id/chegirma_was_dropped"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="55555"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="@string/so_m"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="16dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/jami_tushib_berildi"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                            <TextView
+                                android:id="@+id/total_was_dropped"
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="55555"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                            <TextView
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:text="@string/so_m"
+                                android:textSize="16sp"
+                                style="@style/textStyle"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -699,7 +946,7 @@
                         app:suffixText="@string/so_m">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_payment"
+                            android:id="@+id/edit_payment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
@@ -716,20 +963,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/autoCompleteTextView_list"
-                            style="@style/textStyle"
-                            android:layout_width="0dp"
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/custom_input_dark"
-                            android:inputType="none"
-                            android:minHeight="48dp"
-                            android:padding="10dp"
-                            android:text="@string/naqd"
-                            android:textSize="18sp" />
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="16dp">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/autoCompleteTextView_payment_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="none"
+                                android:text="@string/naqd"
+                                style="@style/textStyle"
+                                android:textSize="18sp" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
 

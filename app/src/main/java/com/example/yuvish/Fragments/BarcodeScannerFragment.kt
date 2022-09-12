@@ -43,7 +43,7 @@ class BarcodeScannerFragment : Fragment() {
         val scannerView: CodeScannerView = binding.getScanner
         codescanner = CodeScanner(requireActivity(), scannerView)
         codescanner.camera = CodeScanner.CAMERA_BACK
-        codescanner.formats = CodeScanner.ALL_FORMATS
+        codescanner.formats = CodeScanner.ONE_DIMENSIONAL_FORMATS
 
         codescanner.autoFocusMode = AutoFocusMode.SAFE
         codescanner.scanMode = ScanMode.SINGLE

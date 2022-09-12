@@ -15,9 +15,7 @@ import com.example.yuvish.databinding.ItemMahsulotlarNomiBinding
 
 class SubmitAdapter(
     private val caLLBack: SubmitAdapterChild.CaLLBack,
-    private val initialExpandableState: Boolean
-) :
-    RecyclerView.Adapter<SubmitAdapter.SubmitViewHolder>() {
+    private val initialExpandableState: Boolean) : RecyclerView.Adapter<SubmitAdapter.SubmitViewHolder>() {
 
     private var buyurtmalarList = ArrayList<Buyurtmalar>()
 
@@ -26,7 +24,6 @@ class SubmitAdapter(
 
         @SuppressLint("SetTextI18n")
         fun setItem(buyurtmalar: Buyurtmalar, position: Int) {
-            Log.e(TAG, "setItem: ${buyurtmalar.id}")
             val submitAdapterChild =
                 SubmitAdapterChild(buyurtmalar.products, buyurtmalar.olchov, caLLBack)
             binding.rvProduct.adapter = submitAdapterChild
@@ -49,7 +46,7 @@ class SubmitAdapter(
         }
 
         private fun changeExpandableState(state: Boolean) {
-              binding.rvProduct.isGone = state
+              binding.rvProduct.isVisible = state
             binding.imageSubmit.setImageResource(
                 getRecourseByState(state)
             )
@@ -64,7 +61,7 @@ class SubmitAdapter(
         }
 
         private fun getRecourseByState(state: Boolean): Int {
-            return if (state) R.drawable.ic_arrow_down else R.drawable.ic_keyboard_arrow
+            return if (state) R.drawable.ic_keyboard_arrow else R.drawable.ic_arrow_down
         }
     }
 

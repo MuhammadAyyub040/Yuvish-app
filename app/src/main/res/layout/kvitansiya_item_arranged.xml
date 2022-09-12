@@ -6,6 +6,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp"
+    android:id="@+id/secondary_arranged"
     android:background="@drawable/custom_input_4">
 
     <LinearLayout
@@ -43,17 +44,8 @@
                     android:text="18"
                     android:textColor="#4CAF50"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="|"
-                    android:textColor="#4CAF50"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp"/>
 
                 <ImageView
                     android:layout_width="20dp"
@@ -73,22 +65,12 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="8dp"
-                android:text="@string/kun"
-                android:textColor="#4CAF50"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -115,7 +97,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -142,7 +124,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -157,7 +139,7 @@
             <TextView
                 android:id="@+id/txt_location_arranged"
                 style="@style/textStyle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fergana"
                 android:textSize="16sp"
@@ -168,7 +150,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -195,6 +177,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/txt_order_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
@@ -207,7 +190,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -239,7 +222,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView

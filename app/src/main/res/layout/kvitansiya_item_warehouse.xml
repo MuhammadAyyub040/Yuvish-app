@@ -6,6 +6,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp"
+    android:id="@+id/secondary"
     android:background="@drawable/custom_input_4">
 
     <LinearLayout
@@ -33,7 +34,8 @@
                 style="@style/textStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
                 android:text="@string/kvitansiya"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -42,7 +44,7 @@
                 android:id="@+id/txt_kvitansiya_number_warehouse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
+                android:layout_marginTop="8dp"
                 android:text="18"
                 android:textColor="#F44336"
                 android:textSize="16sp"
@@ -55,15 +57,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="65"
-                android:textColor="#F44336"
-                android:layout_marginEnd="10dp"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/kun"
                 android:textColor="#F44336"
                 android:layout_marginEnd="10dp"
                 android:textSize="16sp"
@@ -265,32 +258,64 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_submit_sklad"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#4CAF50"
-                android:drawableLeft="@drawable/ic_check"
-                android:text="@string/topshirish"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:cornerRadius="10dp" />
+                android:minHeight="40dp"
+                app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="@color/green"
+                android:layout_margin="8dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_transfer"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="40dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:text="@string/topshirish"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_transport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                app:cardCornerRadius="16dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#4B49AC"
-                android:drawableLeft="@drawable/ic_check"
-                android:text="@string/yetkazishga_o_tkazish"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:cornerRadius="10dp" />
+                android:layout_marginEnd="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:minHeight="40dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:background="#3F51B5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:text="@string/yetkazishga_o_tkazish"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 

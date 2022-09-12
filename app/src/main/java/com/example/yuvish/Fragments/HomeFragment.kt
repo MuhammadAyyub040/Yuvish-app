@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
@@ -22,10 +23,15 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.CleaningPaginationAdapter
 import com.example.yuvish.Models.Cleaning.PaginationPageCleaning
+import com.example.yuvish.Models.Cleaning.RewashReceipt
+import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentHomeBinding
 import com.example.yuvish.retrofit.ApiClient
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
 
@@ -41,6 +47,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         cleaningPaginationAdapter2 = CleaningPaginationAdapter(requireActivity(),this)
         getPaginationCleaning()
         getPaginationRecleaning()
+        statusBar()
 
         setFragmentResultListener("barcode") { requestKey, bundle ->
             binding.edtBarcode.setText(bundle.getString("result"))
@@ -53,14 +60,17 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        val barcode = binding.edtBarcode.text.toString()
+        barcodeId(barcode)
+        loadOrderIdByBarcode()
+
         val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("2022", "2021"))
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
 
         binding.btnX.setOnClickListener {
             binding.searchCard.visibility = View.GONE
             searchPage = false
-
-            closeKeyboard(it)
+            closeKeyboard()
         }
 
         binding.btnSearch.setOnClickListener {
@@ -79,15 +89,18 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         binding.barcodeScanner.setOnClickListener {
             checkPermission()
         }
+        binding.edtBarcode.setOnClickListener {
+            loadOrderIdByBarcode()
+        }
 
-        binding.txtHomeId.setOnClickListener {
+        binding.txtWashing.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
         }
 
         binding.txtWashedId.setOnClickListener {
             findNavController().navigate(R.id.baseFragment)
         }
-        binding.txtReadyId.setOnClickListener {
+        binding.txtPacked.setOnClickListener {
             findNavController().navigate(R.id.tayyorFragment)
         }
 
@@ -215,14 +228,16 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         }
     }
 
-    private fun closeKeyboard(view: View) {
+    private fun closeKeyboard() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
     }
 
-    override fun onItemClickCleaning(position: Int) {
-        findNavController().navigate(R.id.registrationFragment)
+    override fun onItemClickCleaning(rewashReceipt: RewashReceipt) {
+        findNavController().navigate(R.id.registrationFragment, bundleOf(
+        "orderId" to rewashReceipt.order_id
+        ))
     }
 
     private fun checkPermission(){
@@ -243,4 +258,56 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         cameraPermission.launch(Manifest.permission.CAMERA)
     }
 
+    fun statusBar(){
+        ApiClient.retrofitService.statusBar().enqueue(object : Callback<WashingStatusAPI>{
+            override fun onResponse(call: Call<WashingStatusAPI>, response: Response<WashingStatusAPI>) {
+                if (response.code() == 200)
+                    binding.txtWashing.text = response.body()!!.yuvilmaganlar_soni.toString()
+                    binding.txtWashedId.text = response.body()!!.qadoqlanmaganlar_soni.toString()
+                    binding.txtPacked.text = response.body()!!.topshirilmaganlar_soni.toString()
+            }
+
+            override fun onFailure(call: Call<WashingStatusAPI>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Server bilan bog'lanolmadik", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun loadOrderIdByBarcode(){
+        val barcode = binding.edtBarcode.text.toString()
+        if (barcode.length == 13){
+            closeKeyboard()
+            ApiClient.retrofitService.getOrderIdByBarcode(barcode)
+        }
+    }
+    
+    private fun barcodeId(barcode : String){
+        ApiClient.retrofitService.getOrderIdByBarcode(barcode).enqueue(object : Callback<Int>{
+            override fun onResponse(call: Call<Int>, response: Response<Int>) {
+                val orderId = response.body()
+                if (response.code() == 200){
+                    if (orderId == null) {
+                        Toast.makeText(requireActivity(), "Barcode topilmadi", Toast.LENGTH_SHORT)
+                            .show()
+                    } else{
+                        findNavController().navigate(R.id.registrationFragment, bundleOf(
+                            "orderId" to orderId,
+                            "barcode" to binding.edtBarcode.text.toString()
+                        )
+                        )
+                        binding.edtBarcode.text?.clear()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Int>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Server bilan bog'lanolmadik", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+    
 }

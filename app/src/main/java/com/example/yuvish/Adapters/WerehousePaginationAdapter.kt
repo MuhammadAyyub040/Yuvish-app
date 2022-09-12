@@ -6,24 +6,34 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
+import com.example.yuvish.Models.Warehouse.DifferenceDayManager
 import com.example.yuvish.Models.Warehouse.OrdersOmborItem
 import com.example.yuvish.databinding.KvitansiyaItemWarehouseBinding
 
-class WerehousePaginationAdapter(context: Context, var onItemClick: OnItemClick) :
+class WerehousePaginationAdapter(val context: Context, var onItemClick: OnItemClick) :
     PagingDataAdapter<OrdersOmborItem,WerehousePaginationAdapter.WerehouseViewHolder>(ArticleDiffItemCallback) {
 
     inner class WerehouseViewHolder(val binding: KvitansiyaItemWarehouseBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int,ordersOmborItem: OrdersOmborItem) {
 
-            binding.btnSubmitSklad.setOnClickListener {
+            binding.cardSubmit.setOnClickListener {
                 onItemClick.onItemClickWarehouse(ordersOmborItem)
             }
-            binding.btnTransfer.setOnClickListener {
+            binding.cardTransport.setOnClickListener {
                 onItemClick.onItemClick2Warehouse(ordersOmborItem)
             }
 
+            val differenceDayManager= DifferenceDayManager(ordersOmborItem.topshir_sana, context)
+            val resource = differenceDayManager.getResource()
+            val color = differenceDayManager.getColor()
+
+            binding.secondary.background = resource
+            binding.txtDateWarehouse.setTextColor(color)
+            binding.txtKvitansiyaNumberWarehouse.setTextColor(color)
+
             binding.txtKvitansiyaNumberWarehouse.text = ordersOmborItem.nomer.toString()
-            binding.txtDateWarehouse.text = ordersOmborItem.topshir_sana
+            binding.txtDateWarehouse.text = "${differenceDayManager.differanceDay} ${"kun"}"
             binding.txtNameWarehouse.text = ordersOmborItem.costumer.costumer_name
             binding.txtPhoneNumberWarehouse.text = ordersOmborItem.costumer.costumer_phone_1
             binding.txtLocationWarehouse.text = ordersOmborItem.costumer.costumer_addres

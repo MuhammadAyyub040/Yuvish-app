@@ -11,8 +11,13 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.fragment.findNavController
+import com.example.yuvish.Models.HolatPaneli.TransportStatusAPI
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentTransportBinding
+import com.example.yuvish.retrofit.ApiClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class TransportFragment : Fragment() {
 
@@ -208,9 +213,7 @@ class TransportFragment : Fragment() {
             true
 
         }
-
     }
-
 
     private fun closeKeyboard(view: View) {
         val inputMethodManager =

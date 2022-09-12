@@ -207,4 +207,11 @@
     <string name="__1">1.</string>
     <string name="jami_chegirma">Jami chegirma:</string>
     <string name="percentage">%</string>
+    <string name="izohlar">Izohlar</string>
+    <string name="qayta_yuvish_uchun">Qayta yuvish uchun:</string>
+    <string name="o_zi_olib_ketishi_uchun">O\'zi olib ketishi uchun:</string>
+    <string name="tushib_berildi">Tushib berildi:</string>
+    <string name="jami_tushib_berildi">Jami tushib berildi:</string>
+    <string name="izoh_3_ta_belgidan_ko_p_bo_lishi_shart">Izoh 3 ta belgidan ko\'p bo\'lishi shart</string>
+    <string name="status">Status</string>
 </resources>

@@ -6,6 +6,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp"
+    android:id="@+id/secondary_notarranged"
     android:background="@drawable/custom_input_3">
 
 
@@ -44,17 +45,8 @@
                     android:text="18"
                     android:textColor="#F44336"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:text="|"
-                    android:textColor="#F44336"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginEnd="8dp"/>
 
                 <ImageView
                     android:id="@+id/img_rewash"
@@ -75,22 +67,12 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="10dp"
-                android:text="@string/kun"
-                android:textColor="#F44336"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -118,7 +100,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -160,7 +142,7 @@
             <TextView
                 android:id="@+id/txt_location_notArranged"
                 style="@style/textStyle"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/fergana"
                 android:textSize="16sp"
@@ -171,7 +153,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -183,18 +165,28 @@
 
             <TextView
                 android:id="@+id/txt_operator_notArranged"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Sardor"
                 android:textColor="#2196F3"
                 android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txt_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2"
+                android:layout_marginEnd="8dp"
+                android:textColor="#2196F3"
+                android:textSize="18sp"/>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -226,7 +218,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <ImageView

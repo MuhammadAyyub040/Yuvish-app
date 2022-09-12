@@ -41,9 +41,7 @@ class SettingFragment : Fragment() {
 
     lateinit var binding: FragmentSettingBinding
     lateinit var toggle: ActionBarDrawerToggle
-    lateinit var hawk: Hawk
     lateinit var setting: Setting
-    lateinit var userToken: UserToken
     var searchPage = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -253,7 +251,6 @@ class SettingFragment : Fragment() {
                     setting = response.body()!!
                     Log.e("testLogin", response.body().toString())
                     var loge = response.body()
-                    /*Toast.makeText(binding.root.context,response.body()!!.id.toString(),Toast.LENGTH_SHORT).show()*/
                     binding.edtNameSetting.setText(response.body()!!.fullname)
                     binding.edtPhoneNumber.setText(response.body()!!.phone.toString())
                     binding.edtLoginSetting.setText(response.body()!!.username)

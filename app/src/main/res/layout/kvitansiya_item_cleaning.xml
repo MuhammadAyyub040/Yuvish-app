@@ -6,6 +6,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp"
+    android:id="@+id/secondary_cleaning"
     android:background="@drawable/custom_input_3">
 
     <LinearLayout
@@ -71,16 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="-12"
-                android:textColor="#F44336"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginEnd="8dp"
-                android:text="@string/kun"
                 android:textColor="#F44336"
                 android:textSize="16sp"
                 android:textStyle="bold" />

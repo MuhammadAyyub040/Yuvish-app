@@ -7,20 +7,29 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuvish.Models.Cleaning.RewashReceipt
+import com.example.yuvish.Models.Warehouse.DifferenceDayManager
 import com.example.yuvish.databinding.KvitansiyaItemCleaningBinding
 
-class CleaningPaginationAdapter(context: Context, var onItemClick: OnItemClick) :
+class CleaningPaginationAdapter(val context: Context, var onItemClick: OnItemClick) :
     PagingDataAdapter<RewashReceipt, CleaningPaginationAdapter.MyViewHolder>(ArticleDiffItemCallback) {
 
     inner class MyViewHolder(val binding: KvitansiyaItemCleaningBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(position: Int,rewashReceipt: RewashReceipt) {
 
             binding.btnRegistration.setOnClickListener {
-                onItemClick.onItemClickCleaning(position)
+                onItemClick.onItemClickCleaning(rewashReceipt)
             }
 
+            val differenceDayManager= DifferenceDayManager(rewashReceipt.topshir_sana, context)
+            val resource = differenceDayManager.getResource()
+            val color = differenceDayManager.getColor()
+
+            binding.secondaryCleaning.background = resource
+            binding.txtDate.setTextColor(color)
+            binding.txtKvitansiyaNumber.setTextColor(color)
+
             binding.txtKvitansiyaNumber.text = rewashReceipt.nomer.toString()
-            binding.txtDate.text = rewashReceipt.topshir_sana
+            binding.txtDate.text = "${differenceDayManager.differanceDay} ${"kun"}"
             binding.txtWashingTest.text = rewashReceipt.costumer.costumer_name
             binding.txtPhoneNumber.text = rewashReceipt.costumer.costumer_phone_1
             binding.txtLocation.text = rewashReceipt.costumer.costumer_addres
@@ -47,6 +56,6 @@ class CleaningPaginationAdapter(context: Context, var onItemClick: OnItemClick) 
     }
 
     interface OnItemClick {
-        fun onItemClickCleaning(position: Int)
+        fun onItemClickCleaning(rewashReceipt: RewashReceipt)
         }
 }

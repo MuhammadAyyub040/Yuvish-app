@@ -18,6 +18,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.WerehousePaginationAdapter
+import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
 import com.example.yuvish.Models.Warehouse.OrdersOmborItem
 import com.example.yuvish.Models.Warehouse.PaginationPageWerehouse
 import com.example.yuvish.R
@@ -48,6 +49,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
         super.onCreate(savedInstanceState)
         werehousePaginationAdapter = WerehousePaginationAdapter(requireActivity(), this)
         getPaginationWarehouse()
+        statusBar()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -207,7 +209,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                     "${loge}, id  = $orderId",
                     Toast.LENGTH_SHORT
                 ).show()
-//                if (response.code() == 200)
+                if (response.code() == 200)
                 Log.d("testWarehouse", response.toString())
             }
 
@@ -218,6 +220,24 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                     "Server bilan bog'lanishda xatolik",
                     Toast.LENGTH_SHORT
                 ).show()
+            }
+
+        })
+    }
+
+    fun statusBar(){
+        ApiClient.retrofitService.statusBar().enqueue(object : Callback<WashingStatusAPI>{
+            override fun onResponse(call: Call<WashingStatusAPI>, response: Response<WashingStatusAPI>) {
+                if (response.code() == 200) {
+                    binding.txtWashingWarehouse.text = response.body()!!.yuvilmaganlar_soni.toString()
+                    binding.txtWashedWarehouse.text = response.body()!!.qadoqlanmaganlar_soni.toString()
+                    binding.txtPackedWarehouse.text = response.body()!!.topshirilmaganlar_soni.toString()
+                }
+            }
+
+            override fun onFailure(call: Call<WashingStatusAPI>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Server bilan bog'lanolmadik", Toast.LENGTH_SHORT).show()
             }
 
         })

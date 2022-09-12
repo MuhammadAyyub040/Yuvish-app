@@ -8,9 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuvish.Fragments.TayyorFragment
 import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
+import com.example.yuvish.Models.Warehouse.DifferenceDayManager
 import com.example.yuvish.databinding.KvitansiyaItemUnsortedBinding
 
-class NotArrangedPaginationAdapter(context: Context, var onItemClick: TayyorFragment) :
+class NotArrangedPaginationAdapter(val context: Context, var onItemClick: TayyorFragment) :
     PagingDataAdapter<ReadyOrdersItem, NotArrangedPaginationAdapter.ArrangedViewHolder>(ArticleDiffItemCallback) {
 
     inner class ArrangedViewHolder(val binding: KvitansiyaItemUnsortedBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -22,15 +23,31 @@ class NotArrangedPaginationAdapter(context: Context, var onItemClick: TayyorFrag
             binding.btnSorting2.setOnClickListener {
                 onItemClick.onItemClickUnsorted2(readyOrdersItem)
             }
+            binding.txtLocationNotArranged.setOnClickListener {
+                onItemClick.onItemClickLocation(readyOrdersItem)
+            }
+
+            binding.txtProduct.setOnClickListener {
+                onItemClick.onItemClickOrder(readyOrdersItem)
+            }
+
+            val differenceDayManager= DifferenceDayManager(readyOrdersItem.topshir_sana, context)
+            val resource = differenceDayManager.getResource()
+            val color = differenceDayManager.getColor()
+
+            binding.secondaryNotarranged.background = resource
+            binding.txtDateNotArranged.setTextColor(color)
+            binding.txtKvitansiyaNumberNotArranged.setTextColor(color)
 
             binding.txtKvitansiyaNumberNotArranged.text = readyOrdersItem.nomer.toString()
-            binding.txtDateNotArranged.text = readyOrdersItem.topshir_sana
+            binding.txtDateNotArranged.text = "${differenceDayManager.differanceDay} ${"kun"}"
             binding.txtCustomerNameNotArranged.text = readyOrdersItem.costumer.costumer_name
             binding.txtPhoneNumberNotArranged.text = readyOrdersItem.costumer.costumer_phone_1
             binding.txtLocationNotArranged.text = readyOrdersItem.costumer.costumer_addres
             binding.txtOperatorNotArranged.text = readyOrdersItem.operator.fullname
             binding.txtCommentOperatorNotArranged.text = readyOrdersItem.izoh
             binding.txtCommentCustomerNotArranged.text = readyOrdersItem.izoh2
+            binding.txtProduct.text = "${readyOrdersItem.product_count} ${"ta"}"
 
         }
     }
@@ -56,6 +73,8 @@ class NotArrangedPaginationAdapter(context: Context, var onItemClick: TayyorFrag
     interface OnItemClick {
         fun onItemClickSubmit2(readyOrdersItem: ReadyOrdersItem)
         fun onItemClickUnsorted2(readyOrdersItem: ReadyOrdersItem)
+        fun onItemClickUnsortedLocation(readyOrdersItem: ReadyOrdersItem)
+        fun onItemClickOrder(readyOrdersItem: ReadyOrdersItem)
     }
 
 }
