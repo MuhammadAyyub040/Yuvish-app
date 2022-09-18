@@ -80,7 +80,6 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
             selectedFilterPosition = position
             getPaginationArranged(list[position].value)
             getPaginationNotArranged(list[position].value)
-
         }
 
         binding.btnSearch.setOnClickListener {
@@ -341,7 +340,6 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
     }
     private fun autocompleteAll(){
         ApiClient.retrofitService.autocomplete().enqueue(object : Callback<List<Autocomplete>>{
-
             override fun onResponse(call: Call<List<Autocomplete>>, response: Response<List<Autocomplete>>) {
 
                 if (response.code() == 200){
@@ -354,14 +352,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
 
             override fun onFailure(call: Call<List<Autocomplete>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(
-                    requireContext(),
-                    "OnFailure",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-        })
+                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show() } })
     }
 
     fun transportStatus(){

@@ -454,7 +454,7 @@
                         android:layout_weight="5">
 
                         <AutoCompleteTextView
-                            android:id="@+id/autoCompleteTextView_list"
+                            android:id="@+id/autoCompleteTextView_service_type"
                             style="@style/textStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -465,10 +465,10 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.cardview.widget.CardView
-                        android:layout_width="35dp"
-                        android:layout_height="45dp"
+                        android:id="@+id/card_plus"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:layout_marginStart="8dp"
                         android:backgroundTint="#BED4EB"
                         app:cardCornerRadius="8dp">
 
@@ -495,6 +495,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                tools:itemCount="1"
                 app:layout_constraintTop_toBottomOf="@+id/card_autocomplete"
                 tools:listitem="@layout/item_gilam" />
 

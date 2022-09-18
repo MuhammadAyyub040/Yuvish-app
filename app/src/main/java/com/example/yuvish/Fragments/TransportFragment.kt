@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Models.HolatPaneli.TransportStatusAPI
+import com.example.yuvish.Models.NewOrder.GetCustomer
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentTransportBinding
 import com.example.yuvish.retrofit.ApiClient
@@ -32,23 +33,6 @@ class TransportFragment : Fragment() {
     ): View {
         binding = FragmentTransportBinding.inflate(layoutInflater)
 
-        binding.btnSave.setOnClickListener {
-
-            val fish = binding.edtFish.text.toString().trim()
-            val manzil = binding.edtLocationCustomer.text.toString().trim()
-
-            if (fish.isEmpty()) {
-                binding.edtFish.error = "Ushbu joyni to'ldiring"
-                binding.edtFish.requestFocus()
-            } else
-                if (manzil.isEmpty()) {
-                    binding.edtLocationCustomer.error = "Ushbu joyni to'ldiring"
-                    binding.edtLocationCustomer.requestFocus()
-                } else {
-                    findNavController().navigate(R.id.listFragment)
-                }
-        }
-
         return binding.root
     }
 
@@ -62,25 +46,11 @@ class TransportFragment : Fragment() {
         )
         binding.autoCompleteTextViewTransport.setAdapter(arrayAdapter)
 
-        val arrayAdapter2 = ArrayAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            arrayListOf("O'zbek", "Millatni tanlang")
-        )
-        binding.autoCompleteTextViewLanguage.setAdapter(arrayAdapter2)
-
-        val arrayAdapter3 = ArrayAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            arrayListOf("Gazetadan", "Telegram", "Klent")
-        )
-        binding.autoCompleteTextViewSource.setAdapter(arrayAdapter3)
-
         binding.btnX.setOnClickListener {
             binding.searchCard.visibility = View.GONE
             searchPage = false
 
-            closeKeyboard(it)
+            closeKeyboard()
         }
 
         binding.btnSearch.setOnClickListener {
@@ -100,27 +70,11 @@ class TransportFragment : Fragment() {
             binding.navView.visibility = View.GONE
             newPage = false
 
-            closeKeyboard(it)
-        }
-
-        binding.btnCancellation.setOnClickListener {
-            binding.newCustomer.visibility = View.GONE
-            newPage = false
-
-            closeKeyboard(it)
+            closeKeyboard()
         }
 
         binding.btnNew.setOnClickListener {
-            when (newPage) {
-                false -> {
-                    binding.newCustomer.visibility = View.VISIBLE
-                    newPage = true
-                }
-                true -> {
-                    binding.newCustomer.visibility = View.GONE
-                    newPage = false
-                }
-            }
+            findNavController().navigate(R.id.addCustomerFragment)
         }
 
         toggle =
@@ -132,10 +86,6 @@ class TransportFragment : Fragment() {
             )
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
-
-        binding.btnSave.setOnClickListener {
-            findNavController().navigate(R.id.listFragment)
-        }
 
         binding.btnMenu.setOnClickListener {
             binding.drawerLayout.open()
@@ -215,7 +165,7 @@ class TransportFragment : Fragment() {
         }
     }
 
-    private fun closeKeyboard(view: View) {
+    private fun closeKeyboard() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)

@@ -214,4 +214,22 @@
     <string name="jami_tushib_berildi">Jami tushib berildi:</string>
     <string name="izoh_3_ta_belgidan_ko_p_bo_lishi_shart">Izoh 3 ta belgidan ko\'p bo\'lishi shart</string>
     <string name="status">Status</string>
+    <string name="manbalar">Manbalar</string>
+    <string name="gazetadan">Gazetadan</string>
+    <string name="klient">Klient</string>
+    <string name="telegramdan">Telegramdan</string>
+    <string name="after_today_date_error">Bugunni kunni kiriting</string>
+    <string name="date_empty">Sanani kiriting</string>
+    <string name="error">Xato</string>
+    <string name="get_amount_date">Qarz summani sanasini kiriting</string>
+    <string name="payment_date_entered_successfully">To\'lov sanasi muvaffaqiyatli kiritildi</string>
+    <string name="entered_date_beginning_this_month">Kiritilgan sana shu oyning boshidan kichik bo\'lmasligi kerak</string>
+    <string name="from_date_empty">Sana bo\'sh</string>
+    <string name="to_date_empty">Sana bo\'sh</string>
+    <string name="jami_mahsulotlar">Jami mahsulotlar</string>
+    <string name="receipt_number">Receipt №:</string>
+    <string name="pcs">dona</string>
+    <string name="meter">m</string>
+    <string name="employees">Hodimlar</string>
+    <string name="between_submitted"><![CDATA[%1$s -> %2$s orasida topshirilgan buyurtmalar]]></string>
 </resources>

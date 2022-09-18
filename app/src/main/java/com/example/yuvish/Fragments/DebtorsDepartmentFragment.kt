@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,19 +13,43 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Adapters.ViewPagerAdapter5
-import com.example.yuvish.Adapters.ViewPagerAdapter6
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
+import com.example.yuvish.Adapters.MarkedPaginationAdapter
+import com.example.yuvish.Adapters.UnMarkedPaginationAdapter
+import com.example.yuvish.Models.DebtorsAPI.Market.FilterDebtorsItem
+import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
+import com.example.yuvish.Models.DebtorsAPI.Market.PaginationPageMarked
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentDebtorsDepartmentBinding
 import com.example.yuvish.databinding.ItemWarnBinding
+import com.example.yuvish.retrofit.ApiClient
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class DebtorsDepartmentFragment : Fragment() {
+class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClick,
+    UnMarkedPaginationAdapter.OnItemClick {
 
     lateinit var binding: FragmentDebtorsDepartmentBinding
+    lateinit var markedPaginationAdapter: MarkedPaginationAdapter
+    lateinit var unMarkedPaginationAdapter: UnMarkedPaginationAdapter
+    lateinit var list: List<FilterDebtorsItem>
     lateinit var toggle: ActionBarDrawerToggle
+    private var selectedFilterPosition = 0
     var searchPage = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initialGetPaginationPageMarked(0)
+        initialGetPaginationPageUnMarked(0)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +57,16 @@ class DebtorsDepartmentFragment : Fragment() {
     ): View {
         binding = FragmentDebtorsDepartmentBinding.inflate(layoutInflater)
 
-        val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("2022", "2021"))
+        markedPaginationAdapter = MarkedPaginationAdapter(this, requireActivity())
+        unMarkedPaginationAdapter = UnMarkedPaginationAdapter(this, requireActivity())
+        filterDebtor()
+        list = arrayListOf()
+
+        val arrayAdapter = ArrayAdapter(
+            requireActivity(),
+            android.R.layout.simple_list_item_1,
+            arrayListOf("2022", "2021")
+        )
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
 
         binding.btnX.setOnClickListener {
@@ -40,6 +74,12 @@ class DebtorsDepartmentFragment : Fragment() {
             searchPage = false
 
             closeKeyboard(it)
+        }
+
+        binding.autoCompleteTextViewDebtors.setOnItemClickListener { parent, view, position, id ->
+            selectedFilterPosition = position
+            getPaginationPageMarked(list[position].value)
+            getPaginationPageUnMarked(list[position].value)
         }
 
         binding.btnSearch.setOnClickListener {
@@ -55,36 +95,8 @@ class DebtorsDepartmentFragment : Fragment() {
             }
         }
 
-        binding.rvNotfinishingDebtors.adapter = ViewPagerAdapter5(
-            object : ViewPagerAdapter5.OnItemClick {
-                override fun onItemClick(position: Int) {
-                    findNavController().navigate(R.id.debtorFragment)
-                }
-            }, arrayListOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10")
-        )
-
-        binding.rvDebtors.adapter = ViewPagerAdapter6(
-            object : ViewPagerAdapter6.OnItemClick {
-                override fun onItemClick(position: Int) {
-                    findNavController().navigate(R.id.registrationFragment)
-                }
-
-                override fun onItemClick2(position: Int) {
-                    val dialogBinding = ItemWarnBinding.inflate(layoutInflater)
-
-                    val myDialog = AlertDialog.Builder(requireActivity()).create()
-                    myDialog.setView(dialogBinding.root)
-
-                    dialogBinding.cardWarnClose.setOnClickListener {
-                        myDialog.dismiss()
-                    }
-
-                    myDialog.setCancelable(true)
-                    myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-                    myDialog.show()
-                }
-            },
-            arrayListOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"),requireContext())
+        binding.rvNotfinishingDebtors.adapter = markedPaginationAdapter
+        binding.rvDebtors.adapter = unMarkedPaginationAdapter
 
         toggle = ActionBarDrawerToggle(
             requireActivity(),
@@ -176,10 +188,116 @@ class DebtorsDepartmentFragment : Fragment() {
         return binding.root
     }
 
+    fun getPaginationPageMarked(driverId: Int) {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { PaginationPageMarked(ApiClient.retrofitService, driverId, "marked") }
+        ).liveData.observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                markedPaginationAdapter.submitData(it)
+            }
+        }
+    }
+
+    fun initialGetPaginationPageMarked(driverId: Int) {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { PaginationPageMarked(ApiClient.retrofitService, driverId, "marked") }
+        ).liveData.observe(this) {
+            lifecycleScope.launch {
+                markedPaginationAdapter.submitData(it)
+            }
+        }
+    }
+
+    fun getPaginationPageUnMarked(driverId: Int) {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = {
+                PaginationPageMarked(ApiClient.retrofitService, driverId, "unmarked") }
+        ).liveData.observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                unMarkedPaginationAdapter.submitData(it)
+            }
+        }
+    }
+
+    fun initialGetPaginationPageUnMarked(driverId: Int) {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { PaginationPageMarked(ApiClient.retrofitService, driverId, "unmarked") }
+        ).liveData.observe(this) {
+            lifecycleScope.launch {
+                unMarkedPaginationAdapter.submitData(it)
+            }
+        }
+    }
+
+    private fun filterDebtor(){
+        ApiClient.retrofitService.filterDebtors().enqueue(object : Callback<List<FilterDebtorsItem>> {
+            override fun onResponse(call: Call<List<FilterDebtorsItem>>, response: Response<List<FilterDebtorsItem>>) {
+
+                if (response.code() == 200){
+                    list = response.body()!!
+                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map { it.title })
+                    binding.autoCompleteTextViewDebtors.setAdapter(arrayAdapter)
+                }
+            }
+
+            override fun onFailure(call: Call<List<FilterDebtorsItem>>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show() } })
+    }
+
     private fun closeKeyboard(view: View) {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+    }
+
+    override fun onItemClickMarked(marketPaginationItem: MarketPaginationItem) {
+        Log.e("TAG", "onItemClickUnMarked ${marketPaginationItem.id}")
+        findNavController().navigate(R.id.debtorFragment, bundleOf(
+            "id" to marketPaginationItem.id
+        )
+        )
+    }
+
+    override fun onItemClickUnMarked(marketPaginationItem: MarketPaginationItem) {
+        findNavController().navigate(R.id.registrationFragment, bundleOf(
+            "orderId" to marketPaginationItem.order_id
+        ))
+    }
+
+    override fun onItemClickUnMarked2(marketPaginationItem: MarketPaginationItem) {
+        val dialogBinding = ItemWarnBinding.inflate(layoutInflater)
+
+        val myDialog = AlertDialog.Builder(requireActivity()).create()
+        myDialog.setView(dialogBinding.root)
+
+        dialogBinding.cardWarnClose.setOnClickListener {
+            myDialog.dismiss()
+        }
+
+        myDialog.setCancelable(true)
+        myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        myDialog.show()
     }
 
 }

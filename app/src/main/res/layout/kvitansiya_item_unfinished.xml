@@ -6,6 +6,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp"
+    android:id="@+id/secondary_un_finishing"
     android:background="@drawable/custom_input_3">
 
     <LinearLayout
@@ -49,18 +50,10 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_data_un_finishing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-9"
-                android:textColor="#F44336"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/kun"
                 android:textColor="#F44336"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -82,7 +75,7 @@
                 android:src="@drawable/ic_person_kvitamsiya" />
 
             <TextView
-                android:id="@+id/txt_washing_test"
+                android:id="@+id/txt_name_un_finishing"
                 style="@style/textStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,7 +101,7 @@
                 android:src="@drawable/phone" />
 
             <TextView
-                android:id="@+id/txt_nomer"
+                android:id="@+id/txt_phone_number_un_finishing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -123,12 +116,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/txt_amount_un_finishing"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_gravity="center"
                 android:text="20,000"
                 android:textColor="#F44336"
                 android:textSize="30sp"

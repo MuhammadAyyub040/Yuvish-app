@@ -1,5 +1,6 @@
 package com.example.yuvish.Models.Cleaning
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
@@ -16,23 +17,24 @@ class PaginationPageCleaning (
         return anchorPage.prevKey?.plus(1) ?: anchorPage.nextKey?.minus(1)
     }
 
-    override suspend fun load(params: PagingSource.LoadParams<Int>): PagingSource.LoadResult<Int, RewashReceipt> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RewashReceipt> {
         return try {
             val pageNumber = params.key ?: 1
             val pageSize = params.loadSize
             val response = retrofitService.cleaning(status, pageNumber)
             Log.d("testresponse", response.code().toString())
+            Log.e(TAG, "load: ${response.body()}", )
 
             if (response.code() == 200) {
                 val rewashReceipt = response.body()!!
                 val nextPageNumber = if (rewashReceipt.size < pageSize) null else pageNumber + 1
                 val prevPageNumber = if (pageNumber > 1) pageNumber - 1 else null
-                return PagingSource.LoadResult.Page(rewashReceipt, prevPageNumber, nextPageNumber)
+                return LoadResult.Page(rewashReceipt, prevPageNumber, nextPageNumber)
             } else {
-                return PagingSource.LoadResult.Error(HttpException(response))
+                return LoadResult.Error(HttpException(response))
             }
         }catch (t: Throwable){
-            PagingSource.LoadResult.Error(t)
+            LoadResult.Error(t)
         }
     }
 

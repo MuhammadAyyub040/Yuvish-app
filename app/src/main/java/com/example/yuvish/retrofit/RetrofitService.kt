@@ -5,13 +5,22 @@ import com.example.yuvish.Models.ArrangedSubmit.Submit
 import com.example.yuvish.Models.Cleaning.RewashReceipt
 import com.example.yuvish.Models.Authorization.UserToken
 import com.example.yuvish.Models.BarcodeApi.Order
+import com.example.yuvish.Models.BaseIndikatorsIndex.SearchIndicatorsResult
+import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
+import com.example.yuvish.Models.DebtorsPackage.Debtors
+import com.example.yuvish.Models.DebtorsAPI.Market.FilterDebtorsItem
+import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
+import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
 import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
 import com.example.yuvish.Models.HolatPaneli.TransportStatusAPI
+import com.example.yuvish.Models.NewOrder.GetCustomer
+import com.example.yuvish.Models.NewOrder.Sources
 import com.example.yuvish.Models.ReadyOrders.Arranging
 import com.example.yuvish.Models.ReadyOrders.Autocomplete
 import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
 import com.example.yuvish.Models.ReadyOrders.ViewOrderItem
 import com.example.yuvish.Models.Registration.Registration
+import com.example.yuvish.Models.Registration.ServiceTypeItem
 import com.example.yuvish.Models.Setting.ResponseSetting
 import com.example.yuvish.Models.Setting.Setting
 import com.example.yuvish.Models.Setting.UpdateSetting
@@ -23,12 +32,16 @@ import retrofit2.http.*
 
 interface RetrofitService {
 
+    //LoginPage
+
     @FormUrlEncoded
     @POST("token")
     fun createUser(
         @Field("username") username: String,
         @Field("password") password: String
     ): Call<UserToken>
+
+    //Washing
 
     @GET("orders_by_status/{status}")
    suspend fun cleaning(
@@ -51,11 +64,22 @@ interface RetrofitService {
          @Path("order_id") orderId: Int
      ): Call<Registration>
 
+     @POST("add_one_product")
+     fun addOrders(
+         @Query("order_id") orderId: Int,
+         @Query("xizmat_id") xizmatId: Int
+     ): Call<String?>
+
+     @GET("xizmatlar")
+     fun serviceType(): Call<List<ServiceTypeItem>>
+
     @GET("/tokchalar")
     fun getShelfs(): Call<List<ShelfItem>>
 
    @GET("holat_paneli")
    fun statusBar(): Call<WashingStatusAPI>
+
+   //Arranged
 
    @GET("giving_orders")
    suspend fun arranged(
@@ -91,6 +115,11 @@ interface RetrofitService {
        @Query("tolov_turi") paymentType: String
    ): Call<Int?>
 
+   @PUT("omborga_otkazish/{order_id}")
+   fun transferWarehouse(
+       @Path("order_id") order_Id: Int
+   ): Call<String?>
+
    @PUT("arranging")
    fun arranging(
        @Body arranging: Arranging
@@ -106,6 +135,43 @@ interface RetrofitService {
        @Query("order_id") order_Id: Int
    ): Call<String?>
 
+   //Debtors
+
+   @GET("nasiya_get_one")
+   fun debtorCustomer(
+       @Query("id") id: Int
+   ): Call<Debtors>
+
+   @GET("nasiyalar")
+   suspend fun marketPagination(
+       @Query("page") page: Int,
+       @Query("driver") driver: Int,
+       @Query("type") type: String
+   ): Response<List<MarketPaginationItem>>
+
+   @GET("nasiya_filter")
+   fun filterDebtors(): Call<List<FilterDebtorsItem>>
+
+    @POST("nasiya_tolash")
+    fun requestPayDebt(
+        @Body payDebt: Paydebt
+    ): Call<String?>
+
+    @PUT("nasiya_put_date")
+    fun putDebt(
+        @Body confirmDebt: ConfirmDebt
+    ): Call<String?>
+
+    //BaseFragment
+
+    @GET("korsatkich_index")
+    fun searchIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("to_date") toDate: String
+    ): Call<SearchIndicatorsResult>
+
+   //Setting
+
    @GET("profile")
    fun profile(): Call<Setting>
 
@@ -114,4 +180,13 @@ interface RetrofitService {
        @Path("id") id :Int,
        @Body updateSetting: UpdateSetting
    ): Call<ResponseSetting>
+
+   //Add customer
+
+   @POST("costumer/create/operator")
+   fun addCustomer(
+   ): Call<GetCustomer>
+
+   @GET("manbalar")
+   fun getSources(): Call<Sources>
 }

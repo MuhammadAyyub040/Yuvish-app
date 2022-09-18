@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp"
@@ -12,7 +12,7 @@
     <LinearLayout
         android:id="@+id/linear"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -267,23 +267,14 @@
                 app:cardBackgroundColor="@color/green"
                 android:layout_margin="8dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:minHeight="40dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:textSize="16sp"
                         android:text="@string/topshirish"
                         android:textAllCaps="false"
                         android:textColor="@color/white"/>
-
-                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
@@ -292,28 +283,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:minHeight="40dp"
+                android:layout_marginBottom="8dp"
                 app:cardCornerRadius="16dp"
+                app:cardBackgroundColor="#3F51B5"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:minHeight="40dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:background="#3F51B5">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:gravity="center"
+                        android:layout_gravity="center"
                         android:textSize="16sp"
                         android:text="@string/yetkazishga_o_tkazish"
                         android:textAllCaps="false"
                         android:textColor="@color/white"/>
-
-                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 

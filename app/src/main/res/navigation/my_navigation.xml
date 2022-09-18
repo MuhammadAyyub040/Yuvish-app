@@ -135,5 +135,15 @@
             android:id="@+id/action_barcodeScannerFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addCustomerFragment"
+        android:name="com.example.yuvish.Fragments.AddCustomerFragment"
+        android:label="fragment_add_customer"
+        tools:layout="@layout/fragment_add_customer" />
+    <fragment
+        android:id="@+id/submittedIndicatorsFragment"
+        android:name="com.example.yuvish.Fragments.SubmittedIndicatorsFragment"
+        android:label="fragment_submitted_indicators"
+        tools:layout="@layout/fragment_submitted_indicators" />
 
 </navigation>

@@ -6,6 +6,7 @@
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     android:layout_marginBottom="16dp"
+    android:id="@+id/secondary_debts"
     android:background="@drawable/custom_input_3">
 
     <LinearLayout
@@ -35,7 +36,7 @@
                     android:src="@drawable/ic_delivery_truck_truck_svgrepo_com" />
 
                 <TextView
-                    android:id="@+id/driver_txt"
+                    android:id="@+id/txt_driver_debts"
                     style="@style/textStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -47,19 +48,10 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_data_debts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-9"
-                android:layout_gravity="center"
-                android:textColor="#F44336"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:text="@string/kun"
                 android:layout_gravity="center"
                 android:textColor="#F44336"
                 android:textSize="16sp"
@@ -82,7 +74,7 @@
                 android:src="@drawable/ic_person_kvitamsiya" />
 
             <TextView
-                android:id="@+id/txt_washing_test"
+                android:id="@+id/txt_name_debts"
                 style="@style/textStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,7 +100,7 @@
                 android:src="@drawable/phone" />
 
             <TextView
-                android:id="@+id/txt_nomer"
+                android:id="@+id/txt_phone_number_debts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -123,10 +115,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/txt_amount_debts"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="20,000"

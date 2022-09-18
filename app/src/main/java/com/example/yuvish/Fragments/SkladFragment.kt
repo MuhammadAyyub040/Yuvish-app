@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
@@ -49,11 +50,12 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
         super.onCreate(savedInstanceState)
         werehousePaginationAdapter = WerehousePaginationAdapter(requireActivity(), this)
         getPaginationWarehouse()
-        statusBar()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        statusBar()
 
         val arrayAdapter = ArrayAdapter(
             requireActivity(),
@@ -196,30 +198,22 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
     }
 
     override fun onItemClickWarehouse(ordersOmborItem: OrdersOmborItem) {
-        findNavController().navigate(R.id.sumbitFragment)
+        findNavController().navigate(R.id.sumbitFragment, bundleOf(
+            "orderId" to ordersOmborItem.order_id
+        ))
     }
 
-    private fun orderWarehouse(orderId: Int) {
-        ApiClient.retrofitService.ordersWarehouse(orderId).enqueue(object : Callback<String?> {
+    private fun orderWarehouse(orderId: Int){
+        ApiClient.retrofitService.ordersWarehouse(orderId).enqueue(object : Callback<String?>{
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
-                Log.e(TAG, "onResponse: ${response.code()}")
-                var loge = response.body()
-                Toast.makeText(
-                    binding.root.context,
-                    "${loge}, id  = $orderId",
-                    Toast.LENGTH_SHORT
-                ).show()
                 if (response.code() == 200)
-                Log.d("testWarehouse", response.toString())
+                    Toast.makeText(requireActivity(), "Yetkazishga muvaffaqiyatli o'tkazildi.", Toast.LENGTH_SHORT).show()
+                werehousePaginationAdapter.refresh()
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(
-                    requireContext(),
-                    "Server bilan bog'lanishda xatolik",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(requireContext(), "Xatolik yuz berdi", Toast.LENGTH_SHORT).show()
             }
 
         })

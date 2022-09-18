@@ -47,7 +47,7 @@
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/transport_bo_limi"
-                        android:textColor="@color/black"
+                        style="@style/textStyle"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -278,7 +278,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/phone"
-                        style="@style/textStyle"
+                        style="@style/svgTheme"
                         android:layout_marginLeft="5dp"/>
 
                     <TextView
@@ -293,7 +293,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/ic_location"
-                        style="@style/textStyle"
+                        style="@style/svgTheme"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"/>
 

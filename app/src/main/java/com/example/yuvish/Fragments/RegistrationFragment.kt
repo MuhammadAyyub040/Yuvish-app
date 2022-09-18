@@ -11,14 +11,13 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.L
 import com.example.yuvish.Adapters.RegistrationAdapterChild
 import com.example.yuvish.Adapters.RegistrationAdapterGroup
 import com.example.yuvish.Models.BarcodeApi.Order
-import com.example.yuvish.Models.BarcodeApi.Product
-import com.example.yuvish.Models.Registration.Item
 import com.example.yuvish.Models.Registration.Registration
+import com.example.yuvish.Models.Registration.ServiceTypeItem
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentRegistrationBinding
 import com.example.yuvish.retrofit.ApiClient
@@ -32,6 +31,7 @@ class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack {
     lateinit var binding: FragmentRegistrationBinding
     lateinit var map: HashMap<String, List<String>>
     lateinit var titleList: ArrayList<String>
+    lateinit var list: List<ServiceTypeItem>
     lateinit var registrationAdapterGroup: RegistrationAdapterGroup
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var registration: Registration
@@ -45,6 +45,7 @@ class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         orderId = arguments?.getInt("orderId")
+        ServiceType()
     }
 
     override fun onCreateView(
@@ -80,18 +81,17 @@ class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack {
         )
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
 
-        val arrayAdapter2 = ArrayAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            arrayListOf("Gilam", "Adyol", "Parda", "Joyida yuvish", "Yumshoq o'yinchoqlar", "Yangi v"))
-        binding.autoCompleteTextViewList.setAdapter(arrayAdapter2)
-
         binding.btnX.setOnClickListener {
             binding.searchCard.visibility = View.GONE
             searchPage = false
 
             closeKeyboard()
         }
+
+        binding.cardPlus.setOnClickListener {
+
+        }
+
         binding.btnSearch.setOnClickListener {
             when (searchPage) {
                 false -> {
@@ -217,6 +217,37 @@ class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack {
             override fun onFailure(call: Call<Registration>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "Server bilan bog'lanolmadik", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun ServiceType(){
+    ApiClient.retrofitService.serviceType().enqueue(object : Callback<List<ServiceTypeItem>>{
+        override fun onResponse(call: Call<List<ServiceTypeItem>>, response: Response<List<ServiceTypeItem>>) {
+
+            if (response.code() == 200){
+                list = response.body()!!
+                val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map { it.xizmat_turi })
+                binding.autoCompleteTextViewServiceType.setAdapter(arrayAdapter)
+            }
+        }
+
+        override fun onFailure(call: Call<List<ServiceTypeItem>>, t: Throwable) {
+            t.printStackTrace()
+            Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show() } })
+        }
+
+    private fun addOrders(orderId: Int, xizmatId: Int){
+        ApiClient.retrofitService.addOrders(orderId, xizmatId).enqueue(object : Callback<String?>{
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                if (response.code() == 200)
+                    Toast.makeText(requireActivity(), "ishladiku", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Server bilan bog'lanishda xatolik", Toast.LENGTH_SHORT).show()
             }
 
         })

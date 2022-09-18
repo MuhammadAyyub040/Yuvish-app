@@ -147,7 +147,7 @@ class ListFragment : Fragment(){
             requireActivity(), DatePickerDialog.OnDateSetListener{ view, year, monthOfYear, dayOfMonth->
                 val returnDate = "$dayOfMonth ${monthOfYear + 1} $year"
                 val date = StringHelper.parseDate(
-                    "dd MM yyyy",
+                    "dd  MM yyyy",
                     "dd/MM/yyyy",
                     returnDate
                 )

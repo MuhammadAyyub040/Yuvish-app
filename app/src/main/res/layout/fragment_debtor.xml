@@ -256,6 +256,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/debtor_customer_name"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
@@ -277,12 +278,13 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginLeft="20dp"
-                            style="@style/textStyle"
+                            style="@style/svgTheme"
                             android:layout_marginTop="20dp"
                             android:src="@drawable/phone" />
 
 
                         <TextView
+                            android:id="@+id/debtor_customer_phone_number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="20dp"
@@ -295,10 +297,11 @@
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="20dp"
-                            style="@style/textStyle"
+                            style="@style/svgTheme"
                             android:src="@drawable/ic_location" />
 
                         <TextView
+                            android:id="@+id/debtor_customer_location"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -325,6 +328,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/debtor_customer_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5dp"
@@ -362,41 +366,45 @@
                         style="@style/textStyle"
                         android:textStyle="bold" />
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="16dp">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/edt_debt_amount"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_weight="6"
-                            android:background="@drawable/edit_text_background_login"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:inputType="number"
                             android:clickable="false"
                             android:focusable="false"
                             android:focusableInTouchMode="false"
+                            android:padding="10dp"
                             android:minHeight="48dp" />
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/edit_text_background_login"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
                             android:clickable="false"
                             android:focusable="false"
-                            android:textColor="@color/black"
+                            style="@style/textStyle"
                             android:focusableInTouchMode="false"
+                            android:padding="10dp"
                             android:gravity="center"
-                            android:minHeight="48dp"
                             android:text="so'm" />
 
                     </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -406,22 +414,39 @@
                         style="@style/textStyle"
                         android:textStyle="bold" />
 
-                    <EditText
-                        android:id="@+id/date_picer_debtor"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:layout_weight="2"
-                        style="@style/editTextDark"
-                        android:background="@drawable/custom_input_dark"
-                        android:drawableEnd="@drawable/ic_calendar"
-                        android:editable="false"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
+                        app:cardCornerRadius="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edt_date_picker_debtor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        style="@style/cardStyle"
+                        android:gravity="center"
                         android:hint="@string/dd_mm_yyyy"
-                        android:inputType="number"
-                        android:minHeight="48dp"
-                        android:padding="20dp" />
+                        android:inputType="number" />
+
+                            <ImageView
+                                android:id="@+id/date_picker_debtor"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                style="@style/svgTheme"
+                                android:src="@drawable/ic_calendar"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
                         android:layout_width="match_parent"

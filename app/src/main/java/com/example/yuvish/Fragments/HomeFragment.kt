@@ -261,10 +261,11 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
     fun statusBar(){
         ApiClient.retrofitService.statusBar().enqueue(object : Callback<WashingStatusAPI>{
             override fun onResponse(call: Call<WashingStatusAPI>, response: Response<WashingStatusAPI>) {
-                if (response.code() == 200)
+                if (response.code() == 200) {
                     binding.txtWashing.text = response.body()!!.yuvilmaganlar_soni.toString()
                     binding.txtWashedId.text = response.body()!!.qadoqlanmaganlar_soni.toString()
                     binding.txtPacked.text = response.body()!!.topshirilmaganlar_soni.toString()
+                }
             }
 
             override fun onFailure(call: Call<WashingStatusAPI>, t: Throwable) {
