@@ -27,6 +27,11 @@
         <item name="cardBackgroundColor">@color/white</item>
     </style>
 
+    <style name="iconStyleWithTintBackgroundColor">
+        <item name="tint">@color/black</item>
+        <item name="android:backgroundTint">@color/background_color_light_theme</item>
+    </style>
+
     <style name="textStyle">
         <item name="android:textColor">@color/black</item>
     </style>
@@ -41,6 +46,17 @@
 
     <style name="svgTheme">
         <item name="tint">@color/black</item>
+    </style>
+
+    <style name="customBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="bottomDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="bottomSheetStyle">@style/customBottomSheetStyle</item>
     </style>
 
 </resources>

@@ -5,7 +5,7 @@ import com.example.yuvish.Models.ArrangedSubmit.Submit
 import com.example.yuvish.Models.Cleaning.RewashReceipt
 import com.example.yuvish.Models.Authorization.UserToken
 import com.example.yuvish.Models.BarcodeApi.Order
-import com.example.yuvish.Models.BaseIndikatorsIndex.SearchIndicatorsResult
+import com.example.yuvish.Models.BaseIndikatorsIndex.*
 import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
 import com.example.yuvish.Models.DebtorsPackage.Debtors
 import com.example.yuvish.Models.DebtorsAPI.Market.FilterDebtorsItem
@@ -13,8 +13,7 @@ import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
 import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
 import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
 import com.example.yuvish.Models.HolatPaneli.TransportStatusAPI
-import com.example.yuvish.Models.NewOrder.GetCustomer
-import com.example.yuvish.Models.NewOrder.Sources
+import com.example.yuvish.Models.NewOrder.*
 import com.example.yuvish.Models.ReadyOrders.Arranging
 import com.example.yuvish.Models.ReadyOrders.Autocomplete
 import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
@@ -170,6 +169,41 @@ interface RetrofitService {
         @Query("to_date") toDate: String
     ): Call<SearchIndicatorsResult>
 
+    @GET("korsatkich_mahsulot_yuvildi")
+    fun getWashedIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("page") page: Int,
+        @Query("to_date") toDate: String
+    ): Call<WashedIndicator>
+
+    @GET("korsatkich_mahsulot_topshirildi")
+    fun getSubmittedIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("to_date") toDate: String,
+        @Query("page") page: Int
+    ): Call<SubmittedIndicator>
+
+    @GET("qayta_yuvishga_ol")
+    fun getReceivedRewashIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("to_date") toDate: String,
+        @Query("page") page: Int
+    ): Call<ReceivedRewashIndicator>
+
+    @GET("kunlik_maoshlar")
+    fun getKpiIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("to_date") toDate: String,
+        @Query("page") page: Int
+    ): Call<KpiIndicator>
+
+    @GET("korsatkich_olgan_maoshlarim")
+    fun getReceivedSalaryIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("to_date") toDate: String,
+        @Query("page") page: Int
+    ): Call<ReceivedSalaryIndicator>
+
    //Setting
 
    @GET("profile")
@@ -183,10 +217,63 @@ interface RetrofitService {
 
    //Add customer
 
+    @POST("/order/add")
+    fun createOrderByCustomerId(
+        @Query("costumer_id") customerId: Int
+    ): Call<Int?>
+
    @POST("costumer/create/operator")
    fun addCustomer(
-   ): Call<GetCustomer>
+       @Body postCustomer: PostCustomer
+   ): Call<Int?>
 
    @GET("manbalar")
    fun getSources(): Call<Sources>
+
+    @GET("millatlar")
+    fun getNationalities(): Call<List<Nationality>>
+
+    @GET("xizmatlar")
+    fun getServices(): Call<List<Service>>
+
+    @GET("order/{order_id}/acceptance")
+    fun getNewOrderById(
+        @Path("order_id") orderId: Int
+    ): Call<Order>
+
+    @PUT("order/{order_id}/acceptance")
+    fun putNewOrder(
+        @Path("order_id") orderId: Int,
+        @Body putOrder: PutOrder
+    ): Call<String?>
+
+    @GET("/order/{order_id}/confirmation")
+    fun getConfirmOrderById(
+        @Path("order_id") orderId: Int
+    ): Call<ConfirmOrder?>
+
+    @PUT("/order_tasdiqlash/{orderr_id}")
+    fun putConfirmationOrder(
+        @Path("orderr_id") orderId: Int,
+        @Body putConfirmOrder: PutConfirmOrder
+    ): Call<String?>
+
+    // GetSizeFragment
+
+    @GET("order_sizing")
+    fun getSizingOrderById(
+        @Query("order_id") orderId: Int
+    ): Call<SizingOrder>
+
+    @PUT("product_sizing")
+    fun putProductSize(
+        @Query("id") productId: Int,
+        @Body productSize: ProductSize
+    ): Call<String?>
+
+    @POST("add_one_product")
+    fun addOneProduct(
+        @Query("order_id") orderId: Int,
+        @Query("xizmat_id") serviceId: Int
+    ): Call<String?>
 }

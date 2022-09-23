@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        style="@style/cardStyle"
+        android:layout_margin="8dp"
+        app:contentPadding="16dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="@string/file_created_successfully"
+                android:textSize="16sp"
+                style="@style/textStyle"/>
+
+            <TextView
+                android:id="@+id/print"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/print"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_marginStart="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/blue"/>
+
+            <TextView
+                android:id="@+id/open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/open"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:textStyle="bold"
+                android:layout_marginStart="16dp"
+                android:textSize="16sp"
+                android:textColor="@color/blue"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

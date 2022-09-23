@@ -81,4 +81,14 @@ dependencies {
     implementation 'com.budiyev.android:code-scanner:2.1.0'
 
     implementation 'com.google.android.material:material:1.6.1'
+
+    //barcode scanner and generator
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
+
+    //xml to pdf converter
+    implementation 'com.github.Gkemon:Android-XML-to-PDF-Generator:2.6.2'
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
 }

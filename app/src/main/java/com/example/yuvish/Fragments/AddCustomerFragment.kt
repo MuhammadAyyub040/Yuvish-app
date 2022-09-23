@@ -1,6 +1,7 @@
 package com.example.yuvish.Fragments
 
 import android.app.Activity
+import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,54 +12,47 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.SourceAdapter
-import com.example.yuvish.Models.NewOrder.GetCustomer
+import com.example.yuvish.Models.NewOrder.Nationality
+import com.example.yuvish.Models.NewOrder.PostCustomer
 import com.example.yuvish.Models.NewOrder.Sources
 import com.example.yuvish.R
+import com.example.yuvish.databinding.BottomSheetDiaolgBinding
 import com.example.yuvish.databinding.FragmentAddCustomerBinding
 import com.example.yuvish.retrofit.ApiClient
+import com.example.yuvish.retrofit.GlobalData
+import com.example.yuvish.retrofit.isNull
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.bottom_sheet_diaolg.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@Suppress("CAST_NEVER_SUCCEEDS")
 class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
 
     lateinit var binding: FragmentAddCustomerBinding
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var sourceAdapter: SourceAdapter
-    lateinit var sources: Sources
-    lateinit var list: List<Sources>
-    lateinit var getCustomer: GetCustomer
+    lateinit var postCustomer: PostCustomer
+    private var sourcesList: ArrayList<Sources>? = null
+    private var nationalitiesList: ArrayList<Nationality>? = null
+    private var customerTypesList: ArrayList<String>? = null
+    private lateinit var customerTypeAdapter: ArrayAdapter<String>
     var searchPage = false
     var newPage = false
+
+    private var selectedCustomerTypePosition = 0
+    private var selectedNationalityPosition = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-        getSources()
 
         binding = FragmentAddCustomerBinding.inflate(layoutInflater)
-
-        binding.btnSave.setOnClickListener {
-
-            val fish = binding.edtFish.text.toString().trim()
-            val manzil = binding.edtLocationCustomer.text.toString().trim()
-
-            if (fish.isEmpty()) {
-                binding.edtFish.error = "Ushbu joyni to'ldiring"
-                binding.edtFish.requestFocus()
-            } else
-                if (manzil.isEmpty()) {
-                    binding.edtLocationCustomer.error = "Ushbu joyni to'ldiring"
-                    binding.edtLocationCustomer.requestFocus()
-                } else {
-                    findNavController().navigate(R.id.listFragment)
-                }
-        }
+        getNationalities()
 
         return binding.root
     }
@@ -66,46 +60,19 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val arrayAdapter2 = ArrayAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            arrayListOf("O'zbek", "Millatni tanlang")
-        )
-        addCustomer()
-        binding.autoCompleteTextViewLanguage.setAdapter(arrayAdapter2)
-
-        binding.imgSource.setOnClickListener {
-            val view:View = layoutInflater.inflate(R.layout.bottom_sheet_diaolg, null)
-            val dialog = BottomSheetDialog(requireActivity())
-            dialog.setContentView(view)
-            dialog.show()
-
-            dialog.img_close.setOnClickListener {
-                dialog.dismiss()
-            }
-            sourceAdapter = SourceAdapter(this@AddCustomerFragment,list )
-            dialog.rv_source.adapter = sourceAdapter
-        }
-
-        binding.btnX.setOnClickListener {
-            binding.searchCard.visibility = View.GONE
-            searchPage = false
-
-            closeKeyboard()
-        }
-
-        binding.btnSearch.setOnClickListener {
-            when (searchPage) {
-                false -> {
-                    binding.searchCard.visibility = View.VISIBLE
-                    searchPage = true
-                }
-                true -> {
-                    binding.searchCard.visibility = View.GONE
-                    searchPage = false
-                }
+        binding.sourceLayout.setEndIconOnClickListener {
+            if (sourcesList.isNull()){
+                Toast.makeText(requireActivity(), getString(R.string.not_enough_information), Toast.LENGTH_SHORT).show()
+            }else{
+                showSourcesSelectDialog(sourcesList!!)
+                getSources()
             }
         }
+
+        if (customerTypesList.isNull()){
+            loadCustomerTypes()
+        }
+        updateCustomerTypeDropDown()
 
         binding.btnMenu.setOnClickListener {
             binding.navView.visibility = View.GONE
@@ -113,13 +80,14 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
 
             closeKeyboard()
         }
+
         binding.btnCancellation.setOnClickListener {
            findNavController().navigate(R.id.transportFragment)
 
             closeKeyboard()
         }
         binding.btnSave.setOnClickListener {
-            findNavController().navigate(R.id.listFragment)
+            checkInputsForCreateCustomer()
         }
 
         toggle =
@@ -209,24 +177,54 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
 
         }
     }
-    private fun addCustomer(){
-        ApiClient.retrofitService.addCustomer().enqueue(object : Callback<GetCustomer> {
-            override fun onResponse(call: Call<GetCustomer>, response: Response<GetCustomer>) {
+    private fun addCustomer(postCustomer: PostCustomer){
+        ApiClient.retrofitService.addCustomer(postCustomer).enqueue(object : Callback<Int?> {
+            override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
+                Log.d(TAG, "onResponse: ${response.body()}")
                 if (response.code() == 200) {
-
-                    getCustomer = response.body()!!
-                    binding.edtFish.setText(getCustomer.costumer_name)
-                    binding.edtLocationCustomer.setText(getCustomer.costumer_addres)
-                    binding.edtPhoneNumber1.setText(getCustomer.costumer_phone_1)
-                    binding.edtPhoneNumber2.setText(getCustomer.costumer_phone_2)
-                    binding.edtSource.setText(getCustomer.manba)
-                    list = listOf(sources)
+                    getByCustomerId(response.body()!!)
                 }
             }
 
-            override fun onFailure(call: Call<GetCustomer>, t: Throwable) {
+            override fun onFailure(call: Call<Int?>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "Mijoz qo'shishda xatolik", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun getByCustomerId(customerId: Int){
+        ApiClient.retrofitService.createOrderByCustomerId(customerId).enqueue(object : Callback<Int?>{
+            override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
+                if (response.code() == 200){
+                    findNavController().navigate(R.id.listFragment, bundleOf(
+                        "customerId" to customerId
+                    ))
+                }
+            }
+
+            override fun onFailure(call: Call<Int?>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Mijozga id qo'shishda xatolik", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun getNationalities(){
+        ApiClient.retrofitService.getNationalities().enqueue(object : Callback<List<Nationality>>{
+            override fun onResponse(call: Call<List<Nationality>>, response: Response<List<Nationality>>) {
+                Log.d(TAG, "onResponse: ${response.body()}")
+                if (response.code() == 200) {
+                    val arrayAdapter2 = nationalitiesList?.let { ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.map { it.name }) }
+                    binding.autoCompleteTextViewLanguage.setAdapter(arrayAdapter2)
+                }
+            }
+
+            override fun onFailure(call: Call<List<Nationality>>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Ma'lumot kelmadi", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -236,12 +234,12 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
         ApiClient.retrofitService.getSources().enqueue(object : Callback<Sources>{
             override fun onResponse(call: Call<Sources>, response: Response<Sources>) {
                 if (response.code() == 200)
-                    Log.d("TAG", "onResponse")
+                    Log.d(TAG, "onResponse: ${response.code()}")
             }
 
             override fun onFailure(call: Call<Sources>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(requireContext(), "Mijoz qo'shishda xatolik", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Manbalar kelmadi", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -250,10 +248,85 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
     private fun closeKeyboard() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.edtFish.windowToken, 0)
     }
 
-    override fun onItemClick(position: Int) {
+    private fun updateCustomerTypeDropDown(){
+        customerTypeAdapter =
+            ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, customerTypesList!!)
 
+        binding.autoCompleteCustomerType.setAdapter(customerTypeAdapter)
+
+        if (customerTypesList!!.isNotEmpty()){
+            binding.autoCompleteCustomerType.setText(customerTypesList!![selectedCustomerTypePosition], false)
+        }
+    }
+
+    private fun loadCustomerTypes(){
+        customerTypesList = ArrayList()
+        customerTypesList?.apply { clear()
+            addAll(listOf("narx", "sifat", "premium", "qora_royxat"))
+        }
+    }
+
+    private fun checkInputsForCreateCustomer(){
+        val name = binding.edtFish.text.toString().trim()
+        val phoneNumber1 = binding.edtPhoneNumber1.text //911234567
+        val phoneNumber2 = binding.edtPhoneNumber2.text //911234567
+        val address = binding.edtAddressCustomer.text.toString().trim()
+        val source = binding.source.text.toString().trim()
+
+        when {
+            name.isEmpty() || address.isEmpty() -> {
+                Toast.makeText(requireActivity(), getString(R.string.all_cells_marked_must_be_filled), Toast.LENGTH_SHORT).show()
+            }
+            phoneNumber1.length != 9 || (phoneNumber2.isNotEmpty() && phoneNumber2.length != 9)-> {
+                Toast.makeText(requireActivity(), getString(R.string.please_enter_valid_phone_number), Toast.LENGTH_SHORT).show()
+            }
+            getNationalityPermission() && (nationalitiesList.isNull() || nationalitiesList!!.isEmpty()) -> {
+                Toast.makeText(requireActivity(), getString(R.string.not_enough_information), Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                postCustomer = PostCustomer(
+                    name,
+                    phoneNumber1.toString(),
+                    phoneNumber2.toString(),
+                    address,
+                    source,
+                    "android",
+                    customerTypesList!![selectedCustomerTypePosition],
+                    if (getNationalityPermission())
+                        nationalitiesList!![selectedNationalityPosition].id else 0
+                )
+                addCustomer(postCustomer)
+            }
+        }
+        findNavController().navigate(R.id.listFragment)
+    }
+
+    private fun getNationalityPermission(): Boolean {
+        return GlobalData.commonSettings?.adding_nation == 1
+    }
+
+    private fun showSourcesSelectDialog(sourcesList: ArrayList<Sources>){
+        val bottomSheetDialog = BottomSheetDialog(requireActivity())
+        val dialogBinding = BottomSheetDiaolgBinding.inflate(layoutInflater)
+        bottomSheetDialog.setContentView(dialogBinding.root)
+
+        dialogBinding.rvSource.adapter = SourceAdapter(sourcesList, object : SourceAdapter.OnItemClick {
+                override fun onItemClick(sources: Sources) {
+                    binding.source.setText(sources.name)
+                    bottomSheetDialog.dismiss()
+                }
+            })
+
+        dialogBinding.imgClose.setOnClickListener {
+            bottomSheetDialog.dismiss()
+        }
+
+        bottomSheetDialog.show()
+    }
+
+    override fun onItemClick(sources: Sources) {
     }
 }

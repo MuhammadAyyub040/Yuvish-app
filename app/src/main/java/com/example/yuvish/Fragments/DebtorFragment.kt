@@ -19,6 +19,7 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
 import com.example.yuvish.Models.DebtorsPackage.Debtors
@@ -29,8 +30,11 @@ import com.example.yuvish.databinding.ItemWarnBinding
 import com.example.yuvish.retrofit.ApiClient
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
+import com.orhanobut.hawk.Hawk
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.HttpException
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
@@ -208,8 +212,22 @@ class DebtorFragment : Fragment() {
             Toast.makeText(requireActivity(), getString(R.string.after_today_date_error), Toast.LENGTH_SHORT).show()
         }else{
             confirmDebt = ConfirmDebt(changeDateStructure(date), debtId!!)
+            putDebt(confirmDebt!!)
         }
     }
+
+//    fun putDebtPayDate(confirmDebt: ConfirmDebt) {
+//            try {
+//                val response = repository.putDebtPayDate(confirmDebt)
+//                if (response.isSuccessful){
+//                    putDebtPayDateData.postValue(Result.success(response.body()))
+//                }else{
+//                    putDebtPayDateData.postValue(Result.error(HttpException(response)))
+//                }
+//            }catch (t: Throwable){
+//                putDebtPayDateData.postValue(Result.error(t))
+//            }
+//    }
 
     private fun changeDateStructure(date: String): String {
         val dateArray = date.split(".") //dd.MM.yyyy
@@ -346,6 +364,7 @@ class DebtorFragment : Fragment() {
                         binding.debtorCustomerPhoneNumber.text = debtors.costumer.costumer_phone_1
                         binding.debtorCustomerLocation.text = debtors.costumer.costumer_addres
                         binding.edtDebtAmount.setText(debtors.nasiya)
+                        Hawk.put("fullname", debtors.user.fullname)
                     }
                 }
             }

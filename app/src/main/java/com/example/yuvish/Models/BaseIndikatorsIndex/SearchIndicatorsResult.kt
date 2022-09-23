@@ -18,5 +18,5 @@ data class SearchIndicatorsResult(
     val qayta_qongirok_kecha: Int,
     val qayta_qongiroklar: Int,
     val qayta_yuvishga_olindi: QaytaYuvishgaOlindi,
-    val today_davomat: Any
+    val today_davomat: TodayAttendance?
 )

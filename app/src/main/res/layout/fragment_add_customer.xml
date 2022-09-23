@@ -44,181 +44,15 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginEnd="50dp"
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/yangi_mijoz_qo_shish"
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/btn_search"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:padding="5dp"
-            android:src="@drawable/ic_search" />
-
 
     </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/searchCard"
-        style="@style/cardParentStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:visibility="gone"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="15dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <LinearLayout
-                android:id="@+id/linear"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/txt_qidir"
-                        style="@style/textStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="50dp"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:text="@string/qidirish"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/btn_x"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/ic_baseline_close_24"
-                        app:layout_constraintRight_toRightOf="parent" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="5dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="50dp"
-                        android:background="#BDB8B8"
-                        android:padding="5dp" />
-
-                </LinearLayout>
-
-
-                <TextView
-                    style="@style/textStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/kvitansiya_n"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <EditText
-                        android:id="@+id/edt_id"
-                        style="@style/editTextDark"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:background="@drawable/custom_input_dark"
-                        android:hint="@string/kvitansiya_id_ni_kiriting"
-                        android:inputType="number"
-                        android:minHeight="64dp"
-                        android:padding="10dp"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/autoCompleteTextView_transport"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:inputType="none"
-                            android:text="@string/_2022"
-                            android:textColor="@color/black"
-                            android:textSize="18sp" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </LinearLayout>
-
-                <TextView
-                    style="@style/textStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/mijoz"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/custom_input_dark"
-                    android:hint="@string/ism_telefon_raqami_manzil"
-                    android:padding="10dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="5dp"
-                        android:layout_marginTop="30dp"
-                        android:layout_marginEnd="50dp"
-                        android:background="#BDB8B8"
-                        android:padding="5dp" />
-
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp" />
-
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/new_customer"
@@ -253,6 +87,14 @@
                         android:text="@string/mijoz_ismi"
                         android:textSize="15sp" />
 
+                    <TextView
+                        android:textColor="@color/red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -262,10 +104,10 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edt_fish"
                         style="@style/textInput"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="56dp"
                         android:layout_margin="10dp"
-                        android:layout_weight="3"
                         android:background="@drawable/custom_input_dark"
                         android:hint="@string/mijoz_f_i_sh_ini_kiriting"
                         android:padding="10dp"
@@ -287,6 +129,14 @@
                         android:text="@string/manzil"
                         android:textSize="15sp" />
 
+                    <TextView
+                        android:textColor="@color/red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -294,12 +144,12 @@
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/edt_location_customer"
+                        android:id="@+id/edt_address_customer"
                         style="@style/textInput"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="56dp"
                         android:layout_margin="10dp"
-                        android:layout_weight="3"
                         android:background="@drawable/custom_input_dark"
                         android:hint="@string/mijoz_manzilini_kiriting"
                         android:padding="10dp"
@@ -319,6 +169,14 @@
                         android:layout_margin="10dp"
                         android:text="@string/mijoz_so_zlashuv_tili"
                         android:textSize="15sp" />
+
+                    <TextView
+                        android:textColor="@color/red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -329,7 +187,8 @@
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp">
 
                         <AutoCompleteTextView
                             android:id="@+id/autoCompleteTextView_language"
@@ -361,6 +220,14 @@
                         android:text="@string/telefon_raqami_1"
                         android:textSize="15sp" />
 
+                    <TextView
+                        android:textColor="@color/red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -371,11 +238,14 @@
                         style="@style/textInput"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:minHeight="56dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
+                        android:clickable="false"
+                        android:focusable="false"
                         android:hint="@string/_998"
                         android:inputType="number"
                         android:padding="10dp"
@@ -387,6 +257,7 @@
                         style="@style/textInput"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:minHeight="56dp"
                         android:layout_marginStart="1dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="3"
@@ -423,12 +294,15 @@
                         style="@style/textInput"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:minHeight="56dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="1dp"
                         android:layout_weight="1"
                         android:background="@drawable/custom_input_dark"
                         android:gravity="center"
                         android:hint="@string/_998"
+                        android:clickable="false"
+                        android:focusable="false"
                         android:inputType="number"
                         android:padding="10dp"
                         android:textSize="18sp"
@@ -439,6 +313,7 @@
                         style="@style/textInput"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:minHeight="56dp"
                         android:layout_marginStart="1dp"
                         android:layout_marginEnd="10dp"
                         android:layout_weight="3"
@@ -470,26 +345,80 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:minHeight="48dp"
                     android:layout_margin="10dp">
 
-                    <EditText
-                        android:id="@+id/edt_source"
-                        style="@style/textStyle"
-                        android:layout_width="0dp"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/sourceLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="10dp"
-                        android:background="@drawable/custom_input_dark"
-                        android:hint="@string/biz_haqimizda_qayerdan_ma_lumot_oldingiz"
-                        android:inputType="none"
-                        android:textSize="14sp" />
+                        app:boxCornerRadiusBottomEnd="16dp"
+                        app:boxCornerRadiusBottomStart="16dp"
+                        app:boxCornerRadiusTopEnd="16dp"
+                        app:boxCornerRadiusTopStart="16dp"
+                        app:endIconMode="custom"
+                        app:endIconDrawable="@drawable/ic_baseline_share_location_24"
+                        app:hintEnabled="false">
 
-                    <ImageView
-                        android:id="@+id/img_source"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_baseline_share_location_24"
-                        style="@style/svgTheme"/>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/source"
+                            style="@style/textStyle"
+                            android:textSize="12sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="56dp"
+                            android:background="@drawable/custom_input_dark"
+                            android:hint="@string/biz_haqimizda_qayerdan_ma_lumot_oldingiz" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/textStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="@string/mijoz_turi"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:textColor="@color/red"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/autoComplete_customer_type"
+                            style="@style/textStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_margin="10dp"
+                            android:text="@string/narx"
+                            android:inputType="none"
+                            android:textSize="18sp" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 

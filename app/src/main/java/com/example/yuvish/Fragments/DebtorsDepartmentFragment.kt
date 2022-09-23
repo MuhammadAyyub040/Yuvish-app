@@ -96,6 +96,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         }
 
         binding.rvNotfinishingDebtors.adapter = markedPaginationAdapter
+
         binding.rvDebtors.adapter = unMarkedPaginationAdapter
 
         toggle = ActionBarDrawerToggle(

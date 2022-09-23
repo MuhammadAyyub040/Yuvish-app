@@ -11,4 +11,7 @@
     <color name="red">#F44336</color>
     <color name="green">#57B657</color>
     <color name="yellow">#FFEB3B</color>
+    <color name="blue">#248AFD</color>
+    <color name="background_color_light_theme">#F5F7FF</color>
+    <color name="background_color_night_theme">#121212</color>
 </resources>

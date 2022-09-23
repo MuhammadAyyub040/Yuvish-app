@@ -145,5 +145,35 @@
         android:name="com.example.yuvish.Fragments.SubmittedIndicatorsFragment"
         android:label="fragment_submitted_indicators"
         tools:layout="@layout/fragment_submitted_indicators" />
+    <fragment
+        android:id="@+id/kpiIndicatorsFragment"
+        android:name="com.example.yuvish.Fragments.KpiIndicatorsFragment"
+        android:label="fragment_kpi_indicators"
+        tools:layout="@layout/fragment_kpi_indicators" />
+    <fragment
+        android:id="@+id/receivedSalaryFragment"
+        android:name="com.example.yuvish.Fragments.ReceivedSalaryFragment"
+        android:label="fragment_received_salary"
+        tools:layout="@layout/fragment_received_salary" />
+    <fragment
+        android:id="@+id/rewashReceivedFragment"
+        android:name="com.example.yuvish.Fragments.RewashReceivedFragment"
+        android:label="fragment_rewash_received"
+        tools:layout="@layout/fragment_rewash_received" />
+    <fragment
+        android:id="@+id/washedIndicatorsFragment"
+        android:name="com.example.yuvish.Fragments.WashedIndicatorsFragment"
+        android:label="fragment_washed_indicators"
+        tools:layout="@layout/fragment_washed_indicators" />
+    <fragment
+        android:id="@+id/confirmationOrderFragment"
+        android:name="com.example.yuvish.Fragments.ConfirmationOrderFragment"
+        android:label="fragment_confirmation_order"
+        tools:layout="@layout/fragment_confirmation_order" />
+    <fragment
+        android:id="@+id/getSizeFragment"
+        android:name="com.example.yuvish.Fragments.GetSizeFragment"
+        android:label="fragment_get_size"
+        tools:layout="@layout/fragment_get_size" />
 
 </navigation>

@@ -3,17 +3,16 @@ package com.example.yuvish.Adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.NewOrder.GetCustomer
 import com.example.yuvish.Models.NewOrder.Sources
 import com.example.yuvish.databinding.ItemSourceBinding
 
-class SourceAdapter(var onItemClick: OnItemClick, var list: List<Sources>) :
+class SourceAdapter( var list: List<Sources>,var onItemClick: OnItemClick) :
     RecyclerView.Adapter<SourceAdapter.SourceViewHolder>() {
 
     inner class SourceViewHolder(val binding: ItemSourceBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(position: Int) {
+        fun onBind(sources: Sources) {
             binding.cardGazeta.setOnClickListener {
-                onItemClick.onItemClick(position)
+                onItemClick.onItemClick(sources)
             }
         }
     }
@@ -23,12 +22,12 @@ class SourceAdapter(var onItemClick: OnItemClick, var list: List<Sources>) :
     }
 
     override fun onBindViewHolder(holder: SourceViewHolder, position: Int) {
-        holder.onBind(position)
+        holder.onBind(list[position])
     }
 
     override fun getItemCount(): Int = list.size
 
     interface OnItemClick {
-        fun onItemClick(position: Int)
+        fun onItemClick(sources: Sources)
     }
 }

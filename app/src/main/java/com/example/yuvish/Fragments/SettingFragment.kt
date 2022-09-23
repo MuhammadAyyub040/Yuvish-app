@@ -90,7 +90,7 @@ class SettingFragment : Fragment() {
             binding.searchCard.visibility = View.GONE
             searchPage = false
 
-            closeKeyboard(it)
+            closeKeyboard()
         }
 
         binding.btnSearch.setOnClickListener {
@@ -249,14 +249,10 @@ class SettingFragment : Fragment() {
             override fun onResponse(call: Call<Setting>, response: Response<Setting>) {
                 if (response.code() == 200){
                     setting = response.body()!!
-                    Log.e("testLogin", response.body().toString())
-                    var loge = response.body()
                     binding.edtNameSetting.setText(response.body()!!.fullname)
                     binding.edtPhoneNumber.setText(response.body()!!.phone.toString())
                     binding.edtLoginSetting.setText(response.body()!!.username)
                     binding.txtMaosh.text = setting.oylik.toString()
-                }else {
-                    Log.e("TAG", "onResponse: ${response.code()}")
                 }
             }
 
@@ -288,7 +284,7 @@ class SettingFragment : Fragment() {
         })
     }
 
-    private fun closeKeyboard(view: View) {
+    private fun closeKeyboard() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
