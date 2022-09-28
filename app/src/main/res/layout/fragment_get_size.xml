@@ -297,7 +297,7 @@
                         app:hintEnabled="false">
 
                         <AutoCompleteTextView
-                            android:id="@+id/services"
+                            android:id="@+id/services_type"
                             style="@style/textStyle"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -78,6 +78,7 @@
                     android:src="@drawable/daco" />
 
                 <TextView
+                    android:id="@+id/txt_warn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -97,6 +98,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/comment_warn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="16dp"

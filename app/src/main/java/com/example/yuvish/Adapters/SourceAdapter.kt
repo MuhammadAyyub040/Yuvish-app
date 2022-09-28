@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yuvish.Models.NewOrder.Sources
 import com.example.yuvish.databinding.ItemSourceBinding
 
-class SourceAdapter( var list: List<Sources>,var onItemClick: OnItemClick) :
+class SourceAdapter(var list: List<Sources>, var onItemClick: OnItemClick) :
     RecyclerView.Adapter<SourceAdapter.SourceViewHolder>() {
 
     inner class SourceViewHolder(val binding: ItemSourceBinding) : RecyclerView.ViewHolder(binding.root) {

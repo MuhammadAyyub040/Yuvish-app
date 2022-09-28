@@ -1,12 +1,17 @@
 package com.example.yuvish.Fragments
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.SelectedServicesAdapter
 import com.example.yuvish.Models.BarcodeApi.Order
@@ -17,8 +22,10 @@ import com.example.yuvish.Models.NewOrder.Service
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentListBinding
 import com.example.yuvish.retrofit.ApiClient
+import com.example.yuvish.retrofit.GlobalData
 import com.example.yuvish.retrofit.isNull
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,9 +55,7 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         orderId = arguments?.getInt("customerId")
-        getService()
         if (orderId != null) {
-            getNewOrder(orderId!!)
         }
     }
 
@@ -66,8 +71,36 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.selectedServicesRv.adapter = selectedServicesAdapter
+
         binding.services.setOnItemClickListener { parent, view, position, id ->
             selectedServicePosition = position
+        }
+
+        getService()
+
+        if (confirmList.isNull()){
+            confirmList = listOf(getString(R.string.no), getString(R.string.there_is))
+        }
+
+        if (order.isNull()){
+            getNewOrder(orderId!!)
+        }else{
+            updateUI(order!!)
+        }
+
+        if (changeInvalidVisible()){
+            updateInvalidDropDown()
+        }
+
+        if (changeStainVisible()){
+            updateStainDropDown()
+        }
+
+        if (servicesList.isNull()){
+            getService()
+        }else{
+            updateDropDown()
         }
 
         binding.addService.setOnClickListener {
@@ -88,6 +121,14 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
             showDatePicker()
         }
 
+        binding.invalid.setOnItemClickListener { parent, view, position, id ->
+            selectedInvalidPosition = position
+        }
+
+        binding.stain.setOnItemClickListener { parent, view, position, id ->
+            selectedStainPosition = position
+        }
+
         binding.registration.setOnClickListener {
             checkConfirmData()
         }
@@ -103,18 +144,33 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
                 binding.customerPickupImg.visibility = View.GONE
             }
         }
+
+        binding.count.addTextChangedListener {
+            val countStr = it.toString()
+            val count = countStr.toIntOrNull() ?: 0
+
+            if (count > 60){
+                binding.count.setText(countStr.trimEndChar())
+                binding.count.setSelection(countStr.length - 1)
+                Toast.makeText(requireActivity(), getString(R.string.no_more_60_products), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun String.trimEndChar(): String{
+        return if (this.isEmpty()){
+            this
+        }else {
+            this.substring(0, this.length - 1)
+        }
     }
 
     private fun getService() {
         ApiClient.retrofitService.getServices().enqueue(object : Callback<List<Service>> {
             override fun onResponse(call: Call<List<Service>>, response: Response<List<Service>>) {
                 if (response.code() == 200) {
-                    val arrayAdapter2 = servicesList?.let {
-                        ArrayAdapter(
-                            requireActivity(),
-                            android.R.layout.simple_list_item_1,
-                            it.map { it.xizmat_turi })
-                    }
+                    servicesList = response.body() as ArrayList<Service>?
+                    val arrayAdapter2 = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, servicesList!!.map { it.xizmat_turi })
                     binding.services.setAdapter(arrayAdapter2)
                 }
             }
@@ -146,17 +202,24 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
         })
     }
 
+    private fun updateUI(order: Order){
+        binding.customerName.text = order.costumer.costumer_name
+        binding.address.text = order.costumer.costumer_addres
+        binding.receiptNumber.text = order.nomer.toString()
+    }
+
     private fun putNewOrder(orderId: Int, putOrder: PutOrder){
         ApiClient.retrofitService.putNewOrder(orderId, putOrder).enqueue(object : Callback<String?>{
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.code() == 200){
-                    Toast.makeText(requireActivity(), "Ma'lumotlar yangilandi", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.confirmationOrderFragment, bundleOf(
+                        "orderId" to orderId))
                 }
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(requireContext(), "Ma'lumot ketmadi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.put_error), Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -237,8 +300,7 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
     }
 
     private fun addService(){
-        selectedServicesList.add(
-            0,
+        selectedServicesList.add(0,
             SelectedService(servicesList!![selectedServicePosition], binding.count.text.toString().toInt())
         )
         selectedServicesAdapter.notifyItemInserted(0)
@@ -264,5 +326,38 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
     }
 
     override fun deleteClickListener(position: Int) {
+        servicesList!!.add(0, selectedServicesList[position].service)
+        updateDropDown()
+
+        selectedServicesList.removeAt(position)
+        selectedServicesAdapter.notifyDataSetChanged()
     }
+
+    private fun changeInvalidVisible(): Boolean {
+        val invalidVisible = GlobalData.commonSettings?.order_brak == 1
+        binding.invalidCard.isVisible = invalidVisible
+        binding.invalidTitle.isVisible = invalidVisible
+        return invalidVisible
+    }
+
+    private fun changeStainVisible(): Boolean {
+        val stainVisible = GlobalData.commonSettings?.order_dog == 1
+        binding.stainCard.isVisible = stainVisible
+        binding.stainTitle.isVisible = stainVisible
+        return stainVisible
+    }
+
+    private fun updateInvalidDropDown(){
+        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, confirmList!!)
+        binding.invalid.setAdapter(adapter)
+        binding.invalid.setText(confirmList!![selectedInvalidPosition], false)
+    }
+
+    private fun updateStainDropDown(){
+        val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, confirmList!!)
+        binding.stain.setAdapter(adapter)
+        binding.stain.setText(confirmList!![selectedStainPosition], false)
+    }
+
+
 }

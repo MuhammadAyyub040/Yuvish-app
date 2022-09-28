@@ -6,11 +6,13 @@ import com.example.yuvish.Models.Cleaning.RewashReceipt
 import com.example.yuvish.Models.Authorization.UserToken
 import com.example.yuvish.Models.BarcodeApi.Order
 import com.example.yuvish.Models.BaseIndikatorsIndex.*
+import com.example.yuvish.Models.CommonSettings
 import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
 import com.example.yuvish.Models.DebtorsPackage.Debtors
 import com.example.yuvish.Models.DebtorsAPI.Market.FilterDebtorsItem
 import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
 import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
+import com.example.yuvish.Models.DebtorsPackage.DebtOff
 import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
 import com.example.yuvish.Models.HolatPaneli.TransportStatusAPI
 import com.example.yuvish.Models.NewOrder.*
@@ -30,6 +32,9 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface RetrofitService {
+
+    @GET("common_settings")
+    fun getCommonSettings(): Call<CommonSettings>
 
     //LoginPage
 
@@ -156,6 +161,11 @@ interface RetrofitService {
         @Body payDebt: Paydebt
     ): Call<String?>
 
+    @POST("/nasiya_send_off")
+    fun requestDebtOff(
+        @Body debtOff: DebtOff
+    ): Call<String?>
+
     @PUT("nasiya_put_date")
     fun putDebt(
         @Body confirmDebt: ConfirmDebt
@@ -217,10 +227,15 @@ interface RetrofitService {
 
    //Add customer
 
-    @POST("/order/add")
+    @POST("order/add")
     fun createOrderByCustomerId(
         @Query("costumer_id") customerId: Int
     ): Call<Int?>
+
+    @POST("/search_costumer")
+    fun searchCustomer(
+        @Query("content") content: String
+    ): Call<List<SearchCustomerResult>>
 
    @POST("costumer/create/operator")
    fun addCustomer(
@@ -228,7 +243,7 @@ interface RetrofitService {
    ): Call<Int?>
 
    @GET("manbalar")
-   fun getSources(): Call<Sources>
+   fun getSources(): Call<List<Sources>>
 
     @GET("millatlar")
     fun getNationalities(): Call<List<Nationality>>

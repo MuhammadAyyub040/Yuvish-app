@@ -39,6 +39,7 @@
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:padding="5dp"
+                        style="@style/svgTheme"
                         android:src="@drawable/ic_menu" />
 
                     <TextView
@@ -57,6 +58,7 @@
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:padding="5dp"
+                        style="@style/svgTheme"
                         android:src="@drawable/ic_search" />
 
 
@@ -103,8 +105,8 @@
                                     android:id="@+id/btn_x"
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
-                                    android:src="@drawable/ic_baseline_close_24"
-                                    app:layout_constraintRight_toRightOf="parent" />
+                                    style="@style/svgTheme"
+                                    android:src="@drawable/ic_baseline_close_24"/>
 
                             </LinearLayout>
 
@@ -239,7 +241,9 @@
                 android:id="@+id/card_registration_washed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
+                style="@style/cardParentStyle"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
                 app:cardCornerRadius="30dp"
                 app:cardElevation="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/orders_registration"
@@ -282,6 +286,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
                         android:gravity="center"
                         android:padding="8dp">
 
@@ -298,6 +303,15 @@
                             android:text="@string/_998978878878"
                             android:textColor="#2196F3"
                             android:textSize="15sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:padding="8dp">
 
                         <ImageView
                             style="@style/svgTheme"
@@ -418,6 +432,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
+                style="@style/cardParentStyle"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/rv_registration"
@@ -427,31 +442,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="40dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginEnd="8dp"
-                        android:backgroundTint="#3F51B5"
-                        app:cardCornerRadius="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="1+"
-                            android:textColor="@color/white" />
-
-                    </androidx.cardview.widget.CardView>
+                    android:layout_height="match_parent">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="5">
+                        android:layout_height="match_parent"
+                        android:layout_weight="10">
 
                         <AutoCompleteTextView
                             android:id="@+id/autoCompleteTextView_service_type"
@@ -459,6 +456,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:inputType="none"
+                            android:layout_marginBottom="4dp"
+                            android:layout_marginStart="4dp"
                             android:text="@string/gilam"
                             android:textSize="18sp" />
 
@@ -467,7 +466,11 @@
                     <androidx.cardview.widget.CardView
                         android:id="@+id/card_plus"
                         android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_weight="1"
                         android:layout_gravity="center"
                         android:backgroundTint="#BED4EB"
                         app:cardCornerRadius="8dp">
@@ -477,6 +480,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:text="+"
+                            android:textSize="24sp"
                             android:textColor="#5AA0FA" />
 
                     </androidx.cardview.widget.CardView>
@@ -489,8 +493,7 @@
                 android:id="@+id/rv_registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="20dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"

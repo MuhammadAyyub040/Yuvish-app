@@ -1,8 +1,6 @@
 package com.example.yuvish.Models.DebtorsPackage
 
 data class Costumer(
-    val call_count: Int,
-    val calling: Boolean,
     val costumer_addres: String,
     val costumer_date: String,
     val costumer_name: String,

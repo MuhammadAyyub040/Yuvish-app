@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.SourceAdapter
 import com.example.yuvish.Models.NewOrder.Nationality
@@ -29,30 +30,34 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-@Suppress("CAST_NEVER_SUCCEEDS")
-class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
+class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
 
     lateinit var binding: FragmentAddCustomerBinding
     lateinit var toggle: ActionBarDrawerToggle
-    lateinit var sourceAdapter: SourceAdapter
-    lateinit var postCustomer: PostCustomer
     private var sourcesList: ArrayList<Sources>? = null
     private var nationalitiesList: ArrayList<Nationality>? = null
     private var customerTypesList: ArrayList<String>? = null
     private lateinit var customerTypeAdapter: ArrayAdapter<String>
+    private lateinit var nationalitiesAdapter: ArrayAdapter<String>
     var searchPage = false
     var newPage = false
 
     private var selectedCustomerTypePosition = 0
     private var selectedNationalityPosition = 0
 
+    private var postCustomer: PostCustomer? = null
+    private var customerId: Int? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getSources()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View{
-
         binding = FragmentAddCustomerBinding.inflate(layoutInflater)
-        getNationalities()
 
         return binding.root
     }
@@ -65,7 +70,14 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
                 Toast.makeText(requireActivity(), getString(R.string.not_enough_information), Toast.LENGTH_SHORT).show()
             }else{
                 showSourcesSelectDialog(sourcesList!!)
-                getSources()
+            }
+        }
+
+        if(changeNationalityVisible()) {
+            if (nationalitiesList.isNull()) {
+                getNationalities()
+            } else {
+                updateNationalitiesDropDown()
             }
         }
 
@@ -88,6 +100,7 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
         }
         binding.btnSave.setOnClickListener {
             checkInputsForCreateCustomer()
+            closeKeyboard()
         }
 
         toggle =
@@ -180,7 +193,6 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
     private fun addCustomer(postCustomer: PostCustomer){
         ApiClient.retrofitService.addCustomer(postCustomer).enqueue(object : Callback<Int?> {
             override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
-                Log.d(TAG, "onResponse: ${response.body()}")
                 if (response.code() == 200) {
                     getByCustomerId(response.body()!!)
                 }
@@ -198,8 +210,9 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
         ApiClient.retrofitService.createOrderByCustomerId(customerId).enqueue(object : Callback<Int?>{
             override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
                 if (response.code() == 200){
+                    Log.e(TAG, "onResponse: ${response.body()}")
                     findNavController().navigate(R.id.listFragment, bundleOf(
-                        "customerId" to customerId
+                        "customerId" to response.body()
                     ))
                 }
             }
@@ -215,10 +228,11 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
     private fun getNationalities(){
         ApiClient.retrofitService.getNationalities().enqueue(object : Callback<List<Nationality>>{
             override fun onResponse(call: Call<List<Nationality>>, response: Response<List<Nationality>>) {
-                Log.d(TAG, "onResponse: ${response.body()}")
+                Log.e(TAG, "onResponse: ${response.body()}")
                 if (response.code() == 200) {
-                    val arrayAdapter2 = nationalitiesList?.let { ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, it.map { it.name }) }
-                    binding.autoCompleteTextViewLanguage.setAdapter(arrayAdapter2)
+                    nationalitiesList = response.body() as ArrayList<Nationality>?
+                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, nationalitiesList!!.map { it.name })
+                    binding.autoCompleteTextViewLanguage.setAdapter(arrayAdapter)
                 }
             }
 
@@ -231,13 +245,15 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
     }
 
     private fun getSources(){
-        ApiClient.retrofitService.getSources().enqueue(object : Callback<Sources>{
-            override fun onResponse(call: Call<Sources>, response: Response<Sources>) {
-                if (response.code() == 200)
-                    Log.d(TAG, "onResponse: ${response.code()}")
+        ApiClient.retrofitService.getSources().enqueue(object : Callback<List<Sources>>{
+            override fun onResponse(call: Call<List<Sources>>, response: Response<List<Sources>>) {
+                Log.d(TAG, "onResponse: ${response.code()}")
+                if (response.code() == 200){
+                    sourcesList = response.body() as ArrayList<Sources>?
+                }
             }
 
-            override fun onFailure(call: Call<Sources>, t: Throwable) {
+            override fun onFailure(call: Call<List<Sources>>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "Manbalar kelmadi", Toast.LENGTH_SHORT).show()
             }
@@ -262,6 +278,19 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
         }
     }
 
+    private fun updateNationalitiesDropDown() {
+        nationalitiesAdapter =
+            ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, nationalitiesList!!.map { it.name })
+    }
+
+    private fun changeNationalityVisible(): Boolean{
+        val visible = GlobalData.commonSettings?.adding_nation == 1
+        binding.textInputAutocomplete.isVisible = visible
+        binding.star.isVisible = visible
+        binding.nationalityTitle.isVisible = visible
+        return visible
+    }
+
     private fun loadCustomerTypes(){
         customerTypesList = ArrayList()
         customerTypesList?.apply { clear()
@@ -271,9 +300,9 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
 
     private fun checkInputsForCreateCustomer(){
         val name = binding.edtFish.text.toString().trim()
-        val phoneNumber1 = binding.edtPhoneNumber1.text //911234567
-        val phoneNumber2 = binding.edtPhoneNumber2.text //911234567
         val address = binding.edtAddressCustomer.text.toString().trim()
+        val phoneNumber1 = binding.edtPhoneNumber1.text
+        val phoneNumber2 = binding.edtPhoneNumber2.text
         val source = binding.source.text.toString().trim()
 
         when {
@@ -289,19 +318,19 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
             else -> {
                 postCustomer = PostCustomer(
                     name,
+                    address,
                     phoneNumber1.toString(),
                     phoneNumber2.toString(),
-                    address,
                     source,
+                    "",
                     "android",
                     customerTypesList!![selectedCustomerTypePosition],
                     if (getNationalityPermission())
                         nationalitiesList!![selectedNationalityPosition].id else 0
                 )
-                addCustomer(postCustomer)
+                addCustomer(postCustomer!!)
             }
         }
-        findNavController().navigate(R.id.listFragment)
     }
 
     private fun getNationalityPermission(): Boolean {
@@ -328,5 +357,7 @@ class AddCustomerFragment : Fragment(),SourceAdapter.OnItemClick {
     }
 
     override fun onItemClick(sources: Sources) {
+
     }
+
 }

@@ -243,7 +243,7 @@
     <string name="between_rewashed"><![CDATA[%1$s -> %2$s orasida qayta yuvilgan buyurtmalar]]></string>
     <string name="ketgan_vaqti">Ketgan vaqti</string>
     <string name="kelgan_vaqti">Kelgan vaqti</string>
-    <string name="not_enough_information">Ma\'lumotar yetarli emas!</string>
+    <string name="not_enough_information">Ma\'lumotlar yetarli emas!</string>
     <string name="all_cells_marked_must_be_filled">( * ) bilan belgilangan barcha katakchalar to\'ldirilishi kerak!</string>
     <string name="please_enter_valid_phone_number">Iltimos, yaroqli telefon raqamini kiriting!</string>
     <string name="mijoz_turi">Mijoz turi</string>
@@ -279,4 +279,19 @@
     <string name="not_have_apps_open_pdf">Sizda pdf fayllarni ochish uchun dasturlar yo\'q!</string>
     <string name="product_added_successfully">Mahsulot muvaffaqqiyatli qo\'shildi</string>
     <string name="measured_successfully">Muvaffaqiyatli o\'lchandi!</string>
+    <string name="customer_name">Mijoz ismi</string>
+    <string name="no">Yo\'q</string>
+    <string name="there_is">Bor</string>
+    <string name="put_error">Ma\'lumotni yangilashda xatolik</string>
+    <string name="put_success">Ma\'lumotlar yangilandi</string>
+    <string name="write_receipt">Kvitansiya yozish</string>
+    <string name="active_kv">Active KV:</string>
+    <string name="search_client">Mijoz qidirish</string>
+    <string name="enter_something_search">Qidirish uchun biror narsa kiriting!</string>
+    <string name="receipt_not_found">Kvitansiya topilmadi</string>
+    <string name="phone_numbers">Telefon nomer</string>
+    <string name="no_phone_number_entered">Telefon raqami kiritilmagan!</string>
+    <string name="debt_off_name_and_amount">Siz rostdan ham \'name\'ning \'amount\' so\'m qarzini kechib yubormoqchimisiz?</string>
+    <string name="enter_correct_amount">Iltimos to\'g\'ri summani kiriting!</string>
+    <string name="select_payment_type">Iltimos to\'lov turini tanlang!</string>
 </resources>

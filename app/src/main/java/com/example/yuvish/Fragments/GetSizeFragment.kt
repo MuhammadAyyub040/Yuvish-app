@@ -1,8 +1,10 @@
 package com.example.yuvish.Fragments
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -79,6 +81,7 @@ class GetSizeFragment : Fragment(),
         pdfManager = PdfManager(requireActivity())
         barcodeManager = BarcodeManager()
         printManager = PrintManager(requireActivity())
+        profile()
     }
 
     override fun onCreateView(
@@ -104,11 +107,15 @@ class GetSizeFragment : Fragment(),
         }
 
         if (servicesList.isNull()) {
-//            loadServices()
+            getService()
         } else {
             updateDropDown()
         }
 
+        setOnClickListeners()
+    }
+
+    private fun setOnClickListeners() {
         binding.previous.setOnClickListener {
             toPreviousPage(binding.notSizedProductsVP)
         }
@@ -122,7 +129,7 @@ class GetSizeFragment : Fragment(),
             findNavController().popBackStack()
         }
 
-        binding.services.setOnItemClickListener { parent, view, position, id ->
+        binding.servicesType.setOnItemClickListener { parent, view, position, id ->
             selectedServicePosition = position
         }
 
@@ -134,7 +141,6 @@ class GetSizeFragment : Fragment(),
                 addOneProduct(orderId!!, serviceId!!)
             }
         }
-
     }
 
     private fun toNextPage(viewPager2: ViewPager2, size: Int){
@@ -203,10 +209,10 @@ class GetSizeFragment : Fragment(),
         servicesAdapter = ArrayAdapter(
             requireActivity(), android.R.layout.simple_list_item_1, servicesList!!.map { it.xizmat_turi }
         )
-        binding.services.setAdapter(servicesAdapter)
+        binding.servicesType.setAdapter(servicesAdapter)
 
         if (servicesList!!.isNotEmpty()) {
-            binding.services.setText(servicesList!![selectedServicePosition].xizmat_turi, false)
+            binding.servicesType.setText(servicesList!![selectedServicePosition].xizmat_turi, false)
         }
     }
 
@@ -220,11 +226,30 @@ class GetSizeFragment : Fragment(),
         Snackbar.make(binding.root, text, Snackbar.LENGTH_SHORT).show()
     }
 
+    private fun getService() {
+        ApiClient.retrofitService.getServices().enqueue(object : Callback<List<Service>> {
+            override fun onResponse(call: Call<List<Service>>, response: Response<List<Service>>) {
+                if (response.code() == 200) {
+                    servicesList = response.body() as java.util.ArrayList<Service>?
+                    val arrayAdapter2 = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, servicesList!!.map { it.xizmat_turi })
+                    binding.servicesType.setAdapter(arrayAdapter2)
+                }
+            }
+
+            override fun onFailure(call: Call<List<Service>>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Ma'lumot kelmadi", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
     private fun getSizingOrderId(orderId: Int) {
         ApiClient.retrofitService.getSizingOrderById(orderId)
             .enqueue(object : Callback<SizingOrder> {
                 override fun onResponse(call: Call<SizingOrder>, response: Response<SizingOrder>) {
                     if (response.code() == 200) {
+                        sizingOrder = response.body()
                         binding.customerName.text = sizingOrder?.costumer?.costumer_name
                         binding.address.text = sizingOrder?.costumer?.costumer_addres
                         binding.receiptNumber.text = sizingOrder?.nomer.toString()
@@ -281,6 +306,22 @@ class GetSizeFragment : Fragment(),
             override fun onFailure(call: Call<String?>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "Ma'lumotda xatolik", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun profile(){
+        ApiClient.retrofitService.profile().enqueue(object : Callback<Setting>{
+            override fun onResponse(call: Call<Setting>, response: Response<Setting>) {
+                if (response.code() == 200){
+                    setting = response.body()!!
+                }
+            }
+
+            override fun onFailure(call: Call<Setting>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "Server bilan bog'lanishda xatolik", Toast.LENGTH_SHORT).show()
             }
 
         })

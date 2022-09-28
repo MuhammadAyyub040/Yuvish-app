@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
+    style="@style/DarkThemeBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/DarkThemeBackground"
     tools:context=".Fragments.DebtorFragment">
 
     <ScrollView
+        style="@style/DarkThemeBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/DarkThemeBackground"
         tools:context=".MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/DarkThemeBackground"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/DarkThemeBackground">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -42,13 +43,13 @@
                         android:src="@drawable/ic_menu" />
 
                     <TextView
+                        style="@style/textStyle"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/qarzdorlar_bo_limi"
-                        style="@style/textStyle"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -162,6 +163,7 @@
 
                                     <AutoCompleteTextView
                                         android:id="@+id/autoCompleteTextView"
+                                        style="@style/textStyle"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="5dp"
@@ -169,7 +171,6 @@
                                         android:gravity="center"
                                         android:inputType="none"
                                         android:text="@string/_2022"
-                                        style="@style/textStyle"
                                         android:textSize="18sp" />
 
                                 </com.google.android.material.textfield.TextInputLayout>
@@ -218,24 +219,24 @@
 
                 <TextView
                     android:id="@+id/txt_yuvish_bolim"
+                    style="@style/textStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="@string/bu_bo_limda_mijozlar_tomonidan_berilgan_buyurtmalar_uchun_kvitansiyalar_kiritiladi"
                     android:textSize="18sp"
-                    style="@style/textStyle"
                     android:textStyle="bold" />
 
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_registration_washed"
+                style="@style/cardParentStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:cardCornerRadius="30dp"
-                style="@style/cardParentStyle"
                 app:cardElevation="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -252,63 +253,51 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="5dp"
+                        android:layout_margin="8dp"
+                        android:gravity="center"
                         android:orientation="horizontal">
+
+                        <ImageView
+                            style="@style/svgTheme"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="8dp"
+                            android:src="@drawable/ic_person_registration" />
 
                         <TextView
                             android:id="@+id/debtor_customer_name"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_weight="1"
-                            android:text="@string/test_mijoz"
                             style="@style/textStyle"
-                            android:textSize="24sp"
-                            app:drawableLeftCompat="@drawable/ic_person_registration" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="@string/test_mijoz"
+                            android:textSize="24sp" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginLeft="20dp"
-                            style="@style/svgTheme"
-                            android:layout_marginTop="20dp"
-                            android:src="@drawable/phone" />
-
-
-                        <TextView
-                            android:id="@+id/debtor_customer_phone_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:text="@string/_998978878878"
-                            android:textColor="#2196F3"
-                            android:textSize="15sp" />
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:gravity="center">
 
                         <ImageView
+                            style="@style/svgTheme"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="20dp"
-                            style="@style/svgTheme"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="8dp"
                             android:src="@drawable/ic_location" />
 
                         <TextView
                             android:id="@+id/debtor_customer_location"
+                            style="@style/textStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_gravity="center"
                             android:text="@string/manzil"
-                            style="@style/textStyle"
-                            android:textSize="15sp" />
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -318,12 +307,12 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            style="@style/textStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginTop="20dp"
                             android:text="@string/qarz_id_raqami"
-                            style="@style/textStyle"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
@@ -358,60 +347,12 @@
                     </LinearLayout>
 
                     <TextView
+                        style="@style/textStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/qarz_summa"
-                        style="@style/textStyle"
-                        android:textStyle="bold" />
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        app:cardCornerRadius="16dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/edt_debt_amount"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:layout_gravity="center"
-                            android:inputType="number"
-                            android:clickable="false"
-                            android:focusable="false"
-                            android:focusableInTouchMode="false"
-                            android:padding="10dp"
-                            android:minHeight="48dp" />
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:clickable="false"
-                            android:focusable="false"
-                            style="@style/textStyle"
-                            android:focusableInTouchMode="false"
-                            android:padding="10dp"
-                            android:gravity="center"
-                            android:text="so'm" />
-
-                    </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:text="@string/berish_sanasi"
-                        style="@style/textStyle"
                         android:textStyle="bold" />
 
                     <androidx.cardview.widget.CardView
@@ -423,26 +364,92 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
                             android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/edt_date_picker_debtor"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        style="@style/cardStyle"
-                        android:gravity="center"
-                        android:hint="@string/dd_mm_yyyy"
-                        android:inputType="number" />
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                app:boxStrokeWidth="0dp"
+                                app:endIconMode="custom"
+                                app:hintEnabled="false">
 
-                            <ImageView
-                                android:id="@+id/date_picker_debtor"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edt_debt_amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:clickable="false"
+                                    android:focusable="false"
+                                    android:focusableInTouchMode="false"
+                                    android:inputType="number"
+                                    android:minHeight="48dp"
+                                    android:padding="10dp" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                style="@style/textStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                style="@style/svgTheme"
-                                android:src="@drawable/ic_calendar"/>
+                                android:focusableInTouchMode="false"
+                                android:gravity="center"
+                                android:padding="10dp"
+                                android:text="@string/so_m" />
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        style="@style/textStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:text="@string/berish_sanasi"
+                        android:textStyle="bold" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        app:cardCornerRadius="16dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="10dp">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/debtorDateLayout"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:boxCornerRadiusBottomEnd="16dp"
+                                app:boxCornerRadiusBottomStart="16dp"
+                                app:boxCornerRadiusTopEnd="16dp"
+                                app:boxCornerRadiusTopStart="16dp"
+                                app:boxStrokeWidth="0dp"
+                                app:endIconDrawable="@drawable/ic_calendar"
+                                app:endIconMode="custom"
+                                app:hintEnabled="false">
+
+                                <br.com.sapereaude.maskedEditText.MaskedEditText
+                                    android:id="@+id/date"
+                                    style="@style/textStyle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:hint="--------"
+                                    android:inputType="date"
+                                    android:typeface="monospace"
+                                    app:keep_hint="true"
+                                    mask:allowed_chars="1234567890"
+                                    mask:mask="##.##.####" />
+
+                            </com.google.android.material.textfield.TextInputLayout>
 
                         </LinearLayout>
 
@@ -454,30 +461,30 @@
                         android:orientation="horizontal">
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_confirmation"
+                            android:id="@+id/btn_give_up"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
                             android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
                             android:layout_weight="1"
-                            android:backgroundTint="#2196F3"
-                            android:drawableLeft="@drawable/ic_check"
-                            android:text="@string/tasdiqlash"
+                            android:backgroundTint="#F44336"
+                            android:text="@string/kechib_yuborish"
                             android:textColor="@color/white"
                             android:textSize="12sp"
                             app:cornerRadius="10dp" />
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_give_up"
+                            android:id="@+id/btn_confirmation"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="8dp"
-                            android:layout_marginTop="8dp"
                             android:layout_weight="1"
-                            android:backgroundTint="#F44336"
-                            android:text="@string/kechib_yuborish"
+                            android:backgroundTint="#2196F3"
+                            android:drawableLeft="@drawable/ic_check"
+                            android:text="@string/tasdiqlash"
                             android:textColor="@color/white"
                             android:textSize="12sp"
                             app:cornerRadius="10dp" />

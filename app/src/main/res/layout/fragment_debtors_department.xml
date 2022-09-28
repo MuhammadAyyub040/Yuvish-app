@@ -249,24 +249,11 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <EditText
-                        style="@style/editTextDark"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:background="@drawable/custom_input_dark"
-                        android:hint="@string/telefon_raqam_ism"
-                        android:minHeight="48dp"
-                        android:padding="10dp"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp">
 
                         <AutoCompleteTextView
                             android:id="@+id/autoCompleteTextView_debtors"
@@ -282,62 +269,6 @@
 
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_x"
-                            style="@style/textStyle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#F44336"
-                            android:minHeight="48dp"
-                            android:textSize="12sp"
-                            app:cardCornerRadius="16dp"
-                            app:cornerRadius="10dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_close_2"
-                                app:tint="#ffffff" />
-
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/card_ok"
-                            style="@style/textStyle"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:layout_weight="1"
-                            android:backgroundTint="#03A9F4"
-                            android:minHeight="48dp"
-                            android:textSize="12sp"
-                            app:cardCornerRadius="16dp"
-                            app:cornerRadius="10dp">
-
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_check"
-                                app:tint="#ffffff" />
-
-                        </androidx.cardview.widget.CardView>
-
-                    </LinearLayout>
-
                     <TextView
                         style="@style/Theme.AppCompat.DayNight.DarkActionBar"
                         android:layout_width="match_parent"
@@ -345,7 +276,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
                         android:text="@string/yakunlanmagan_qarzlar"
-                        android:textSize="30sp" />
+                        android:textSize="24sp" />
 
                     <View
                         android:layout_width="match_parent"
@@ -390,7 +321,7 @@
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="20dp"
                         android:text="@string/qarzlar"
-                        android:textSize="30sp"
+                        android:textSize="24sp"
                         tools:listitem="@layout/kvitansiya_item_unfinished" />
 
                     <View

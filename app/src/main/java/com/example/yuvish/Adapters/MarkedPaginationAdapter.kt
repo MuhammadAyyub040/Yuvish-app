@@ -55,4 +55,14 @@ class MarkedPaginationAdapter (var onItemClick: OnItemClick, val context: Contex
     interface OnItemClick {
         fun onItemClickMarked(marketPaginationItem: MarketPaginationItem)
     }
+
+    class DebtOrdersDiffItemCallback : DiffUtil.ItemCallback<MarketPaginationItem>() {
+        override fun areItemsTheSame(oldItem: MarketPaginationItem, newItem: MarketPaginationItem): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: MarketPaginationItem, newItem: MarketPaginationItem): Boolean {
+            return oldItem == newItem
+        }
+    }
 }

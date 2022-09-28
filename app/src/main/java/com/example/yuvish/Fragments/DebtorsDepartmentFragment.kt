@@ -1,10 +1,12 @@
 package com.example.yuvish.Fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,11 +22,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
+import com.example.yuvish.Adapters.DebtorsCompletedAdapter
 import com.example.yuvish.Adapters.MarkedPaginationAdapter
-import com.example.yuvish.Adapters.UnMarkedPaginationAdapter
+import com.example.yuvish.Models.ArrangedSubmit.PaymentTypesItem
 import com.example.yuvish.Models.DebtorsAPI.Market.FilterDebtorsItem
 import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
 import com.example.yuvish.Models.DebtorsAPI.Market.PaginationPageMarked
+import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
+import com.example.yuvish.Models.DebtorsPackage.DebtOff
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentDebtorsDepartmentBinding
 import com.example.yuvish.databinding.ItemWarnBinding
@@ -35,15 +40,19 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClick,
-    UnMarkedPaginationAdapter.OnItemClick {
+    DebtorsCompletedAdapter.CallBack {
 
     lateinit var binding: FragmentDebtorsDepartmentBinding
     lateinit var markedPaginationAdapter: MarkedPaginationAdapter
-    lateinit var unMarkedPaginationAdapter: UnMarkedPaginationAdapter
-    lateinit var list: List<FilterDebtorsItem>
+    lateinit var unMarkedPaginationAdapter: DebtorsCompletedAdapter
+    lateinit var list: List<PaymentTypesItem>
+    lateinit var listFilter: List<FilterDebtorsItem>
     lateinit var toggle: ActionBarDrawerToggle
     private var selectedFilterPosition = 0
     var searchPage = false
+
+    private var debtOff: DebtOff? = null
+    private var payDebt: Paydebt? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +67,8 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         binding = FragmentDebtorsDepartmentBinding.inflate(layoutInflater)
 
         markedPaginationAdapter = MarkedPaginationAdapter(this, requireActivity())
-        unMarkedPaginationAdapter = UnMarkedPaginationAdapter(this, requireActivity())
-        filterDebtor()
+        unMarkedPaginationAdapter = DebtorsCompletedAdapter(requireActivity(),this)
+        paymentTypes()
         list = arrayListOf()
 
         val arrayAdapter = ArrayAdapter(
@@ -78,8 +87,8 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
 
         binding.autoCompleteTextViewDebtors.setOnItemClickListener { parent, view, position, id ->
             selectedFilterPosition = position
-            getPaginationPageMarked(list[position].value)
-            getPaginationPageUnMarked(list[position].value)
+            getPaginationPageMarked(list[position].value.toInt())
+            getPaginationPageUnMarked(list[position].value.toInt())
         }
 
         binding.btnSearch.setOnClickListener {
@@ -196,7 +205,13 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
                 enablePlaceholders = false,
                 initialLoadSize = 10
             ),
-            pagingSourceFactory = { PaginationPageMarked(ApiClient.retrofitService, driverId, "marked") }
+            pagingSourceFactory = {
+                PaginationPageMarked(
+                    ApiClient.retrofitService,
+                    driverId,
+                    "marked"
+                )
+            }
         ).liveData.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 markedPaginationAdapter.submitData(it)
@@ -211,7 +226,13 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
                 enablePlaceholders = false,
                 initialLoadSize = 10
             ),
-            pagingSourceFactory = { PaginationPageMarked(ApiClient.retrofitService, driverId, "marked") }
+            pagingSourceFactory = {
+                PaginationPageMarked(
+                    ApiClient.retrofitService,
+                    driverId,
+                    "marked"
+                )
+            }
         ).liveData.observe(this) {
             lifecycleScope.launch {
                 markedPaginationAdapter.submitData(it)
@@ -227,7 +248,8 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
                 initialLoadSize = 10
             ),
             pagingSourceFactory = {
-                PaginationPageMarked(ApiClient.retrofitService, driverId, "unmarked") }
+                PaginationPageMarked(ApiClient.retrofitService, driverId, "unmarked")
+            }
         ).liveData.observe(viewLifecycleOwner) {
             lifecycleScope.launch {
                 unMarkedPaginationAdapter.submitData(it)
@@ -242,7 +264,13 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
                 enablePlaceholders = false,
                 initialLoadSize = 10
             ),
-            pagingSourceFactory = { PaginationPageMarked(ApiClient.retrofitService, driverId, "unmarked") }
+            pagingSourceFactory = {
+                PaginationPageMarked(
+                    ApiClient.retrofitService,
+                    driverId,
+                    "unmarked"
+                )
+            }
         ).liveData.observe(this) {
             lifecycleScope.launch {
                 unMarkedPaginationAdapter.submitData(it)
@@ -250,20 +278,53 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         }
     }
 
-    private fun filterDebtor(){
-        ApiClient.retrofitService.filterDebtors().enqueue(object : Callback<List<FilterDebtorsItem>> {
-            override fun onResponse(call: Call<List<FilterDebtorsItem>>, response: Response<List<FilterDebtorsItem>>) {
+    private fun paymentDebt(paydebt: Paydebt) {
+        ApiClient.retrofitService.requestPayDebt(paydebt).enqueue(object : Callback<String?> {
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                if (response.code() == 200){}
+            }
 
-                if (response.code() == 200){
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun paymentTypes() {
+        ApiClient.retrofitService.paymentTypes().enqueue(object : Callback<List<PaymentTypesItem>> {
+
+            override fun onResponse(call: Call<List<PaymentTypesItem>>, response: Response<List<PaymentTypesItem>>) {
+
+                if (response.code() == 200) {
                     list = response.body()!!
-                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map { it.title })
+                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map { it.name })
                     binding.autoCompleteTextViewDebtors.setAdapter(arrayAdapter)
+                    unMarkedPaginationAdapter.submitPaymentTypesList(response.body()!!)
                 }
             }
 
-            override fun onFailure(call: Call<List<FilterDebtorsItem>>, t: Throwable) {
+            override fun onFailure(call: Call<List<PaymentTypesItem>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show() } })
+                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun requestDebtOff(debtOff: DebtOff){
+        ApiClient.retrofitService.requestDebtOff(debtOff).enqueue(object : Callback<String?>{
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                if (response.code() == 200){
+                }
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     private fun closeKeyboard(view: View) {
@@ -273,32 +334,61 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
     }
 
     override fun onItemClickMarked(marketPaginationItem: MarketPaginationItem) {
-        Log.e("TAG", "onItemClickUnMarked ${marketPaginationItem.id}")
+        Log.e(TAG, "onItemClickMarked: ${marketPaginationItem.id}")
         findNavController().navigate(R.id.debtorFragment, bundleOf(
-            "id" to marketPaginationItem.id
-        )
+                "debtId" to marketPaginationItem.id
+            )
         )
     }
 
-    override fun onItemClickUnMarked(marketPaginationItem: MarketPaginationItem) {
-        findNavController().navigate(R.id.registrationFragment, bundleOf(
-            "orderId" to marketPaginationItem.order_id
-        ))
-    }
-
-    override fun onItemClickUnMarked2(marketPaginationItem: MarketPaginationItem) {
+    @SuppressLint("SetTextI18n")
+    private fun showDebtOffDialog(marketPaginationItem: MarketPaginationItem){
+        val customDialog = AlertDialog.Builder(requireActivity()).create()
         val dialogBinding = ItemWarnBinding.inflate(layoutInflater)
+        customDialog.setView(dialogBinding.root)
+        customDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val myDialog = AlertDialog.Builder(requireActivity()).create()
-        myDialog.setView(dialogBinding.root)
+        val description = getString(R.string.debt_off_name_and_amount)
+            .replace("\'name\'", marketPaginationItem.costumer.costumer_name ?: "")
+            .replace("\'amount\'", marketPaginationItem.summa.toString() ?: "")
+        dialogBinding.txtWarn.text = description
 
         dialogBinding.cardWarnClose.setOnClickListener {
-            myDialog.dismiss()
+            customDialog.dismiss()
         }
 
-        myDialog.setCancelable(true)
-        myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        myDialog.show()
+        dialogBinding.btnGiveUp.setOnClickListener {
+            val comment = dialogBinding.commentWarn.text.toString()
+
+            if (comment.length <= 3){
+                dialogBinding.commentWarn.error = getString(R.string.izoh_3_ta_belgidan_ko_p_bo_lishi_shart)
+            }else{
+                debtOff = DebtOff(comment, marketPaginationItem.id)
+                requestDebtOff(debtOff!!)
+                customDialog.dismiss()
+            }
+        }
+
+        customDialog.show()
+    }
+
+    private fun intentCall(phoneNumber: String){
+        val callIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+        startActivity(callIntent)
+    }
+
+    override fun phoneClickListener(marketPaginationItem: MarketPaginationItem) {
+        intentCall(marketPaginationItem.costumer.costumer_phone_1)
+    }
+
+    override fun payDebtClickListener(payDebt: Paydebt) {
+        Log.e(TAG, "payDebtClickListener:" )
+        this.payDebt = payDebt
+        paymentDebt(payDebt)
+    }
+
+    override fun debtOffClickListener(marketPaginationItem: MarketPaginationItem) {
+        showDebtOffDialog(marketPaginationItem)
     }
 
 }

@@ -6,7 +6,6 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -18,7 +17,6 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Models.Authorization.UserToken
 import com.example.yuvish.Models.LanguageHelper
 import com.example.yuvish.Models.Setting.ResponseSetting
 import com.example.yuvish.Models.Setting.Setting
@@ -27,15 +25,10 @@ import com.example.yuvish.R
 import com.example.yuvish.databinding.ConfirmationBinding
 import com.example.yuvish.databinding.FragmentSettingBinding
 import com.example.yuvish.databinding.ItemThemeBinding
-import com.example.yuvish.databinding.SubmittedItemBinding
 import com.example.yuvish.retrofit.ApiClient
-import com.orhanobut.hawk.Hawk
-import kotlinx.android.synthetic.main.confirmation.*
-import kotlinx.android.synthetic.main.fragment_setting.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.log
 
 class SettingFragment : Fragment() {
 

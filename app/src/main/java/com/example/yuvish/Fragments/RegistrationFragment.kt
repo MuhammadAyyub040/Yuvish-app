@@ -21,7 +21,6 @@ import com.example.yuvish.Models.Registration.ServiceTypeItem
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentRegistrationBinding
 import com.example.yuvish.retrofit.ApiClient
-import kotlinx.android.synthetic.main.fragment_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

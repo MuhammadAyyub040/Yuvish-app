@@ -381,6 +381,7 @@
                                     <AutoCompleteTextView
                                         android:id="@+id/services"
                                         style="@style/textStyle"
+                                        android:text="@string/gilam"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:inputType="none" />
@@ -481,7 +482,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="16dp"
                                 android:nestedScrollingEnabled="false"
-                                android:orientation="vertical"
                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                 tools:itemCount="2"
                                 tools:listitem="@layout/selected_service_item_layout" />
@@ -742,22 +742,44 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.button.MaterialButton
+                        <androidx.cardview.widget.CardView
                             android:id="@+id/registration"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            app:cardBackgroundColor="@color/blue"
                             android:minHeight="48dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
                             android:layout_marginBottom="10dp"
-                            android:backgroundTint="#2196F3"
-                            android:drawableLeft="@drawable/ic_check"
-                            android:text="@string/ro_yxatga_olish"
-                            android:textColor="#FFFFFF"
-                            android:textSize="12sp"
-                            app:cornerRadius="10dp" />
+                            app:cardCornerRadius="16dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/ro_yxatga_olish"
+                                android:textColor="#FFFFFF"
+                                android:gravity="center"
+                                android:textSize="18sp"/>
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="16dp"
+                                android:gravity="center"
+                                android:src="@drawable/ic_check"/>
+
+                    </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
 
                     </LinearLayout>
 
