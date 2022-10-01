@@ -39,7 +39,6 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
     private var customerTypesList: ArrayList<String>? = null
     private lateinit var customerTypeAdapter: ArrayAdapter<String>
     private lateinit var nationalitiesAdapter: ArrayAdapter<String>
-    var searchPage = false
     var newPage = false
 
     private var selectedCustomerTypePosition = 0
@@ -86,11 +85,8 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
         }
         updateCustomerTypeDropDown()
 
-        binding.btnMenu.setOnClickListener {
-            binding.navView.visibility = View.GONE
-            newPage = false
-
-            closeKeyboard()
+        binding.backStack.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         binding.btnCancellation.setOnClickListener {
@@ -103,92 +99,6 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
             closeKeyboard()
         }
 
-        toggle =
-            ActionBarDrawerToggle(
-                requireActivity(),
-                binding.drawerLayout,
-                R.string.open,
-                R.string.close
-            )
-        binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        binding.btnMenu.setOnClickListener {
-            binding.drawerLayout.open()
-        }
-
-        binding.navView.setNavigationItemSelectedListener {
-
-            when (it.itemId) {
-
-                R.id.base -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Asosiy bo'lim tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.baseFragment)
-                }
-                R.id.new_order -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Yangi buyurtmalar tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.transportFragment)
-                }
-                R.id.washing -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Yuvish bo'limi tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.homeFragment)
-                }
-                R.id.ready -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Tayyor buyurtmalar tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.tayyorFragment)
-                }
-                R.id.warehouse -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Sklad bo'limi tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.skladFragment)
-                }
-                R.id.employee_setting -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Xodim sozlamalari tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.settingFragment)
-                }
-                R.id.close -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Chiqish tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.loginFragment)
-                }
-                R.id.debtors -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Qarzdorlar bo'limi tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.debtorsDepartmentFragment)
-                }
-            }
-            true
-
-        }
     }
     private fun addCustomer(postCustomer: PostCustomer){
         ApiClient.retrofitService.addCustomer(postCustomer).enqueue(object : Callback<Int?> {

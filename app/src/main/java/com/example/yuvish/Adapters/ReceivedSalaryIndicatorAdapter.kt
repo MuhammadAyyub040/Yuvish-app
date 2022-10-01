@@ -12,13 +12,15 @@ import com.example.yuvish.R
 import com.example.yuvish.databinding.ReceivedSalaryIndicatorItemLayoutBinding
 
 class ReceivedSalaryIndicatorAdapter(
-    private val context: Context
 ): PagingDataAdapter<ReceivedSalaryIndicatorOrder, ReceivedSalaryIndicatorAdapter.ItemHolder>(ReceivedSalaryIndicatorOrderDiffItemCallback()) {
 
     inner class ItemHolder(val binding: ReceivedSalaryIndicatorItemLayoutBinding): RecyclerView.ViewHolder(binding.root){
 
         @SuppressLint("SetTextI18n")
         fun setItem(receivedSalaryIndicatorOrder: ReceivedSalaryIndicatorOrder, position: Int){
+
+            val context = binding.root.context
+
             binding.ordinalNumber.text = "${position + 1}."
             binding.name.text = receivedSalaryIndicatorOrder.kassachi
             binding.salary.text = "${context.getString(R.string.maosh)}: " +

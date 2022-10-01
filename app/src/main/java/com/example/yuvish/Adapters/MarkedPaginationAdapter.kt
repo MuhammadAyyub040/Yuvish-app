@@ -18,6 +18,9 @@ class MarkedPaginationAdapter (var onItemClick: OnItemClick, val context: Contex
             binding.cardFinish.setOnClickListener {
                 onItemClick.onItemClickMarked(marketPaginationItem)
             }
+            binding.txtPhoneNumberUnFinishing.setOnClickListener {
+                onItemClick.phoneItemClickMarked(marketPaginationItem)
+            }
 
             val differenceDayManager= DifferenceDayManager(marketPaginationItem.ber_date, context)
             val resource = differenceDayManager.getResource()
@@ -54,6 +57,7 @@ class MarkedPaginationAdapter (var onItemClick: OnItemClick, val context: Contex
 
     interface OnItemClick {
         fun onItemClickMarked(marketPaginationItem: MarketPaginationItem)
+        fun phoneItemClickMarked(marketPaginationItem: MarketPaginationItem)
     }
 
     class DebtOrdersDiffItemCallback : DiffUtil.ItemCallback<MarketPaginationItem>() {

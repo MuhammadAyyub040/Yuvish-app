@@ -341,6 +341,10 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         )
     }
 
+    override fun phoneItemClickMarked(marketPaginationItem: MarketPaginationItem) {
+        intentCall(marketPaginationItem.costumer.costumer_phone_1)
+    }
+
     @SuppressLint("SetTextI18n")
     private fun showDebtOffDialog(marketPaginationItem: MarketPaginationItem){
         val customDialog = AlertDialog.Builder(requireActivity()).create()

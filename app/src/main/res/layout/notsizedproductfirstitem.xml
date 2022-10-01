@@ -261,7 +261,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
-                    app:cardBackgroundColor="@color/yellow"
+                    app:cardBackgroundColor="#FFC107"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="8dp"
                     app:contentPadding="12dp">

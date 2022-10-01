@@ -46,7 +46,6 @@ class DebtorFragment : Fragment() {
     private var debtId: Int? = null
     private var confirmDebt: ConfirmDebt? = null
     private var debtOff: DebtOff? = null
-    var searchPage = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,24 +72,8 @@ class DebtorFragment : Fragment() {
         )
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
 
-        binding.btnX.setOnClickListener {
-            binding.searchCard.visibility = View.GONE
-            searchPage = false
-
-            closeKeyboard()
-        }
-
-        binding.btnSearch.setOnClickListener {
-            when (searchPage) {
-                false -> {
-                    binding.searchCard.visibility = View.VISIBLE
-                    searchPage = true
-                }
-                true -> {
-                    binding.searchCard.visibility = View.GONE
-                    searchPage = false
-                }
-            }
+        binding.backStack.setOnClickListener {
+            findNavController().popBackStack()
         }
 
         binding.btnGiveUp.setOnClickListener {
@@ -105,92 +88,6 @@ class DebtorFragment : Fragment() {
             checkDebtPayDate()
         }
 
-        toggle = ActionBarDrawerToggle(
-            requireActivity(),
-            binding.drawerLayout,
-            R.string.open,
-            R.string.close
-        )
-        binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-
-        binding.btnMenu.setOnClickListener {
-            binding.drawerLayout.open()
-        }
-
-        binding.navView.setNavigationItemSelectedListener {
-
-            when (it.itemId) {
-
-                R.id.base -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Asosiy bo'lim tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.baseFragment)
-                }
-                R.id.new_order -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Yangi buyurtmalar tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.transportFragment)
-                }
-                R.id.washing -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Yuvish bo'limi tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.homeFragment)
-                }
-                R.id.ready -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Tayyor buyurtmalar tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.tayyorFragment)
-                }
-                R.id.warehouse -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Sklad bo'limi tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.skladFragment)
-                }
-                R.id.employee_setting -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Xodim sozlamalari tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.settingFragment)
-                }
-                R.id.close -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Chiqish tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.loginFragment)
-                }
-                R.id.debtors -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Qarzdorlar bo'limi tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    findNavController().navigate(R.id.debtorsDepartmentFragment)
-                }
-            }
-            true
-
-        }
     }
 
     private fun checkDebtPayDate() {

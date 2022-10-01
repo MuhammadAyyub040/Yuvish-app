@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayout"
@@ -34,12 +34,11 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/btn_menu"
-                        style="@style/svgTheme"
+                        android:id="@+id/backStack"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:padding="5dp"
-                        android:src="@drawable/ic_menu" />
+                        android:src="@drawable/ic_arrow_back" />
 
                     <TextView
                         style="@style/textStyle"
@@ -47,18 +46,11 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:layout_marginEnd="50dp"
                         android:padding="10dp"
                         android:text="@string/transport_bo_limi"
                         android:textSize="18sp"
                         android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/btn_search"
-                        style="@style/svgTheme"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        android:padding="5dp"
-                        android:src="@drawable/ic_search" />
 
 
                 </LinearLayout>
@@ -99,14 +91,6 @@
                                     android:text="@string/qidirish"
                                     android:textSize="22sp"
                                     android:textStyle="bold" />
-
-                                <ImageView
-                                    android:id="@+id/btn_x"
-                                    style="@style/svgTheme"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:src="@drawable/ic_baseline_close_24"
-                                    app:layout_constraintRight_toRightOf="parent" />
 
                             </LinearLayout>
 
@@ -1048,14 +1032,4 @@
 
     </ScrollView>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu" />
-
-
-</androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout>

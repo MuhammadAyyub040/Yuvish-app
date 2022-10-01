@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -65,7 +66,7 @@ class BaseFragment : Fragment() {
             arrayListOf("2022", "2021")
         )
 
-        searchIndicators("fromDate", "toDate")
+//        searchIndicators("fromDate", "toDate")
 
         binding.autoCompleteTextViewBase.setAdapter(arrayAdapter)
 

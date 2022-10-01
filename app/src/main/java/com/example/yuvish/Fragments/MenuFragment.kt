@@ -66,7 +66,7 @@ class MenuFragment : Fragment() {
 
     private fun checkChangeFragment(){
             binding.animationView.pauseAnimation()
-            findNavController().navigate(R.id.debtorsDepartmentFragment)
+            findNavController().navigate(R.id.homeFragment)
     }
 
     private fun getToken(): String?{
