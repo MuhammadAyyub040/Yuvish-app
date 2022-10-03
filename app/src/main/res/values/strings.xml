@@ -294,4 +294,15 @@
     <string name="debt_off_name_and_amount">Siz rostdan ham \'name\'ning \'amount\' so\'m qarzini kechib yubormoqchimisiz?</string>
     <string name="enter_correct_amount">Iltimos to\'g\'ri summani kiriting!</string>
     <string name="select_payment_type">Iltimos to\'lov turini tanlang!</string>
+    <string name="final_payment">Yakuniy to\'lov:</string>
+    <string name="total_dropped">Jami tushib berildi:</string>
+    <string name="dropped">Tushib berildi:</string>
+    <string name="to_customer_pickup_away">O\'zi olib ketishi uchun</string>
+    <string name="for_rewash">Qayta yuvish uchun:</string>
+    <string name="total_discount">Jami chegirma:</string>
+    <string name="receipt_number_full">Kvitansiya №:</string>
+    <string name="phone_number_with_delimetr">Telefon raqami:</string>
+    <string name="destination">Mo\'ljali:</string>
+    <string name="address_with_delimetr">Manzili:</string>
+    <string name="company_name">Korxona nomi:</string>
 </resources>

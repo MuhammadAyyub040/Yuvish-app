@@ -54,7 +54,7 @@ class RegistrationAdapter(private val callBack: CallBack): RecyclerView.Adapter<
 
         fun setItem(sizingProduct: SizingProduct, position: Int){
             Log.e(TAG, "setItem: ${sizingProductsList.size}")
-            binding.type.text = sizingProduct.xizmat.xizmat_turi
+            binding.typeService.text = sizingProduct.xizmat.xizmat_turi
             binding.price.isFocusable = getPriceChangePermission()
             binding.print.isVisible = getPrintPermission() && sizingProduct.barcode != "0"
 

@@ -23,6 +23,9 @@ class WerehousePaginationAdapter(val context: Context, var onItemClick: OnItemCl
             binding.cardTransport.setOnClickListener {
                 onItemClick.onItemClick2Warehouse(ordersOmborItem)
             }
+            binding.txtPhoneNumberWarehouse.setOnClickListener {
+                onItemClick.onItemClickPhoneNumber(ordersOmborItem)
+            }
 
             val differenceDayManager= DifferenceDayManager(ordersOmborItem.topshir_sana, context)
             val resource = differenceDayManager.getResource()
@@ -63,6 +66,7 @@ class WerehousePaginationAdapter(val context: Context, var onItemClick: OnItemCl
     interface OnItemClick {
         fun onItemClickWarehouse(ordersOmborItem: OrdersOmborItem)
         fun onItemClick2Warehouse(ordersOmborItem: OrdersOmborItem)
+        fun onItemClickPhoneNumber(ordersOmborItem: OrdersOmborItem)
     }
 
 }

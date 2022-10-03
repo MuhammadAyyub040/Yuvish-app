@@ -2,7 +2,9 @@ package com.example.yuvish.Fragments
 
 import android.Manifest
 import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -238,6 +240,15 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         findNavController().navigate(R.id.registrationFragment, bundleOf(
         "orderId" to rewashReceipt.order_id
         ))
+    }
+
+    override fun onItemClickPhoneNumber(rewashReceipt: RewashReceipt) {
+        intentCall(rewashReceipt.costumer.costumer_phone_1)
+    }
+
+    private fun intentCall(phoneNumber: String){
+        val callIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+        startActivity(callIntent)
     }
 
     private fun checkPermission(){

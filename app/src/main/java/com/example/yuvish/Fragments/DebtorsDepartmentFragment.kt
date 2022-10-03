@@ -376,13 +376,13 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         customDialog.show()
     }
 
+    override fun phoneClickListener(marketPaginationItem: MarketPaginationItem) {
+        intentCall(marketPaginationItem.costumer.costumer_phone_1)
+    }
+
     private fun intentCall(phoneNumber: String){
         val callIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
         startActivity(callIntent)
-    }
-
-    override fun phoneClickListener(marketPaginationItem: MarketPaginationItem) {
-        intentCall(marketPaginationItem.costumer.costumer_phone_1)
     }
 
     override fun payDebtClickListener(payDebt: Paydebt) {

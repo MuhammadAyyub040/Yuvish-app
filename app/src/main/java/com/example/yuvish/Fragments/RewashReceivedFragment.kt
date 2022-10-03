@@ -10,9 +10,14 @@ import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.ProductsIndicatorChildAdapter
 import com.example.yuvish.Adapters.ReceivedRewashIndicatorGroupAdapter
 import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorProduct
+import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedRewashIndicator
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentRewashReceivedBinding
+import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class RewashReceivedFragment : Fragment() {
 
@@ -50,9 +55,7 @@ class RewashReceivedFragment : Fragment() {
         binding.fromAndToDate.text = getString(R.string.between_rewashed, fromDate.transformDate(), toDate.transformDate())
 
         if (totalIndicatorProductsList.isNull()){
-            totalIndicatorsPlaceHolderVisible(true)
         }else{
-            totalIndicatorsPlaceHolderVisible(false)
             updateTotalIndicators(totalIndicatorProductsList!!)
         }
 
@@ -70,6 +73,8 @@ class RewashReceivedFragment : Fragment() {
         totalProductsAdapter.submitList(indicatorProductsList)
     }
 
+
+
     private fun String.transformDate(): String{
         val dateArray = this.split("-")
         return "${dateArray[2]}.${dateArray[1]}.${dateArray[0]}"
@@ -83,17 +88,6 @@ class RewashReceivedFragment : Fragment() {
         }
 
         return count
-    }
-
-    private fun totalIndicatorsPlaceHolderVisible(visible: Boolean){
-
-        binding.totalProductCount.isGone = visible
-        binding.totalProductsRV.isGone = visible
-    }
-
-    private fun indicatorsPlaceHolderVisible(visible: Boolean){
-
-        binding.indicatorsRV.isGone = visible
     }
 
 }

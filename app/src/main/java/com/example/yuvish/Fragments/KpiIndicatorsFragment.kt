@@ -35,7 +35,6 @@ class KpiIndicatorsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         fromDate = arguments?.getString("fromDate")!!
         toDate = arguments?.getString("toDate")!!
-//        initObservers()
     }
 
     override fun onCreateView(
@@ -52,10 +51,8 @@ class KpiIndicatorsFragment : Fragment() {
         binding.fromAndToDate.text = getString(R.string.between_kpi, fromDate.transformDate(), toDate.transformDate())
 
         if (totalIndicatorAmount.isNull()){
-            totalIndicatorsPlaceHolderVisible(true)
             getKpiIndicator(fromDate, toDate, 1)
         }else{
-            totalIndicatorsPlaceHolderVisible(false)
             updateTotalIndicators(totalIndicatorAmount!!)
         }
 
@@ -76,9 +73,6 @@ class KpiIndicatorsFragment : Fragment() {
         return "${dateArray[2]}.${dateArray[1]}.${dateArray[0]}"
     }
 
-    private fun totalIndicatorsPlaceHolderVisible(visible: Boolean){
-        binding.totalIndicatorAmount.isGone = visible
-    }
 
     private fun getKpiIndicator(fromDate: String, toDate: String, page: Int){
         ApiClient.retrofitService.getKpiIndicators(fromDate, toDate, page).enqueue(object : Callback<KpiIndicator>{
@@ -86,7 +80,7 @@ class KpiIndicatorsFragment : Fragment() {
                 if (response.code() == 200){
                     Log.e("TAG", "onResponse: ${response.code()}" )
                     kpiIndicator = response.body()!!
-                    updateTotalIndicators(response.body()!!.jami_summa)
+                    binding.totalIndicatorAmount.text = "${kpiIndicator.jami_summa}${getString(R.string.so_m)}"
                 }
             }
 

@@ -19,6 +19,9 @@ class CleaningPaginationAdapter(val context: Context, var onItemClick: OnItemCli
             binding.btnRegistration.setOnClickListener {
                 onItemClick.onItemClickCleaning(rewashReceipt)
             }
+            binding.txtPhoneNumber.setOnClickListener {
+                onItemClick.onItemClickPhoneNumber(rewashReceipt)
+            }
 
             val differenceDayManager= DifferenceDayManager(rewashReceipt.topshir_sana, context)
             val resource = differenceDayManager.getResource()
@@ -57,5 +60,6 @@ class CleaningPaginationAdapter(val context: Context, var onItemClick: OnItemCli
 
     interface OnItemClick {
         fun onItemClickCleaning(rewashReceipt: RewashReceipt)
+        fun onItemClickPhoneNumber(rewashReceipt: RewashReceipt)
         }
 }

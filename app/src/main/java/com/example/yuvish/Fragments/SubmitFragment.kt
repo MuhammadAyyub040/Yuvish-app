@@ -1,7 +1,9 @@
 package com.example.yuvish.Fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -15,15 +17,28 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.example.yuvish.Adapters.ReceiptPrintProductsGroupAdapter
 import com.example.yuvish.Adapters.SubmitAdapterGroup
 import com.example.yuvish.Adapters.SubmitAdapterChild
 import com.example.yuvish.Models.ArrangedSubmit.PaymentTypesItem
 import com.example.yuvish.Models.ArrangedSubmit.Product
 import com.example.yuvish.Models.ArrangedSubmit.Submit
+import com.example.yuvish.Models.PdfManager
+import com.example.yuvish.Models.PrintManager
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentSumbitBinding
+import com.example.yuvish.databinding.ReceiptPrintLayoutBinding
 import com.example.yuvish.retrofit.ApiClient
+import com.example.yuvish.retrofit.GlobalData
+import com.example.yuvish.retrofit.isNull
+import com.gkemon.XMLtoPDF.PdfGeneratorListener
+import com.gkemon.XMLtoPDF.model.SuccessResponse
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,7 +48,8 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
     lateinit var binding: FragmentSumbitBinding
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var submitAdapter: SubmitAdapterGroup
-    lateinit var paymentTypesItem: PaymentTypesItem
+    private lateinit var pdfManager: PdfManager
+    private lateinit var printManager: PrintManager
     lateinit var list: List<PaymentTypesItem>
     lateinit var submit: Submit
     var commentPage = false
@@ -46,6 +62,8 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
         super.onCreate(savedInstanceState)
         orderId = arguments?.getInt("orderId")
         list = arrayListOf()
+        pdfManager = PdfManager(requireActivity())
+        printManager = PrintManager(requireActivity())
         paymentTypes()
     }
 
@@ -88,6 +106,14 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
         binding.cardChegirma.setOnClickListener {
             binding.linearDiscount.visibility = View.GONE
             discountPage = false
+        }
+
+        binding.imgPrint.setOnClickListener {
+            if (submit.isNull()){
+                Toast.makeText(requireActivity(), getString(R.string.not_enough_information), Toast.LENGTH_SHORT).show()
+            }else{
+                printReceipt(submit)
+            }
         }
 
         binding.btnPut.setOnClickListener {
@@ -256,4 +282,106 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
 
     override fun rewashClickListener(product: Product) {}
 
+    @SuppressLint("SetTextI18n")
+    private fun updateDiscounts(printBinding: ReceiptPrintLayoutBinding, submit: Submit){
+        if (submit.jami_chegirma == 0){
+            printBinding.discountsLayout.visibility = View.GONE
+        }else{
+            printBinding.discountsLayout.visibility = View.VISIBLE
+            printBinding.totalDiscount.text = "${submit.jami_chegirma} %"
+
+            if (submit.qayta_yuvish_chegirma == 0){
+                printBinding.rewashDiscountLayout.visibility = View.GONE
+                printBinding.rewashDiscountDivider.visibility = View.GONE
+            }else{
+                printBinding.rewashDiscountLayout.visibility = View.VISIBLE
+                printBinding.rewashDiscountDivider.visibility = View.VISIBLE
+                printBinding.rewashDiscount.text = "${submit.qayta_yuvish_chegirma} ${getString(R.string.so_m)}"
+            }
+
+            if (submit.own_chegirma == 0){
+                printBinding.customerPickupDiscountLayout.visibility = View.GONE
+                printBinding.customerPickupDiscountDivider.visibility = View.GONE
+            }else{
+                printBinding.customerPickupDiscountLayout.visibility = View.VISIBLE
+                printBinding.customerPickupDiscountDivider.visibility = View.VISIBLE
+                printBinding.customerPickupDiscount.text = "${submit.own_chegirma} ${getString(R.string.so_m)}"
+            }
+
+            if (submit.tushish_chegirma == 0){
+                printBinding.droppedDiscountLayout.visibility = View.GONE
+                printBinding.droppedDiscountDivider.visibility = View.GONE
+            }else{
+                printBinding.droppedDiscountLayout.visibility = View.VISIBLE
+                printBinding.droppedDiscountDivider.visibility = View.VISIBLE
+                printBinding.droppedDiscount.text = "${submit.tushish_chegirma} ${getString(R.string.so_m)}"
+            }
+
+            if (submit.jami_tushish_chegirma == 0){
+                printBinding.totalDroppedDiscountLayout.visibility = View.GONE
+                printBinding.totalDroppedDiscountDivider.visibility = View.GONE
+            }else{
+                printBinding.totalDroppedDiscountLayout.visibility = View.VISIBLE
+                printBinding.totalDroppedDiscountDivider.visibility = View.VISIBLE
+                printBinding.totalDroppedDiscount.text = "${submit.jami_tushish_chegirma} ${getString(R.string.so_m)}"
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun printReceipt(submit: Submit){
+        lifecycleScope.launch(Dispatchers.Main){
+
+            val printBinding = ReceiptPrintLayoutBinding.inflate(layoutInflater)
+            val logoBitmap = loadLogo(
+                "${ApiClient.IMAGE_BASE_URL}${GlobalData.currentUser!!.filial.logo}"
+            )
+            val receiptPrintProductsGroupAdapter = ReceiptPrintProductsGroupAdapter(
+                submit.buyurtmalar, requireActivity()
+            )
+
+            printBinding.logo.setImageBitmap(logoBitmap)
+            printBinding.productsRV.adapter = receiptPrintProductsGroupAdapter
+            printBinding.companyName.text = GlobalData.currentUser?.filial?.filial_name
+            printBinding.address.text = GlobalData.currentUser?.filial?.filial_address
+            printBinding.destination.text = GlobalData.currentUser?.filial?.filial_destination
+            printBinding.phoneNumber.text = "+998${GlobalData.currentUser?.filial?.filial_phone}"
+            printBinding.receiptNumber.text = submit.nomer.toString()
+            printBinding.totalAmount.text = "${submit.jami_summa} ${getString(R.string.so_m)}"
+            printBinding.finalAmount.text = "${submit.yakuniy_summa} ${getString(R.string.so_m)}"
+            updateDiscounts(printBinding, submit)
+
+            generatePdf(printBinding.root)
+        }
+    }
+
+    private suspend fun loadLogo(url: String): Bitmap {
+        val logoLoader = Glide.with(requireActivity())
+            .asBitmap()
+            .load(url)
+            .submit()
+
+        return withContext(Dispatchers.Default) {
+            logoLoader.get()
+        }
+    }
+
+    private fun generatePdf(view: View){
+        val pdfGeneratorListener = object : PdfGeneratorListener() {
+            override fun onStartPDFGeneration() {
+
+            }
+
+            override fun onFinishPDFGeneration() {
+
+            }
+
+            override fun onSuccess(response: SuccessResponse?) {
+                super.onSuccess(response)
+                printManager.showCustomSnackBar(response!!.file)
+            }
+        }
+
+        pdfManager.convertViewToPdf(view, ApiClient.RECEIPT_PRINT_FILE_NAME, pdfGeneratorListener)
+    }
 }

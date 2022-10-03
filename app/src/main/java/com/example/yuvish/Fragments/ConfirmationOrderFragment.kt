@@ -150,8 +150,6 @@ class ConfirmationOrderFragment : Fragment(), ConfirmationProductsAdapter.CallBa
         })
     }
 
-    private val TAG = "ConfirmationOrderFragment"
-
     private fun putConfirmationOrder(orderId: Int, putConfirmOrder: PutConfirmOrder){
         ApiClient.retrofitService.putConfirmationOrder(orderId, putConfirmOrder).enqueue(object : Callback<String?>{
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
@@ -163,14 +161,14 @@ class ConfirmationOrderFragment : Fragment(), ConfirmationProductsAdapter.CallBa
 
                         when (whereRequestSentFrom) {
                             "toGetSize" -> {
-                                Log.d(TAG, "onResponse: $orderId")
+                                Log.d("TAG", "onResponse: $orderId")
                                 findNavController().navigate(R.id.getSizeFragment,
                                     bundleOf("orderId" to orderId)
                                 )
                             }
                             "confirm" -> {
                                 sendBackStackRefreshRequest()
-                                findNavController().popBackStack()
+                                findNavController().navigate(R.id.transportFragment)
                             }
                         }
                     }

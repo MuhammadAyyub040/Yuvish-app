@@ -46,11 +46,12 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack, RegistrationAdapter.CallBack {
+class RegistrationFragment : Fragment(), RegistrationAdapter.CallBack {
 
     lateinit var binding: FragmentRegistrationBinding
     lateinit var map: HashMap<String, List<String>>
     lateinit var titleList: ArrayList<String>
+    lateinit var productList: ArrayList<Product>
     lateinit var list: List<ServiceTypeItem>
     lateinit var registrationAdapterGroup: RegistrationAdapterGroup
     lateinit var registrationAdapter: RegistrationAdapter
@@ -98,13 +99,14 @@ class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack, Regi
             updateUI(selectedOrder!!)
         }
 
-        registrationAdapterGroup = RegistrationAdapterGroup(this, false)
+        registrationAdapterGroup = RegistrationAdapterGroup( false)
         binding.rvRegistrationOrders.adapter = registrationAdapterGroup
 
         registrationAdapter = RegistrationAdapter(this)
         binding.rvRegistration.adapter = registrationAdapter
 
         titleList = ArrayList()
+        productList = ArrayList()
         map = HashMap()
 
         val arrayAdapter = ArrayAdapter(
@@ -153,12 +155,6 @@ class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack, Regi
         }
     }
 
-    private fun updateUI(order: Order){
-        binding.customerName.text = order.costumer.costumer_name
-        binding.address.text = order.costumer.costumer_addres
-        binding.receiptNumber.text = order.nomer.toString()
-    }
-
     private fun loadOrderById(where: String){
         toWhereShowNotification = where
         ApiClient.retrofitService.getOrderById(orderId!!)
@@ -174,7 +170,6 @@ class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack, Regi
                     binding.customerName.text = registration.costumer.costumer_name
                     binding.address.text = registration.costumer.costumer_addres
                     binding.registrationPhoneNumber.text = registration.costumer.costumer_phone_1
-                    binding.txtOrdersRegistration.text = registration.items.size.toString()
                     binding.receiptNumber.text = registration.nomer.toString()
                 }
             }
@@ -300,6 +295,25 @@ class RegistrationFragment : Fragment(), RegistrationAdapterChild.CaLLBack, Regi
         printProductBarcode(sizingProduct)
     }
 
-    override fun rewashClickListener(product: Product) {
+    private fun updateUI(order: Order){
+        binding.customerName.text = order.costumer.costumer_name
+        binding.address.text = order.costumer.costumer_addres
+        binding.receiptNumber.text = order.nomer.toString()
+
+        updateProductCount(registration)
+    }
+
+
+    private fun updateProductCount(registration: Registration) {
+        val count = getProductCount(registration)
+        binding.txtOrdersRegistration.text = "$count${getString(R.string.pcs)} "
+    }
+
+    private fun getProductCount(registration: Registration): Int{
+        var count = 0
+        registration.items.forEach{
+            count += it.value
+        }
+        return count
     }
 }

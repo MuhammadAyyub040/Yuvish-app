@@ -30,6 +30,9 @@ class NotArrangedPaginationAdapter(val context: Context, var onItemClick: Tayyor
             binding.txtProduct.setOnClickListener {
                 onItemClick.onItemClickOrder(readyOrdersItem)
             }
+            binding.txtPhoneNumberNotArranged.setOnClickListener {
+                onItemClick.onItemClickUnSortedPhoneNumber(readyOrdersItem)
+            }
 
             val differenceDayManager= DifferenceDayManager(readyOrdersItem.topshir_sana, context)
             val resource = differenceDayManager.getResource()
@@ -75,6 +78,7 @@ class NotArrangedPaginationAdapter(val context: Context, var onItemClick: Tayyor
         fun onItemClickUnsorted2(readyOrdersItem: ReadyOrdersItem)
         fun onItemClickUnsortedLocation(readyOrdersItem: ReadyOrdersItem)
         fun onItemClickOrder(readyOrdersItem: ReadyOrdersItem)
+        fun onItemClickUnSortedPhoneNumber(readyOrdersItem: ReadyOrdersItem)
     }
 
 }

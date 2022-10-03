@@ -12,7 +12,6 @@ import com.example.yuvish.R
 import com.example.yuvish.databinding.ItemMahsulotlarNomiRegistrationBinding
 
 class RegistrationAdapterGroup(
-    private val caLLBack: RegistrationAdapterChild.CaLLBack,
     private val initialExpandableState: Boolean
 ) : RecyclerView.Adapter<RegistrationAdapterGroup.RegistrationViewHolder>() {
 
@@ -24,7 +23,7 @@ class RegistrationAdapterGroup(
         @SuppressLint("SetTextI18n")
         fun setItem(product: Product, position: Int) {
             val registrationAdapterChild =
-                RegistrationAdapterChild(buyurtmalarList, product.xizmat.olchov, caLLBack)
+                RegistrationAdapterChild(buyurtmalarList, product.xizmat.olchov)
             binding.rvProduct.adapter = registrationAdapterChild
             changeExpandableState(initialExpandableState)
 

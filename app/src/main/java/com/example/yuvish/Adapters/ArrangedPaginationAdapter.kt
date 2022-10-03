@@ -33,6 +33,10 @@ class ArrangedPaginationAdapter(val context: Context, var onItemClick: OnItemCli
                 onItemClick.onItemClickViewOrder(readyOrdersItem)
             }
 
+            holder.binding.txtPhoneNumberArranged.setOnClickListener {
+                onItemClick.onItemClickPhoneNumber(readyOrdersItem)
+            }
+
             val differenceDayManager= DifferenceDayManager(readyOrdersItem.topshir_sana, context)
             val resource = differenceDayManager.getResource()
             val color = differenceDayManager.getColor()
@@ -72,6 +76,7 @@ class ArrangedPaginationAdapter(val context: Context, var onItemClick: OnItemCli
         fun onItemClickUnsorted(readyOrdersItem: ReadyOrdersItem)
         fun onItemClickLocation(readyOrdersItem: ReadyOrdersItem)
         fun onItemClickViewOrder(readyOrdersItem: ReadyOrdersItem)
+        fun onItemClickPhoneNumber(readyOrdersItem: ReadyOrdersItem)
     }
 
     private fun startActivity(intent: Intent) {

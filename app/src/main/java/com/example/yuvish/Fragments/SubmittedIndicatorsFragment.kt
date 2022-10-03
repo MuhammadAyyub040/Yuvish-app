@@ -24,7 +24,6 @@ import retrofit2.Response
 class SubmittedIndicatorsFragment : Fragment() {
 
     lateinit var binding: FragmentSubmittedIndicatorsBinding
-    lateinit var submittedIndicator: SubmittedIndicator
     private val submittedIndicatorGroupAdapter: SubmittedIndicatorGroupAdapter by lazy {
         SubmittedIndicatorGroupAdapter(requireActivity()) }
     private val totalProductsAdapter: ProductsIndicatorChildAdapter by lazy {
@@ -92,7 +91,6 @@ class SubmittedIndicatorsFragment : Fragment() {
         ApiClient.retrofitService.getSubmittedIndicators(fromDate, toDate, page).enqueue(object : Callback<SubmittedIndicator>{
             override fun onResponse(call: Call<SubmittedIndicator>, response: Response<SubmittedIndicator>) {
                 if (response.code() == 200){
-
                 }
             }
 

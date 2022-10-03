@@ -272,6 +272,15 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
         viewOrder(readyOrdersItem.order_id)
     }
 
+    override fun onItemClickPhoneNumber(readyOrdersItem: ReadyOrdersItem) {
+        intentCall(readyOrdersItem.costumer.costumer_phone_1)
+    }
+
+    private fun intentCall(phoneNumber: String){
+        val callIntent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+        startActivity(callIntent)
+    }
+
     override fun onItemClickUnsorted(readyOrdersItem: ReadyOrdersItem) {
             val dialogBinding = SortingItemBinding.inflate(layoutInflater)
 
@@ -311,6 +320,10 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
 
     override fun onItemClickOrder(readyOrdersItem: ReadyOrdersItem) {
         viewOrder(readyOrdersItem.order_id)
+    }
+
+    override fun onItemClickUnSortedPhoneNumber(readyOrdersItem: ReadyOrdersItem) {
+        intentCall(readyOrdersItem.costumer.costumer_phone_1)
     }
 
     override fun onItemClickUnsorted2(readyOrdersItem: ReadyOrdersItem) {

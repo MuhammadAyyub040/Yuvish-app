@@ -11,13 +11,8 @@ import com.example.yuvish.databinding.ItemOlchamRegistrationBinding
 
 class RegistrationAdapterChild(
     private val productList: List<Product>,
-    private val measure: String,
-    private val callBack: CaLLBack) :
+    private val measure: String) :
     RecyclerView.Adapter<RegistrationAdapterChild.RegistrationChildViewHolder>() {
-
-    interface CaLLBack{
-        fun rewashClickListener(product: Product)
-    }
 
     inner class RegistrationChildViewHolder(val binding: ItemOlchamRegistrationBinding) : RecyclerView.ViewHolder(binding.root) {
 

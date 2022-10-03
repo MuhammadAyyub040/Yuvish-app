@@ -46,11 +46,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:layout_marginEnd="50dp"
                         android:padding="10dp"
                         android:text="@string/transport_bo_limi"
                         android:textSize="18sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/img_print"
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_printshop"/>
 
 
                 </LinearLayout>
@@ -971,28 +977,6 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-
-                        <androidx.cardview.widget.CardView
-                            style="@style/cardParentStyle"
-                            android:layout_width="60dp"
-                            android:layout_height="40dp"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/custom_input_dark"
-                            app:cardCornerRadius="30dp"
-                            app:cardElevation="15dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent">
-
-                            <ImageView
-                                android:id="@+id/img_print"
-                                style="@style/svgTheme"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_printshop" />
-
-                        </androidx.cardview.widget.CardView>
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_submitted"
