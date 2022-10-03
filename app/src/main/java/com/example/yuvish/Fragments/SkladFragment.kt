@@ -113,7 +113,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                         " Asosiy bo'lim tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.baseFragment)
+                    findNavController().navigate(R.id.action_skladFragment_to_baseFragment)
                 }
                 R.id.new_order -> {
                     Toast.makeText(
@@ -121,7 +121,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                         " Yangi buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.transportFragment)
+                    findNavController().navigate(R.id.action_skladFragment_to_transportFragment)
                 }
                 R.id.washing -> {
                     Toast.makeText(
@@ -129,7 +129,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                         " Yuvish bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.homeFragment)
+                    findNavController().navigate(R.id.action_skladFragment_to_homeFragment)
                 }
                 R.id.ready -> {
                     Toast.makeText(
@@ -137,7 +137,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                         " Tayyor buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.tayyorFragment)
+                    findNavController().navigate(R.id.action_skladFragment_to_tayyorFragment)
                 }
                 R.id.warehouse -> {
                     Toast.makeText(
@@ -145,7 +145,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                         " Sklad bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.skladFragment)
+                    findNavController().navigate(R.id.action_skladFragment_self)
                 }
                 R.id.employee_setting -> {
                     Toast.makeText(
@@ -153,7 +153,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                         " Xodim sozlamalari tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.settingFragment)
+                    findNavController().navigate(R.id.action_skladFragment_to_settingFragment)
                 }
                 R.id.close -> {
                     Toast.makeText(
@@ -161,7 +161,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                         " Chiqish tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.loginFragment)
+                    findNavController().navigate(R.id.action_skladFragment_to_loginFragment)
                 }
                 R.id.debtors -> {
                     Toast.makeText(
@@ -169,7 +169,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                         " Qarzdorlar bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.debtorsDepartmentFragment)
+                    findNavController().navigate(R.id.action_skladFragment_to_debtorsDepartmentFragment)
                 }
             }
             true
@@ -200,7 +200,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
     }
 
     override fun onItemClickWarehouse(ordersOmborItem: OrdersOmborItem) {
-        findNavController().navigate(R.id.sumbitFragment, bundleOf(
+        findNavController().navigate(R.id.action_skladFragment_to_sumbitFragment, bundleOf(
             "orderId" to ordersOmborItem.order_id
         ))
     }

@@ -90,7 +90,7 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
         }
 
         binding.btnCancellation.setOnClickListener {
-           findNavController().navigate(R.id.transportFragment)
+           findNavController().navigate(R.id.action_addCustomerFragment_to_transportFragment)
 
             closeKeyboard()
         }
@@ -121,7 +121,7 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
             override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
                 if (response.code() == 200){
                     Log.e(TAG, "onResponse: ${response.body()}")
-                    findNavController().navigate(R.id.listFragment, bundleOf(
+                    findNavController().navigate(R.id.action_addCustomerFragment_to_listFragment, bundleOf(
                         "customerId" to response.body()
                     ))
                 }

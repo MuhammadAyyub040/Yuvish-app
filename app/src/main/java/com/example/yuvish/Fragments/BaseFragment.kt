@@ -80,14 +80,14 @@ class BaseFragment : Fragment() {
         binding.txtWashed.setOnClickListener {
             val bundle = getDateBundle()
             if (bundle.isNotNull()) {
-                findNavController().navigate(R.id.washedIndicatorsFragment,bundle)
+                findNavController().navigate(R.id.action_baseFragment_to_washedIndicatorsFragment,bundle)
             }
         }
 
         binding.txtSubmitted.setOnClickListener {
             val bundle = getDateBundle()
             if (bundle.isNotNull()) {
-                findNavController().navigate(R.id.submittedIndicatorsFragment, bundle)
+                findNavController().navigate(R.id.action_baseFragment_to_submittedIndicatorsFragment, bundle)
 
             }
         }
@@ -95,7 +95,7 @@ class BaseFragment : Fragment() {
         binding.txtRewash.setOnClickListener {
             val bundle = getDateBundle()
             if (bundle.isNotNull()) {
-                findNavController().navigate(R.id.rewashReceivedFragment, bundle)
+                findNavController().navigate(R.id.action_baseFragment_to_rewashReceivedFragment, bundle)
 
             }
         }
@@ -103,7 +103,7 @@ class BaseFragment : Fragment() {
         binding.txtKpi.setOnClickListener {
             val bundle = getDateBundle()
             if (bundle.isNotNull()) {
-                findNavController().navigate(R.id.kpiIndicatorsFragment, bundle)
+                findNavController().navigate(R.id.action_baseFragment_to_kpiIndicatorsFragment, bundle)
 
             }
         }
@@ -111,7 +111,7 @@ class BaseFragment : Fragment() {
         binding.txtSalary.setOnClickListener {
             val bundle = getDateBundle()
             if (bundle.isNotNull()) {
-                findNavController().navigate(R.id.receivedSalaryFragment, bundle)
+                findNavController().navigate(R.id.action_baseFragment_to_receivedSalaryFragment, bundle)
 
             }
         }
@@ -172,7 +172,7 @@ class BaseFragment : Fragment() {
                         " Asosiy bo'lim tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.baseFragment)
+                    findNavController().navigate(R.id.action_baseFragment_self)
                 }
                 R.id.new_order -> {
                     Toast.makeText(
@@ -180,7 +180,7 @@ class BaseFragment : Fragment() {
                         " Yangi buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.transportFragment)
+                    findNavController().navigate(R.id.action_baseFragment_to_transportFragment)
                 }
                 R.id.washing -> {
                     Toast.makeText(
@@ -188,7 +188,7 @@ class BaseFragment : Fragment() {
                         " Yuvish bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.homeFragment)
+                    findNavController().navigate(R.id.action_baseFragment_to_homeFragment)
                 }
                 R.id.ready -> {
                     Toast.makeText(
@@ -196,7 +196,7 @@ class BaseFragment : Fragment() {
                         " Tayyor buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.tayyorFragment)
+                    findNavController().navigate(R.id.action_baseFragment_to_tayyorFragment)
                 }
                 R.id.warehouse -> {
                     Toast.makeText(
@@ -204,7 +204,7 @@ class BaseFragment : Fragment() {
                         " Sklad bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.skladFragment)
+                    findNavController().navigate(R.id.action_baseFragment_to_skladFragment)
                 }
                 R.id.employee_setting -> {
                     Toast.makeText(
@@ -212,7 +212,7 @@ class BaseFragment : Fragment() {
                         " Xodim sozlamalari tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.settingFragment)
+                    findNavController().navigate(R.id.action_baseFragment_to_settingFragment)
                 }
                 R.id.debtors -> {
                     Toast.makeText(
@@ -220,7 +220,7 @@ class BaseFragment : Fragment() {
                         " Qarzdorlar bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.debtorsDepartmentFragment)
+                    findNavController().navigate(R.id.action_baseFragment_to_debtorsDepartmentFragment)
                 }
                 R.id.close -> {
                     Toast.makeText(
@@ -228,7 +228,7 @@ class BaseFragment : Fragment() {
                         " Chiqish tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.loginFragment)
+                    findNavController().navigate(R.id.action_baseFragment_to_loginFragment)
                 }
             }
             true

@@ -58,7 +58,7 @@ class MenuFragment : Fragment() {
 
             override fun onFailure(call: Call<CommonSettings>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(requireActivity(), "Ma'lumot kelmadi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "Internet tezligini tekshiring! Ma'lumot kelmadi!", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -66,7 +66,7 @@ class MenuFragment : Fragment() {
 
     private fun checkChangeFragment(){
             binding.animationView.pauseAnimation()
-            findNavController().navigate(R.id.homeFragment)
+            findNavController().navigate(R.id.action_menuFragment_to_homeFragment)
     }
 
     private fun getToken(): String?{

@@ -96,14 +96,14 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         }
 
         binding.txtWashing.setOnClickListener {
-            findNavController().navigate(R.id.homeFragment)
+            findNavController().navigate(R.id.action_homeFragment_self)
         }
 
         binding.txtWashedId.setOnClickListener {
-            findNavController().navigate(R.id.baseFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_baseFragment)
         }
         binding.txtPacked.setOnClickListener {
-            findNavController().navigate(R.id.tayyorFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_tayyorFragment)
         }
 
         binding.washed.adapter = cleaningPaginationAdapter
@@ -134,7 +134,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         " Asosiy bo'lim tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.baseFragment)
+                    findNavController().navigate(R.id.action_homeFragment_to_baseFragment)
                 }
                 R.id.new_order -> {
                     Toast.makeText(
@@ -142,7 +142,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         " Yangi buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.transportFragment)
+                    findNavController().navigate(R.id.action_homeFragment_to_transportFragment)
                 }
                 R.id.washing -> {
                     Toast.makeText(
@@ -150,7 +150,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         " Yuvish bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.homeFragment)
+                    findNavController().navigate(R.id.action_homeFragment_self)
                 }
                 R.id.ready -> {
                     Toast.makeText(
@@ -158,7 +158,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         " Tayyor buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.tayyorFragment)
+                    findNavController().navigate(R.id.action_homeFragment_to_tayyorFragment)
                 }
                 R.id.warehouse -> {
                     Toast.makeText(
@@ -166,7 +166,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         " Sklad bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.skladFragment)
+                    findNavController().navigate(R.id.action_homeFragment_to_skladFragment)
                 }
                 R.id.employee_setting -> {
                     Toast.makeText(
@@ -174,7 +174,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         " Xodim sozlamalari tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.settingFragment)
+                    findNavController().navigate(R.id.action_homeFragment_to_settingFragment)
                 }
                 R.id.close -> {
                     Toast.makeText(
@@ -182,7 +182,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         " Chiqish tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.loginFragment)
+                    findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
                 }
                 R.id.debtors -> {
                     Toast.makeText(
@@ -190,7 +190,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         " Qarzdorlar bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.debtorsDepartmentFragment)
+                    findNavController().navigate(R.id.action_homeFragment_to_debtorsDepartmentFragment)
                 }
             }
             true
@@ -237,7 +237,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
     }
 
     override fun onItemClickCleaning(rewashReceipt: RewashReceipt) {
-        findNavController().navigate(R.id.registrationFragment, bundleOf(
+        findNavController().navigate(R.id.action_homeFragment_to_registrationFragment, bundleOf(
         "orderId" to rewashReceipt.order_id
         ))
     }
@@ -253,7 +253,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
 
     private fun checkPermission(){
         if (ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-            findNavController().navigate(R.id.barcodeScannerFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_barcodeScannerFragment)
         }else{
             requestCameraPermission()
         }
@@ -261,7 +261,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
 
     private val cameraPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()){
         if (it){
-            findNavController().navigate(R.id.barcodeScannerFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_barcodeScannerFragment)
         }
     }
 
@@ -304,7 +304,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                         Toast.makeText(requireActivity(), "Barcode topilmadi", Toast.LENGTH_SHORT)
                             .show()
                     } else{
-                        findNavController().navigate(R.id.registrationFragment, bundleOf(
+                        findNavController().navigate(R.id.action_homeFragment_to_registrationFragment, bundleOf(
                             "orderId" to orderId,
                             "barcode" to binding.edtBarcode.text.toString()
                         )

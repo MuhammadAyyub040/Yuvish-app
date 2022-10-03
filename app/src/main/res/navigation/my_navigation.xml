@@ -18,7 +18,7 @@
             android:id="@+id/action_homeFragment_to_registrationFragment"
             app:destination="@id/registrationFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_debtorsDepartmentFragment2"
+            android:id="@+id/action_homeFragment_to_debtorsDepartmentFragment"
             app:destination="@id/debtorsDepartmentFragment" />
         <action
             android:id="@+id/action_homeFragment_to_baseFragment"
@@ -35,12 +35,48 @@
         <action
             android:id="@+id/action_homeFragment_to_transportFragment"
             app:destination="@id/transportFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_self"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/transportFragment"
         android:name="com.example.yuvish.Fragments.TransportFragment"
         android:label="fragment_transport"
         tools:layout="@layout/fragment_transport" >
+        <action
+            android:id="@+id/action_transportFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_baseFragment"
+            app:destination="@id/baseFragment" />
+        <action
+            android:id="@+id/action_transportFragment_self"
+            app:destination="@id/transportFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_skladFragment"
+            app:destination="@id/skladFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_tayyorFragment"
+            app:destination="@id/tayyorFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_debtorsDepartmentFragment"
+            app:destination="@id/debtorsDepartmentFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_addCustomerFragment"
+            app:destination="@id/addCustomerFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_confirmationOrderFragment"
+            app:destination="@id/confirmationOrderFragment" />
         <action
             android:id="@+id/action_transportFragment_to_listFragment"
             app:destination="@id/listFragment" />
@@ -50,11 +86,32 @@
         android:name="com.example.yuvish.Fragments.TayyorFragment"
         android:label="TayyorFragment" >
         <action
-            android:id="@+id/action_tayyorFragment_to_sumbitFragment"
-            app:destination="@id/sumbitFragment" />
+            android:id="@+id/action_tayyorFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_to_baseFragment"
+            app:destination="@id/baseFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_to_transportFragment"
+            app:destination="@id/transportFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
         <action
             android:id="@+id/action_tayyorFragment_to_skladFragment"
             app:destination="@id/skladFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_to_debtorsDepartmentFragment"
+            app:destination="@id/debtorsDepartmentFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_to_sumbitFragment"
+            app:destination="@id/sumbitFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_self"
+            app:destination="@id/tayyorFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -77,7 +134,7 @@
         android:name="com.example.yuvish.Fragments.LoginFragment"
         android:label="LoginFragment" >
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment2"
+            android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
@@ -86,32 +143,140 @@
         android:id="@+id/settingFragment"
         android:name="com.example.yuvish.Fragments.SettingFragment"
         android:label="fragment_setting"
-        tools:layout="@layout/fragment_setting" />
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/action_settingFragment_self"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_baseFragment"
+            app:destination="@id/baseFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_transportFragment"
+            app:destination="@id/transportFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_skladFragment"
+            app:destination="@id/skladFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_tayyorFragment"
+            app:destination="@id/tayyorFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_debtorsDepartmentFragment"
+            app:destination="@id/debtorsDepartmentFragment" />
+    </fragment>
     <fragment
         android:id="@+id/skladFragment"
         android:name="com.example.yuvish.Fragments.SkladFragment"
         android:label="fragment_sklad"
-        tools:layout="@layout/fragment_sklad" />
+        tools:layout="@layout/fragment_sklad" >
+        <action
+            android:id="@+id/action_skladFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_skladFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_skladFragment_to_baseFragment"
+            app:destination="@id/baseFragment" />
+        <action
+            android:id="@+id/action_skladFragment_to_transportFragment"
+            app:destination="@id/transportFragment" />
+        <action
+            android:id="@+id/action_skladFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_skladFragment_self"
+            app:destination="@id/skladFragment" />
+        <action
+            android:id="@+id/action_skladFragment_to_tayyorFragment"
+            app:destination="@id/tayyorFragment" />
+        <action
+            android:id="@+id/action_skladFragment_to_debtorsDepartmentFragment"
+            app:destination="@id/debtorsDepartmentFragment" />
+        <action
+            android:id="@+id/action_skladFragment_to_sumbitFragment"
+            app:destination="@id/sumbitFragment" />
+    </fragment>
     <fragment
         android:id="@+id/baseFragment"
         android:name="com.example.yuvish.Fragments.BaseFragment"
         android:label="fragment_base"
-        tools:layout="@layout/fragment_base" />
+        tools:layout="@layout/fragment_base" >
+        <action
+            android:id="@+id/action_baseFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_transportFragment"
+            app:destination="@id/transportFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_skladFragment"
+            app:destination="@id/skladFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_submittedIndicatorsFragment"
+            app:destination="@id/submittedIndicatorsFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_kpiIndicatorsFragment"
+            app:destination="@id/kpiIndicatorsFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_washedIndicatorsFragment"
+            app:destination="@id/washedIndicatorsFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_rewashReceivedFragment"
+            app:destination="@id/rewashReceivedFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_receivedSalaryFragment"
+            app:destination="@id/receivedSalaryFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_debtorsDepartmentFragment"
+            app:destination="@id/debtorsDepartmentFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_tayyorFragment"
+            app:destination="@id/tayyorFragment" />
+        <action
+            android:id="@+id/action_baseFragment_self"
+            app:destination="@id/baseFragment" />
+    </fragment>
     <fragment
         android:id="@+id/listFragment"
         android:name="com.example.yuvish.Fragments.ListFragment"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_list" />
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_listFragment_to_confirmationOrderFragment"
+            app:destination="@id/confirmationOrderFragment" />
+    </fragment>
     <fragment
         android:id="@+id/sumbitFragment"
         android:name="com.example.yuvish.Fragments.SubmitFragment"
         android:label="fragment_sumbit"
-        tools:layout="@layout/fragment_sumbit" />
+        tools:layout="@layout/fragment_sumbit" >
+        <action
+            android:id="@+id/action_sumbitFragment_to_debtorFragment"
+            app:destination="@id/debtorFragment" />
+        <action
+            android:id="@+id/action_sumbitFragment_to_tayyorFragment"
+            app:destination="@id/tayyorFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registrationFragment"
         android:name="com.example.yuvish.Fragments.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" />
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/debtorFragment"
         android:name="com.example.yuvish.Fragments.DebtorFragment"
@@ -125,6 +290,30 @@
         <action
             android:id="@+id/action_debtorsDepartmentFragment_to_debtorFragment"
             app:destination="@id/debtorFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_skladFragment"
+            app:destination="@id/skladFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_transportFragment"
+            app:destination="@id/transportFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_baseFragment"
+            app:destination="@id/baseFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_self"
+            app:destination="@id/debtorsDepartmentFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_tayyorFragment"
+            app:destination="@id/tayyorFragment" />
     </fragment>
     <fragment
         android:id="@+id/barcodeScannerFragment"
@@ -139,7 +328,14 @@
         android:id="@+id/addCustomerFragment"
         android:name="com.example.yuvish.Fragments.AddCustomerFragment"
         android:label="fragment_add_customer"
-        tools:layout="@layout/fragment_add_customer" />
+        tools:layout="@layout/fragment_add_customer" >
+        <action
+            android:id="@+id/action_addCustomerFragment_to_transportFragment"
+            app:destination="@id/transportFragment" />
+        <action
+            android:id="@+id/action_addCustomerFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
     <fragment
         android:id="@+id/submittedIndicatorsFragment"
         android:name="com.example.yuvish.Fragments.SubmittedIndicatorsFragment"
@@ -169,7 +365,14 @@
         android:id="@+id/confirmationOrderFragment"
         android:name="com.example.yuvish.Fragments.ConfirmationOrderFragment"
         android:label="fragment_confirmation_order"
-        tools:layout="@layout/fragment_confirmation_order" />
+        tools:layout="@layout/fragment_confirmation_order" >
+        <action
+            android:id="@+id/action_confirmationOrderFragment_to_getSizeFragment"
+            app:destination="@id/getSizeFragment" />
+        <action
+            android:id="@+id/action_confirmationOrderFragment_to_transportFragment"
+            app:destination="@id/transportFragment" />
+    </fragment>
     <fragment
         android:id="@+id/getSizeFragment"
         android:name="com.example.yuvish.Fragments.GetSizeFragment"

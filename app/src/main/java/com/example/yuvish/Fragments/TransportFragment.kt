@@ -106,7 +106,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
         }
 
         binding.btnNew.setOnClickListener {
-            findNavController().navigate(R.id.addCustomerFragment)
+            findNavController().navigate(R.id.action_transportFragment_to_addCustomerFragment)
         }
 
         toggle =
@@ -133,7 +133,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
                         " Asosiy bo'lim tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.baseFragment)
+                    findNavController().navigate(R.id.action_transportFragment_to_baseFragment)
                 }
                 R.id.new_order -> {
                     Toast.makeText(
@@ -141,7 +141,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
                         " Yangi buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.transportFragment)
+                    findNavController().navigate(R.id.action_transportFragment_self)
                 }
                 R.id.washing -> {
                     Toast.makeText(
@@ -149,7 +149,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
                         " Yuvish bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.homeFragment)
+                    findNavController().navigate(R.id.action_transportFragment_to_homeFragment)
                 }
                 R.id.ready -> {
                     Toast.makeText(
@@ -157,7 +157,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
                         " Tayyor buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.tayyorFragment)
+                    findNavController().navigate(R.id.action_transportFragment_to_tayyorFragment)
                 }
                 R.id.warehouse -> {
                     Toast.makeText(
@@ -165,7 +165,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
                         " Sklad bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.skladFragment)
+                    findNavController().navigate(R.id.action_transportFragment_to_skladFragment)
                 }
                 R.id.employee_setting -> {
                     Toast.makeText(
@@ -173,7 +173,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
                         " Xodim sozlamalari tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.settingFragment)
+                    findNavController().navigate(R.id.action_transportFragment_to_settingFragment)
                 }
                 R.id.close -> {
                     Toast.makeText(
@@ -181,7 +181,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
                         " Chiqish tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.loginFragment)
+                    findNavController().navigate(R.id.action_transportFragment_to_loginFragment)
                 }
                 R.id.debtors -> {
                     Toast.makeText(
@@ -189,7 +189,7 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
                         " Qarzdorlar bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.debtorsDepartmentFragment)
+                    findNavController().navigate(R.id.action_transportFragment_to_debtorsDepartmentFragment)
                 }
             }
             true
@@ -214,14 +214,14 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
 
     private fun toConfirmationOrderFragment(orderId: Int) {
         findNavController().navigate(
-            R.id.confirmationOrderFragment,
+            R.id.action_transportFragment_to_confirmationOrderFragment,
             bundleOf("orderId" to orderId)
         )
     }
 
     private fun toWriteReceiptFragment(orderId: Int){
         findNavController().navigate(
-            R.id.listFragment,
+            R.id.action_transportFragment_to_listFragment,
             bundleOf("orderId" to orderId)
         )
     }

@@ -73,7 +73,7 @@ class SettingFragment : Fragment() {
                     LanguageHelper.setLocale(requireActivity(), "uzb")
                 }
             }
-            findNavController().navigate(R.id.settingFragment)
+            findNavController().navigate(R.id.action_settingFragment_self)
         }
 
         val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("2022", "2021"))
@@ -151,7 +151,7 @@ class SettingFragment : Fragment() {
                         " Asosiy bo'lim tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.baseFragment)
+                    findNavController().navigate(R.id.action_settingFragment_to_baseFragment)
                 }
                 R.id.new_order -> {
                     Toast.makeText(
@@ -159,7 +159,7 @@ class SettingFragment : Fragment() {
                         " Yangi buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.transportFragment)
+                    findNavController().navigate(R.id.action_settingFragment_to_transportFragment)
                 }
                 R.id.washing -> {
                     Toast.makeText(
@@ -167,7 +167,7 @@ class SettingFragment : Fragment() {
                         " Yuvish bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.homeFragment)
+                    findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
                 }
                 R.id.ready -> {
                     Toast.makeText(
@@ -175,7 +175,7 @@ class SettingFragment : Fragment() {
                         " Tayyor buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.tayyorFragment)
+                    findNavController().navigate(R.id.action_settingFragment_to_tayyorFragment)
                 }
                 R.id.warehouse -> {
                     Toast.makeText(
@@ -183,7 +183,7 @@ class SettingFragment : Fragment() {
                         " Sklad bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.skladFragment)
+                    findNavController().navigate(R.id.action_settingFragment_to_skladFragment)
                 }
                 R.id.employee_setting -> {
                     Toast.makeText(
@@ -191,7 +191,7 @@ class SettingFragment : Fragment() {
                         " Xodim sozlamalari tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.settingFragment)
+                    findNavController().navigate(R.id.action_settingFragment_self)
                 }
                 R.id.close -> {
                     Toast.makeText(
@@ -199,7 +199,7 @@ class SettingFragment : Fragment() {
                         " Chiqish tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.loginFragment)
+                    findNavController().navigate(R.id.action_settingFragment_to_loginFragment)
                 }
                 R.id.debtors -> {
                     Toast.makeText(
@@ -207,7 +207,7 @@ class SettingFragment : Fragment() {
                         " Qarzdorlar bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.debtorsDepartmentFragment)
+                    findNavController().navigate(R.id.action_settingFragment_to_debtorsDepartmentFragment)
                 }
             }
             true

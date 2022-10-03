@@ -228,7 +228,7 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
                             else -> {
                                 sendBackStackRefreshRequest()
                                 findNavController().navigate(
-                                    R.id.debtorFragment,
+                                    R.id.action_sumbitFragment_to_debtorFragment,
                                     bundleOf("debtId" to response.body())
                                 )
                             }
@@ -247,7 +247,7 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.code() == 200)
                     Toast.makeText(requireActivity(), "Omborga muvaffaqqiyatli o'tkazildi.", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.tayyorFragment)
+                findNavController().navigate(R.id.action_sumbitFragment_to_tayyorFragment)
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {

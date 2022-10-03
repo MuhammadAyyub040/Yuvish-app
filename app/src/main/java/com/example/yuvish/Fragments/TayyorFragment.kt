@@ -96,7 +96,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
         }
 
         binding.txtWarehouseTransport.setOnClickListener {
-            findNavController().navigate(R.id.skladFragment)
+            findNavController().navigate(R.id.action_tayyorFragment_to_skladFragment)
         }
 
 
@@ -124,7 +124,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
                         " Asosiy bo'lim tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.baseFragment)
+                    findNavController().navigate(R.id.action_tayyorFragment_to_baseFragment)
                 }
                 R.id.new_order -> {
                     Toast.makeText(
@@ -132,7 +132,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
                         " Yangi buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.transportFragment)
+                    findNavController().navigate(R.id.action_tayyorFragment_to_transportFragment)
                 }
                 R.id.washing -> {
                     Toast.makeText(
@@ -140,7 +140,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
                         " Yuvish bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.homeFragment)
+                    findNavController().navigate(R.id.action_tayyorFragment_to_homeFragment)
                 }
                 R.id.ready -> {
                     Toast.makeText(
@@ -148,7 +148,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
                         " Tayyor buyurtmalar tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.tayyorFragment)
+                    findNavController().navigate(R.id.action_tayyorFragment_self)
                 }
                 R.id.warehouse -> {
                     Toast.makeText(
@@ -156,7 +156,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
                         " Sklad bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.skladFragment)
+                    findNavController().navigate(R.id.action_tayyorFragment_to_skladFragment)
                 }
                 R.id.employee_setting -> {
                     Toast.makeText(
@@ -164,7 +164,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
                         " Xodim sozlamalari tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.settingFragment)
+                    findNavController().navigate(R.id.action_tayyorFragment_to_settingFragment)
                 }
                 R.id.close -> {
                     Toast.makeText(
@@ -172,7 +172,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
                         " Chiqish tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.loginFragment)
+                    findNavController().navigate(R.id.action_tayyorFragment_to_loginFragment)
                 }
                 R.id.debtors -> {
                     Toast.makeText(
@@ -180,7 +180,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
                         " Qarzdorlar bo'limi tanlandi",
                         Toast.LENGTH_SHORT
                     ).show()
-                    findNavController().navigate(R.id.debtorsDepartmentFragment)
+                    findNavController().navigate(R.id.action_tayyorFragment_to_debtorsDepartmentFragment)
                 }
             }
             true
@@ -258,7 +258,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
 
     override fun onItemClickSubmit(readyOrdersItem: ReadyOrdersItem) {
         Log.d("TAG", "onItemClickSubmit ${readyOrdersItem.order_id} ")
-        findNavController().navigate(R.id.sumbitFragment, bundleOf(
+        findNavController().navigate(R.id.action_tayyorFragment_to_sumbitFragment, bundleOf(
             "orderId" to readyOrdersItem.order_id
         ))
     }
@@ -309,7 +309,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
 
     override fun onItemClickSubmit2(readyOrdersItem: ReadyOrdersItem) {
         Log.d("TAG", "onItemClickSubmit2")
-        findNavController().navigate(R.id.sumbitFragment, bundleOf(
+        findNavController().navigate(R.id.action_tayyorFragment_to_sumbitFragment, bundleOf(
             "orderId" to readyOrdersItem.order_id
         ))
     }

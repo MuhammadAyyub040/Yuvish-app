@@ -212,7 +212,7 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
         ApiClient.retrofitService.putNewOrder(orderId, putOrder).enqueue(object : Callback<String?>{
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.code() == 200){
-                    findNavController().navigate(R.id.confirmationOrderFragment, bundleOf(
+                    findNavController().navigate(R.id.action_listFragment_to_confirmationOrderFragment, bundleOf(
                         "orderId" to orderId))
                 }
             }
