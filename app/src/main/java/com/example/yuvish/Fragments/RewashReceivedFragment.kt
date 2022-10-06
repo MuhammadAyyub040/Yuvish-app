@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.ProductsIndicatorChildAdapter
 import com.example.yuvish.Adapters.ReceivedRewashIndicatorGroupAdapter
@@ -38,7 +38,6 @@ class RewashReceivedFragment : Fragment() {
         super.onCreate(savedInstanceState)
         fromDate = arguments?.getString("fromDate")!!
         toDate = arguments?.getString("toDate")!!
-//        initObservers()
     }
 
     override fun onCreateView(
@@ -55,6 +54,7 @@ class RewashReceivedFragment : Fragment() {
         binding.fromAndToDate.text = getString(R.string.between_rewashed, fromDate.transformDate(), toDate.transformDate())
 
         if (totalIndicatorProductsList.isNull()){
+            getReceivedRewashIndicators(fromDate, toDate, 1)
         }else{
             updateTotalIndicators(totalIndicatorProductsList!!)
         }
@@ -88,6 +88,22 @@ class RewashReceivedFragment : Fragment() {
         }
 
         return count
+    }
+
+    private fun getReceivedRewashIndicators(fromDate: String, toDate: String, page: Int){
+        ApiClient.retrofitService.getReceivedRewashIndicators(fromDate, toDate, page).enqueue(object : Callback<ReceivedRewashIndicator>{
+            override fun onResponse(call: Call<ReceivedRewashIndicator>, response: Response<ReceivedRewashIndicator>) {
+                if (response.code() == 200){
+                    totalIndicatorProductsList = response.body()!!.jami_table_footer
+                    updateTotalIndicators(totalIndicatorProductsList!!)
+                }
+            }
+
+            override fun onFailure(call: Call<ReceivedRewashIndicator>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireActivity(), "Ma'lumot olib kelishda xatolik", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
 }

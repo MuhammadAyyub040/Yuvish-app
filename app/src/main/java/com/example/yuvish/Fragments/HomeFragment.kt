@@ -66,26 +66,8 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         barcodeId(barcode)
         loadOrderIdByBarcode()
 
-        val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("2022", "2021"))
-        binding.autoCompleteTextView.setAdapter(arrayAdapter)
-
-        binding.btnX.setOnClickListener {
-            binding.searchCard.visibility = View.GONE
-            searchPage = false
-            closeKeyboard()
-        }
-
         binding.btnSearch.setOnClickListener {
-            when (searchPage) {
-                false -> {
-                    binding.searchCard.visibility = View.VISIBLE
-                    searchPage = true
-                }
-                true -> {
-                    binding.searchCard.visibility = View.GONE
-                    searchPage = false
-                }
-            }
+            findNavController().navigate(R.id.action_homeFragment_to_globalSearchFragment)
         }
 
         binding.barcodeScanner.setOnClickListener {
@@ -129,11 +111,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
             when (it.itemId) {
 
                 R.id.base -> {
-                    Toast.makeText(
-                        requireActivity(),
-                        " Asosiy bo'lim tanlandi",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(requireActivity(), " Asosiy bo'lim tanlandi", Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_homeFragment_to_baseFragment)
                 }
                 R.id.new_order -> {
@@ -233,7 +211,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
     private fun closeKeyboard() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.btnSearch.windowToken, 0)
     }
 
     override fun onItemClickCleaning(rewashReceipt: RewashReceipt) {

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorProduct
-import com.example.yuvish.Models.BaseIndikatorsIndex.Product
+import com.example.yuvish.Models.BaseIndikatorsIndex.JamiTableFooter
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ProductIndicatorChildItemLayoutBinding
 

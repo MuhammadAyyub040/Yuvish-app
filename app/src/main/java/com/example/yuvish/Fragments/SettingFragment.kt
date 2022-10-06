@@ -76,27 +76,8 @@ class SettingFragment : Fragment() {
             findNavController().navigate(R.id.action_settingFragment_self)
         }
 
-        val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("2022", "2021"))
-        binding.autoCompleteTextViewSetting.setAdapter(arrayAdapter)
-
-        binding.btnX.setOnClickListener {
-            binding.searchCard.visibility = View.GONE
-            searchPage = false
-
-            closeKeyboard()
-        }
-
         binding.btnSearch.setOnClickListener {
-            when (searchPage) {
-                false -> {
-                    binding.searchCard.visibility = View.VISIBLE
-                    searchPage = true
-                }
-                true -> {
-                    binding.searchCard.visibility = View.GONE
-                    searchPage = false
-                }
-            }
+            findNavController().navigate(R.id.action_settingFragment_to_globalSearchFragment)
         }
 
         binding.btnSaveSetting.setOnClickListener {
@@ -280,6 +261,6 @@ class SettingFragment : Fragment() {
     private fun closeKeyboard() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.btnSearch.windowToken, 0)
     }
 }

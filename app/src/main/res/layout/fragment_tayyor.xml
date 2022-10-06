@@ -9,15 +9,15 @@
     tools:context=".Fragments.TransportFragment">
 
     <ScrollView
+        style="@style/DarkThemeBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/DarkThemeBackground"
         tools:context=".MainActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/DarkThemeBackground"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/DarkThemeBackground">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -35,24 +35,26 @@
 
                     <ImageView
                         android:id="@+id/btn_menu"
+                        style="@style/svgTheme"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:padding="5dp"
                         android:src="@drawable/ic_menu" />
 
                     <TextView
+                        style="@style/textStyle"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
                         android:padding="10dp"
                         android:text="@string/transport_bo_limi"
-                        style="@style/textStyle"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/btn_search"
+                        style="@style/svgTheme"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:padding="5dp"
@@ -61,173 +63,13 @@
 
                 </LinearLayout>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/searchCard"
-                    style="@style/cardParentStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:visibility="gone"
-                    app:cardCornerRadius="30dp"
-                    app:cardElevation="15dp">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:id="@+id/linear"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/txt_qidir"
-                                    style="@style/textStyle"
-                                    android:layout_width="0dp"
-                                    android:layout_height="50dp"
-                                    android:layout_weight="1"
-                                    android:padding="10dp"
-                                    android:text="@string/qidirish"
-                                    android:textSize="22sp"
-                                    android:textStyle="bold" />
-
-                                <ImageView
-                                    android:id="@+id/btn_x"
-                                    android:layout_width="50dp"
-                                    android:layout_height="50dp"
-                                    android:src="@drawable/ic_baseline_close_24"
-                                    app:layout_constraintRight_toRightOf="parent" />
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_margin="5dp"
-                                    android:layout_marginTop="30dp"
-                                    android:layout_marginEnd="50dp"
-                                    android:background="#BDB8B8"
-                                    android:padding="5dp" />
-
-                            </LinearLayout>
-
-
-                            <TextView
-                                style="@style/textStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="10dp"
-                                android:text="@string/kvitansiya_n"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:padding="10dp">
-
-                                <EditText
-                                    android:id="@+id/edt_id"
-                                    style="@style/editTextDark"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:background="@drawable/custom_input_dark"
-                                    android:hint="@string/kvitansiya_id_ni_kiriting"
-                                    android:inputType="number"
-                                    android:minHeight="64dp"
-                                    android:padding="10dp"
-                                    android:textSize="16sp"
-                                    android:textStyle="bold" />
-
-
-                                <com.google.android.material.textfield.TextInputLayout
-                                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content">
-
-                                    <AutoCompleteTextView
-                                        android:id="@+id/autoCompleteTextView_ready"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="5dp"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:inputType="none"
-                                        android:text="@string/_2022"
-                                        style="@style/textStyle"
-                                        android:textSize="18sp" />
-
-                                </com.google.android.material.textfield.TextInputLayout>
-
-                            </LinearLayout>
-
-                            <TextView
-                                style="@style/textStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:padding="10dp"
-                                android:text="@string/mijoz"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <EditText
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="10dp"
-                                android:background="@drawable/custom_input_dark"
-                                android:hint="@string/ism_telefon_raqami_manzil"
-                                android:padding="10dp"
-                                android:textSize="18sp"
-                                android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <View
-                                    android:layout_width="match_parent"
-                                    android:layout_height="1dp"
-                                    android:layout_margin="5dp"
-                                    android:layout_marginTop="30dp"
-                                    android:layout_marginEnd="50dp"
-                                    android:background="#BDB8B8"
-                                    android:padding="5dp" />
-
-                            </LinearLayout>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="20dp" />
-
-                        </LinearLayout>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.cardview.widget.CardView>
-
                 <TextView
                     android:id="@+id/txt_order_department"
+                    style="@style/textStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
-                    style="@style/textStyle"
                     android:text="@string/bu_bo_limda_mijozlar_tomonidan_berilgan_buyurtmalar_topshiriladi"
                     android:textStyle="bold" />
 
@@ -237,11 +79,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/shot_card_transport"
+                style="@style/cardParentStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:cardCornerRadius="30dp"
-                style="@style/cardParentStyle"
                 app:cardElevation="15dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -260,33 +102,33 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            style="@style/textStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
-                            android:gravity="center"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="@string/buyurtma"
-                            style="@style/textStyle"
                             android:textSize="12sp" />
 
                         <TextView
+                            style="@style/textStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
-                            android:gravity="center"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="@string/skladda"
-                            style="@style/textStyle"
                             android:textSize="12sp" />
 
                         <TextView
+                            style="@style/textStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
-                            android:gravity="center"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:text="@string/topshirishda"
-                            style="@style/textStyle"
                             android:textSize="12sp" />
 
 
@@ -391,8 +233,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
-                            android:gravity="center"
                             android:layout_weight="1"
+                            android:gravity="center"
                             android:orientation="horizontal">
 
                             <TextView
@@ -422,11 +264,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/arranged"
+                style="@style/cardParentStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:cardCornerRadius="30dp"
-                style="@style/cardParentStyle"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/shot_card_transport">
@@ -452,40 +294,40 @@
                         android:layout_margin="16dp"
                         android:background="#BDB8B8" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:boxCornerRadiusBottomEnd="16dp"
-                        android:layout_marginStart="16dp"
-                        app:boxCornerRadiusBottomStart="16dp"
-                        app:boxCornerRadiusTopEnd="16dp"
-                        app:boxCornerRadiusTopStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="16dp">
+                        android:orientation="horizontal">
 
-                        <AutoCompleteTextView
-                            android:id="@+id/autoCompleteTextView_list"
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:inputType="none"
-                            android:text="@string/barchasi"
-                            style="@style/textStyle"
-                            android:textSize="18sp" />
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            app:boxCornerRadiusBottomEnd="16dp"
+                            app:boxCornerRadiusBottomStart="16dp"
+                            app:boxCornerRadiusTopEnd="16dp"
+                            app:boxCornerRadiusTopStart="16dp">
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                            <AutoCompleteTextView
+                                android:id="@+id/autoCompleteTextView_list"
+                                style="@style/textStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:inputType="none"
+                                android:text="@string/barchasi"
+                                android:textSize="18sp" />
 
-                </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/viewPager"
@@ -493,11 +335,11 @@
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toTopOf="@id/viewPager2"
                         app:layout_constraintEnd_toEndOf="@+id/shot_card_transport"
                         app:layout_constraintStart_toStartOf="@+id/shot_card_transport"
-                        app:layout_constraintBottom_toTopOf="@id/viewPager2"
                         app:layout_constraintTop_toBottomOf="@id/shot_card_transport"
-                        tools:listitem="@layout/kvitansiya_item_arranged"/>
+                        tools:listitem="@layout/kvitansiya_item_arranged" />
 
                 </LinearLayout>
 
@@ -505,11 +347,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/unsorted"
+                style="@style/cardParentStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 app:cardCornerRadius="30dp"
-                style="@style/cardParentStyle"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -540,13 +382,13 @@
                         android:id="@+id/viewPager2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
                         android:layout_marginBottom="20dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/shot_card_transport"
                         app:layout_constraintStart_toStartOf="@+id/shot_card_transport"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/kvitansiya_item_unsorted"/>
+                        tools:listitem="@layout/kvitansiya_item_unsorted" />
 
                 </LinearLayout>
 
@@ -556,14 +398,14 @@
 
     </ScrollView>
 
-        <com.google.android.material.navigation.NavigationView
+    <com.google.android.material.navigation.NavigationView
 
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:headerLayout="@layout/nav_header"
-            app:menu="@menu/nav_menu" />
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/nav_menu" />
 
-    </androidx.drawerlayout.widget.DrawerLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

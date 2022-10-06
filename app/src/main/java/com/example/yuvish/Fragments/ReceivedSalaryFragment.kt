@@ -72,8 +72,8 @@ class ReceivedSalaryFragment : Fragment() {
         ApiClient.retrofitService.getReceivedSalaryIndicators(fromDate, toDate, page).enqueue(object : Callback<ReceivedSalaryIndicator>{
             override fun onResponse(call: Call<ReceivedSalaryIndicator>, response: Response<ReceivedSalaryIndicator>) {
                 if (response.code() == 200) {
-                    receivedSalaryIndicator = response.body()!!
-                    binding.totalIndicatorAmount.text = "${receivedSalaryIndicator.jami_summa}${getString(R.string.so_m)}"
+                    totalIndicatorAmount = response.body()?.jami_summa
+                    updateTotalIndicators(totalIndicatorAmount!!)
                 }
             }
 

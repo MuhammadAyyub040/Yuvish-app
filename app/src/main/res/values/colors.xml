@@ -14,4 +14,5 @@
     <color name="blue">#248AFD</color>
     <color name="background_color_light_theme">#F5F7FF</color>
     <color name="background_color_night_theme">#121212</color>
+    <color name="gray_light">#ACACAC</color>
 </resources>

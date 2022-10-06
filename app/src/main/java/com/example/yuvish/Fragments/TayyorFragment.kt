@@ -66,16 +66,6 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
     ): View {
         binding = FragmentTayyorBinding.inflate(layoutInflater)
 
-        val arrayAdapter2 = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, arrayListOf("2022", "2021"))
-        binding.autoCompleteTextViewReady.setAdapter(arrayAdapter2)
-
-        binding.btnX.setOnClickListener {
-            binding.searchCard.visibility = View.GONE
-            searchPage = false
-
-            closeKeyboard()
-        }
-
         binding.autoCompleteTextViewList.setOnItemClickListener { parent, view, position, id ->
             selectedFilterPosition = position
             getPaginationArranged(list[position].value)
@@ -83,16 +73,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
         }
 
         binding.btnSearch.setOnClickListener {
-            when (searchPage) {
-                false -> {
-                    binding.searchCard.visibility = View.VISIBLE
-                    searchPage = true
-                }
-                true -> {
-                    binding.searchCard.visibility = View.GONE
-                    searchPage = false
-                }
-            }
+           findNavController().navigate(R.id.action_tayyorFragment_to_globalSearchFragment)
         }
 
         binding.txtWarehouseTransport.setOnClickListener {
@@ -253,7 +234,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
     private fun closeKeyboard() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.btnSearch.windowToken, 0)
     }
 
     override fun onItemClickSubmit(readyOrdersItem: ReadyOrdersItem) {

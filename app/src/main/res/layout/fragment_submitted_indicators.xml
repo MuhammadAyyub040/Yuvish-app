@@ -120,52 +120,6 @@
 
                     </LinearLayout>
 
-
-                    <androidx.cardview.widget.CardView
-                        style="@style/cardParentStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp"
-                        app:contentPadding="16dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                style="@style/textStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="1."
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/type"
-                                style="@style/textStyle"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_weight="1"
-                                android:text="Gilam"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/count"
-                                style="@style/textStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:text="3 ta / 26 m²"
-                                android:textSize="16sp" />
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/totalProducts_RV"
                         android:layout_width="match_parent"

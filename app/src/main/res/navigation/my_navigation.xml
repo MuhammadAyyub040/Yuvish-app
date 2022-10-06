@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_homeFragment_self"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_globalSearchFragment"
+            app:destination="@id/globalSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/transportFragment"
@@ -80,11 +83,15 @@
         <action
             android:id="@+id/action_transportFragment_to_listFragment"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_transportFragment_to_globalSearchFragment"
+            app:destination="@id/globalSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/tayyorFragment"
         android:name="com.example.yuvish.Fragments.TayyorFragment"
-        android:label="TayyorFragment" >
+        android:label="TayyorFragment"
+        tools:layout="@layout/fragment_tayyor">
         <action
             android:id="@+id/action_tayyorFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -112,6 +119,9 @@
         <action
             android:id="@+id/action_tayyorFragment_self"
             app:destination="@id/tayyorFragment" />
+        <action
+            android:id="@+id/action_tayyorFragment_to_globalSearchFragment"
+            app:destination="@id/globalSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -132,7 +142,8 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.yuvish.Fragments.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment"
@@ -168,6 +179,9 @@
         <action
             android:id="@+id/action_settingFragment_to_debtorsDepartmentFragment"
             app:destination="@id/debtorsDepartmentFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_globalSearchFragment"
+            app:destination="@id/globalSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/skladFragment"
@@ -201,6 +215,9 @@
         <action
             android:id="@+id/action_skladFragment_to_sumbitFragment"
             app:destination="@id/sumbitFragment" />
+        <action
+            android:id="@+id/action_skladFragment_to_globalSearchFragment"
+            app:destination="@id/globalSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/baseFragment"
@@ -246,6 +263,9 @@
         <action
             android:id="@+id/action_baseFragment_self"
             app:destination="@id/baseFragment" />
+        <action
+            android:id="@+id/action_baseFragment_to_globalSearchFragment"
+            app:destination="@id/globalSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/listFragment"
@@ -314,6 +334,9 @@
         <action
             android:id="@+id/action_debtorsDepartmentFragment_to_tayyorFragment"
             app:destination="@id/tayyorFragment" />
+        <action
+            android:id="@+id/action_debtorsDepartmentFragment_to_globalSearchFragment"
+            app:destination="@id/globalSearchFragment" />
     </fragment>
     <fragment
         android:id="@+id/barcodeScannerFragment"
@@ -378,5 +401,36 @@
         android:name="com.example.yuvish.Fragments.GetSizeFragment"
         android:label="fragment_get_size"
         tools:layout="@layout/fragment_get_size" />
+    <fragment
+        android:id="@+id/globalSearchFragment"
+        android:name="com.example.yuvish.Fragments.globalSearch.GlobalSearchFragment"
+        android:label="fragment_global_search"
+        tools:layout="@layout/fragment_global_search" >
+        <action
+            android:id="@+id/action_globalSearchFragment_to_confirmationOrderFragment"
+            app:destination="@id/confirmationOrderFragment" />
+        <action
+            android:id="@+id/action_globalSearchFragment_to_getSizeFragment"
+            app:destination="@id/getSizeFragment" />
+        <action
+            android:id="@+id/action_globalSearchFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_globalSearchFragment_to_sumbitFragment"
+            app:destination="@id/sumbitFragment" />
+        <action
+            android:id="@+id/action_globalSearchFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchReceiptFragment"
+        android:name="com.example.yuvish.Fragments.globalSearch.SearchReceiptFragment"
+        android:label="fragment_search_receipt"
+        tools:layout="@layout/fragment_search_receipt" />
+    <fragment
+        android:id="@+id/searchCustomerFragment"
+        android:name="com.example.yuvish.Fragments.globalSearch.SearchCustomerFragment"
+        android:label="fragment_search_customer"
+        tools:layout="@layout/fragment_search_customer" />
 
 </navigation>

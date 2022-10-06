@@ -116,7 +116,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
-                            android:text="120000 so'm"
+                            android:textColor="@color/red"
+                            android:text="0"
                             android:textSize="16sp" />
 
                     </LinearLayout>

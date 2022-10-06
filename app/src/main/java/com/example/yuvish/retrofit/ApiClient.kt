@@ -10,6 +10,12 @@ object ApiClient {
 
     const val IMAGE_BASE_URL = "https://yuvish.uz/images/logo/"
 
+    //Auth
+    const val ROLE = "yuvuvchi"
+
+    //Packed
+    const val STATUS = "yuvish"
+
     //Barcode
     const val BARCODE_IMAGE_WIDTH = 900
     const val BARCODE_IMAGE_HEIGHT = 300

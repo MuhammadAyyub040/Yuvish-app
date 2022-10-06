@@ -27,6 +27,8 @@ import com.example.yuvish.Models.Setting.Setting
 import com.example.yuvish.Models.Setting.UpdateSetting
 import com.example.yuvish.Models.Tokchalar.ShelfItem
 import com.example.yuvish.Models.Warehouse.OrdersOmborItem
+import com.example.yuvish.Models.globalSearch.SearchReceiptResult
+import com.example.yuvish.Models.searchCustomer.SearchReceipt
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -44,6 +46,13 @@ interface RetrofitService {
         @Field("username") username: String,
         @Field("password") password: String
     ): Call<UserToken>
+
+    //GlobalSearchFragment requests
+
+    @POST("/search_by_kv_id")
+    fun searchReceiptById(
+        @Body searchReceipt: SearchReceipt
+    ): Call<SearchReceiptResult>
 
     //Washing
 
@@ -182,8 +191,8 @@ interface RetrofitService {
     @GET("korsatkich_mahsulot_yuvildi")
     fun getWashedIndicators(
         @Query("from_date") fromDate: String,
-        @Query("page") page: Int,
-        @Query("to_date") toDate: String
+        @Query("to_date") toDate: String,
+        @Query("page") page: Int
     ): Call<WashedIndicator>
 
     @GET("korsatkich_mahsulot_topshirildi")

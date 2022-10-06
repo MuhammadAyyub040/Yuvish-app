@@ -49,7 +49,6 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
     lateinit var listFilter: List<FilterDebtorsItem>
     lateinit var toggle: ActionBarDrawerToggle
     private var selectedFilterPosition = 0
-    var searchPage = false
 
     private var debtOff: DebtOff? = null
     private var payDebt: Paydebt? = null
@@ -71,20 +70,6 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         paymentTypes()
         list = arrayListOf()
 
-        val arrayAdapter = ArrayAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            arrayListOf("2022", "2021")
-        )
-        binding.autoCompleteTextView.setAdapter(arrayAdapter)
-
-        binding.btnX.setOnClickListener {
-            binding.searchCard.visibility = View.GONE
-            searchPage = false
-
-            closeKeyboard(it)
-        }
-
         binding.autoCompleteTextViewDebtors.setOnItemClickListener { parent, view, position, id ->
             selectedFilterPosition = position
             getPaginationPageMarked(list[position].value.toInt())
@@ -92,16 +77,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         }
 
         binding.btnSearch.setOnClickListener {
-            when (searchPage) {
-                false -> {
-                    binding.searchCard.visibility = View.VISIBLE
-                    searchPage = true
-                }
-                true -> {
-                    binding.searchCard.visibility = View.GONE
-                    searchPage = false
-                }
-            }
+            findNavController().navigate(R.id.action_debtorsDepartmentFragment_to_globalSearchFragment)
         }
 
         binding.rvNotfinishingDebtors.adapter = markedPaginationAdapter
@@ -330,7 +306,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
     private fun closeKeyboard(view: View) {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.btnSearch.windowToken, 0)
     }
 
     override fun onItemClickMarked(marketPaginationItem: MarketPaginationItem) {

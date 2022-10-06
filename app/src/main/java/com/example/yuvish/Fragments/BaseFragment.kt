@@ -60,22 +60,7 @@ class BaseFragment : Fragment() {
             updateAttendance(setting)
         }
 
-        val arrayAdapter = ArrayAdapter(
-            requireActivity(),
-            android.R.layout.simple_list_item_1,
-            arrayListOf("2022", "2021")
-        )
-
-//        searchIndicators("fromDate", "toDate")
-
-        binding.autoCompleteTextViewBase.setAdapter(arrayAdapter)
-
-        binding.btnX.setOnClickListener {
-            binding.searchCard.visibility = View.GONE
-            searchPage = false
-
-            closeKeyboard()
-        }
+        searchIndicators("fromDate", "toDate")
 
         binding.txtWashed.setOnClickListener {
             val bundle = getDateBundle()
@@ -128,16 +113,7 @@ class BaseFragment : Fragment() {
         }
 
         binding.btnSearch.setOnClickListener {
-            when (searchPage) {
-                false -> {
-                    binding.searchCard.visibility = View.VISIBLE
-                    searchPage = true
-                }
-                true -> {
-                    binding.searchCard.visibility = View.GONE
-                    searchPage = false
-                }
-            }
+            findNavController().navigate(R.id.action_baseFragment_to_globalSearchFragment)
         }
 
         toggle =
@@ -370,8 +346,8 @@ class BaseFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun updateUI(searchIndicatorsResult: SearchIndicatorsResult) {
-        binding.washedPcs.text = "${searchIndicatorsResult.mahsulot_qadoqlandi.tovar_dona} ${getString(R.string.pcs)}"
-        binding.washedMeterSquare.text = "${searchIndicatorsResult.mahsulot_qadoqlandi.tovar_kv} ${getString(R.string.m)}"
+        binding.washedPcs.text = "${searchIndicatorsResult.mahsulot_yuvildi.tovar_dona} ${getString(R.string.pcs)}"
+        binding.washedMeterSquare.text = "${searchIndicatorsResult.mahsulot_yuvildi.tovar_kv} ${getString(R.string.m)}"
         binding.submitPcs.text = "${searchIndicatorsResult.mahsulot_topshirildi.tovar_dona} ${getString(R.string.pcs)}"
         binding.submitMeterSquare.text = "${searchIndicatorsResult.mahsulot_topshirildi.tovar_kv} ${getString(R.string.m)}"
         binding.salaryKpi.text = "${searchIndicatorsResult.kunlik_maosh} ${getString(R.string.so_m)}"
@@ -405,7 +381,7 @@ class BaseFragment : Fragment() {
     private fun closeKeyboard() {
         val inputMethodManager =
             requireActivity().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(binding.edtId.windowToken, 0)
+        inputMethodManager.hideSoftInputFromWindow(binding.btnSearch.windowToken, 0)
     }
 
     private fun searchIndicators(fromDate: String, toDate: String) {

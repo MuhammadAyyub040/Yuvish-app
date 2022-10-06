@@ -204,9 +204,9 @@
     <string name="o_lcham">O\'lcham</string>
     <string name="narx">Narx</string>
     <string name="tokcha">Tokcha</string>
-    <string name="__1">1.</string>
+    <string name="__1" translatable="false">1.</string>
     <string name="jami_chegirma">Jami chegirma:</string>
-    <string name="percentage">%</string>
+    <string name="percentage" translatable="false">%</string>
     <string name="izohlar">Izohlar</string>
     <string name="qayta_yuvish_uchun">Qayta yuvish uchun:</string>
     <string name="o_zi_olib_ketishi_uchun">O\'zi olib ketishi uchun:</string>
@@ -226,8 +226,8 @@
     <string name="entered_date_beginning_this_month">Kiritilgan sana shu oyning boshidan kichik bo\'lmasligi kerak</string>
     <string name="from_date_empty">Sana bo\'sh</string>
     <string name="to_date_empty">Sana bo\'sh</string>
-    <string name="jami_mahsulotlar">Jami mahsulotlar</string>
-    <string name="receipt_number">Receipt №:</string>
+    <string name="jami_mahsulotlar">Jami mahsulotlar:</string>
+    <string name="receipt_number">Kvitansiya №:</string>
     <string name="pcs">dona</string>
     <string name="meter">m</string>
     <string name="employees">Hodimlar</string>
@@ -297,7 +297,7 @@
     <string name="final_payment">Yakuniy to\'lov:</string>
     <string name="total_dropped">Jami tushib berildi:</string>
     <string name="dropped">Tushib berildi:</string>
-    <string name="to_customer_pickup_away">O\'zi olib ketishi uchun</string>
+    <string name="to_customer_pickup_away">Mijoz o\'zi olib ketish</string>
     <string name="for_rewash">Qayta yuvish uchun:</string>
     <string name="total_discount">Jami chegirma:</string>
     <string name="receipt_number_full">Kvitansiya №:</string>
@@ -305,4 +305,14 @@
     <string name="destination">Mo\'ljali:</string>
     <string name="address_with_delimetr">Manzili:</string>
     <string name="company_name">Korxona nomi:</string>
+    <string name="between_washed"><![CDATA[%1$s -> %2$s oraliqda yuvilganlar]]></string>
+    <string name="search">Qidirish</string>
+    <string name="enter_receipt_id">Kvitansiya id ni kiriting...</string>
+    <string name="washing">Yuvilmoqda</string>
+    <string name="bring">Keltirish</string>
+    <string name="completion">Tasdiqlash</string>
+    <string name="packing">Qadoqlash</string>
+    <string name="submission">Tasdiqlash</string>
+    <string name="name_phone_number_address">Ism, telefon raqami, manzili</string>
+    <string name="customer_not_found">Mijoz topilmadi.</string>
 </resources>

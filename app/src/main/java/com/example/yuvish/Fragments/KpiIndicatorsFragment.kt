@@ -78,9 +78,8 @@ class KpiIndicatorsFragment : Fragment() {
         ApiClient.retrofitService.getKpiIndicators(fromDate, toDate, page).enqueue(object : Callback<KpiIndicator>{
             override fun onResponse(call: Call<KpiIndicator>, response: Response<KpiIndicator>) {
                 if (response.code() == 200){
-                    Log.e("TAG", "onResponse: ${response.code()}" )
-                    kpiIndicator = response.body()!!
-                    binding.totalIndicatorAmount.text = "${kpiIndicator.jami_summa}${getString(R.string.so_m)}"
+                    totalIndicatorAmount = response.body()?.jami_summa
+                    updateTotalIndicators(totalIndicatorAmount!!)
                 }
             }
 

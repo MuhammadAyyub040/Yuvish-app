@@ -1,13 +1,11 @@
 package com.example.yuvish.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.ProductsIndicatorChildAdapter
 import com.example.yuvish.Adapters.SubmittedIndicatorGroupAdapter
@@ -91,6 +89,8 @@ class SubmittedIndicatorsFragment : Fragment() {
         ApiClient.retrofitService.getSubmittedIndicators(fromDate, toDate, page).enqueue(object : Callback<SubmittedIndicator>{
             override fun onResponse(call: Call<SubmittedIndicator>, response: Response<SubmittedIndicator>) {
                 if (response.code() == 200){
+                    totalIndicatorProductsList = response.body()?.jami_table_footer
+                    updateTotalIndicators(totalIndicatorProductsList!!)
                 }
             }
 
