@@ -126,7 +126,7 @@
                         android:layout_margin="20dp"
                         android:background="#BDB8B8" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/rv_notfinishing_debtors"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -172,7 +172,7 @@
                         android:layout_margin="20dp"
                         android:background="#BDB8B8" />
 
-                    <androidx.recyclerview.widget.RecyclerView
+                    <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/rv_debtors"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

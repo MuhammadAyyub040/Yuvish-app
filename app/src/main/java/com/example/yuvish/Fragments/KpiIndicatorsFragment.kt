@@ -8,13 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isGone
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
 import com.example.yuvish.Adapters.KpiIndicatorAdapter
 import com.example.yuvish.Models.BaseIndikatorsIndex.KpiIndicator
+import com.example.yuvish.Models.BaseIndikatorsIndex.KpiIndicatorPagingSource
+import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedWashedIndicatorPagingSource
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentKpiIndicatorsBinding
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -22,7 +29,6 @@ import retrofit2.Response
 class KpiIndicatorsFragment : Fragment() {
 
     lateinit var binding: FragmentKpiIndicatorsBinding
-    lateinit var kpiIndicator: KpiIndicator
     private val kpiIndicatorAdapter: KpiIndicatorAdapter by lazy {
         KpiIndicatorAdapter(requireActivity())
     }
@@ -33,6 +39,7 @@ class KpiIndicatorsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        getPaginationKpi()
         fromDate = arguments?.getString("fromDate")!!
         toDate = arguments?.getString("toDate")!!
     }
@@ -64,6 +71,21 @@ class KpiIndicatorsFragment : Fragment() {
 
     }
 
+    fun getPaginationKpi() {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { KpiIndicatorPagingSource(fromDate, toDate, ApiClient.retrofitService) }
+        ).liveData.observe(this) {
+            lifecycleScope.launch {
+                kpiIndicatorAdapter.submitData(it)
+            }
+        }
+    }
+
     private fun updateTotalIndicators(totalIndicatorAmount: Int){
         binding.totalIndicatorAmount.text = "$totalIndicatorAmount ${getString(R.string.so_m)}"
     }
@@ -75,7 +97,7 @@ class KpiIndicatorsFragment : Fragment() {
 
 
     private fun getKpiIndicator(fromDate: String, toDate: String, page: Int){
-        ApiClient.retrofitService.getKpiIndicators(fromDate, toDate, page).enqueue(object : Callback<KpiIndicator>{
+        ApiClient.retrofitService.getKpiIndicator(fromDate, toDate, page).enqueue(object : Callback<KpiIndicator>{
             override fun onResponse(call: Call<KpiIndicator>, response: Response<KpiIndicator>) {
                 if (response.code() == 200){
                     totalIndicatorAmount = response.body()?.jami_summa

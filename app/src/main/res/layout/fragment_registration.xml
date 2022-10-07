@@ -387,13 +387,6 @@
                     android:text="0"
                     android:textSize="20sp" />
 
-                <TextView
-                    style="@style/textStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/ta"
-                    android:textSize="20sp" />
-
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

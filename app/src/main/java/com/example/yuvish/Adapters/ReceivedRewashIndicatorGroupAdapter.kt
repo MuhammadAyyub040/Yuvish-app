@@ -10,18 +10,16 @@ import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedRewashIndicatorOrde
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ReceivedRewashIndicatorGroupItemLayoutBinding
 
-class ReceivedRewashIndicatorGroupAdapter(
-    private val context: Context
-    ):
+class ReceivedRewashIndicatorGroupAdapter(private val context: Context):
     PagingDataAdapter<ReceivedRewashIndicatorOrder, ReceivedRewashIndicatorGroupAdapter.ItemHolder>(ReceivedRewashIndicatorOrderDiffItemCallback()) {
 
     inner class ItemHolder(val binding: ReceivedRewashIndicatorGroupItemLayoutBinding):
         RecyclerView.ViewHolder(binding.root){
 
         fun setItem(receivedRewashIndicatorOrder: ReceivedRewashIndicatorOrder, position: Int){
-            val productsIndicatorChildAdapter = ProductsIndicatorChildAdapter(context)
-            productsIndicatorChildAdapter.submitList(receivedRewashIndicatorOrder.products)
-            binding.productsRV.adapter = productsIndicatorChildAdapter
+            val productsRewashedIndicatorChildAdapter = ProductsRewashedIndicatorChildAdapter(context)
+            productsRewashedIndicatorChildAdapter.submitList(receivedRewashIndicatorOrder.products)
+            binding.productsRV.adapter = productsRewashedIndicatorChildAdapter
 
             binding.ordinalNumber.text = "${position + 1}."
             binding.receiptNumber.text = receivedRewashIndicatorOrder.order_nomer.toString()

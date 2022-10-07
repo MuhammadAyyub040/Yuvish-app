@@ -161,7 +161,6 @@ class ConfirmationOrderFragment : Fragment(), ConfirmationProductsAdapter.CallBa
 
                         when (whereRequestSentFrom) {
                             "toGetSize" -> {
-                                Log.d("TAG", "onResponse: $orderId")
                                 findNavController().navigate(R.id.action_confirmationOrderFragment_to_getSizeFragment,
                                     bundleOf("orderId" to orderId)
                                 )

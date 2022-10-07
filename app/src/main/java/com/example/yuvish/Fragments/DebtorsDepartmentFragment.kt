@@ -68,12 +68,14 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         markedPaginationAdapter = MarkedPaginationAdapter(this, requireActivity())
         unMarkedPaginationAdapter = DebtorsCompletedAdapter(requireActivity(),this)
         paymentTypes()
+        driverTypes()
+        listFilter = arrayListOf()
         list = arrayListOf()
 
         binding.autoCompleteTextViewDebtors.setOnItemClickListener { parent, view, position, id ->
             selectedFilterPosition = position
-            getPaginationPageMarked(list[position].value.toInt())
-            getPaginationPageUnMarked(list[position].value.toInt())
+            getPaginationPageMarked(listFilter[position].value.toInt())
+            getPaginationPageUnMarked(listFilter[position].value.toInt())
         }
 
         binding.btnSearch.setOnClickListener {
@@ -257,13 +259,34 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
     private fun paymentDebt(paydebt: Paydebt) {
         ApiClient.retrofitService.requestPayDebt(paydebt).enqueue(object : Callback<String?> {
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
-                if (response.code() == 200){}
+                if (response.code() == 200){
+                    Toast.makeText(requireActivity(), "Pul muvaffaqiyatli olindi!", Toast.LENGTH_SHORT).show()
+                }
             }
 
             override fun onFailure(call: Call<String?>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
             }
+        })
+    }
+
+    private fun driverTypes() {
+        ApiClient.retrofitService.filterDebtors().enqueue(object : Callback<List<FilterDebtorsItem>> {
+
+            override fun onResponse(call: Call<List<FilterDebtorsItem>>, response: Response<List<FilterDebtorsItem>>) {
+                if (response.code() == 200) {
+                    listFilter = response.body()!!
+                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, listFilter.map { it.title })
+                    binding.autoCompleteTextViewDebtors.setAdapter(arrayAdapter)
+                 }
+            }
+
+            override fun onFailure(call: Call<List<FilterDebtorsItem>>, t: Throwable) {
+                t.printStackTrace()
+                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
+            }
+
         })
     }
 
@@ -274,8 +297,6 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
 
                 if (response.code() == 200) {
                     list = response.body()!!
-                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map { it.name })
-                    binding.autoCompleteTextViewDebtors.setAdapter(arrayAdapter)
                     unMarkedPaginationAdapter.submitPaymentTypesList(response.body()!!)
                 }
             }
@@ -292,6 +313,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         ApiClient.retrofitService.requestDebtOff(debtOff).enqueue(object : Callback<String?>{
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.code() == 200){
+
                 }
             }
 
@@ -362,9 +384,10 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
     }
 
     override fun payDebtClickListener(payDebt: Paydebt) {
-        Log.e(TAG, "payDebtClickListener:" )
         this.payDebt = payDebt
         paymentDebt(payDebt)
+        unMarkedPaginationAdapter.refresh()
+        markedPaginationAdapter.refresh()
     }
 
     override fun debtOffClickListener(marketPaginationItem: MarketPaginationItem) {

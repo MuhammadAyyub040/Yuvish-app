@@ -42,7 +42,6 @@ class BaseFragment : Fragment() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var setting: Setting
     private var searchIndicatorsResult: SearchIndicatorsResult? = null
-    var searchPage = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,8 +58,6 @@ class BaseFragment : Fragment() {
             updateUI(searchIndicatorsResult!!)
             updateAttendance(setting)
         }
-
-        searchIndicators("fromDate", "toDate")
 
         binding.txtWashed.setOnClickListener {
             val bundle = getDateBundle()

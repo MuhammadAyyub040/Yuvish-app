@@ -41,7 +41,6 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
     lateinit var cleaningPaginationAdapter: CleaningPaginationAdapter
     lateinit var cleaningPaginationAdapter2: CleaningPaginationAdapter
     lateinit var toggle: ActionBarDrawerToggle
-    var searchPage = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -215,6 +214,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
     }
 
     override fun onItemClickCleaning(rewashReceipt: RewashReceipt) {
+        Toast.makeText(requireActivity(), "${rewashReceipt.order_id}", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_homeFragment_to_registrationFragment, bundleOf(
         "orderId" to rewashReceipt.order_id
         ))
@@ -279,8 +279,7 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
                 val orderId = response.body()
                 if (response.code() == 200){
                     if (orderId == null) {
-                        Toast.makeText(requireActivity(), "Barcode topilmadi", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(requireActivity(), "Barcode topilmadi", Toast.LENGTH_SHORT).show()
                     } else{
                         findNavController().navigate(R.id.action_homeFragment_to_registrationFragment, bundleOf(
                             "orderId" to orderId,

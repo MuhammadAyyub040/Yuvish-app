@@ -1,16 +1,9 @@
 package com.example.yuvish.Fragments
 
 import android.annotation.SuppressLint
-import com.example.yuvish.R
 import android.app.Activity
 import android.app.AlertDialog
-import android.app.DatePickerDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.service.controls.ControlsProviderService.TAG
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,37 +12,39 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
-import com.example.yuvish.Models.DebtorsPackage.Debtors
+import com.example.yuvish.Adapters.DebtorsCompletedAdapter
+import com.example.yuvish.Adapters.MarkedPaginationAdapter
+import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
 import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
+import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
 import com.example.yuvish.Models.DebtorsPackage.DebtOff
-import com.example.yuvish.Models.StringHelper
+import com.example.yuvish.Models.DebtorsPackage.Debtors
+import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentDebtorBinding
 import com.example.yuvish.databinding.ItemWarnBinding
 import com.example.yuvish.retrofit.ApiClient
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
-import com.orhanobut.hawk.Hawk
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DebtorFragment : Fragment() {
+class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsCompletedAdapter.CallBack {
 
     lateinit var binding: FragmentDebtorBinding
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var markedPaginationAdapter: MarkedPaginationAdapter
+    lateinit var unMarkedPaginationAdapter: DebtorsCompletedAdapter
     lateinit var debtors: Debtors
     private var debtId: Int? = null
     private var confirmDebt: ConfirmDebt? = null
     private var debtOff: DebtOff? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -72,6 +67,9 @@ class DebtorFragment : Fragment() {
         )
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
 
+        markedPaginationAdapter = MarkedPaginationAdapter(this, requireActivity())
+        unMarkedPaginationAdapter = DebtorsCompletedAdapter(requireActivity(),this)
+
         binding.backStack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -87,6 +85,7 @@ class DebtorFragment : Fragment() {
         binding.btnConfirmation.setOnClickListener {
             checkDebtPayDate()
         }
+
 
     }
 
@@ -191,6 +190,9 @@ class DebtorFragment : Fragment() {
         ApiClient.retrofitService.requestDebtOff(debtOff).enqueue(object : Callback<String?>{
             override fun onResponse(call: Call<String?>, response: Response<String?>) {
                 if (response.code() == 200){
+                    markedPaginationAdapter.refresh()
+                    unMarkedPaginationAdapter.refresh()
+                    findNavController().popBackStack()
                 }
             }
 
@@ -261,5 +263,15 @@ class DebtorFragment : Fragment() {
 
         customDialog.show()
     }
+
+    override fun phoneClickListener(marketPaginationItem: MarketPaginationItem) {}
+
+    override fun payDebtClickListener(payDebt: Paydebt) {}
+
+    override fun debtOffClickListener(marketPaginationItem: MarketPaginationItem) {}
+
+    override fun onItemClickMarked(marketPaginationItem: MarketPaginationItem) {}
+
+    override fun phoneItemClickMarked(marketPaginationItem: MarketPaginationItem) {}
 
 }

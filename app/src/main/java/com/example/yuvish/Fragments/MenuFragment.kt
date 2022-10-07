@@ -49,7 +49,6 @@ class MenuFragment : Fragment() {
     private fun getCommonSetting(){
         ApiClient.retrofitService.getCommonSettings().enqueue(object : Callback<CommonSettings>{
             override fun onResponse(call: Call<CommonSettings>, response: Response<CommonSettings>) {
-                Log.e("TAG", "onResponse: ${response.code()}" )
                 if (response.code() == 200){
                     GlobalData.commonSettings = response.body()
                     checkChangeFragment()

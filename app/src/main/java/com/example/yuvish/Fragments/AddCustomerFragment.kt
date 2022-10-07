@@ -39,13 +39,11 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
     private var customerTypesList: ArrayList<String>? = null
     private lateinit var customerTypeAdapter: ArrayAdapter<String>
     private lateinit var nationalitiesAdapter: ArrayAdapter<String>
-    var newPage = false
 
     private var selectedCustomerTypePosition = 0
     private var selectedNationalityPosition = 0
 
     private var postCustomer: PostCustomer? = null
-    private var customerId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -120,7 +118,6 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
         ApiClient.retrofitService.createOrderByCustomerId(customerId).enqueue(object : Callback<Int?>{
             override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
                 if (response.code() == 200){
-                    Log.e(TAG, "onResponse: ${response.body()}")
                     findNavController().navigate(R.id.action_addCustomerFragment_to_listFragment, bundleOf(
                         "customerId" to response.body()
                     ))
@@ -138,7 +135,6 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
     private fun getNationalities(){
         ApiClient.retrofitService.getNationalities().enqueue(object : Callback<List<Nationality>>{
             override fun onResponse(call: Call<List<Nationality>>, response: Response<List<Nationality>>) {
-                Log.e(TAG, "onResponse: ${response.body()}")
                 if (response.code() == 200) {
                     nationalitiesList = response.body() as ArrayList<Nationality>?
                     val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, nationalitiesList!!.map { it.name })
@@ -157,7 +153,6 @@ class AddCustomerFragment : Fragment(), SourceAdapter.OnItemClick {
     private fun getSources(){
         ApiClient.retrofitService.getSources().enqueue(object : Callback<List<Sources>>{
             override fun onResponse(call: Call<List<Sources>>, response: Response<List<Sources>>) {
-                Log.d(TAG, "onResponse: ${response.code()}")
                 if (response.code() == 200){
                     sourcesList = response.body() as ArrayList<Sources>?
                 }

@@ -188,8 +188,17 @@ interface RetrofitService {
         @Query("to_date") toDate: String
     ): Call<SearchIndicatorsResult>
 
+    //pagination
+
     @GET("korsatkich_mahsulot_yuvildi")
-    fun getWashedIndicators(
+    suspend fun getWashedIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("to_date") toDate: String,
+        @Query("page") page: Int
+    ): Response<WashedIndicator>
+
+    @GET("korsatkich_mahsulot_yuvildi")
+    fun getWashedIndicator(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int
@@ -202,15 +211,31 @@ interface RetrofitService {
         @Query("page") page: Int
     ): Call<SubmittedIndicator>
 
+    //pagination
+
     @GET("qayta_yuvishga_ol")
-    fun getReceivedRewashIndicators(
+    suspend fun getReceivedRewashIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("to_date") toDate: String,
+        @Query("page") page: Int
+    ): Response<ReceivedRewashIndicator>
+
+    @GET("qayta_yuvishga_ol")
+    fun getReceivedRewashIndicator(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int
     ): Call<ReceivedRewashIndicator>
 
     @GET("kunlik_maoshlar")
-    fun getKpiIndicators(
+    suspend fun getKpiIndicators(
+        @Query("from_date") fromDate: String,
+        @Query("to_date") toDate: String,
+        @Query("page") page: Int
+    ): Response<KpiIndicator>
+
+    @GET("kunlik_maoshlar")
+    fun getKpiIndicator(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int

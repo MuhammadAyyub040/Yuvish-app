@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.ProductsIndicatorChildAdapter
+import com.example.yuvish.Adapters.ProductsRewashedIndicatorChildAdapter
 import com.example.yuvish.Adapters.ReceivedRewashIndicatorGroupAdapter
 import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorProduct
 import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedRewashIndicator
@@ -26,8 +27,8 @@ class RewashReceivedFragment : Fragment() {
     private val receivedRewashIndicatorGroupAdapter: ReceivedRewashIndicatorGroupAdapter by lazy {
         ReceivedRewashIndicatorGroupAdapter(requireActivity())
     }
-    private val totalProductsAdapter: ProductsIndicatorChildAdapter by lazy {
-        ProductsIndicatorChildAdapter(requireActivity())
+    private val totalProductsAdapter: ProductsRewashedIndicatorChildAdapter by lazy {
+        ProductsRewashedIndicatorChildAdapter(requireActivity())
     }
 
     private var totalIndicatorProductsList: List<IndicatorProduct>? = null
@@ -50,7 +51,6 @@ class RewashReceivedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.fromAndToDate.text = getString(R.string.between_rewashed, fromDate.transformDate(), toDate.transformDate())
 
         if (totalIndicatorProductsList.isNull()){
@@ -59,8 +59,8 @@ class RewashReceivedFragment : Fragment() {
             updateTotalIndicators(totalIndicatorProductsList!!)
         }
 
-        binding.totalProductsRV.adapter = totalProductsAdapter
-        binding.indicatorsRV.adapter = receivedRewashIndicatorGroupAdapter
+        binding.totalRewashProductsRV.adapter = totalProductsAdapter
+        binding.indicatorsRewashRV.adapter = receivedRewashIndicatorGroupAdapter
 
         binding.backStack.setOnClickListener {
             findNavController().popBackStack()
@@ -72,8 +72,6 @@ class RewashReceivedFragment : Fragment() {
         binding.totalProductCount.text = "${calcTotalProductsCount(indicatorProductsList)} ${getString(R.string.pcs)}"
         totalProductsAdapter.submitList(indicatorProductsList)
     }
-
-
 
     private fun String.transformDate(): String{
         val dateArray = this.split("-")
@@ -91,7 +89,7 @@ class RewashReceivedFragment : Fragment() {
     }
 
     private fun getReceivedRewashIndicators(fromDate: String, toDate: String, page: Int){
-        ApiClient.retrofitService.getReceivedRewashIndicators(fromDate, toDate, page).enqueue(object : Callback<ReceivedRewashIndicator>{
+        ApiClient.retrofitService.getReceivedRewashIndicator(fromDate, toDate, page).enqueue(object : Callback<ReceivedRewashIndicator>{
             override fun onResponse(call: Call<ReceivedRewashIndicator>, response: Response<ReceivedRewashIndicator>) {
                 if (response.code() == 200){
                     totalIndicatorProductsList = response.body()!!.jami_table_footer

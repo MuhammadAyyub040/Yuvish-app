@@ -164,6 +164,7 @@ class RegistrationFragment : Fragment(), RegistrationAdapter.CallBack {
         ApiClient.retrofitService.registrationApi(orderId).enqueue(object : Callback<Registration>{
             override fun onResponse(call: Call<Registration>, response: Response<Registration>) {
                 if (response.code() == 200) {
+                    Log.e(TAG, "onResponse: ${response.body()}")
                     registration = response.body()!!
 
                     registrationAdapterGroup.setData(registration.products)

@@ -21,9 +21,7 @@ class PaginationPageMarked(
             val pageNumber = params.key ?: 1
             val pageSize = params.loadSize
             val response = retrofitService.marketPagination(pageNumber, driver, type)
-            Log.e(TAG, "load: ${response.body()}" )
             if (response.code() == 200) {
-                Log.e(TAG, "load: ${response.body()}")
                 val marketPaginationItem = response.body()!!
                 val nextPageNumber = if (marketPaginationItem.size < pageSize) null else pageNumber + 1
                 val prevPageNumber = if (pageNumber > 1) pageNumber - 1 else null

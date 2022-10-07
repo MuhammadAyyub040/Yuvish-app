@@ -46,7 +46,6 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
     lateinit var arranging: Arranging
     private var placeHolderPermission = true
     private var selectedFilterPosition = 0
-    var searchPage = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

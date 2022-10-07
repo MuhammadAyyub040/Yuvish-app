@@ -8,9 +8,9 @@ import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorProduct
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ProductIndicatorChildItemLayoutBinding
 
-class ProductsIndicatorChildAdapter(
+class ProductsRewashedIndicatorChildAdapter(
     private val context: Context
-    ): RecyclerView.Adapter<ProductsIndicatorChildAdapter.ItemHolder>() {
+    ): RecyclerView.Adapter<ProductsRewashedIndicatorChildAdapter.ItemHolder>() {
 
     private var productsList: List<IndicatorProduct> = emptyList()
 
