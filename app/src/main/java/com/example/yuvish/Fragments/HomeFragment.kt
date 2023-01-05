@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -24,8 +23,8 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.CleaningPaginationAdapter
+import com.example.yuvish.Models.Cleaning.CleaningData
 import com.example.yuvish.Models.Cleaning.PaginationPageCleaning
-import com.example.yuvish.Models.Cleaning.RewashReceipt
 import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentHomeBinding
@@ -180,11 +179,11 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
     private fun getPaginationCleaning() {
         Pager(
             config = PagingConfig(
-                pageSize = 10,
+                pageSize = 50,
                 enablePlaceholders = false,
-                initialLoadSize = 10
+                initialLoadSize = 50
             ),
-            pagingSourceFactory = { PaginationPageCleaning(ApiClient.retrofitService, "cleaning") }
+            pagingSourceFactory = { PaginationPageCleaning(ApiClient.retrofitService, "yuvish") }
         ).liveData.observe(this) {
             lifecycleScope.launch {
                 cleaningPaginationAdapter.submitData(it)
@@ -195,11 +194,11 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
     fun getPaginationRecleaning() {
         Pager(
             config = PagingConfig(
-                pageSize = 10,
+                pageSize = 50,
                 enablePlaceholders = false,
-                initialLoadSize = 10
+                initialLoadSize = 50
             ),
-            pagingSourceFactory = { PaginationPageCleaning(ApiClient.retrofitService, "recleaning") }
+            pagingSourceFactory = { PaginationPageCleaning(ApiClient.retrofitService, "qayta") }
         ).liveData.observe(this) {
             lifecycleScope.launch {
                 cleaningPaginationAdapter2.submitData(it)
@@ -213,15 +212,15 @@ class HomeFragment : Fragment(), CleaningPaginationAdapter.OnItemClick {
         inputMethodManager.hideSoftInputFromWindow(binding.btnSearch.windowToken, 0)
     }
 
-    override fun onItemClickCleaning(rewashReceipt: RewashReceipt) {
-        Toast.makeText(requireActivity(), "${rewashReceipt.order_id}", Toast.LENGTH_SHORT).show()
+    override fun onItemClickCleaning(cleaningData: CleaningData) {
+        Toast.makeText(requireActivity(), "${cleaningData.order_id}", Toast.LENGTH_SHORT).show()
         findNavController().navigate(R.id.action_homeFragment_to_registrationFragment, bundleOf(
-        "orderId" to rewashReceipt.order_id
+        "orderId" to cleaningData.order_id
         ))
     }
 
-    override fun onItemClickPhoneNumber(rewashReceipt: RewashReceipt) {
-        intentCall(rewashReceipt.costumer.costumer_phone_1)
+    override fun onItemClickPhoneNumber(cleaningData: CleaningData) {
+        intentCall(cleaningData.custumer.costumer_phone_1)
     }
 
     private fun intentCall(phoneNumber: String){

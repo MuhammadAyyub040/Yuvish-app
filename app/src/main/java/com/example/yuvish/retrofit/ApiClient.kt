@@ -6,9 +6,9 @@ object ApiClient {
         const val INITIAL_PAGE_NUMBER = 1
     }
 
-    const val BASE_URL = "https://back.yuvish.uz/"
+    const val BASE_URL = "https://api.pcccrm.uz/api/"
 
-    const val IMAGE_BASE_URL = "https://yuvish.uz/images/logo/"
+    const val IMAGE_BASE_URL = "http://yuvish.uz/images/logo/"
 
     //Auth
     const val ROLE = "yuvuvchi"

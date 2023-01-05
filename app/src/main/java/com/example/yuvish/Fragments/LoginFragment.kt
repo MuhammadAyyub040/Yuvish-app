@@ -45,7 +45,7 @@ class LoginFragment : Fragment() {
                         if (response.code() == 200){
                             Log.d("testLogin", response.body().toString())
                             val userToken = response.body()
-                            Hawk.put("token", userToken?.access_token)
+                            Hawk.put("token", userToken?.token)
                             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                         }else{
                             Log.d("testLogin", response.toString())

@@ -135,14 +135,17 @@
                 style="@style/svgTheme"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_location" />
 
             <TextView
                 android:id="@+id/txt_location_warehouse"
                 style="@style/textStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="3"
                 android:text="@string/fergana"
                 android:textSize="16sp" />
 
@@ -157,14 +160,17 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_operator2" />
 
             <TextView
                 android:id="@+id/txt_operator"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Sardor"
+                android:layout_margin="5dp"
+                android:layout_weight="3"
+                android:text="operator"
                 android:textColor="#2196F3"
                 android:textSize="16sp" />
 
@@ -179,14 +185,18 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_person" />
 
             <TextView
+                android:id="@+id/omborchi_name"
                 style="@style/textStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="No`malum"
+                android:layout_margin="5dp"
+                android:layout_weight="3"
+                android:text="omborchi"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -201,10 +211,12 @@
                 style="@style/svgTheme"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_message" />
 
             <TextView
+                android:layout_margin="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Izoh:"
@@ -215,6 +227,7 @@
                 android:id="@+id/txt_comment_operator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_marginStart="8dp"
                 android:text="Sardor"
                 android:textColor="#F44336"
@@ -232,12 +245,14 @@
                 style="@style/svgTheme"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/ic_message2" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:text="Izoh:"
                 android:textColor="#F44336"
                 android:textSize="18sp" />
@@ -246,6 +261,7 @@
                 android:id="@+id/txt_comment_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="5dp"
                 android:layout_marginStart="8dp"
                 android:text="Sardor"
                 android:textColor="#F44336"

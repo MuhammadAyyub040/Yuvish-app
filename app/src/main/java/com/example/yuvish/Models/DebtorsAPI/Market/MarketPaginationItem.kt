@@ -2,7 +2,7 @@ package com.example.yuvish.Models.DebtorsAPI.Market
 
 data class MarketPaginationItem(
     val ber_date: String,
-    val costumer: Costumer,
+    val nasiyachi: Costumer,
     val date: String,
     val filial_id: Int,
     val id: Int,

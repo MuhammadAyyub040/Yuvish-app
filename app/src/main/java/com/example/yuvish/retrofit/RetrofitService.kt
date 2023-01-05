@@ -2,10 +2,10 @@ package com.example.yuvish.retrofit
 
 import com.example.yuvish.Models.ArrangedSubmit.PaymentTypesItem
 import com.example.yuvish.Models.ArrangedSubmit.Submit
-import com.example.yuvish.Models.Cleaning.RewashReceipt
 import com.example.yuvish.Models.Authorization.UserToken
 import com.example.yuvish.Models.BarcodeApi.Order
 import com.example.yuvish.Models.BaseIndikatorsIndex.*
+import com.example.yuvish.Models.Cleaning.CleaningData
 import com.example.yuvish.Models.CommonSettings
 import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
 import com.example.yuvish.Models.DebtorsPackage.Debtors
@@ -26,7 +26,8 @@ import com.example.yuvish.Models.Setting.ResponseSetting
 import com.example.yuvish.Models.Setting.Setting
 import com.example.yuvish.Models.Setting.UpdateSetting
 import com.example.yuvish.Models.Tokchalar.ShelfItem
-import com.example.yuvish.Models.Warehouse.OrdersOmborItem
+import com.example.yuvish.Models.Warehouse.BasePagingModel
+import com.example.yuvish.Models.Warehouse.WarehouseData
 import com.example.yuvish.Models.globalSearch.SearchReceiptResult
 import com.example.yuvish.Models.searchCustomer.SearchReceipt
 import retrofit2.Call
@@ -41,7 +42,7 @@ interface RetrofitService {
     //LoginPage
 
     @FormUrlEncoded
-    @POST("token")
+    @POST("login")
     fun createUser(
         @Field("username") username: String,
         @Field("password") password: String
@@ -49,18 +50,18 @@ interface RetrofitService {
 
     //GlobalSearchFragment requests
 
-    @POST("/search_by_kv_id")
+    @POST("search_by_kv_id")
     fun searchReceiptById(
         @Body searchReceipt: SearchReceipt
     ): Call<SearchReceiptResult>
 
     //Washing
 
-    @GET("orders_by_status/{status}")
+    @GET("order/yuvish")
    suspend fun cleaning(
-        @Path("status") status: String,
+        @Query("status") status: String,
         @Query("page") page: Int
-    ): Response<List<RewashReceipt>>
+    ): Response<BasePagingModel<CleaningData>>
 
     @POST("with_barcode_for_packaging")
      fun getOrderIdByBarcode(
@@ -86,7 +87,7 @@ interface RetrofitService {
      @GET("xizmatlar")
      fun serviceType(): Call<List<ServiceTypeItem>>
 
-    @GET("/tokchalar")
+    @GET("tokchalar")
     fun getShelfs(): Call<List<ShelfItem>>
 
    @GET("holat_paneli")
@@ -94,7 +95,7 @@ interface RetrofitService {
 
    //Arranged
 
-   @GET("giving_orders")
+   @GET("clean/tayyor")
    suspend fun arranged(
        @Query("page") page: Int,
        @Query("driver") driver: Int,
@@ -138,12 +139,14 @@ interface RetrofitService {
        @Body arranging: Arranging
    ): Call<Arranging>
 
-    @GET("orders_ombor")
+   // Warehouse
+
+    @GET("ombor")
     suspend fun warehouse(
         @Query("page") page: Int
-    ): Response<List<OrdersOmborItem>>
+    ): Response<BasePagingModel<WarehouseData>>
 
-   @POST("orders_take_from_ombor")
+   @POST("ombor/tartib/{id}")
    fun ordersWarehouse(
        @Query("order_id") order_Id: Int
    ): Call<String?>
@@ -155,7 +158,7 @@ interface RetrofitService {
        @Query("id") id: Int
    ): Call<Debtors>
 
-   @GET("nasiyalar")
+   @GET("nasiya")
    suspend fun marketPagination(
        @Query("page") page: Int,
        @Query("driver") driver: Int,
@@ -170,7 +173,7 @@ interface RetrofitService {
         @Body payDebt: Paydebt
     ): Call<String?>
 
-    @POST("/nasiya_send_off")
+    @POST("nasiya_send_off")
     fun requestDebtOff(
         @Body debtOff: DebtOff
     ): Call<String?>
@@ -182,7 +185,7 @@ interface RetrofitService {
 
     //BaseFragment
 
-    @GET("korsatkich_index")
+    @GET("korsatkich")
     fun searchIndicators(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String
@@ -190,21 +193,21 @@ interface RetrofitService {
 
     //pagination
 
-    @GET("korsatkich_mahsulot_yuvildi")
+    @GET("korsatkich_yuvildi")
     suspend fun getWashedIndicators(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int
     ): Response<WashedIndicator>
 
-    @GET("korsatkich_mahsulot_yuvildi")
+    @GET("korsatkich_yuvildi")
     fun getWashedIndicator(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int
     ): Call<WashedIndicator>
 
-    @GET("korsatkich_mahsulot_topshirildi")
+    @GET("korsatkich_topshirildi")
     fun getSubmittedIndicators(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
@@ -213,35 +216,35 @@ interface RetrofitService {
 
     //pagination
 
-    @GET("qayta_yuvishga_ol")
+    @GET("qayta")
     suspend fun getReceivedRewashIndicators(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int
     ): Response<ReceivedRewashIndicator>
 
-    @GET("qayta_yuvishga_ol")
+    @GET("qayta")
     fun getReceivedRewashIndicator(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int
     ): Call<ReceivedRewashIndicator>
 
-    @GET("kunlik_maoshlar")
+    @GET("kpi")
     suspend fun getKpiIndicators(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int
     ): Response<KpiIndicator>
 
-    @GET("kunlik_maoshlar")
+    @GET("kpi")
     fun getKpiIndicator(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
         @Query("page") page: Int
     ): Call<KpiIndicator>
 
-    @GET("korsatkich_olgan_maoshlarim")
+    @GET("maosh")
     fun getReceivedSalaryIndicators(
         @Query("from_date") fromDate: String,
         @Query("to_date") toDate: String,
@@ -266,7 +269,7 @@ interface RetrofitService {
         @Query("costumer_id") customerId: Int
     ): Call<Int?>
 
-    @POST("/search_costumer")
+    @POST("search_costumer")
     fun searchCustomer(
         @Query("content") content: String
     ): Call<List<SearchCustomerResult>>

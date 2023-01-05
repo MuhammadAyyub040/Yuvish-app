@@ -112,7 +112,7 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
             if (submit.isNull()){
                 Toast.makeText(requireActivity(), getString(R.string.not_enough_information), Toast.LENGTH_SHORT).show()
             }else{
-                printReceipt(submit)
+//                printReceipt(submit)
             }
         }
 

@@ -340,7 +340,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
     }
 
     override fun phoneItemClickMarked(marketPaginationItem: MarketPaginationItem) {
-        intentCall(marketPaginationItem.costumer.costumer_phone_1)
+        intentCall(marketPaginationItem.nasiyachi.costumer_phone_1)
     }
 
     @SuppressLint("SetTextI18n")
@@ -351,7 +351,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         customDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val description = getString(R.string.debt_off_name_and_amount)
-            .replace("\'name\'", marketPaginationItem.costumer.costumer_name ?: "")
+            .replace("\'name\'", marketPaginationItem.nasiyachi.costumer_name ?: "")
             .replace("\'amount\'", marketPaginationItem.summa.toString() ?: "")
         dialogBinding.txtWarn.text = description
 
@@ -375,7 +375,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
     }
 
     override fun phoneClickListener(marketPaginationItem: MarketPaginationItem) {
-        intentCall(marketPaginationItem.costumer.costumer_phone_1)
+        intentCall(marketPaginationItem.nasiyachi.costumer_phone_1)
     }
 
     private fun intentCall(phoneNumber: String){

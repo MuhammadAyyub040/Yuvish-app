@@ -31,8 +31,8 @@ class MarkedPaginationAdapter (var onItemClick: OnItemClick, val context: Contex
 
             binding.driverTxt.text = marketPaginationItem.user.fullname
             binding.txtAmountUnFinishing.text = "${marketPaginationItem.summa} ${"so'm"}"
-            binding.txtNameUnFinishing.text = marketPaginationItem.costumer.costumer_name
-            binding.txtPhoneNumberUnFinishing.text = marketPaginationItem.costumer.costumer_phone_1
+            binding.txtNameUnFinishing.text = marketPaginationItem.nasiyachi.costumer_name
+            binding.txtPhoneNumberUnFinishing.text = marketPaginationItem.nasiyachi.costumer_phone_1
             binding.txtDataUnFinishing.text = "${differenceDayManager.differanceDay} ${"kun"}"
         }
     }

@@ -315,4 +315,5 @@
     <string name="submission">Tasdiqlash</string>
     <string name="name_phone_number_address">Ism, telefon raqami, manzili</string>
     <string name="customer_not_found">Mijoz topilmadi.</string>
+    <string name="nomalum">Noma\'lum</string>
 </resources>

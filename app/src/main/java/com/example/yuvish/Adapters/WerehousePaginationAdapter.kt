@@ -9,39 +9,47 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
 import com.example.yuvish.Models.Warehouse.DifferenceDayManager
 import com.example.yuvish.Models.Warehouse.OrdersOmborItem
+import com.example.yuvish.Models.Warehouse.WarehouseData
+import com.example.yuvish.R
 import com.example.yuvish.databinding.KvitansiyaItemWarehouseBinding
+import com.example.yuvish.retrofit.isNull
 
 class WerehousePaginationAdapter(val context: Context, var onItemClick: OnItemClick) :
-    PagingDataAdapter<OrdersOmborItem,WerehousePaginationAdapter.WerehouseViewHolder>(ArticleDiffItemCallback) {
+    PagingDataAdapter<WarehouseData,WerehousePaginationAdapter.WerehouseViewHolder>(ArticleDiffItemCallback) {
 
     inner class WerehouseViewHolder(val binding: KvitansiyaItemWarehouseBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(position: Int,ordersOmborItem: OrdersOmborItem) {
+        fun onBind(position: Int,warehouseData: WarehouseData) {
 
             binding.cardSubmit.setOnClickListener {
-                onItemClick.onItemClickWarehouse(ordersOmborItem)
+                onItemClick.onItemClickWarehouse(warehouseData)
             }
             binding.cardTransport.setOnClickListener {
-                onItemClick.onItemClick2Warehouse(ordersOmborItem)
+                onItemClick.onItemClick2Warehouse(warehouseData)
             }
             binding.txtPhoneNumberWarehouse.setOnClickListener {
-                onItemClick.onItemClickPhoneNumber(ordersOmborItem)
+                onItemClick.onItemClickPhoneNumber(warehouseData)
             }
 
-            val differenceDayManager= DifferenceDayManager(ordersOmborItem.topshir_sana, context)
+            val differenceDayManager= DifferenceDayManager(warehouseData.topshir_sana, context)
             val resource = differenceDayManager.getResource()
             val color = differenceDayManager.getColor()
 
             binding.secondary.background = resource
             binding.txtDateWarehouse.setTextColor(color)
             binding.txtKvitansiyaNumberWarehouse.setTextColor(color)
-
-            binding.txtKvitansiyaNumberWarehouse.text = ordersOmborItem.nomer.toString()
+            binding.txtOperator.text = warehouseData.operator.fullname
+            binding.txtKvitansiyaNumberWarehouse.text = warehouseData.nomer.toString()
             binding.txtDateWarehouse.text = "${differenceDayManager.differanceDay} ${"kun"}"
-            binding.txtNameWarehouse.text = ordersOmborItem.costumer.costumer_name
-            binding.txtPhoneNumberWarehouse.text = ordersOmborItem.costumer.costumer_phone_1
-            binding.txtLocationWarehouse.text = ordersOmborItem.costumer.costumer_addres
-            binding.txtCommentOperator.text = ordersOmborItem.izoh
-            binding.txtCommentOrder.text = ordersOmborItem.izoh2
+            if (warehouseData.ombor.isNull()){
+                binding.omborchiName.text = context.getString(R.string.nomalum)
+            }else{
+                binding.omborchiName.text = warehouseData.ombor.fullname
+            }
+            binding.txtNameWarehouse.text = warehouseData.custumer.costumer_name
+            binding.txtPhoneNumberWarehouse.text = warehouseData.custumer.costumer_phone_1
+            binding.txtLocationWarehouse.text = warehouseData.custumer.costumer_addres
+            binding.txtCommentOperator.text = warehouseData.izoh
+            binding.txtCommentOrder.text = warehouseData.izoh2
         }
     }
 
@@ -53,20 +61,20 @@ class WerehousePaginationAdapter(val context: Context, var onItemClick: OnItemCl
         return WerehouseViewHolder(KvitansiyaItemWarehouseBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    private object ArticleDiffItemCallback: DiffUtil.ItemCallback<OrdersOmborItem>() {
-        override fun areItemsTheSame(oldItem: OrdersOmborItem, newItem: OrdersOmborItem): Boolean {
+    private object ArticleDiffItemCallback: DiffUtil.ItemCallback<WarehouseData>() {
+        override fun areItemsTheSame(oldItem: WarehouseData, newItem: WarehouseData): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: OrdersOmborItem, newItem: OrdersOmborItem): Boolean {
+        override fun areContentsTheSame(oldItem: WarehouseData, newItem: WarehouseData): Boolean {
             return oldItem == newItem
         }
     }
 
     interface OnItemClick {
-        fun onItemClickWarehouse(ordersOmborItem: OrdersOmborItem)
-        fun onItemClick2Warehouse(ordersOmborItem: OrdersOmborItem)
-        fun onItemClickPhoneNumber(ordersOmborItem: OrdersOmborItem)
+        fun onItemClickWarehouse(warehouseData: WarehouseData)
+        fun onItemClick2Warehouse(warehouseData: WarehouseData)
+        fun onItemClickPhoneNumber(warehouseData: WarehouseData)
     }
 
 }

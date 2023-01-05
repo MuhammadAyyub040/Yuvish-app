@@ -6,24 +6,24 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.Cleaning.RewashReceipt
+import com.example.yuvish.Models.Cleaning.CleaningData
 import com.example.yuvish.Models.Warehouse.DifferenceDayManager
 import com.example.yuvish.databinding.KvitansiyaItemCleaningBinding
 
 class CleaningPaginationAdapter(val context: Context, var onItemClick: OnItemClick) :
-    PagingDataAdapter<RewashReceipt, CleaningPaginationAdapter.MyViewHolder>(ArticleDiffItemCallback) {
+    PagingDataAdapter<CleaningData, CleaningPaginationAdapter.MyViewHolder>(ArticleDiffItemCallback) {
 
     inner class MyViewHolder(val binding: KvitansiyaItemCleaningBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun onBind(position: Int,rewashReceipt: RewashReceipt) {
+        fun onBind(position: Int,cleaningData: CleaningData) {
 
             binding.btnRegistration.setOnClickListener {
-                onItemClick.onItemClickCleaning(rewashReceipt)
+                onItemClick.onItemClickCleaning(cleaningData)
             }
             binding.txtPhoneNumber.setOnClickListener {
-                onItemClick.onItemClickPhoneNumber(rewashReceipt)
+                onItemClick.onItemClickPhoneNumber(cleaningData)
             }
 
-            val differenceDayManager= DifferenceDayManager(rewashReceipt.topshir_sana, context)
+            val differenceDayManager= DifferenceDayManager(cleaningData.topshir_sana, context)
             val resource = differenceDayManager.getResource()
             val color = differenceDayManager.getColor()
 
@@ -31,12 +31,12 @@ class CleaningPaginationAdapter(val context: Context, var onItemClick: OnItemCli
             binding.txtDate.setTextColor(color)
             binding.txtKvitansiyaNumber.setTextColor(color)
 
-            binding.txtKvitansiyaNumber.text = rewashReceipt.nomer.toString()
+            binding.txtKvitansiyaNumber.text = cleaningData.nomer.toString()
             binding.txtDate.text = "${differenceDayManager.differanceDay} ${"kun"}"
-            binding.txtWashingTest.text = rewashReceipt.costumer.costumer_name
-            binding.txtPhoneNumber.text = rewashReceipt.costumer.costumer_phone_1
-            binding.txtLocation.text = rewashReceipt.costumer.costumer_addres
-            binding.txtTimeOfRegistration.text = rewashReceipt.order_date
+            binding.txtWashingTest.text = cleaningData.custumer.costumer_name
+            binding.txtPhoneNumber.text = cleaningData.custumer.costumer_phone_1
+            binding.txtLocation.text = cleaningData.custumer.costumer_addres
+            binding.txtTimeOfRegistration.text = cleaningData.order_date
         }
     }
 
@@ -48,18 +48,18 @@ class CleaningPaginationAdapter(val context: Context, var onItemClick: OnItemCli
         return MyViewHolder(KvitansiyaItemCleaningBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    private object ArticleDiffItemCallback: DiffUtil.ItemCallback<RewashReceipt>() {
-        override fun areItemsTheSame(oldItem: RewashReceipt, newItem: RewashReceipt): Boolean {
+    private object ArticleDiffItemCallback: DiffUtil.ItemCallback<CleaningData>() {
+        override fun areItemsTheSame(oldItem: CleaningData, newItem: CleaningData): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: RewashReceipt, newItem: RewashReceipt): Boolean {
+        override fun areContentsTheSame(oldItem: CleaningData, newItem: CleaningData): Boolean {
             return oldItem == newItem
         }
     }
 
     interface OnItemClick {
-        fun onItemClickCleaning(rewashReceipt: RewashReceipt)
-        fun onItemClickPhoneNumber(rewashReceipt: RewashReceipt)
+        fun onItemClickCleaning(cleaningData: CleaningData)
+        fun onItemClickPhoneNumber(cleaningData: CleaningData)
         }
 }

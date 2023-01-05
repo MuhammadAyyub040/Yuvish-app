@@ -24,6 +24,7 @@ import com.example.yuvish.Adapters.WerehousePaginationAdapter
 import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
 import com.example.yuvish.Models.Warehouse.OrdersOmborItem
 import com.example.yuvish.Models.Warehouse.PaginationPageWerehouse
+import com.example.yuvish.Models.Warehouse.WarehouseData
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentSkladBinding
 import com.example.yuvish.retrofit.ApiClient
@@ -175,9 +176,9 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
         inputMethodManager.hideSoftInputFromWindow(binding.btnSearch.windowToken, 0)
     }
 
-    override fun onItemClickWarehouse(ordersOmborItem: OrdersOmborItem) {
+    override fun onItemClickWarehouse(warehouseData: WarehouseData) {
         findNavController().navigate(R.id.action_skladFragment_to_sumbitFragment, bundleOf(
-            "orderId" to ordersOmborItem.order_id
+            "orderId" to warehouseData.order_id
         ))
     }
 
@@ -220,12 +221,12 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
         })
     }
 
-    override fun onItemClick2Warehouse(ordersOmborItem: OrdersOmborItem) {
-        orderWarehouse(ordersOmborItem.order_id)
+    override fun onItemClick2Warehouse(warehouseData: WarehouseData) {
+        orderWarehouse(warehouseData.order_id)
     }
 
-    override fun onItemClickPhoneNumber(ordersOmborItem: OrdersOmborItem) {
-        intentCall(ordersOmborItem.costumer.costumer_phone_1)
+    override fun onItemClickPhoneNumber(warehouseData: WarehouseData) {
+        intentCall(warehouseData.custumer.costumer_phone_1)
     }
 
     private fun intentCall(phoneNumber: String){

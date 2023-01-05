@@ -66,8 +66,8 @@ class DebtorsCompletedAdapter(
 
             binding.txtDataDebts.text = "${differenceDayManager.differanceDay} ${context.getString(R.string.kun)}"
             binding.txtDriverDebts.text = marketPaginationItem.user.fullname
-            binding.txtNameDebts.text = marketPaginationItem.costumer.costumer_name
-            binding.txtPhoneNumberDebts.text = marketPaginationItem.costumer.costumer_phone_1
+            binding.txtNameDebts.text = marketPaginationItem.nasiyachi.costumer_name
+            binding.txtPhoneNumberDebts.text = marketPaginationItem.nasiyachi.costumer_phone_1
             binding.txtAmountDebts.text = "${marketPaginationItem.summa} ${context.getString(R.string.so_m)}"
 
             binding.paymentType.setAdapter(paymentTypesAdapter)
