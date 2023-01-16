@@ -2,26 +2,19 @@ package com.example.yuvish.Fragments
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.service.controls.ControlsProviderService.TAG
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.os.bundleOf
-import androidx.core.view.isGone
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Models.BaseIndikatorsIndex.SearchIndicatorsResult
-import com.example.yuvish.Models.DebtorsPackage.User
-import com.example.yuvish.Models.Setting.Setting
+import com.example.yuvish.models.baseIndikatorsIndex.SearchIndicatorsResult
+import com.example.yuvish.models.Setting.Setting
 import com.example.yuvish.R
 import com.example.yuvish.databinding.*
 import com.example.yuvish.retrofit.ApiClient
@@ -29,7 +22,6 @@ import com.example.yuvish.retrofit.GlobalData
 import com.example.yuvish.retrofit.isNotNull
 import com.example.yuvish.retrofit.isNull
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.orhanobut.hawk.Hawk
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,7 +40,6 @@ class BaseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentBaseBinding.inflate(layoutInflater)
-
         resetDate()
         profile()
 
@@ -231,6 +222,7 @@ class BaseFragment : Fragment() {
     }
 
 
+    @SuppressLint("SuspiciousIndentation")
     private fun checkSearching() {
         val fromDate = binding.fromDateXml.text.toString()
         val toDate = binding.toDateXml.text.toString()
@@ -246,30 +238,30 @@ class BaseFragment : Fragment() {
 
     private fun checkCorrectDate(fromDate: String, toDate: String): Boolean {
         return when {
-            fromDate == "--.--.----" -> {
-                Toast.makeText(
-                    requireActivity(),
-                    getString(R.string.from_date_empty),
-                    Toast.LENGTH_SHORT
-                ).show()
-                false
-            }
-            toDate == "--.--.----" -> {
-                Toast.makeText(
-                    requireActivity(),
-                    getString(R.string.to_date_empty),
-                    Toast.LENGTH_SHORT
-                ).show()
-                false
-            }
-            fromDate.isBefore(getBeginningMonth()) -> {
-                Toast.makeText(
-                    requireActivity(),
-                    getString(R.string.entered_date_beginning_this_month),
-                    Toast.LENGTH_SHORT
-                ).show()
-                false
-            }
+//            fromDate == "--.--.----" -> {
+//                Toast.makeText(
+//                    requireActivity(),
+//                    getString(R.string.from_date_empty),
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                false
+//            }
+//            toDate == "--.--.----" -> {
+//                Toast.makeText(
+//                    requireActivity(),
+//                    getString(R.string.to_date_empty),
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                false
+//            }
+//            fromDate.isBefore(getBeginningMonth()) -> {
+//                Toast.makeText(
+//                    requireActivity(),
+//                    getString(R.string.entered_date_beginning_this_month),
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//                false
+//            }
             else -> {
                 true
             }
@@ -280,24 +272,24 @@ class BaseFragment : Fragment() {
         val builder = MaterialDatePicker.Builder.datePicker()
         val picker = builder.build()
 
-        picker.addOnPositiveButtonClickListener {
-            when (from) {
-                0 -> {
-                    if (it.isBefore(getBeginningMonth())) {
-                        Toast.makeText(
-                            requireActivity(),
-                            getString(R.string.entered_date_beginning_this_month),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        binding.fromDateXml.setText(getDateStringFormat(it))
-                    }
-                }
-                1 -> {
-                    binding.toDateXml.setText(getDateStringFormat(it))
-                }
-            }
-        }
+//        picker.addOnPositiveButtonClickListener {
+//            when (from) {
+//                0 -> {
+//                    if (it.isBefore(getBeginningMonth())) {
+//                        Toast.makeText(
+//                            requireActivity(),
+//                            getString(R.string.entered_date_beginning_this_month),
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    } else {
+//                        binding.fromDateXml.setText(getDateStringFormat(it))
+//                    }
+//                }
+//                1 -> {
+//                    binding.toDateXml.setText(getDateStringFormat(it))
+//                }
+//            }
+//        }
 
         picker.show(requireActivity().supportFragmentManager, "tag_picker")
     }
@@ -343,14 +335,14 @@ class BaseFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun updateUI(searchIndicatorsResult: SearchIndicatorsResult) {
-        binding.washedPcs.text = "${searchIndicatorsResult.mahsulot_yuvildi.tovar_dona} ${getString(R.string.pcs)}"
-        binding.washedMeterSquare.text = "${searchIndicatorsResult.mahsulot_yuvildi.tovar_kv} ${getString(R.string.m)}"
-        binding.submitPcs.text = "${searchIndicatorsResult.mahsulot_topshirildi.tovar_dona} ${getString(R.string.pcs)}"
-        binding.submitMeterSquare.text = "${searchIndicatorsResult.mahsulot_topshirildi.tovar_kv} ${getString(R.string.m)}"
-        binding.salaryKpi.text = "${searchIndicatorsResult.kunlik_maosh} ${getString(R.string.so_m)}"
-        binding.salaryReceived.text = "${searchIndicatorsResult.berilgan_maoshlar_sum} ${getString(R.string.so_m)}"
-        binding.rewashedPcs.text = "${searchIndicatorsResult.qayta_yuvishga_olindi.tovar_dona} ${getString(R.string.pcs)}"
-        binding.rewashedMeterSquare.text = "${searchIndicatorsResult.qayta_yuvishga_olindi.tovar_kv} ${getString(R.string.m)}"
+        binding.washedPcs.text = "${searchIndicatorsResult.yuvildi.dona} ${getString(R.string.pcs)}"
+        binding.washedMeterSquare.text = "${searchIndicatorsResult.yuvildi.hajm} ${getString(R.string.m)}"
+        binding.submitPcs.text = "${searchIndicatorsResult.topshirildi.dona} ${getString(R.string.pcs)}"
+        binding.submitMeterSquare.text = "${searchIndicatorsResult.topshirildi.hajm} ${getString(R.string.m)}"
+        binding.salaryKpi.text = "${searchIndicatorsResult.maosh} ${getString(R.string.so_m)}"
+        binding.salaryReceived.text = "${searchIndicatorsResult.maosh_history} ${getString(R.string.so_m)}"
+        binding.rewashedPcs.text = "${searchIndicatorsResult.qayta.dona} ${getString(R.string.pcs)}"
+        binding.rewashedMeterSquare.text = "${searchIndicatorsResult.qayta.hajm} ${getString(R.string.m)}"
         updateArrivalTime(searchIndicatorsResult)
         updateGoneTime(searchIndicatorsResult)
     }
@@ -360,17 +352,23 @@ class BaseFragment : Fragment() {
     }
 
     private fun updateArrivalTime(searchIndicatorsResult: SearchIndicatorsResult) {
-        binding.arrivalTime.text = if (searchIndicatorsResult.today_davomat?.keldi == 1) {
-            searchIndicatorsResult.today_davomat.keldi_time
-        } else {
-            getString(R.string.did_not_come)
+        if (searchIndicatorsResult.davomat.isNull()) {
+            getString(R.string.did_not_leave)
+        }else{
+        binding.arrivalTime.text = if (searchIndicatorsResult.davomat.keldi == 1) {
+            searchIndicatorsResult.davomat.keldi_time
+        } else
+            getString(R.string.did_not_leave)
         }
     }
 
-    private fun updateGoneTime(searchIndicatorsResult: SearchIndicatorsResult) {
-        binding.goneTime.text = if (searchIndicatorsResult.today_davomat?.ketdi == 1) {
-            searchIndicatorsResult.today_davomat.ketdi_time
-        } else {
+    private fun updateGoneTime(searchIndicatorsResult: SearchIndicatorsResult)
+    {if (searchIndicatorsResult.davomat.isNull()) {
+        getString(R.string.did_not_leave)
+    }else{
+        binding.goneTime.text = if (searchIndicatorsResult.davomat.ketdi == 1) {
+            searchIndicatorsResult.davomat.ketdi_time
+        } else
             getString(R.string.did_not_leave)
         }
     }
@@ -384,17 +382,19 @@ class BaseFragment : Fragment() {
     private fun searchIndicators(fromDate: String, toDate: String) {
         ApiClient.retrofitService.searchIndicators(fromDate, toDate).enqueue(object : Callback<SearchIndicatorsResult> {
                 override fun onResponse(call: Call<SearchIndicatorsResult>, response: Response<SearchIndicatorsResult>) {
+                    Log.e("TAG", "onResponse: ${response.code()} ${response.body()}")
                     if (response.code() == 200) {
+                        Log.e("TAG", "onResponse: ${response.code()} ${response.body()}")
                         if (GlobalData.Global_Ui) {
                             searchIndicatorsResult = response.body()!!
-                            binding.washedPcs.text = "${searchIndicatorsResult!!.mahsulot_yuvildi.tovar_dona} ${"dona"}"
-                            binding.washedMeterSquare.text = "${searchIndicatorsResult!!.mahsulot_yuvildi.tovar_kv} ${"m²"}"
-                            binding.submitPcs.text = "${searchIndicatorsResult!!.mahsulot_topshirildi.tovar_dona} ${"dona"}"
-                            binding.submitMeterSquare.text = "${searchIndicatorsResult!!.mahsulot_topshirildi.tovar_kv} ${"m²"}"
-                            binding.rewashedPcs.text = "${searchIndicatorsResult!!.qayta_yuvishga_olindi.tovar_dona} ${"dona"}"
-                            binding.rewashedMeterSquare.text = "${searchIndicatorsResult!!.qayta_yuvishga_olindi.tovar_kv} ${"m²"}"
-                            binding.salaryReceived.text = "${searchIndicatorsResult!!.berilgan_maoshlar_sum} ${"so'm"}"
-                            binding.salaryKpi.text = "${searchIndicatorsResult!!.kunlik_maosh} ${"so'm"}"
+                            binding.washedPcs.text = "${searchIndicatorsResult!!.yuvildi.dona} ${"dona"}"
+                            binding.washedMeterSquare.text = "${searchIndicatorsResult!!.yuvildi.hajm} ${"m²"}"
+                            binding.submitPcs.text = "${searchIndicatorsResult!!.topshirildi.dona} ${"dona"}"
+                            binding.submitMeterSquare.text = "${searchIndicatorsResult!!.topshirildi.hajm} ${"m²"}"
+                            binding.rewashedPcs.text = "${searchIndicatorsResult!!.qayta.dona} ${"dona"}"
+                            binding.rewashedMeterSquare.text = "${searchIndicatorsResult!!.qayta.hajm} ${"m²"}"
+                            binding.salaryReceived.text = "${searchIndicatorsResult!!.maosh_history} ${"so'm"}"
+                            binding.salaryKpi.text = "${searchIndicatorsResult!!.maosh} ${"so'm"}"
                             updateUI(searchIndicatorsResult!!)
                         }
                     }
@@ -413,7 +413,7 @@ class BaseFragment : Fragment() {
             override fun onResponse(call: Call<Setting>, response: Response<Setting>) {
                 if (response.code() == 200){
                     setting = response.body()!!
-                    binding.customerNameBase.setText(response.body()!!.fullname)
+                    binding.customerNameBase.text = response.body()!!.fullname
                     updateAttendance(setting)
                 }
             }

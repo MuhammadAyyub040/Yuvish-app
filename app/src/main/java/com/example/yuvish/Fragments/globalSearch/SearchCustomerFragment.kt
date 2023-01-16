@@ -14,10 +14,11 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.SearchCustomerResultsAdapter
-import com.example.yuvish.Models.NewOrder.SearchCustomerResult
+import com.example.yuvish.models.NewOrder.SearchCustomerResult
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentSearchCustomerBinding
 import com.example.yuvish.databinding.SelectPhoneDialogLayoutBinding
+import com.example.yuvish.models.addCostumer.createOrder
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -31,6 +32,7 @@ class SearchCustomerFragment : Fragment(),
 
 
     private lateinit var binding: FragmentSearchCustomerBinding
+    lateinit var createOrder: createOrder
     private val searchCustomerResultsAdapter: SearchCustomerResultsAdapter by lazy {
         SearchCustomerResultsAdapter(requireActivity(), this, true)
     }
@@ -198,8 +200,8 @@ class SearchCustomerFragment : Fragment(),
 
     private fun createOrderByCustomerId(customerId: Int) {
         ApiClient.retrofitService.createOrderByCustomerId(customerId)
-            .enqueue(object : Callback<Int?> {
-                override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
+            .enqueue(object : Callback<createOrder> {
+                override fun onResponse(call: Call<createOrder>, response: Response<createOrder>) {
                     if (response.code() == 200) {
                         if (response.body().isNull()) {
                             Toast.makeText(
@@ -208,12 +210,12 @@ class SearchCustomerFragment : Fragment(),
                                 Toast.LENGTH_SHORT
                             ).show()
                         } else {
-                            toWriteReceiptFragment(response.body()!!)
+                            toWriteReceiptFragment(createOrder.order_id)
                         }
                     }
                 }
 
-                override fun onFailure(call: Call<Int?>, t: Throwable) {
+                override fun onFailure(call: Call<createOrder>, t: Throwable) {
                     t.printStackTrace()
                     Toast.makeText(
                         requireActivity(),

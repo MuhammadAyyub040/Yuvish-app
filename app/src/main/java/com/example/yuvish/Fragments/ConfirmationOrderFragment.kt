@@ -1,7 +1,6 @@
 package com.example.yuvish.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +10,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.ConfirmationProductsAdapter
-import com.example.yuvish.Models.NewOrder.ConfirmOrder
-import com.example.yuvish.Models.NewOrder.PutConfirmOrder
-import com.example.yuvish.Models.NewOrder.PutService
+import com.example.yuvish.models.NewOrder.ConfirmOrder
+import com.example.yuvish.models.NewOrder.PutConfirmOrder
+import com.example.yuvish.models.NewOrder.PutService
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentConfirmationOrderBinding
 import com.example.yuvish.retrofit.ApiClient

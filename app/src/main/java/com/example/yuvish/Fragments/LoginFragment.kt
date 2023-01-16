@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Models.Authorization.UserToken
+import com.example.yuvish.models.Authorization.UserToken
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentLoginBinding
 import com.example.yuvish.retrofit.ApiClient

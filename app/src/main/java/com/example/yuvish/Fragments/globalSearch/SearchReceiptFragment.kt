@@ -13,11 +13,10 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.SearchReceiptButtonsAdapter
-import com.example.yuvish.Models.globalSearch.ButtonParams
-import com.example.yuvish.Models.globalSearch.SearchReceiptResult
-import com.example.yuvish.Models.searchCustomer.SearchReceipt
+import com.example.yuvish.models.globalSearch.ButtonParams
+import com.example.yuvish.models.globalSearch.SearchReceiptResult
+import com.example.yuvish.models.searchCustomer.SearchReceipt
 import com.example.yuvish.R
-import com.example.yuvish.databinding.FragmentSearchCustomerBinding
 import com.example.yuvish.databinding.FragmentSearchReceiptBinding
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull

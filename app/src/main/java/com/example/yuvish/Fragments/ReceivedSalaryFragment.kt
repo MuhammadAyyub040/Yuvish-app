@@ -6,22 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isGone
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagingData
 import com.example.yuvish.Adapters.ReceivedSalaryIndicatorAdapter
-import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedRewashIndicatorOrder
-import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedSalaryIndicator
+import com.example.yuvish.models.baseIndikatorsIndex.ReceivedSalaryIndicator
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentReceivedSalaryBinding
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.HttpException
 import retrofit2.Response
 
 class ReceivedSalaryFragment : Fragment() {

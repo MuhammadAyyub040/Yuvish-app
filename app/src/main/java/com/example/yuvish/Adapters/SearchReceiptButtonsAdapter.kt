@@ -3,7 +3,7 @@ package com.example.yuvish.Adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.globalSearch.ButtonParams
+import com.example.yuvish.models.globalSearch.ButtonParams
 import com.example.yuvish.databinding.SearchReceiptButtonsItemLayoutBinding
 
 class SearchReceiptButtonsAdapter(

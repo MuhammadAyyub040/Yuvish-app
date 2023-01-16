@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorPaymentType
+import com.example.yuvish.models.baseIndikatorsIndex.IndicatorPaymentType
 import com.example.yuvish.R
 import com.example.yuvish.databinding.PaymentTypeItemLayoutBinding
 

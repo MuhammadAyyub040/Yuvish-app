@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.ArrangedSubmit.Buyurtmalar
+import com.example.yuvish.models.ArrangedSubmit.Buyurtmalar
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ItemMahsulotlarNomiBinding
 
@@ -88,4 +88,7 @@ class SubmitAdapterGroup(
         buyurtmalarList = list as ArrayList<Buyurtmalar>
         notifyDataSetChanged()
     }
+
+    fun getData() = buyurtmalarList
+
 }

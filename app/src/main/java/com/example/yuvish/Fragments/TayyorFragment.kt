@@ -24,9 +24,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.ArrangedPaginationAdapter
 import com.example.yuvish.Adapters.NotArrangedPaginationAdapter
-import com.example.yuvish.Models.ArrangedSubmit.Submit
-import com.example.yuvish.Models.HolatPaneli.TransportStatusAPI
-import com.example.yuvish.Models.ReadyOrders.*
+import com.example.yuvish.models.ArrangedSubmit.Submit
+import com.example.yuvish.models.HolatPaneli.TransportStatusAPI
+import com.example.yuvish.models.ReadyOrders.*
 import com.example.yuvish.R
 import com.example.yuvish.databinding.*
 import com.example.yuvish.retrofit.ApiClient
@@ -67,8 +67,8 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
 
         binding.autoCompleteTextViewList.setOnItemClickListener { parent, view, position, id ->
             selectedFilterPosition = position
-            getPaginationArranged(list[position].value)
-            getPaginationNotArranged(list[position].value)
+            getPaginationArranged(list[position].id)
+            getPaginationNotArranged(list[position].id)
         }
 
         binding.btnSearch.setOnClickListener {
@@ -253,7 +253,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
     }
 
     override fun onItemClickPhoneNumber(readyOrdersItem: ReadyOrdersItem) {
-        intentCall(readyOrdersItem.costumer.costumer_phone_1)
+        intentCall(readyOrdersItem.custumer.costumer_phone_1)
     }
 
     private fun intentCall(phoneNumber: String){
@@ -295,7 +295,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
     }
 
     override fun onItemClickUnsortedLocation(readyOrdersItem: ReadyOrdersItem) {
-        intentGoogleMaps(submit.geoplugin_latitude, submit.geoplugin_longitude)
+        intentGoogleMaps(submit.data.geoplugin_latitude, submit.data.geoplugin_longitude)
     }
 
     override fun onItemClickOrder(readyOrdersItem: ReadyOrdersItem) {
@@ -303,7 +303,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
     }
 
     override fun onItemClickUnSortedPhoneNumber(readyOrdersItem: ReadyOrdersItem) {
-        intentCall(readyOrdersItem.costumer.costumer_phone_1)
+        intentCall(readyOrdersItem.custumer.costumer_phone_1)
     }
 
     override fun onItemClickUnsorted2(readyOrdersItem: ReadyOrdersItem) {
@@ -337,7 +337,7 @@ class TayyorFragment : Fragment(), ArrangedPaginationAdapter.OnItemClick, NotArr
 
                 if (response.code() == 200){
                     list = response.body()!!
-                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map { it.title })
+                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map {"${it.nasiya_count}. ${ it.fullname }"})
                     binding.autoCompleteTextViewList.setAdapter(arrayAdapter)
                 }
                 Log.d( "onResponse", response.body().toString())

@@ -1,21 +1,17 @@
 package com.example.yuvish.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Models.CommonSettings
+import com.example.yuvish.models.CommonSettings
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentMenuBinding
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.GlobalData
-import com.example.yuvish.retrofit.checkLoadedAllData
 import com.orhanobut.hawk.Hawk
 import retrofit2.Call
 import retrofit2.Callback

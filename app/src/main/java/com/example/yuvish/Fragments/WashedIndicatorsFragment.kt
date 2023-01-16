@@ -13,13 +13,11 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.ProductsIndicatorChildAdapter
 import com.example.yuvish.Adapters.WashedIndicatorGroupAdapter
-import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorProduct
-import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedRewashIndicatorPagingSource
-import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedWashedIndicatorPagingSource
-import com.example.yuvish.Models.BaseIndikatorsIndex.WashedIndicator
-import com.example.yuvish.Models.ReadyOrders.PaginationPageArranged
+import com.example.yuvish.models.baseIndikatorsIndex.ReceivedWashedIndicatorPagingSource
+import com.example.yuvish.models.baseIndikatorsIndex.WashedIndicator
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentWashedIndicatorsBinding
+import com.example.yuvish.models.baseIndikatorsIndex.IndicatorProduct
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull
 import kotlinx.coroutines.launch
@@ -105,7 +103,7 @@ class WashedIndicatorsFragment : Fragment() {
         var count = 0
 
         indicatorProductsList.forEach {
-            count += it.dona
+//            count += it.dona
         }
 
         return count

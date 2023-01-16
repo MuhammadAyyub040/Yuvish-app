@@ -23,11 +23,10 @@ import com.bumptech.glide.Glide
 import com.example.yuvish.Adapters.ReceiptPrintProductsGroupAdapter
 import com.example.yuvish.Adapters.SubmitAdapterGroup
 import com.example.yuvish.Adapters.SubmitAdapterChild
-import com.example.yuvish.Models.ArrangedSubmit.PaymentTypesItem
-import com.example.yuvish.Models.ArrangedSubmit.Product
-import com.example.yuvish.Models.ArrangedSubmit.Submit
-import com.example.yuvish.Models.PdfManager
-import com.example.yuvish.Models.PrintManager
+import com.example.yuvish.models.ArrangedSubmit.*
+import com.example.yuvish.models.DebtorsAPI.Market.ResponseDetail
+import com.example.yuvish.models.PdfManager
+import com.example.yuvish.models.PrintManager
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentSumbitBinding
 import com.example.yuvish.databinding.ReceiptPrintLayoutBinding
@@ -50,11 +49,13 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
     lateinit var submitAdapter: SubmitAdapterGroup
     private lateinit var pdfManager: PdfManager
     private lateinit var printManager: PrintManager
-    lateinit var list: List<PaymentTypesItem>
+    lateinit var list: List<String>
     lateinit var submit: Submit
+    lateinit var submittingOrder: SubmittingOrder
     var commentPage = false
     var discountPage = false
     var orderId: Int? = null
+    private var productId: Int? = null
 
     private val TAG = "SubmitFragment"
 
@@ -100,7 +101,7 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
         }
 
         binding.locationLiner.setOnClickListener {
-            intentGoogleMaps(submit.geoplugin_latitude, submit.geoplugin_longitude)
+            intentGoogleMaps(submit.data.geoplugin_latitude, submit.data.geoplugin_longitude)
         }
 
         binding.cardChegirma.setOnClickListener {
@@ -112,7 +113,7 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
             if (submit.isNull()){
                 Toast.makeText(requireActivity(), getString(R.string.not_enough_information), Toast.LENGTH_SHORT).show()
             }else{
-//                printReceipt(submit)
+                printReceipt(submit)
             }
         }
 
@@ -153,11 +154,8 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
                 binding.editPayment.error = "Mijozdan olingan pulni kiriting"
                 binding.editPayment.requestFocus()
             } else {
-                val givenAmount =
-                    binding.editPayment.text.toString().filter { it.isDigit() }.toInt()
-                val paymentType =
-                    binding.autoCompleteTextViewPaymentType.text.toString().lowercase()
-                orderId?.let { submitOrder(it, givenAmount, paymentType) }
+                submittingOrder = SubmittingOrder(orderId!!, binding.editPayment.text.toString().filter { it.isDigit() }.toInt(), binding.autoCompleteTextViewPaymentType.text.toString().lowercase())
+                orderId?.let { submitOrder(it, submittingOrder) }
 
             }
         }
@@ -167,25 +165,29 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
     private fun arrangedSubmit(orderId: Int) {
         ApiClient.retrofitService.submit(orderId).enqueue(object : Callback<Submit> {
             override fun onResponse(call: Call<Submit>, response: Response<Submit>) {
+                Log.e(TAG, "onResponse: ${response.code()} ${response.body()}")
                 if (response.code() == 200) {
+                    Log.e(TAG, "onResponse: ${response.code()} ${response.body()}")
                     submit = response.body()!!
+                    Log.e(TAG, "onResponse: $submit")
 
-                    binding.arrangedCustomer.text = submit.costumer.costumer_name
-                    binding.arrangedSubmitNumber.text = submit.costumer.costumer_phone_1
-                    binding.arrangedSubmitLocation.text = submit.costumer.costumer_addres
-                    binding.arrangedSubmitOperator.text = submit.operator.fullname
-                    binding.txtOrders.text = submit.jami_soni.toString()
+                    binding.arrangedCustomer.text = submit.data.custumer.costumer_name
+                    binding.arrangedSubmitNumber.text = submit.data.custumer.costumer_phone_1
+                    binding.arrangedSubmitLocation.text = submit.data.custumer.costumer_addres
+                    binding.arrangedSubmitOperator.text = submit.data.operator.fullname
+                    binding.txtOrders.text = submit.data.cleans.size.toString()
                     binding.jamiSumma.text = submit.jami_summa.toString()
-                    binding.yakuniyTolov.text = submit.yakuniy_summa.toString()
-                    binding.txtSubmitNomer.text = submit.nomer.toString()
-                    binding.comment2.text = submit.izoh2
-                    binding.comment3.text = submit.izoh3
+                    binding.yakuniyTolov.text = submit.yakuniy_tolov.toString()
+                    binding.txtSubmitNomer.text = submit.data.nomer.toString()
+                    binding.comment2.text = submit.data.izoh2
+                    binding.comment3.text = submit.data.izoh3
                     binding.chegirmaRewash.text = submit.qayta_yuvish_chegirma.toString()
                     binding.chegirmaWasDropped.text = submit.tushish_chegirma.toString()
-                    binding.chegirmaTakeAway.text = submit.own_chegirma.toString()
-                    binding.totalWasDropped.text = submit.jami_tushish_chegirma.toString()
+                    binding.chegirmaTakeAway.text = submit.discount_for_own.toString()
+                    binding.totalWasDropped.text = submit.data.chegirma_sum_summa.toString()
                     binding.jamiChegirma.text = submit.jami_chegirma.toString()
-                    submitAdapter.setData(response.body()!!.buyurtmalar)
+                    submitAdapter.setData(getTypeOrders(submit.data.cleans))
+                    updateDiscount(submit)
                 }
             }
 
@@ -197,18 +199,18 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
     }
 
     private fun paymentTypes() {
-        ApiClient.retrofitService.paymentTypes().enqueue(object : Callback<List<PaymentTypesItem>> {
+        ApiClient.retrofitService.paymentTypes().enqueue(object : Callback<List<String>> {
 
-            override fun onResponse(call: Call<List<PaymentTypesItem>>, response: Response<List<PaymentTypesItem>>) {
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
 
                 if (response.code() == 200) {
                     list = response.body()!!
-                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list.map { it.name })
+                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, list)
                     binding.autoCompleteTextViewPaymentType.setAdapter(arrayAdapter)
                 }
             }
 
-            override fun onFailure(call: Call<List<PaymentTypesItem>>, t: Throwable) {
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
             }
@@ -216,10 +218,10 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
         })
     }
 
-    private fun submitOrder(orderId: Int, givenAmount: Int, paymentType: String) {
-        ApiClient.retrofitService.submittingOrder(orderId, givenAmount, paymentType)
-            .enqueue(object : Callback<Int?> {
-                override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
+    private fun submitOrder(orderId: Int, submittingOrder: SubmittingOrder) {
+        ApiClient.retrofitService.submittingOrder(orderId, submittingOrder)
+            .enqueue(object : Callback<SubmittingOrderResponse> {
+                override fun onResponse(call: Call<SubmittingOrderResponse>, response: Response<SubmittingOrderResponse>) {
                     if (response.code() == 200)
                         when (response.body()) {
                             null -> {
@@ -235,7 +237,7 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
                         }
                 }
 
-                override fun onFailure(call: Call<Int?>, t: Throwable) {
+                override fun onFailure(call: Call<SubmittingOrderResponse>, t: Throwable) {
                     Log.e(TAG, "onFailure: submitOrder ${t.message}")
                 }
 
@@ -243,18 +245,34 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
     }
 
     private fun transferWarehouse(orderId: Int){
-        ApiClient.retrofitService.transferWarehouse(orderId).enqueue(object : Callback<String?>{
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+        ApiClient.retrofitService.transferWarehouse(orderId).enqueue(object : Callback<ResponseDetail>{
+            override fun onResponse(call: Call<ResponseDetail>, response: Response<ResponseDetail>) {
                 if (response.code() == 200)
                     Toast.makeText(requireActivity(), "Omborga muvaffaqqiyatli o'tkazildi.", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_sumbitFragment_to_tayyorFragment)
             }
 
-            override fun onFailure(call: Call<String?>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseDetail>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "Xatolik yuz berdi", Toast.LENGTH_SHORT).show()
             }
 
+        })
+    }
+
+    private fun transferToRewash(productId: Int){
+        ApiClient.retrofitService.productTransferToRewash(productId).enqueue(object : Callback<String?>{
+            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+                if (response.code() == 200){
+                    Toast.makeText(requireContext(), getString(R.string.mahsulot_muvaffaqiyatli_otkazildi), Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                t.printStackTrace()
+                t.message
+                Toast.makeText(requireContext(), "Buyurtma jo'natilmadi", Toast.LENGTH_SHORT).show()
+            }
         })
     }
 
@@ -280,7 +298,10 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
         startActivity(intent)
     }
 
-    override fun rewashClickListener(product: Product) {}
+    override fun rewashClickListener(product: Product) {
+       productId = product.id
+       transferToRewash(productId!!)
+    }
 
     @SuppressLint("SetTextI18n")
     private fun updateDiscounts(printBinding: ReceiptPrintLayoutBinding, submit: Submit){
@@ -299,13 +320,13 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
                 printBinding.rewashDiscount.text = "${submit.qayta_yuvish_chegirma} ${getString(R.string.so_m)}"
             }
 
-            if (submit.own_chegirma == 0){
+            if (submit.discount_for_own == 0){
                 printBinding.customerPickupDiscountLayout.visibility = View.GONE
                 printBinding.customerPickupDiscountDivider.visibility = View.GONE
             }else{
                 printBinding.customerPickupDiscountLayout.visibility = View.VISIBLE
                 printBinding.customerPickupDiscountDivider.visibility = View.VISIBLE
-                printBinding.customerPickupDiscount.text = "${submit.own_chegirma} ${getString(R.string.so_m)}"
+                printBinding.customerPickupDiscount.text = "${submit.discount_for_own} ${getString(R.string.so_m)}"
             }
 
             if (submit.tushish_chegirma == 0){
@@ -317,13 +338,51 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
                 printBinding.droppedDiscount.text = "${submit.tushish_chegirma} ${getString(R.string.so_m)}"
             }
 
-            if (submit.jami_tushish_chegirma == 0){
+            if (submit.data.chegirma_sum_summa == 0){
                 printBinding.totalDroppedDiscountLayout.visibility = View.GONE
                 printBinding.totalDroppedDiscountDivider.visibility = View.GONE
             }else{
                 printBinding.totalDroppedDiscountLayout.visibility = View.VISIBLE
                 printBinding.totalDroppedDiscountDivider.visibility = View.VISIBLE
-                printBinding.totalDroppedDiscount.text = "${submit.jami_tushish_chegirma} ${getString(R.string.so_m)}"
+                printBinding.totalDroppedDiscount.text = "${submit.data.chegirma_sum_summa} ${getString(R.string.so_m)}"
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateDiscount(submit: Submit){
+        if (submit.jami_chegirma == 0){
+            binding.discountsLayout.visibility = View.GONE
+        }else{
+            binding.discountsLayout.visibility = View.VISIBLE
+            binding.jamiChegirma.text = "${submit.jami_chegirma} %"
+
+            if (submit.qayta_yuvish_chegirma == 0){
+                binding.rewashDiscountLayout.visibility = View.GONE
+            }else{
+                binding.rewashDiscountLayout.visibility = View.VISIBLE
+                binding.chegirmaRewash.text = "${submit.qayta_yuvish_chegirma} ${getString(R.string.so_m)}"
+            }
+
+            if (submit.discount_for_own == 0){
+                binding.customerPickupDiscountLayout.visibility = View.GONE
+            }else{
+                binding.customerPickupDiscountLayout.visibility = View.VISIBLE
+                binding.chegirmaTakeAway.text = "${submit.discount_for_own} ${getString(R.string.so_m)}"
+            }
+
+            if (submit.tushish_chegirma == 0){
+                binding.droppedDiscountLayout.visibility = View.GONE
+            }else{
+                binding.droppedDiscountLayout.visibility = View.VISIBLE
+                binding.chegirmaWasDropped.text = "${submit.tushish_chegirma} ${getString(R.string.so_m)}"
+            }
+
+            if (submit.data.chegirma_sum_summa == 0){
+                binding.totalDroppedDiscountLayout.visibility = View.GONE
+            }else{
+                binding.totalDroppedDiscountLayout.visibility = View.VISIBLE
+                binding.totalWasDropped.text = "${submit.data.chegirma_sum_summa} ${getString(R.string.so_m)}"
             }
         }
     }
@@ -337,7 +396,7 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
                 "${ApiClient.IMAGE_BASE_URL}${GlobalData.currentUser!!.filial.logo}"
             )
             val receiptPrintProductsGroupAdapter = ReceiptPrintProductsGroupAdapter(
-                submit.buyurtmalar, requireActivity()
+                submitAdapter.getData(), requireActivity()
             )
 
             printBinding.logo.setImageBitmap(logoBitmap)
@@ -346,9 +405,9 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
             printBinding.address.text = GlobalData.currentUser?.filial?.filial_address
             printBinding.destination.text = GlobalData.currentUser?.filial?.filial_destination
             printBinding.phoneNumber.text = "+998${GlobalData.currentUser?.filial?.filial_phone}"
-            printBinding.receiptNumber.text = submit.nomer.toString()
+            printBinding.receiptNumber.text = submit.data.nomer.toString()
             printBinding.totalAmount.text = "${submit.jami_summa} ${getString(R.string.so_m)}"
-            printBinding.finalAmount.text = "${submit.yakuniy_summa} ${getString(R.string.so_m)}"
+            printBinding.finalAmount.text = "${submit.yakuniy_tolov} ${getString(R.string.so_m)}"
             updateDiscounts(printBinding, submit)
 
             generatePdf(printBinding.root)
@@ -383,5 +442,79 @@ class SubmitFragment : Fragment(), SubmitAdapterChild.CaLLBack {
         }
 
         pdfManager.convertViewToPdf(view, ApiClient.RECEIPT_PRINT_FILE_NAME, pdfGeneratorListener)
+    }
+
+    private fun getTypeOrders(submitProducts: List<Clean>): ArrayList<Buyurtmalar> {
+        val typeOrders = ArrayList<Buyurtmalar>()
+        val services = HashSet<Int>()
+
+        submitProducts.forEach {
+            services.add(it.xizmat.xizmat_id)
+        }
+
+        if (services.isEmpty()) return typeOrders
+
+        services.forEach { serviceId ->
+            val typeProducts = getTypeProducts(submitProducts, serviceId)
+
+            typeOrders.add(
+                Buyurtmalar(
+                    typeProducts.size,
+                    getTotalVolume(typeProducts),
+                    orderId!!,
+                    typeProducts[0].serviceName,
+                    typeProducts[0].serviceUnit,
+                    typeProducts,
+                    getTotalAmount(typeProducts)
+                )
+            )
+        }
+
+        return typeOrders
+    }
+
+    private fun getTotalVolume(typeProducts: List<Product>): Double {
+        var totalVolume = 0.0
+
+        typeProducts.forEach {
+            totalVolume += it.clean_hajm
+        }
+
+        return totalVolume
+    }
+
+    private fun getTotalAmount(typeProducts: List<Product>): Double {
+        var totalAmount = 0.0
+
+        typeProducts.forEach {
+            totalAmount += it.summa
+        }
+
+        return totalAmount
+    }
+
+    private fun getTypeProducts(submitProducts: List<Clean>, serviceId: Int): ArrayList<Product> {
+        val typeProducts = ArrayList<Product>()
+
+        submitProducts.forEach { product ->
+            if (serviceId == product.xizmat.xizmat_id){
+                typeProducts.add(
+                    Product(
+                        product.clean_hajm,
+                        product.gilam_boyi,
+                        product.gilam_eni,
+                        product.id,
+                        product.joy,
+                        product.narx,
+                        product.reclean_place,
+                        product.clean_narx,
+                        product.xizmat.xizmat_turi,
+                        product.xizmat.olchov
+                    )
+                )
+            }
+        }
+
+        return typeProducts
     }
 }

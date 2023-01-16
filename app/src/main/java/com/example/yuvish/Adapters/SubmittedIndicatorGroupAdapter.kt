@@ -7,9 +7,14 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.BaseIndikatorsIndex.SubmittedIndicatorOrder
+import com.example.yuvish.models.baseIndikatorsIndex.SubmittedIndicatorOrder
 import com.example.yuvish.R
 import com.example.yuvish.databinding.SubmittedIndicatorGroupItemLayoutBinding
+import com.example.yuvish.models.baseIndikatorsIndex.Clean
+import com.example.yuvish.models.baseIndikatorsIndex.IndicatorPaymentType
+import com.example.yuvish.models.baseIndikatorsIndex.IndicatorProduct
+import com.example.yuvish.retrofit.isNotNull
+import com.example.yuvish.retrofit.isNull
 
 class SubmittedIndicatorGroupAdapter(
     private val context: Context
@@ -20,43 +25,93 @@ class SubmittedIndicatorGroupAdapter(
         @SuppressLint("SetTextI18n")
         fun setItem(submittedIndicatorOrder: SubmittedIndicatorOrder, position: Int){
             val productsIndicatorChildAdapter = ProductsIndicatorChildAdapter(context)
-            productsIndicatorChildAdapter.submitList(submittedIndicatorOrder.products)
+            productsIndicatorChildAdapter.submitList(getIndicatorProducts(submittedIndicatorOrder.cleans))
             binding.productsRV.adapter = productsIndicatorChildAdapter
 
             val paymentTypesAdapter = PaymentTypesAdapter(context)
-            paymentTypesAdapter.submitList(submittedIndicatorOrder.tolovlar)
+            paymentTypesAdapter.submitList(getIndicatorPaymentTypes(submittedIndicatorOrder))
             binding.paymentTypesRV.adapter = paymentTypesAdapter
 
             binding.ordinalNumber.text = "${position + 1}."
-            binding.receiptNumber.text = submittedIndicatorOrder.order_nomer.toString()
-            binding.customerName.text = submittedIndicatorOrder.costumer_name
-            binding.employeesName.text = getEmployees(submittedIndicatorOrder.hodimlar)
-            binding.totalProductCount.text = "${submittedIndicatorOrder.tovar_dona} ${context.getString(
+            binding.receiptNumber.text = submittedIndicatorOrder.nomer.toString()
+            binding.customerName.text = submittedIndicatorOrder.custumer.costumer_name
+            binding.employeesName.text = getEmployees(submittedIndicatorOrder.cleans)
+            binding.totalProductCount.text = "${submittedIndicatorOrder.cleans.size} ${context.getString(
                 R.string.pcs)}"
-            binding.calculateAmount.text = "${submittedIndicatorOrder.hisoblangan_summa} " +
+            binding.calculateAmount.text = "${submittedIndicatorOrder.order_last_price} " +
                     context.getString(R.string.so_m)
             binding.debtAmount.text =
-                "${context.getString(R.string.qarz)}: ${submittedIndicatorOrder.qarz} " +
+                "${context.getString(R.string.qarz)}: ${submittedIndicatorOrder.nasiya_sum_summa} " +
                         context.getString(R.string.so_m)
             binding.debtOffAmount.text =
-                "${context.getString(R.string.kechildi)}: ${submittedIndicatorOrder.kechildi} " +
+                "${context.getString(R.string.kechildi)}: ${submittedIndicatorOrder.kechildi_sum_summa} " +
                         context.getString(R.string.so_m)
         }
 
-        private fun getEmployees(employeesList: List<String>): String {
+        private fun getEmployees(cleansList: List<Clean>): String {
             var employees = "${context.getString(R.string.employees)}: "
 
-            employeesList.forEachIndexed { index, name ->
+            cleansList.forEachIndexed { index, clean ->
                 employees += if (index == 0){
-                    name
+                    clean.topshiruvchi?.fullname
                 }else{
-                    ", $name"
+                    ", ${clean.topshiruvchi?.fullname}"
                 }
             }
 
             return employees
         }
 
+    }
+
+    private fun getIndicatorPaymentTypes(submittedIndicatorOrder: SubmittedIndicatorOrder): List<IndicatorPaymentType>{
+        val indicatorPaymentTypesList = ArrayList<IndicatorPaymentType>()
+
+        if (submittedIndicatorOrder.naqd_sum_summa.isNotNull()){
+            indicatorPaymentTypesList.add(
+                IndicatorPaymentType(
+                    submittedIndicatorOrder.naqd_sum_summa!!,
+                    "naqd"
+                )
+            )
+        }
+
+        if (submittedIndicatorOrder.click_sum_summa.isNotNull()){
+            indicatorPaymentTypesList.add(
+                IndicatorPaymentType(
+                    submittedIndicatorOrder.click_sum_summa!!,
+                    "click"
+                )
+            )
+        }
+
+        if (submittedIndicatorOrder.terminal_sum_summa.isNotNull()){
+            indicatorPaymentTypesList.add(
+                IndicatorPaymentType(
+                    submittedIndicatorOrder.terminal_sum_summa!!,
+                    "Terminal-bank"
+                )
+            )
+        }
+
+        return indicatorPaymentTypesList
+    }
+
+    private fun getIndicatorProducts(cleansList: List<Clean>): List<IndicatorProduct>{
+        val indicatorProducts = ArrayList<IndicatorProduct>()
+
+        cleansList.forEach {
+            indicatorProducts.add(
+                IndicatorProduct(
+                    it.id, // sonini qo'shish !!!               !!!!                  !!!!!
+                    it.clean_hajm,
+                    it.xizmat.xizmat_turi,
+                    it.xizmat.olchov
+                )
+            )
+        }
+
+        return indicatorProducts
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {

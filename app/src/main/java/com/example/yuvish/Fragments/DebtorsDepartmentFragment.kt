@@ -24,12 +24,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.DebtorsCompletedAdapter
 import com.example.yuvish.Adapters.MarkedPaginationAdapter
-import com.example.yuvish.Models.ArrangedSubmit.PaymentTypesItem
-import com.example.yuvish.Models.DebtorsAPI.Market.FilterDebtorsItem
-import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
-import com.example.yuvish.Models.DebtorsAPI.Market.PaginationPageMarked
-import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
-import com.example.yuvish.Models.DebtorsPackage.DebtOff
+import com.example.yuvish.models.DebtorsAPI.Market.*
+import com.example.yuvish.models.DebtorsPackage.DebtOff
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentDebtorsDepartmentBinding
 import com.example.yuvish.databinding.ItemWarnBinding
@@ -45,7 +41,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
     lateinit var binding: FragmentDebtorsDepartmentBinding
     lateinit var markedPaginationAdapter: MarkedPaginationAdapter
     lateinit var unMarkedPaginationAdapter: DebtorsCompletedAdapter
-    lateinit var list: List<PaymentTypesItem>
+    lateinit var list: List<String>
     lateinit var listFilter: List<FilterDebtorsItem>
     lateinit var toggle: ActionBarDrawerToggle
     private var selectedFilterPosition = 0
@@ -74,8 +70,8 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
 
         binding.autoCompleteTextViewDebtors.setOnItemClickListener { parent, view, position, id ->
             selectedFilterPosition = position
-            getPaginationPageMarked(listFilter[position].value.toInt())
-            getPaginationPageUnMarked(listFilter[position].value.toInt())
+            getPaginationPageMarked(listFilter[position].id.toInt())
+            getPaginationPageUnMarked(listFilter[position].id.toInt())
         }
 
         binding.btnSearch.setOnClickListener {
@@ -256,15 +252,15 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
         }
     }
 
-    private fun paymentDebt(paydebt: Paydebt) {
-        ApiClient.retrofitService.requestPayDebt(paydebt).enqueue(object : Callback<String?> {
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+    private fun paymentDebt(debtId:Int, paydebt: Paydebt) {
+        ApiClient.retrofitService.requestPayDebt(debtId, paydebt).enqueue(object : Callback<ResponseDetail> {
+            override fun onResponse(call: Call<ResponseDetail>, response: Response<ResponseDetail>) {
                 if (response.code() == 200){
                     Toast.makeText(requireActivity(), "Pul muvaffaqiyatli olindi!", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onFailure(call: Call<String?>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseDetail>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
             }
@@ -277,23 +273,24 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
             override fun onResponse(call: Call<List<FilterDebtorsItem>>, response: Response<List<FilterDebtorsItem>>) {
                 if (response.code() == 200) {
                     listFilter = response.body()!!
-                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, listFilter.map { it.title })
+                    val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_list_item_1, listFilter.map { "${it.nasiya_count}. ${it.fullname}" })
                     binding.autoCompleteTextViewDebtors.setAdapter(arrayAdapter)
                  }
             }
 
             override fun onFailure(call: Call<List<FilterDebtorsItem>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
+                t.message
+                Toast.makeText(requireContext(), "Malumot kelmadi", Toast.LENGTH_SHORT).show()
             }
 
         })
     }
 
     private fun paymentTypes() {
-        ApiClient.retrofitService.paymentTypes().enqueue(object : Callback<List<PaymentTypesItem>> {
+        ApiClient.retrofitService.paymentTypes().enqueue(object : Callback<List<String>> {
 
-            override fun onResponse(call: Call<List<PaymentTypesItem>>, response: Response<List<PaymentTypesItem>>) {
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
 
                 if (response.code() == 200) {
                     list = response.body()!!
@@ -301,25 +298,25 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
                 }
             }
 
-            override fun onFailure(call: Call<List<PaymentTypesItem>>, t: Throwable) {
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Tolov turi kelmadi", Toast.LENGTH_SHORT).show()
             }
 
         })
     }
 
-    private fun requestDebtOff(debtOff: DebtOff){
-        ApiClient.retrofitService.requestDebtOff(debtOff).enqueue(object : Callback<String?>{
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+    private fun requestDebtOff(debtId: Int, debtOff: DebtOff){
+        ApiClient.retrofitService.requestDebtOff(debtId, debtOff).enqueue(object : Callback<ResponseDetail>{
+            override fun onResponse(call: Call<ResponseDetail>, response: Response<ResponseDetail>) {
                 if (response.code() == 200){
 
                 }
             }
 
-            override fun onFailure(call: Call<String?>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseDetail>, t: Throwable) {
                 t.printStackTrace()
-                Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Malumotlar jo'natilmadi", Toast.LENGTH_SHORT).show()
             }
 
         })
@@ -366,7 +363,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
                 dialogBinding.commentWarn.error = getString(R.string.izoh_3_ta_belgidan_ko_p_bo_lishi_shart)
             }else{
                 debtOff = DebtOff(comment, marketPaginationItem.id)
-                requestDebtOff(debtOff!!)
+                requestDebtOff(debtOff!!.id, debtOff!!)
                 customDialog.dismiss()
             }
         }
@@ -385,7 +382,7 @@ class DebtorsDepartmentFragment : Fragment(), MarkedPaginationAdapter.OnItemClic
 
     override fun payDebtClickListener(payDebt: Paydebt) {
         this.payDebt = payDebt
-        paymentDebt(payDebt)
+        paymentDebt(payDebt.id, payDebt)
         unMarkedPaginationAdapter.refresh()
         markedPaginationAdapter.refresh()
     }

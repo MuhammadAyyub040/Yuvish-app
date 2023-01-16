@@ -7,13 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Adapters.ProductsIndicatorChildAdapter
 import com.example.yuvish.Adapters.ProductsRewashedIndicatorChildAdapter
 import com.example.yuvish.Adapters.ReceivedRewashIndicatorGroupAdapter
-import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorProduct
-import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedRewashIndicator
+import com.example.yuvish.models.baseIndikatorsIndex.ReceivedRewashIndicator
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentRewashReceivedBinding
+import com.example.yuvish.models.baseIndikatorsIndex.IndicatorProduct
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull
 import retrofit2.Call
@@ -82,7 +81,7 @@ class RewashReceivedFragment : Fragment() {
         var count = 0
 
         indicatorProductsList.forEach {
-            count += it.dona
+//            count += it.dona
         }
 
         return count

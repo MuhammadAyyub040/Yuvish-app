@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.paging.PagingDataAdapter
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.ArrangedSubmit.PaymentTypesItem
-import com.example.yuvish.Models.DebtorsAPI.Market.FilterDebtorsItem
-import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
-import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
-import com.example.yuvish.Models.Warehouse.DifferenceDayManager
+import com.example.yuvish.models.DebtorsAPI.Market.MarketPaginationItem
+import com.example.yuvish.models.DebtorsAPI.Market.Paydebt
+import com.example.yuvish.models.Warehouse.DifferenceDayManager
 import com.example.yuvish.R
 import com.example.yuvish.databinding.KvitansiyaItemDebtsBinding
 import com.example.yuvish.retrofit.isNull
@@ -25,7 +23,7 @@ class DebtorsCompletedAdapter(
     MarkedPaginationAdapter.DebtOrdersDiffItemCallback()
 ) {
 
-    private var paymentTypesList = emptyList<PaymentTypesItem>()
+    private var paymentTypesList = emptyList<String>()
 
     private var amountValues = arrayOfNulls<String>(itemCount)
     private var paymentTypePositionValues = arrayOfNulls<Int>(itemCount)
@@ -51,7 +49,7 @@ class DebtorsCompletedAdapter(
         @SuppressLint("SetTextI18n")
         fun setItem(marketPaginationItem: MarketPaginationItem, position: Int){
             val paymentTypesAdapter = ArrayAdapter(
-                context, android.R.layout.simple_list_item_1, paymentTypesList.map { it.name })
+                context, android.R.layout.simple_list_item_1, paymentTypesList)
 
             val differenceDayManager = DifferenceDayManager(marketPaginationItem.ber_date, context)
 
@@ -73,7 +71,7 @@ class DebtorsCompletedAdapter(
             binding.paymentType.setAdapter(paymentTypesAdapter)
             if (paymentTypesList.isNotEmpty()) {
                 binding.paymentType.setText(
-                    paymentTypesList[paymentTypePositionValues[position] ?: 0].name, false
+                    paymentTypesList[paymentTypePositionValues[position] ?: 0], false
                 )
             }
 
@@ -112,7 +110,7 @@ class DebtorsCompletedAdapter(
                     val payDebt = Paydebt(
                         marketPaginationItem.id,
                         amount,
-                        paymentTypesList[paymentTypePositionValues[position] ?: 0].name
+                        paymentTypesList[paymentTypePositionValues[position] ?: 0]
                     )
 
                     callBack.payDebtClickListener(payDebt)
@@ -135,7 +133,7 @@ class DebtorsCompletedAdapter(
         holder.setItem(getItem(position)!!, position)
     }
 
-    fun submitPaymentTypesList(paymentTypesList: List<PaymentTypesItem>){
+    fun submitPaymentTypesList(paymentTypesList: List<String>){
         this.paymentTypesList = paymentTypesList
         notifyDataSetChanged()
     }

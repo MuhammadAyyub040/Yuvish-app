@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.BaseIndikatorsIndex.Data
+import com.example.yuvish.models.baseIndikatorsIndex.Data
 import com.example.yuvish.R
 import com.example.yuvish.databinding.WashedIndicatorGroupItemBinding
 

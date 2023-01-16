@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.BaseIndikatorsIndex.KpiIndicatorOrder
+import com.example.yuvish.models.baseIndikatorsIndex.KpiIndicatorOrder
 import com.example.yuvish.R
 import com.example.yuvish.databinding.KpiIndicatorItemLayoutBinding
 

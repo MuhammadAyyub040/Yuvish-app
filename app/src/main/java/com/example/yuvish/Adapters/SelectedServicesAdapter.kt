@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.NewOrder.SelectedService
+import com.example.yuvish.models.NewOrder.SelectedService
 import com.example.yuvish.R
 import com.example.yuvish.databinding.SelectedServiceItemLayoutBinding
 

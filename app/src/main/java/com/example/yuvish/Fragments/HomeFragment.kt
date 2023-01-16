@@ -23,9 +23,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.CleaningPaginationAdapter
-import com.example.yuvish.Models.Cleaning.CleaningData
-import com.example.yuvish.Models.Cleaning.PaginationPageCleaning
-import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
+import com.example.yuvish.models.Cleaning.CleaningData
+import com.example.yuvish.models.Cleaning.PaginationPageCleaning
+import com.example.yuvish.models.HolatPaneli.WashingStatusAPI
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentHomeBinding
 import com.example.yuvish.retrofit.ApiClient

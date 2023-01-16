@@ -6,15 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
 import com.example.yuvish.Adapters.ProductsIndicatorChildAdapter
 import com.example.yuvish.Adapters.SubmittedIndicatorGroupAdapter
-import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorProduct
-import com.example.yuvish.Models.BaseIndikatorsIndex.SubmittedIndicator
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentSubmittedIndicatorsBinding
+import com.example.yuvish.models.Warehouse.BasePagingModel
+import com.example.yuvish.models.baseIndikatorsIndex.IndicatorProduct
+import com.example.yuvish.models.baseIndikatorsIndex.PaginationPageSubmittedIndicator
+import com.example.yuvish.models.baseIndikatorsIndex.ReceivedWashedIndicatorPagingSource
+import com.example.yuvish.models.baseIndikatorsIndex.SubmittedIndicator
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,7 +35,8 @@ class SubmittedIndicatorsFragment : Fragment() {
     private val totalProductsAdapter: ProductsIndicatorChildAdapter by lazy {
         ProductsIndicatorChildAdapter(requireActivity()) }
 
-    private var totalIndicatorProductsList: List<IndicatorProduct>? = null
+    private var tableFooterList: List<IndicatorProduct>? = null
+    private var totalIndicatorProductsList: BasePagingModel<SubmittedIndicator>? = null
     private lateinit var fromDate: String
     private lateinit var toDate: String
 
@@ -52,9 +61,9 @@ class SubmittedIndicatorsFragment : Fragment() {
         binding.fromAndToDate.text = getString(R.string.between_submitted, fromDate.transformDate(), toDate.transformDate())
 
         if (totalIndicatorProductsList.isNull()){
-            getSubmitted(fromDate, toDate, 1)
+            getPaginationSubmitted()
         }else{
-            updateTotalIndicators(totalIndicatorProductsList!!)
+            updateTotalIndicators(tableFooterList!!)
         }
 
         binding.totalProductsRV.adapter = totalProductsAdapter
@@ -62,6 +71,21 @@ class SubmittedIndicatorsFragment : Fragment() {
 
         binding.backStack.setOnClickListener {
             findNavController().popBackStack()
+        }
+    }
+
+    fun getPaginationSubmitted() {
+        Pager(
+            config = PagingConfig(
+                pageSize = 10,
+                enablePlaceholders = false,
+                initialLoadSize = 10
+            ),
+            pagingSourceFactory = { PaginationPageSubmittedIndicator(ApiClient.retrofitService, fromDate, toDate) }
+        ).liveData.observe(viewLifecycleOwner) {
+            lifecycleScope.launch {
+                submittedIndicatorGroupAdapter.submitData(it)
+            }
         }
     }
 
@@ -74,7 +98,7 @@ class SubmittedIndicatorsFragment : Fragment() {
         var count = 0
 
         indicatorProductsList.forEach {
-            count += it.dona
+            count += it.soni
         }
 
         return count
@@ -85,16 +109,16 @@ class SubmittedIndicatorsFragment : Fragment() {
         return "${dateArray[2]}.${dateArray[1]}.${dateArray[0]}"
     }
 
-    private fun getSubmitted(fromDate: String, toDate: String, page: Int){
-        ApiClient.retrofitService.getSubmittedIndicators(fromDate, toDate, page).enqueue(object : Callback<SubmittedIndicator>{
-            override fun onResponse(call: Call<SubmittedIndicator>, response: Response<SubmittedIndicator>) {
+    private fun getTableFooter(action: String){
+        ApiClient.retrofitService.getTableFooter(action).enqueue(object : Callback<List<IndicatorProduct>>{
+            override fun onResponse(call: Call<List<IndicatorProduct>>, response: Response<List<IndicatorProduct>>) {
                 if (response.code() == 200){
-                    totalIndicatorProductsList = response.body()?.jami_table_footer
-                    updateTotalIndicators(totalIndicatorProductsList!!)
+                    tableFooterList = response.body()!!
+                    updateTotalIndicators(tableFooterList!!)
                 }
             }
 
-            override fun onFailure(call: Call<SubmittedIndicator>, t: Throwable) {
+            override fun onFailure(call: Call<List<IndicatorProduct>>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "Server bilan bog'lanishda xatolik", Toast.LENGTH_SHORT).show()
             }

@@ -6,10 +6,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
-import com.example.yuvish.Models.Warehouse.DifferenceDayManager
-import com.example.yuvish.Models.Warehouse.OrdersOmborItem
-import com.example.yuvish.Models.Warehouse.WarehouseData
+import com.example.yuvish.models.Warehouse.DifferenceDayManager
+import com.example.yuvish.models.Warehouse.WarehouseData
 import com.example.yuvish.R
 import com.example.yuvish.databinding.KvitansiyaItemWarehouseBinding
 import com.example.yuvish.retrofit.isNull
@@ -37,7 +35,11 @@ class WerehousePaginationAdapter(val context: Context, var onItemClick: OnItemCl
             binding.secondary.background = resource
             binding.txtDateWarehouse.setTextColor(color)
             binding.txtKvitansiyaNumberWarehouse.setTextColor(color)
-            binding.txtOperator.text = warehouseData.operator.fullname
+            if (warehouseData.operator.isNull()){
+                binding.txtOperator.text = ""
+            }else{
+                binding.txtOperator.text = warehouseData.operator.fullname
+            }
             binding.txtKvitansiyaNumberWarehouse.text = warehouseData.nomer.toString()
             binding.txtDateWarehouse.text = "${differenceDayManager.differanceDay} ${"kun"}"
             if (warehouseData.ombor.isNull()){
@@ -45,9 +47,15 @@ class WerehousePaginationAdapter(val context: Context, var onItemClick: OnItemCl
             }else{
                 binding.omborchiName.text = warehouseData.ombor.fullname
             }
-            binding.txtNameWarehouse.text = warehouseData.custumer.costumer_name
-            binding.txtPhoneNumberWarehouse.text = warehouseData.custumer.costumer_phone_1
-            binding.txtLocationWarehouse.text = warehouseData.custumer.costumer_addres
+            if (warehouseData.custumer.isNull()){
+                binding.txtNameWarehouse.text = ""
+                binding.txtPhoneNumberWarehouse.text = ""
+                binding.txtLocationWarehouse.text = ""
+            }else{
+                binding.txtNameWarehouse.text = warehouseData.custumer.costumer_name
+                binding.txtPhoneNumberWarehouse.text = warehouseData.custumer.costumer_phone_1
+                binding.txtLocationWarehouse.text = warehouseData.custumer.costumer_addres
+            }
             binding.txtCommentOperator.text = warehouseData.izoh
             binding.txtCommentOrder.text = warehouseData.izoh2
         }

@@ -9,7 +9,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.os.bundleOf
@@ -17,22 +16,23 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.SearchCustomerResultsAdapter
-import com.example.yuvish.Models.NewOrder.SearchCustomerResult
+import com.example.yuvish.models.NewOrder.SearchCustomerResult
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentTransportBinding
 import com.example.yuvish.databinding.SelectphonediaologlayoutBinding
+import com.example.yuvish.models.addCostumer.createOrder
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.isNull
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.HttpException
 import retrofit2.Response
 
 class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
 
     lateinit var binding: FragmentTransportBinding
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var createOrder: createOrder
     var newPage = false
     private val searchCustomerResultsAdapter: SearchCustomerResultsAdapter by lazy {
         SearchCustomerResultsAdapter(requireActivity(), this, false)
@@ -289,18 +289,18 @@ class TransportFragment : Fragment(), SearchCustomerResultsAdapter.CallBack {
     }
 
     private fun createOrderByCustomerId(customerId: Int){
-        ApiClient.retrofitService.createOrderByCustomerId(customerId).enqueue(object : Callback<Int?>{
-            override fun onResponse(call: Call<Int?>, response: Response<Int?>) {
+        ApiClient.retrofitService.createOrderByCustomerId(customerId).enqueue(object : Callback<createOrder>{
+            override fun onResponse(call: Call<createOrder>, response: Response<createOrder>) {
                 if (response.code() == 200){
                     if (response.body().isNull()) {
                         Toast.makeText(requireActivity(), getString(R.string.error), Toast.LENGTH_SHORT).show()
                     } else {
-                        toWriteReceiptFragment(response.body()!!)
+                        toWriteReceiptFragment(createOrder.order_id)
                     }
                 }
             }
 
-            override fun onFailure(call: Call<Int?>, t: Throwable) {
+            override fun onFailure(call: Call<createOrder>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireActivity(), "Ma'limot jo'natilishida xatolik", Toast.LENGTH_SHORT).show()
             }

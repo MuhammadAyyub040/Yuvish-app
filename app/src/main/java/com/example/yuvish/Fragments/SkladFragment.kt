@@ -1,17 +1,14 @@
 package com.example.yuvish.Fragments
 
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.os.bundleOf
@@ -21,10 +18,10 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.WerehousePaginationAdapter
-import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
-import com.example.yuvish.Models.Warehouse.OrdersOmborItem
-import com.example.yuvish.Models.Warehouse.PaginationPageWerehouse
-import com.example.yuvish.Models.Warehouse.WarehouseData
+import com.example.yuvish.models.DebtorsAPI.Market.ResponseDetail
+import com.example.yuvish.models.HolatPaneli.WashingStatusAPI
+import com.example.yuvish.models.Warehouse.PaginationPageWerehouse
+import com.example.yuvish.models.Warehouse.WarehouseData
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentSkladBinding
 import com.example.yuvish.retrofit.ApiClient
@@ -183,8 +180,8 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
     }
 
     private fun orderWarehouse(orderId: Int){
-        ApiClient.retrofitService.ordersWarehouse(orderId).enqueue(object : Callback<String?>{
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+        ApiClient.retrofitService.ordersWarehouse(orderId).enqueue(object : Callback<ResponseDetail>{
+            override fun onResponse(call: Call<ResponseDetail>, response: Response<ResponseDetail>) {
                 if (response.code() == 200) {
                     Toast.makeText(
                         requireActivity(),
@@ -195,7 +192,7 @@ class SkladFragment : Fragment(), WerehousePaginationAdapter.OnItemClick {
                 }
             }
 
-            override fun onFailure(call: Call<String?>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseDetail>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "Xatolik yuz berdi", Toast.LENGTH_SHORT).show()
             }

@@ -2,12 +2,11 @@ package com.example.yuvish.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.Registration.Product
+import com.example.yuvish.models.Registration.Product
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ItemMahsulotlarNomiRegistrationBinding
 

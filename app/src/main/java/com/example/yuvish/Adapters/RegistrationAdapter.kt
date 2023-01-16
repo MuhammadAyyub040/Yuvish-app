@@ -10,11 +10,10 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.NewOrder.ProductSize
-import com.example.yuvish.Models.NewOrder.SizingProduct
+import com.example.yuvish.models.NewOrder.ProductSize
+import com.example.yuvish.models.NewOrder.SizingProduct
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ItemGilamBinding
-import com.example.yuvish.databinding.NotsizedproductfirstitemBinding
 import com.example.yuvish.databinding.NotsizedproductseconditemBinding
 import com.example.yuvish.retrofit.GlobalData
 import com.example.yuvish.retrofit.isNull

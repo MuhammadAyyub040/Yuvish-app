@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
-import com.example.yuvish.Models.Warehouse.DifferenceDayManager
+import com.example.yuvish.models.ReadyOrders.ReadyOrdersItem
+import com.example.yuvish.models.Warehouse.DifferenceDayManager
 import com.example.yuvish.databinding.KvitansiyaItemArrangedBinding
+import com.example.yuvish.retrofit.isNull
 
 class ArrangedPaginationAdapter(val context: Context, var onItemClick: OnItemClick) :
     PagingDataAdapter<ReadyOrdersItem, ArrangedPaginationAdapter.ArrangedViewHolder>(ArticleDiffItemCallback) {
@@ -47,13 +48,19 @@ class ArrangedPaginationAdapter(val context: Context, var onItemClick: OnItemCli
 
             holder.binding.txtKvitansiyaNumberArranged.text = readyOrdersItem.nomer.toString()
             holder.binding.txtDateArranged.text = "${differenceDayManager.differanceDay} ${"kun"}"
-            holder.binding.txtCustomerArranged.text = readyOrdersItem.costumer.costumer_name
-            holder.binding.txtPhoneNumberArranged.text = readyOrdersItem.costumer.costumer_phone_1
-            holder.binding.txtLocationArranged.text = readyOrdersItem.costumer.costumer_addres
+            if (readyOrdersItem.custumer.isNull()){
+                holder.binding.txtCustomerArranged.text = ""
+                holder.binding.txtPhoneNumberArranged.text = ""
+                holder.binding.txtLocationArranged.text = ""
+            }else{
+                holder.binding.txtCustomerArranged.text = readyOrdersItem.custumer.costumer_name
+                holder.binding.txtPhoneNumberArranged.text = readyOrdersItem.custumer.costumer_phone_1
+                holder.binding.txtLocationArranged.text = readyOrdersItem.custumer.costumer_addres
+            }
             holder.binding.txtOperatorArranged.text = readyOrdersItem.operator.fullname
             holder.binding.txtCommentOperatorArranged.text = readyOrdersItem.izoh
             holder.binding.txtCommentCustomerArranged.text = readyOrdersItem.izoh2
-            holder.binding.txtOrderNumber.text = "${readyOrdersItem.product_count} ${"ta"}"
+            holder.binding.txtOrderNumber.text = "${readyOrdersItem.cleans_count} ${"ta"}"
         }
     }
 

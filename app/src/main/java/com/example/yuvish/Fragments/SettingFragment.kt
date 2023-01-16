@@ -17,10 +17,10 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.findNavController
-import com.example.yuvish.Models.LanguageHelper
-import com.example.yuvish.Models.Setting.ResponseSetting
-import com.example.yuvish.Models.Setting.Setting
-import com.example.yuvish.Models.Setting.UpdateSetting
+import com.example.yuvish.models.LanguageHelper
+import com.example.yuvish.models.Setting.ResponseSetting
+import com.example.yuvish.models.Setting.Setting
+import com.example.yuvish.models.Setting.UpdateSetting
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ConfirmationBinding
 import com.example.yuvish.databinding.FragmentSettingBinding
@@ -84,7 +84,7 @@ class SettingFragment : Fragment() {
             when{
                 binding.edtLoginSetting.text.toString() == setting.username &&
                         binding.edtNameSetting.text.toString() == setting.fullname &&
-                        binding.edtPhoneNumber.text.toString() == setting.phone.toString()->{
+                        binding.phoneInput.text.toString() == setting.phone.toString()->{
                     Toast.makeText(requireActivity(), "Hech qanday o'zgarish yo'q", Toast.LENGTH_SHORT).show()
                 }
                 else -> {
@@ -224,7 +224,7 @@ class SettingFragment : Fragment() {
                 if (response.code() == 200){
                     setting = response.body()!!
                     binding.edtNameSetting.setText(response.body()!!.fullname)
-                    binding.edtPhoneNumber.setText(response.body()!!.phone.toString())
+                    binding.phoneInput.setText(response.body()!!.phone.toString())
                     binding.edtLoginSetting.setText(response.body()!!.username)
                     binding.txtMaosh.text = setting.oylik.toString()
                 }

@@ -1,35 +1,35 @@
 package com.example.yuvish.retrofit
 
-import com.example.yuvish.Models.ArrangedSubmit.PaymentTypesItem
-import com.example.yuvish.Models.ArrangedSubmit.Submit
-import com.example.yuvish.Models.Authorization.UserToken
-import com.example.yuvish.Models.BarcodeApi.Order
-import com.example.yuvish.Models.BaseIndikatorsIndex.*
-import com.example.yuvish.Models.Cleaning.CleaningData
-import com.example.yuvish.Models.CommonSettings
-import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
-import com.example.yuvish.Models.DebtorsPackage.Debtors
-import com.example.yuvish.Models.DebtorsAPI.Market.FilterDebtorsItem
-import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
-import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
-import com.example.yuvish.Models.DebtorsPackage.DebtOff
-import com.example.yuvish.Models.HolatPaneli.WashingStatusAPI
-import com.example.yuvish.Models.HolatPaneli.TransportStatusAPI
-import com.example.yuvish.Models.NewOrder.*
-import com.example.yuvish.Models.ReadyOrders.Arranging
-import com.example.yuvish.Models.ReadyOrders.Autocomplete
-import com.example.yuvish.Models.ReadyOrders.ReadyOrdersItem
-import com.example.yuvish.Models.ReadyOrders.ViewOrderItem
-import com.example.yuvish.Models.Registration.Registration
-import com.example.yuvish.Models.Registration.ServiceTypeItem
-import com.example.yuvish.Models.Setting.ResponseSetting
-import com.example.yuvish.Models.Setting.Setting
-import com.example.yuvish.Models.Setting.UpdateSetting
-import com.example.yuvish.Models.Tokchalar.ShelfItem
-import com.example.yuvish.Models.Warehouse.BasePagingModel
-import com.example.yuvish.Models.Warehouse.WarehouseData
-import com.example.yuvish.Models.globalSearch.SearchReceiptResult
-import com.example.yuvish.Models.searchCustomer.SearchReceipt
+import com.airbnb.lottie.L
+import com.example.yuvish.models.ArrangedSubmit.Submit
+import com.example.yuvish.models.ArrangedSubmit.SubmittingOrder
+import com.example.yuvish.models.ArrangedSubmit.SubmittingOrderResponse
+import com.example.yuvish.models.Authorization.UserToken
+import com.example.yuvish.models.BarcodeApi.Order
+import com.example.yuvish.models.baseIndikatorsIndex.*
+import com.example.yuvish.models.Cleaning.CleaningData
+import com.example.yuvish.models.CommonSettings
+import com.example.yuvish.models.DebtorsAPI.Market.*
+import com.example.yuvish.models.DebtorsPackage.DebtOff
+import com.example.yuvish.models.HolatPaneli.WashingStatusAPI
+import com.example.yuvish.models.HolatPaneli.TransportStatusAPI
+import com.example.yuvish.models.NewOrder.*
+import com.example.yuvish.models.ReadyOrders.Arranging
+import com.example.yuvish.models.ReadyOrders.Autocomplete
+import com.example.yuvish.models.ReadyOrders.ReadyOrdersItem
+import com.example.yuvish.models.ReadyOrders.ViewOrderItem
+import com.example.yuvish.models.Registration.Registration
+import com.example.yuvish.models.Registration.ServiceTypeItem
+import com.example.yuvish.models.Setting.ResponseSetting
+import com.example.yuvish.models.Setting.Setting
+import com.example.yuvish.models.Setting.UpdateSetting
+import com.example.yuvish.models.Tokchalar.ShelfItem
+import com.example.yuvish.models.Warehouse.BasePagingModel
+import com.example.yuvish.models.Warehouse.WarehouseData
+import com.example.yuvish.models.addCostumer.addCostumerResponse
+import com.example.yuvish.models.addCostumer.createOrder
+import com.example.yuvish.models.globalSearch.SearchReceiptResult
+import com.example.yuvish.models.searchCustomer.SearchReceipt
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -100,44 +100,49 @@ interface RetrofitService {
        @Query("page") page: Int,
        @Query("driver") driver: Int,
        @Query("type") type: String
-   ): Response<List<ReadyOrdersItem>>
+   ): Response<BasePagingModel<ReadyOrdersItem>>
 
    @GET("holat_paneli_for_transport")
    fun transportStatusBar(): Call<TransportStatusAPI>
 
-   @GET("ready_order_filter")
-   fun autocomplete(
-   ): Call<List<Autocomplete>>
+   @GET("clean/transport")
+   fun autocomplete(): Call<List<Autocomplete>>
 
    @GET("order_items/{order_id}")
    fun viewOrder(
        @Path("order_id") order_Id: Int
    ): Call<ViewOrderItem>
 
-   @GET("ready_order_view/{order_id}")
+    @POST("order/tartib")
+    fun arranging(
+        @Body arranging: Arranging
+    ): Call<Arranging>
+
+    //submit
+
+   @GET("order/yakuniy/{order_id}")
    fun submit(
        @Path("order_id") order_Id: Int
    ): Call<Submit>
 
-   @GET("tolov_turlari")
-   fun paymentTypes(): Call<List<PaymentTypesItem>>
+   @GET("payment_methods")
+   fun paymentTypes(): Call<List<String>>
 
-   @POST("zakazni_topshirish/{order_id}")
+   @POST("order/yakun/{id}")
    fun submittingOrder(
-       @Path("order_id") orderId: Int,
-       @Query("berilgan_summa") givenAmount: Int,
-       @Query("tolov_turi") paymentType: String
-   ): Call<Int?>
+       @Path("id") orderId: Int,
+       @Body submittingOrder: SubmittingOrder
+   ): Call<SubmittingOrderResponse>
 
-   @PUT("omborga_otkazish/{order_id}")
+   @POST("ombor/to/{order_id}")
    fun transferWarehouse(
        @Path("order_id") order_Id: Int
-   ): Call<String?>
+   ): Call<ResponseDetail>
 
-   @PUT("arranging")
-   fun arranging(
-       @Body arranging: Arranging
-   ): Call<Arranging>
+    @PUT("order/qayta")
+    fun productTransferToRewash(
+        @Query("id") productId: Int
+    ): Call<String?>
 
    // Warehouse
 
@@ -146,108 +151,116 @@ interface RetrofitService {
         @Query("page") page: Int
     ): Response<BasePagingModel<WarehouseData>>
 
-   @POST("ombor/tartib/{id}")
+   @POST("ombor/tartib/{order_id}")
    fun ordersWarehouse(
-       @Query("order_id") order_Id: Int
-   ): Call<String?>
+       @Path("order_id") order_Id: Int
+   ): Call<ResponseDetail>
 
    //Debtors
 
-   @GET("nasiya_get_one")
+   @GET("nasiya/{id}")
    fun debtorCustomer(
-       @Query("id") id: Int
-   ): Call<Debtors>
+       @Path("id") debtId: Int
+   ): Call<Debt>
 
    @GET("nasiya")
    suspend fun marketPagination(
        @Query("page") page: Int,
        @Query("driver") driver: Int,
        @Query("type") type: String
-   ): Response<List<MarketPaginationItem>>
+   ): Response<BasePagingModel<MarketPaginationItem>>
 
-   @GET("nasiya_filter")
+   @GET("nasiya/filter")
    fun filterDebtors(): Call<List<FilterDebtorsItem>>
 
-    @POST("nasiya_tolash")
+    @POST("nasiya/{nasiya_id}")
     fun requestPayDebt(
+        @Path("nasiya_id") debtId: Int,
         @Body payDebt: Paydebt
-    ): Call<String?>
+    ): Call<ResponseDetail>
 
-    @POST("nasiya_send_off")
+    @POST("nasiya/kechish/{nasiya_id}")
     fun requestDebtOff(
+        @Path("nasiya_id") debtId: Int,
         @Body debtOff: DebtOff
-    ): Call<String?>
+    ): Call<ResponseDetail>
 
-    @PUT("nasiya_put_date")
+    @POST("nasiya/end/{nasiya_id}")
     fun putDebt(
-        @Body confirmDebt: ConfirmDebt
-    ): Call<String?>
+        @Path("nasiya_id") debtId: Int,
+        @Body debtPayDate: DebtPayDate
+    ): Call<ResponseDetail>
 
     //BaseFragment
 
     @GET("korsatkich")
     fun searchIndicators(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String
     ): Call<SearchIndicatorsResult>
 
     //pagination
 
     @GET("korsatkich_yuvildi")
     suspend fun getWashedIndicators(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String,
         @Query("page") page: Int
     ): Response<WashedIndicator>
 
     @GET("korsatkich_yuvildi")
     fun getWashedIndicator(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String,
         @Query("page") page: Int
     ): Call<WashedIndicator>
 
-    @GET("korsatkich_topshirildi")
-    fun getSubmittedIndicators(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String,
+    @GET("korsatkich/topshirildi")
+    suspend fun getSubmittedIndicators(
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String,
         @Query("page") page: Int
-    ): Call<SubmittedIndicator>
+    ): Response<BasePagingModel<SubmittedIndicatorOrder>>
+
+    @GET("footer_count")
+    fun getTableFooter(
+        @Query("action") action: String
+    ): Call<List<IndicatorProduct>>
 
     //pagination
 
     @GET("qayta")
     suspend fun getReceivedRewashIndicators(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String,
         @Query("page") page: Int
     ): Response<ReceivedRewashIndicator>
 
     @GET("qayta")
     fun getReceivedRewashIndicator(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String,
         @Query("page") page: Int
     ): Call<ReceivedRewashIndicator>
 
     @GET("kpi")
     suspend fun getKpiIndicators(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String,
         @Query("page") page: Int
     ): Response<KpiIndicator>
 
     @GET("kpi")
     fun getKpiIndicator(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String,
         @Query("page") page: Int
     ): Call<KpiIndicator>
 
     @GET("maosh")
     fun getReceivedSalaryIndicators(
-        @Query("from_date") fromDate: String,
-        @Query("to_date") toDate: String,
+        @Query("from") fromDate: String,
+        @Query("to") toDate: String,
         @Query("page") page: Int
     ): Call<ReceivedSalaryIndicator>
 
@@ -264,22 +277,22 @@ interface RetrofitService {
 
    //Add customer
 
-    @POST("order/add")
+    @POST("order/add/{costumer_id}")
     fun createOrderByCustomerId(
-        @Query("costumer_id") customerId: Int
-    ): Call<Int?>
+        @Path("costumer_id") customerId: Int
+    ): Call<createOrder>
 
     @POST("search_costumer")
     fun searchCustomer(
         @Query("content") content: String
     ): Call<List<SearchCustomerResult>>
 
-   @POST("costumer/create/operator")
+   @POST("costumer/add")
    fun addCustomer(
        @Body postCustomer: PostCustomer
-   ): Call<Int?>
+   ): Call<addCostumerResponse>
 
-   @GET("manbalar")
+   @GET("manba")
    fun getSources(): Call<List<Sources>>
 
     @GET("millatlar")
@@ -293,11 +306,11 @@ interface RetrofitService {
         @Path("order_id") orderId: Int
     ): Call<Order>
 
-    @PUT("order/{order_id}/acceptance")
+    @PUT("order/add_product/{order_id}")
     fun putNewOrder(
         @Path("order_id") orderId: Int,
         @Body putOrder: PutOrder
-    ): Call<String?>
+    ): Call<ResponseDetail>
 
     @GET("/order/{order_id}/confirmation")
     fun getConfirmOrderById(

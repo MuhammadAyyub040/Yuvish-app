@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,11 +18,9 @@ import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.DebtorsCompletedAdapter
 import com.example.yuvish.Adapters.MarkedPaginationAdapter
-import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
-import com.example.yuvish.Models.DebtorsAPI.Market.Paydebt
-import com.example.yuvish.Models.DebtorsPackage.ConfirmDebt
-import com.example.yuvish.Models.DebtorsPackage.DebtOff
-import com.example.yuvish.Models.DebtorsPackage.Debtors
+import com.example.yuvish.models.DebtorsAPI.Market.*
+import com.example.yuvish.models.DebtorsPackage.ConfirmDebt
+import com.example.yuvish.models.DebtorsPackage.DebtOff
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentDebtorBinding
 import com.example.yuvish.databinding.ItemWarnBinding
@@ -40,9 +39,10 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var markedPaginationAdapter: MarkedPaginationAdapter
     lateinit var unMarkedPaginationAdapter: DebtorsCompletedAdapter
-    lateinit var debtors: Debtors
+    lateinit var debtors: Debt
     private var debtId: Int? = null
     private var confirmDebt: ConfirmDebt? = null
+    private var debtPayDate: DebtPayDate? = null
     private var debtOff: DebtOff? = null
 
 
@@ -102,8 +102,9 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
                 Toast.LENGTH_SHORT
             ).show()
         } else {
-            confirmDebt = ConfirmDebt(changeDateStructure(date), debtId!!)
-            putDebt(confirmDebt!!)
+//            confirmDebt = ConfirmDebt(changeDateStructure(date), debtId!!)
+            debtPayDate = DebtPayDate(date, debtId!!)
+            putDebt(debtId!!, debtPayDate!!)
         }
     }
 
@@ -165,10 +166,12 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
         )
     }
 
-    private fun putDebt(confirmDebt: ConfirmDebt) {
-        ApiClient.retrofitService.putDebt(confirmDebt).enqueue(object : Callback<String?> {
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+    private fun putDebt(debtId: Int, debtPayDate: DebtPayDate) {
+        ApiClient.retrofitService.putDebt(debtId, debtPayDate).enqueue(object : Callback<ResponseDetail> {
+            override fun onResponse(call: Call<ResponseDetail>, response: Response<ResponseDetail>) {
+                Log.e("TAG", "onResponse: ${response.code()} ${response.body()}")
                 if (response.code() == 200)
+                    Log.e("TAG", "onResponse: ${response.code()} ${response.body()}")
                     if (response.body() == null) {
                         Toast.makeText(requireActivity(), getString(R.string.error), Toast.LENGTH_SHORT).show()
                     } else {
@@ -178,7 +181,7 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
                     }
             }
 
-            override fun onFailure(call: Call<String?>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseDetail>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
             }
@@ -186,9 +189,9 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
         })
     }
 
-    private fun requestDebtOff(debtOff: DebtOff){
-        ApiClient.retrofitService.requestDebtOff(debtOff).enqueue(object : Callback<String?>{
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+    private fun requestDebtOff(debtId: Int, debtOff: DebtOff){
+        ApiClient.retrofitService.requestDebtOff(debtId, debtOff).enqueue(object : Callback<ResponseDetail>{
+            override fun onResponse(call: Call<ResponseDetail>, response: Response<ResponseDetail>) {
                 if (response.code() == 200){
                     markedPaginationAdapter.refresh()
                     unMarkedPaginationAdapter.refresh()
@@ -196,7 +199,7 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
                 }
             }
 
-            override fun onFailure(call: Call<String?>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseDetail>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "OnFailure", Toast.LENGTH_SHORT).show()
             }
@@ -206,20 +209,20 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
 
 
     private fun debtorCustomer(id: Int) {
-        ApiClient.retrofitService.debtorCustomer(id).enqueue(object : Callback<Debtors> {
-            override fun onResponse(call: Call<Debtors>, response: Response<Debtors>) {
+        ApiClient.retrofitService.debtorCustomer(id).enqueue(object : Callback<Debt> {
+            override fun onResponse(call: Call<Debt>, response: Response<Debt>) {
                 if (response.code() == 200) {
                     if (response.body() != null) {
                         debtors = response.body()!!
-                        binding.debtorCustomerName.text = debtors.costumer.costumer_name
-                        binding.debtorCustomerId.text = debtors.costumer.id.toString()
-                        binding.debtorCustomerLocation.text = debtors.costumer.costumer_addres
+                        binding.debtorCustomerName.text = debtors.nasiyachi.costumer_name
+                        binding.debtorCustomerId.text = debtors.nasiyachi.id.toString()
+                        binding.debtorCustomerLocation.text = debtors.nasiyachi.costumer_addres
                         binding.edtDebtAmount.setText(debtors.summa.toString())
                     }
                 }
             }
 
-            override fun onFailure(call: Call<Debtors>, t: Throwable) {
+            override fun onFailure(call: Call<Debt>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), "Xatolik yuz berdi", Toast.LENGTH_SHORT).show()
             }
@@ -241,7 +244,7 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
         customDialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val description = getString(R.string.debt_off_name_and_amount)
-            .replace("\'name\'", debtors.costumer.costumer_name ?: "")
+            .replace("\'name\'", debtors.nasiyachi.costumer_name ?: "")
             .replace("\'amount\'", debtors.summa.toString() ?: "")
         dialogBinding.txtWarn.text = description
 
@@ -256,7 +259,7 @@ class DebtorFragment : Fragment(), MarkedPaginationAdapter.OnItemClick, DebtorsC
                 dialogBinding.commentWarn.error = getString(R.string.izoh_3_ta_belgidan_ko_p_bo_lishi_shart)
             }else{
                 debtOff = DebtOff(comment, debtId!!)
-                requestDebtOff(debtOff!!)
+                requestDebtOff(debtOff!!.id, debtOff!!)
                 customDialog.dismiss()
             }
         }

@@ -3,7 +3,7 @@ package com.example.yuvish.Adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.NewOrder.Sources
+import com.example.yuvish.models.NewOrder.Sources
 import com.example.yuvish.databinding.ItemSourceBinding
 
 class SourceAdapter(var list: List<Sources>, var onItemClick: OnItemClick) :
@@ -11,6 +11,7 @@ class SourceAdapter(var list: List<Sources>, var onItemClick: OnItemClick) :
 
     inner class SourceViewHolder(val binding: ItemSourceBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(sources: Sources) {
+            binding.sourceName.text = sources.name
             binding.cardGazeta.setOnClickListener {
                 onItemClick.onItemClick(sources)
             }

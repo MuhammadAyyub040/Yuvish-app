@@ -1,22 +1,19 @@
 package com.example.yuvish.Fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.yuvish.Adapters.KpiIndicatorAdapter
-import com.example.yuvish.Models.BaseIndikatorsIndex.KpiIndicator
-import com.example.yuvish.Models.BaseIndikatorsIndex.KpiIndicatorPagingSource
-import com.example.yuvish.Models.BaseIndikatorsIndex.ReceivedWashedIndicatorPagingSource
+import com.example.yuvish.models.baseIndikatorsIndex.KpiIndicator
+import com.example.yuvish.models.baseIndikatorsIndex.KpiIndicatorPagingSource
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentKpiIndicatorsBinding
 import com.example.yuvish.retrofit.ApiClient

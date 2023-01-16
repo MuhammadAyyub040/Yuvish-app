@@ -1,8 +1,7 @@
 package com.example.yuvish.retrofit
 
-import com.example.yuvish.Models.CommonSettings
-import com.example.yuvish.Models.DebtorsPackage.User
-import com.example.yuvish.Models.Setting.Setting
+import com.example.yuvish.models.CommonSettings
+import com.example.yuvish.models.Setting.Setting
 
 object GlobalData {
 

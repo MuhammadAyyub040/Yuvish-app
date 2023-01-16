@@ -1,8 +1,6 @@
 package com.example.yuvish.Fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,18 +12,18 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.yuvish.Adapters.SelectedServicesAdapter
-import com.example.yuvish.Models.BarcodeApi.Order
-import com.example.yuvish.Models.NewOrder.PutOrder
-import com.example.yuvish.Models.NewOrder.PutService
-import com.example.yuvish.Models.NewOrder.SelectedService
-import com.example.yuvish.Models.NewOrder.Service
+import com.example.yuvish.models.BarcodeApi.Order
+import com.example.yuvish.models.NewOrder.PutOrder
+import com.example.yuvish.models.NewOrder.PutService
+import com.example.yuvish.models.NewOrder.SelectedService
+import com.example.yuvish.models.NewOrder.Service
 import com.example.yuvish.R
 import com.example.yuvish.databinding.FragmentListBinding
+import com.example.yuvish.models.DebtorsAPI.Market.ResponseDetail
 import com.example.yuvish.retrofit.ApiClient
 import com.example.yuvish.retrofit.GlobalData
 import com.example.yuvish.retrofit.isNull
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -209,15 +207,15 @@ class ListFragment : Fragment(), SelectedServicesAdapter.CallBack {
     }
 
     private fun putNewOrder(orderId: Int, putOrder: PutOrder){
-        ApiClient.retrofitService.putNewOrder(orderId, putOrder).enqueue(object : Callback<String?>{
-            override fun onResponse(call: Call<String?>, response: Response<String?>) {
+        ApiClient.retrofitService.putNewOrder(orderId, putOrder).enqueue(object : Callback<ResponseDetail>{
+            override fun onResponse(call: Call<ResponseDetail>, response: Response<ResponseDetail>) {
                 if (response.code() == 200){
                     findNavController().navigate(R.id.action_listFragment_to_confirmationOrderFragment, bundleOf(
                         "orderId" to orderId))
                 }
             }
 
-            override fun onFailure(call: Call<String?>, t: Throwable) {
+            override fun onFailure(call: Call<ResponseDetail>, t: Throwable) {
                 t.printStackTrace()
                 Toast.makeText(requireContext(), getString(R.string.put_error), Toast.LENGTH_SHORT).show()
             }

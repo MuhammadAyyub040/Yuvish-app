@@ -283,7 +283,9 @@
         tools:layout="@layout/fragment_sumbit" >
         <action
             android:id="@+id/action_sumbitFragment_to_debtorFragment"
-            app:destination="@id/debtorFragment" />
+            app:destination="@id/debtorFragment"
+            app:popUpTo="@id/sumbitFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_sumbitFragment_to_tayyorFragment"
             app:destination="@id/tayyorFragment" />

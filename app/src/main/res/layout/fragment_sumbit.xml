@@ -596,9 +596,11 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/discountsLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
+                        android:visibility="gone"
                         android:orientation="horizontal">
 
                         <TextView
@@ -643,9 +645,11 @@
                         android:orientation="vertical">
 
                         <LinearLayout
+                            android:id="@+id/rewashDiscountLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
+                            android:visibility="gone"
                             android:orientation="horizontal">
 
                             <TextView
@@ -678,10 +682,12 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/customerPickupDiscountLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
+                            android:visibility="gone"
                             android:orientation="horizontal">
 
                             <TextView
@@ -714,10 +720,12 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/droppedDiscountLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="8dp"
+                            android:visibility="gone"
                             android:orientation="horizontal">
 
                             <TextView
@@ -750,10 +758,12 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/totalDroppedDiscountLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="16dp"
+                            android:visibility="gone"
                             android:orientation="horizontal">
 
                             <TextView

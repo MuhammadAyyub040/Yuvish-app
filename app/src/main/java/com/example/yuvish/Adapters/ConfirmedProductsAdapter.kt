@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.NewOrder.ConfirmProduct
+import com.example.yuvish.models.NewOrder.ConfirmProduct
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ConfirmedProductItemLayoutBinding
 

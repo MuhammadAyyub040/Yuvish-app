@@ -1,0 +1,32 @@
+package com.example.yuvish.models.ArrangedSubmit
+
+data class Clean(
+    val barcode: String,
+    val clean_date: String,
+    val clean_filial_id: String,
+    val clean_hajm: Double,
+    val clean_narx: Double,
+    val clean_product: Int,
+    val clean_status: String,
+    val costumer_id: Int,
+    val created_at: String,
+    val gilam_boyi: Double,
+    val gilam_eni: Double,
+    val id: Int,
+    val joy: String,
+    val joyida_date: String,
+    val joyida_user: Int,
+    val narx: Int,
+    val order_id: Int,
+    val qad_date: String,
+    val qad_user: Int,
+    val qayta_sana: String,
+    val reclean_driver: Int,
+    val reclean_place: Int,
+    val sana: String,
+    val top_sana: String,
+    val top_user: Int,
+    val updated_at: String,
+    val user_id: Int,
+    val xizmat: Xizmat
+)

@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.DebtorsAPI.Market.MarketPaginationItem
-import com.example.yuvish.Models.Warehouse.DifferenceDayManager
+import com.example.yuvish.models.DebtorsAPI.Market.MarketPaginationItem
+import com.example.yuvish.models.Warehouse.DifferenceDayManager
 import com.example.yuvish.databinding.KvitansiyaItemUnfinishedBinding
 
 class MarkedPaginationAdapter (var onItemClick: OnItemClick, val context: Context) :

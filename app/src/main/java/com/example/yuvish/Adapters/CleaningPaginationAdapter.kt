@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.Cleaning.CleaningData
-import com.example.yuvish.Models.Warehouse.DifferenceDayManager
+import com.example.yuvish.models.Cleaning.CleaningData
+import com.example.yuvish.models.Warehouse.DifferenceDayManager
 import com.example.yuvish.databinding.KvitansiyaItemCleaningBinding
 
 class CleaningPaginationAdapter(val context: Context, var onItemClick: OnItemClick) :

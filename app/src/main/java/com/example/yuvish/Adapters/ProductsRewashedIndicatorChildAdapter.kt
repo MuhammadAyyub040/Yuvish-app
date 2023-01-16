@@ -4,9 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.BaseIndikatorsIndex.IndicatorProduct
 import com.example.yuvish.R
 import com.example.yuvish.databinding.ProductIndicatorChildItemLayoutBinding
+import com.example.yuvish.models.baseIndikatorsIndex.IndicatorProduct
 
 class ProductsRewashedIndicatorChildAdapter(
     private val context: Context
@@ -25,19 +25,19 @@ class ProductsRewashedIndicatorChildAdapter(
         private fun getParameters(indicatorProdact: IndicatorProduct): String {
             return when (indicatorProdact.olchov) {
                 "metr" -> {
-                    "${indicatorProdact.dona} ${context.getString(R.string.pcs)} / " +
-                            "${indicatorProdact.hajm} ${context.getString(R.string.m)}"
+                    "${indicatorProdact.soni} ${context.getString(R.string.pcs)} / " +
+                            "${indicatorProdact.xajmi} ${context.getString(R.string.m)}"
                 }
                 "m" -> {
-                    "${indicatorProdact.dona} ${context.getString(R.string.pcs)} / " +
-                            "${indicatorProdact.hajm} ${context.getString(R.string.meter)}"
+                    "${indicatorProdact.soni} ${context.getString(R.string.pcs)} / " +
+                            "${indicatorProdact.xajmi} ${context.getString(R.string.meter)}"
                 }
                 "dona" -> {
-                    "${indicatorProdact.dona} ${context.getString(R.string.pcs)}"
+                    "${indicatorProdact.soni} ${context.getString(R.string.pcs)}"
                 }
                 else -> {
-                    "${indicatorProdact.dona} ${context.getString(R.string.pcs)} / " +
-                            "${indicatorProdact.hajm} ${indicatorProdact.olchov}"
+                    "${indicatorProdact.soni} ${context.getString(R.string.pcs)} / " +
+                            "${indicatorProdact.xajmi} ${indicatorProdact.olchov}"
                 }
             }
         }

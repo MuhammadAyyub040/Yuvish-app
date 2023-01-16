@@ -8,7 +8,7 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.yuvish.Models.NewOrder.SearchCustomerResult
+import com.example.yuvish.models.NewOrder.SearchCustomerResult
 import com.example.yuvish.R
 import com.example.yuvish.databinding.TicketSearchCustomerItemBinding
 
@@ -61,7 +61,7 @@ class SearchCustomerResultsAdapter(
             }
         }
 
-        private fun calculateActiveOrders(activeOrdersList: List<com.example.yuvish.Models.NewOrder.ActiveOrder>): String{
+        private fun calculateActiveOrders(activeOrdersList: List<com.example.yuvish.models.NewOrder.ActiveOrder>): String{
             var activeOrdersStr = ""
 
             activeOrdersList.forEachIndexed { index, activeOrder ->
